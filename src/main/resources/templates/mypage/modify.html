@@ -5,86 +5,94 @@
 <th:block layout:fragment="content">
     <div id="main" class="row mt-2">
         <div class="col">
-            <nav class="row navbar bg-primary bg-opacity-10">
-                <div class="container-fluid">
-                    <a href="#" class="col-6 text-end pe-4 text-dark pt-2" style="text-decoration: none;">
-                        <h5 style="font-weight: bold;">영화</h5></a>
-                    <a href="#" class="col-6 text-start ps-4 text-dark pt-2" style="text-decoration: none;">
-                        <h5 style="font-weight: bold">예매</h5></a>
-                </div>
-            </nav>
             <div class="row mt-5">
                 <div class="col-2">
                     <ul class="list-group">
-                        <li class="list-group-item active" aria-current="true">예매 내역</li>
-                        <li class="list-group-item">회원 정보 수정</li>
+                        <li class="list-group-item"><a href="mymoti" style="text-decoration: none">나의 MOTI</a></li>
+                        <li class="list-group-item"><a href="myticket" style="text-decoration: none">예매 내역</a></li>
+                        <li class="list-group-item active" aria-current="true">회원 정보 수정</li>
                     </ul>
                 </div>
                 <div class="col-10">
                     <div class="row">
                         <h3 style="font-weight: bold">회원 정보 수정</h3>
                     </div>
-                    <div class="row" style="border-top: 1px solid black">
+                    <div class="row ms-1" style="border-top: 1px solid black">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th class="col-3">
-                                        <div class="row align-items-center">
-                                            <p>프로필 사진</p>
+                            <tr>
+                                <th class="col-3">
+                                    <div class="row align-items-center">
+                                        <p>프로필 사진</p>
+                                    </div>
+                                </th>
+                                <td class="col-9">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <img src="/assets/img/profile.png" class="img-fluid" style="width: 50%">
                                         </div>
-                                    </th>
-                                    <td class="col-9">
-                                        <div class="row align-items-center">
-                                            <div class="col-2">
-                                                <img src="/assets/img/profile.png" class="img-fluid" style="width: 50%">
-                                            </div>
-                                            <div class="col-8">
-                                                <button class="btn btn-primary">이미지 등록</button>
-                                            </div>
-                                            <div class="col-2">
-                                                <button class="btn btn-primary">회원 탈퇴</button>
-                                            </div>
+                                        <div class="col-7">
+                                            <button class="btn btn-primary" data-bs-target="#newimgmodal" data-bs-toggle="modal" id="newimgbtn">이미지 등록</button>
                                         </div>
-                                    </td>
-                                </tr>
+                                        <div class="col-3" style="display: flex; justify-content: right;">
+                                            <button class="btn btn-primary">회원 탈퇴</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>아이디</th>
-                                    <td>yogurrr</td>
-                                </tr>
-                                <tr>
-                                    <th>이름</th>
-                                    <td>Jacob</td>
-                                </tr>
-                                <tr>
-                                    <th class="col-3">
-                                        <div class="row align-items-center">
-                                            <p>비밀번호</p>
+                            <tr>
+                                <th>아이디</th>
+                                <td>yogurrr</td>
+                            </tr>
+                            <tr>
+                                <th>이름</th>
+                                <td>Jacob</td>
+                            </tr>
+                            <tr>
+                                <th class="col-3">
+                                    <div class="row align-items-center">
+                                        <p>비밀번호</p>
+                                    </div>
+                                </th>
+                                <td class="col-9">
+                                    <button class="btn btn-primary" data-bs-target="#mdpswdmodal" data-bs-toggle="modal" id="mdpwbtn">비밀번호 변경</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-3">주소</th>
+                                <td class="col-9">
+                                    <div class="row">
+                                        <div class="col-9">XX시 XX구</div>
+                                        <div class="col-3" style="display: flex; justify-content: end">
+                                            <button class="btn btn-primary" data-bs-target="#mdzipmodal" data-bs-toggle="modal" id="mdzipbtn">주소 변경</button>
                                         </div>
-                                    </th>
-                                    <td class="col-9">
-                                        <button class="btn btn-primary">비밀번호 변경</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-3">
-                                        <div class="row align-items-center">
-                                            <p>주소</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-3">이메일 주소</th>
+                                <td class="col-9">
+                                    <div class="row">
+                                        <div class="col-9">yogurrr@naver.com</div>
+                                        <div class="col-3" style="display: flex; justify-content: end">
+                                            <button class="btn btn-primary" data-bs-target="#mdemmodal" data-bs-toggle="modal" id="mdembtn">이메일 변경</button>
                                         </div>
-                                    </th>
-                                    <td class="col-9">
-                                        <button class="btn btn-primary">우편번호 검색</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>이메일 주소</th>
-                                    <td>yogurrr@naver.com</td>
-                                </tr>
-                                <tr>
-                                    <th>휴대폰 번호</th>
-                                    <td>010-0000-0000</td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="col-3">휴대폰 번호</th>
+                                <td class="col-9">
+                                    <div class="row">
+                                        <div class="col-9">010-0000-0000</div>
+                                        <div class="col-3" style="display: flex; justify-content: end">
+                                            <button class="btn btn-primary" data-bs-target="#mdphmodal" data-bs-toggle="modal" id="mdphbtn">번호 변경</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -92,6 +100,174 @@
             </div>
         </div>
     </div>
+
+    <!-- 이미지 등록 모달 -->
+    <div class="modal fade" id="newimgmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">이미지 등록</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer" style="display: flex; justify-content: center;">
+                    <button type="button" class="btn btn-primary">완료</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 비밀번호 변경 모달 -->
+    <div class="modal fade" id="mdpswdmodal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="font-weight: bold">비밀번호 변경</h3>
+                </div>
+                <div class="modal-body">
+                    <form name="mpfrm" id="mpfrm">
+                        <div class="row mb-2">
+                            <label class="col-4 form-label text-end mt-1 text-dark" for="passwd">비밀번호</label>
+                            <div class="col-5">
+                                <input type="text" id="passwd" name="passwd" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="col-4 form-label text-end mt-1 text-dark" for="repswd">비밀번호 확인</label>
+                            <div class="col-5 mt-2">
+                                <input type="password" id="repswd" name="repswd" class="form-control" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" id="checkbtn">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelbtn">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 우편번호 폼 모달 -->
+    <div class="modal fade" id="mdzipmodal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="mt-2">우편번호 찾기</h3>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-light">
+                        <i class="fa-duotone fa-x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="zipfrm" id="zipfrm">
+                        <div class="row justify-content-center align-items-center">
+                            <label class="col-3 form-label text-end ms-5" for="dong" style="margin-bottom: 10px !important;">
+                                검색하실 주소의 <br />
+                                동 이름을 입력하세요</label>
+                            <div class="col-4">
+                                <input type="text" id="dong" name="dong" class="form-control border-primary" />
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn btn-primary" id="findzipbtn">
+                                    <i class="fas fa-search"></i> 검색하기
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <p class="col-12 text-danger text-center">
+                                지역의 읍/면/동의 이름을 공백없이 입력하신 후, [검색하기] 버튼을 클릭하세요
+                            </p>
+                        </div>
+                        <div class="row col-8 offset-2">
+                            <select class="form-select" id="addrlist" name="addrlist" size="10">
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                                <option>123-456 서울 구로구 구로동</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-info" id="sendzip">
+                        <i class="fas fa-check-square"></i> 선택하고 닫기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이메일 변경 모달 -->
+    <div class="modal fade" id="mdemmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" style="font-weight: bold;">이메일 변경</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="mefrm" id="mefrm">
+                        <div class="row mb-2">
+                            <label class="col-4 form-label text-end mt-1 text-dark" for="passwd">변경할 이메일</label>
+                            <div class="col-5">
+                                <input type="text" id="mdemail" name="passwd" class="form-control" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="display: flex; justify-content: center;">
+                    <button type="button" class="btn btn-primary">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 휴대폰 번호 변경 모달 -->
+    <div class="modal fade" id="mdphmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" style="font-weight: bold;">이메일 변경</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="mphfrm" id="mphfrm">
+                        <div class="row mb-2">
+                            <label class="col-5 form-label text-end mt-1 text-dark" for="passwd">변경할 휴대폰 번호</label>
+                            <div class="col-5">
+                                <input type="text" id="mdphone" name="passwd" class="form-control" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="display: flex; justify-content: center;">
+                    <button type="button" class="btn btn-primary">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </th:block>
 
 </html>

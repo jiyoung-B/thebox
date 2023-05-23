@@ -5,35 +5,28 @@
 <th:block layout:fragment="content">
     <div id="main" class="row mt-2">
         <div class="col">
-            <nav class="row navbar bg-primary bg-opacity-10">
-                <div class="container-fluid">
-                    <a href="#" class="col-6 text-end pe-4 text-dark pt-2" style="text-decoration: none;">
-                        <h5 style="font-weight: bold;">영화</h5></a>
-                    <a href="#" class="col-6 text-start ps-4 text-dark pt-2" style="text-decoration: none;">
-                        <h5 style="font-weight: bold">예매</h5></a>
-                </div>
-            </nav>
             <div class="row mt-5">
                 <div class="col-2">
                     <ul class="list-group">
+                        <li class="list-group-item"><a href="mymoti" style="text-decoration: none">나의 MOTI</a></li>
                         <li class="list-group-item active" aria-current="true">예매 내역</li>
-                        <li class="list-group-item">회원 정보 수정</li>
+                        <li class="list-group-item"><a href="modify" style="text-decoration: none">회원 정보 수정</a></li>
                     </ul>
                 </div>   <!-- 메뉴 -->
                 <div class="col-10">
                     <div class="row">
                         <h3 style="font-weight: bold">예매 내역</h3>
                     </div>   <!-- 예내 -->
-                    <div class="row ms-1">
-                        <div class="col-9" style="border-right: 2px dashed black; border-top: 2px solid black;
+                    <div class="row" style="min-height: 320px !important;">
+                        <div class="col-8 pt-2" style="border-right: 2px dashed black; border-top: 2px solid black;
                         border-left: 2px solid black; border-bottom: 2px solid black;">
                             <div class="row pt-3">
                                 <div class="col-4">
-                                    <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 70%">
+                                    <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 85%">
                                 </div>   <!-- 영화 이미지 -->
                                 <div class="col-7">
-                                    <div class="row text-danger" style="font-weight: bold; font-size: large">
-                                            가디언즈 오브 갤럭시: Volume 3 2D(자막)
+                                    <div class="row text-danger" style="font-weight: bold; font-size: 18px">
+                                        가디언즈 오브 갤럭시: Volume 3 2D(자막)
                                     </div>
                                     <div class="row">메가박스 이수/2관</div>
                                     <div class="row">0000-000-0000</div>
@@ -56,55 +49,57 @@
                                         <div class="col-6 text-danger fw-bold" style="text-align: end; font-size: 20px">14,000원</div>
                                     </div>
                                 </div>   <!-- 내용 -->
-                                <div class="col-1" style="font-size: x-large; font-weight: bold">X</div>
+                                <div class="col-1">
+                                    <button class="btn btn-light" style="font-weight: bold" id="dltbkbtn">X</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-3 border border-dark border-2 border-start-0 bg-danger">
-                            <div style="text-align: center; transform: rotate(-90deg);">
-                                <div class="row fw-bold" style="font-size: x-large; justify-content: center">ADMIT ONE</div>
+                        <div class="col-4 border border-dark border-2 border-start-0 bg-danger">
+                            <div class="pe-5" style="text-align: center; transform: rotate(-90deg); margin-left: -30px;">
+                                <div class="row fw-bold" style="font-size: x-large; justify-content: center; margin-left: -50px">ADMIT ONE</div>
                                 <div class="row fw-bold text-white" style="border-top: 1px dashed white">가디언즈 오브 갤럭시: Volume 3 2D(자막)</div>
-                                <div class="row" style="justify-content: center">
+                                <div class="row" style="justify-content: center; margin-left: -50px">
                                     <div class="row border-top border-bottom border-2 border-white mt-3 pt-3">
                                         <div class="col-3">
                                             <div class="row"><p class="text-center fw-bold text-white">좌석</p></div>
                                             <div class="row"><p class="text-center text-white">?열 ?</p></div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-5">
                                             <div class="row"><p class="text-center fw-bold text-white">관람일시</p></div>
                                             <div class="row"><p class="text-center text-white">2023.05.17 (수) 17:00</p></div>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <div class="row"><p class="text-center fw-bold text-white">관람인원</p></div>
                                             <div class="row"><p class="text-center text-white">성인 ?명</p></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row text-white" style="justify-content: center">Ticket NO.0000-000-0000</div>
+                                <div class="row text-white" style="justify-content: center; margin-left: -50px">Ticket NO.0000-000-0000</div>
                             </div>
-                        </div>
-                    </div>
+                        </div>   <!-- 절취선 이후 -->
+                    </div>   <!-- 티켓 전체 -->
                     <div class="row mt-5">
                         <h3 style="font-weight: bold">예매 취소 내역</h3>
                     </div>   <!-- 예취 -->
                     <div class="row mt-2"> <!-- 예취 테이블 -->
                         <table class="table table-striped" style="text-align: center">
                             <thead>
-                                <tr>
-                                    <th>취소일시</th>
-                                    <th>영화명</th>
-                                    <th>극장</th>
-                                    <th>상영일시</th>
-                                    <th>취소금액</th>
-                                </tr>
+                            <tr>
+                                <th>취소일시</th>
+                                <th>영화명</th>
+                                <th>극장</th>
+                                <th>상영일시</th>
+                                <th>취소금액</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>2023.05.18 (목) 11:30:00</td>
-                                    <td>가디언즈 오브 갤럭시: Volume3</td>
-                                    <td>이수</td>
-                                    <td>2023.05.20 (토) 17:00</td>
-                                    <td>14000원</td>
-                                </tr>
+                            <tr>
+                                <td>2023.05.18 (목) 11:30:00</td>
+                                <td>가디언즈 오브 갤럭시: Volume3</td>
+                                <td>이수</td>
+                                <td>2023.05.20 (토) 17:00</td>
+                                <td>14000원</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -112,6 +107,8 @@
             </div>
         </div>
     </div>
+
+
 </th:block>
 
 </html>
