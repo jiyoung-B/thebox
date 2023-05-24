@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="htttp://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/template}">
+
+<th:block layout:fragment="content">
+    <style>
+        .thumbnail { border-radius: 0; position: relative; z-index: 1; border: 2px solid #fff; outline: 1px solid #ccc; }
+    </style>
+    <div id="main" class="row mt-2">
+        <div class="col">
+            <nav class="row navbar bg-primary bg-opacity-10">
+                <div class="container-fluid">
+                    <a href="#" class="col-6 text-end pe-4 text-dark pt-2" style="text-decoration: none;">
+                        <h5 style="font-weight: bold;">영화</h5></a>
+                    <a href="#" class="col-6 text-start ps-4 text-dark pt-2" style="text-decoration: none;">
+                        <h5 style="font-weight: bold">예매</h5></a>
+                </div>
+            </nav>
+            <div class="row mt-2">
+                <a href="#" class="col-2 text-dark pt-2" >
+                    <h5 style="font-weight: bold; text-underline: red">현재상영작</h5></a>
+                <a href="#" class="col-2 text-dark pt-2">
+                    <h5 style="font-weight: bold">상영예정작</h5></a>
+            </div>
+            <div class="col text-dark ">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                     <button type="button" class="btn btn-secondary  btn-sm">예매순</button>
+                     <button type="button" class="btn btn-secondary btn-sm">평점순</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-sm-3 col-xs-6 mb-2">
+                    <div class="thumbnail">
+                            <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                            <div class="caption mt-1">
+                                <ul class="list-unstyled block text-center">
+                                    <li><h4><img src="/assets/img/12.png" class="mb-2"><b>가디어오브 갤러시</b></h4></li>
+                                    <li><b>예매율 00.0% | 개봉일 2023.05.15</b></li>
+                                </ul>
+                            </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">예매하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <div class="thumbnail">
+                        <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                        <div class="caption mt-1">
+                            <ul class="list-unstyled block text-center">
+                                <li><h4><img src="/assets/img/12.png" class="mb-2"><b>가디어오브 갤러시</b></h4></li>
+                                <li><b>예매율 00.0% | 개봉일 2023.05.15</b></li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">예매하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <div class="thumbnail">
+                        <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                        <div class="caption mt-1">
+                            <ul class="list-unstyled block text-center">
+                                <li><h4><img src="/assets/img/12.png" class="mb-2"><b>가디어오브 갤러시</b></h4></li>
+                                <li><b>예매율 00.0% | 개봉일 2023.05.15</b></li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">예매하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <div class="thumbnail">
+                        <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                        <div class="caption mt-1">
+                            <ul class="list-unstyled block text-center">
+                                <li><h4><img src="/assets/img/12.png" class="mb-2"><b>가디어오브 갤러시</b></h4></li>
+                                <li><b>예매율 00.0% | 개봉일 2023.05.15</b></li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">예매하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <div class="thumbnail">
+                        <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                        <div class="caption mt-1">
+                            <ul class="list-unstyled block text-center">
+                                <li><h4><img src="/assets/img/12.png" class="mb-2"><b>가디어오브 갤러시</b></h4></li>
+                                <li><b>예매율 00.0% | 개봉일 2023.05.15</b></li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">예매하기</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <div class="thumbnail">
+                        <img src="/assets/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                        <div class="caption mt-1">
+                            <ul class="list-unstyled block text-center">
+                                <li><h4><img src="/assets/img/12.png" class="mb-2"><b>가디어오브 갤러시</b></h4></li>
+                                <li><b>예매율 00.0% | 개봉일 2023.05.15</b></li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button">예매하기</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</th:block>
+
+</html>
