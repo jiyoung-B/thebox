@@ -14,7 +14,7 @@
 .thbg {
     background: #dff0d8
 }
-tr{border-bottom:1px solid silver}
+/*tr{border-bottom:1px solid silver}*/
 .active2{
     color: red; !important; font-size: 35px; !important;
 }

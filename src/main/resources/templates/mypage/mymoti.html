@@ -5,45 +5,71 @@
 <th:block layout:fragment="content">
     <div id="main" class="row mt-2">
         <div class="col">
-            <nav class="row navbar bg-primary bg-opacity-10">
-                <div class="container-fluid">
-                    <a href="#" class="col-6 text-end pe-4 text-dark pt-2" style="text-decoration: none;">
-                        <h5 style="font-weight: bold;">영화</h5></a>
-                    <a href="#" class="col-6 text-start ps-4 text-dark pt-2" style="text-decoration: none;">
-                        <h5 style="font-weight: bold">예매</h5></a>
-                </div>
-            </nav>
-
             <div class="row mt-5">
                 <div class="col-2">
                     <ul class="list-group">
-                        <li class="list-group-item active" aria-current="true">예매 내역</li>
-                        <li class="list-group-item">회원 정보 수정</li>
+                        <li class="list-group-item active" aria-current="true">나의 MOTI</li>
+                        <li class="list-group-item"><a href="myticket" style="text-decoration: none">예매 내역</a></li>
+                        <li class="list-group-item"><a href="modify" style="text-decoration: none">회원 정보 수정</a></li>
                     </ul>
-                </div>
+                </div>   <!-- 메뉴 -->
                 <div class="col-1"></div>
                 <div class="col-9">
                     <div class="row">
-                        <table style="border: 1px solid blue">
-                            <tr>
-                                <td>
+                        <table class="border border-2 border-primary border-opacity-50">
+                            <tr class="bg-primary bg-opacity-50">
+                                <td class="pt-3 pb-3" colspan="2">
                                     <div class="row">
-                                        <div class="col-2">이미지</div>
-                                        <div class="col-10" style="font-weight: bold; font-size: 25px">
+                                        <div class="col-1 p-0 m-0">
+                                            <img src="/assets/img/profile.png" width="90%" class="rounded-circle">
+                                        </div>
+                                        <div class="col-11" style="font-weight: bold; font-size: 25px">
                                             <div>안녕하세요!</div>
-                                            <div>누구님</div>
+                                            <div>누구님 <a href="modify"><i class="fa-solid fa-pen-nib fa-2xs" style="color: #000000"></i></a></div>
                                         </div>
                                     </div>
                                 </td>
-                                <td></td>
+                            </tr>
+                            <tr class="border-top border-primary border-opacity-50">
+                                <td>
+                                    <div class="ms-3 pt-2" style="font-weight: bold; font-size: 25px">예매내역</div>
+                                </td>
+                                <td>
+                                    <div class="me-4 pt-2" style="text-align: right">
+                                        <a href="myticket" style="text-decoration: none; color: black !important;">
+                                            더보기 <i class="fa-solid fa-chevron-right"></i>
+                                        </a></div>
+                                </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <div class="row ms-3 mt-2 mb-3 me-3 border border-primary border-opacity-50 rounded">
+                                        <div class="col-3 pt-2 pb-2">
+                                            <img src="/assets/img/moviesample.jpg" width="100%">
+                                        </div>
+                                        <div class="col-9 pt-2 pb-2">
+                                            <div>결제일시 : 2023.05.20 (17:00)</div>
+                                            <div>0000-000-0000</div>
+                                            <div>가디언즈 오브 갤럭시</div>
+                                            <div>지역(X관)</div>
+                                            <div>2023.05.26 19:00</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row ms-3 mt-2 mb-3 me-3 border border-primary border-opacity-50 rounded">
+                                        <div class="col-3 pt-2 pb-2">
+                                            <img src="/assets/img/moviesample.jpg" width="100%">
+                                        </div>
+                                        <div class="col-9 pt-2 pb-2">
+                                            <div>결제일시 : 2023.05.20 (17:00)</div>
+                                            <div>0000-000-0000</div>
+                                            <div>가디언즈 오브 갤럭시</div>
+                                            <div>지역(X관)</div>
+                                            <div>2023.05.26 19:00</div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -51,6 +77,7 @@
             </div>
         </div>
     </div>
+
 </th:block>
 
 </html>
