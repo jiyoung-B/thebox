@@ -6,38 +6,40 @@
     <div id="main">
         <h2 class="mt-4" style="font-weight: bold">예매하기</h2>
         <div class="row">
-            <div class="col-9">
+            <div class="col-8">
                 <div class="border-top border-primary border-opacity-50 pt-2" style="font-size: 18px;">결제수단 선택</div>
                 <div class="border rounded border-primary border-opacity-50" style="margin-top: 50px;">
                     <div class="col">
                         <div class="row m-0 pt-3 pb-3 border-bottom border-primary border-opacity-50">
                             <div class="form-check col-3 ps-5">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="pwcard">
+                                <label class="form-check-label" for="pwcard">
                                     신용/체크카드
                                 </label>
                             </div>
                             <div class="form-check col-3">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="pwphone" checked>
+                                <label class="form-check-label" for="pwphone">
                                     휴대폰 결제
                                 </label>
                             </div>
                             <div class="form-check col-3">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="pwconv" checked>
+                                <label class="form-check-label" for="pwconv">
                                     간편결제
                                 </label>
                             </div>
                             <div class="form-check col-3">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="pwbb" checked>
+                                <label class="form-check-label" for="pwbb">
                                     내통장결제
                                 </label>
                             </div>
                         </div>
                         <div class="row ps-4 pt-3 pb-3">
-                            <div class="col-2">카드사 선택</div>
+                            <div class="col-2" style="display: flex; align-items: center; justify-content: center">
+                                <span>카드사 선택</span>
+                            </div>
                             <div class="col-3">
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>카드 선택</option>
@@ -65,11 +67,45 @@
                                 <option value="3">IBK기업은행카드</option>
                             </select>
                             </div>
+                        </div>   <!-- 카드사 선택 -->
+                    </div>
+                </div>
+            </div>   <!-- 결제수단 선택 -->
+            <div class="col-4 pe-3">
+                <div class="row m-0 ps-2 border border-2 border-primary border-opacity-50 rounded">
+                    <div class="col-2 pt-4">
+                        <p class="badge bg-warning text-center fs-5">12</p>
+                    </div>
+                    <div class="col-8 pt-4 ms-2">
+                        <div class="fs-4 fw-bold">가디언즈 오브 갤럭시</div>
+                        <div class="mb-1">2D(자막)</div>
+                        <div class="mb-1">이수 / 2관</div>
+                        <div>2023.06.06 (화) <i class="fa-regular fa-clock"></i> 19:00 ~ 21:39</div>
+                        <table class="row border-top border-dark mt-4 ms-0 me-0">
+                            <tr class="row border-bottom pt-2 pb-2">
+                                <td class="col-6 text-center">성인 1명</td>
+                                <td class="col-6 text-center">14,000</td>
+                            </tr>
+                            <tr class="row border-bottom border-dark pt-2 pb-2">
+                                <td class="col-6 text-center">청소년 1명</td>
+                                <td class="col-6 text-center">10,000</td>
+                            </tr>
+                        </table>
+                        <div class="row border-bottom border-dark m-0 pb-2" style="margin-top: 150px !important;">
+                            <div class="col-8 fw-bold fs-5 p-0">최종결제금액</div>
+                            <div class="col-4 text-end text-danger fw-bold fs-5">24,000</div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">결제수단</div>
+                            <div class="col-6 text-end">신용/체크카드</div>
+                        </div>
+                        <div class="row pt-3 pb-4">
+                            <button type="button" class="col-5 btn btn-secondary ms-3 me-3">이전</button>
+                            <button type="button" class="col-5 btn btn-info">결제</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">2</div>
+            </div>   <!-- 결제 창 -->
         </div>
     </div>
 </th:block>
