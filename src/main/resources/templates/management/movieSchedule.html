@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/template}">
+
+<th:block layout:fragment="content">
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Starter Page</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+          <div class="row">
+
+            <div style="margin:auto;"class="col-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">새로운 스케줄 등록</h4>
+                  <p class="card-description">
+                    1. 상영관과 상영 영화, 날짜를 선택해 주세요. (다음 버튼을 누르면 상세 스케줄 페이지로 이동합니다)
+                  </p>
+                  <form class="schedule" th:action="@{/schedule/addimpl}">
+                    <div class="form-group">
+                      <label for="exampleSelectGender">상영관 선택</label>
+                      <select name="tid" class="form-control" id="exampleSelectGender">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleSelectGender">상영영화 선택</label>
+                      <select name="mid" class="form-control form-control-item" >
+                        <option th:each="m:${mlist}" th:value="${m.id}" th:text="${m.title}"></option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputBirth">상영날짜   (숫자 8자리 입력)</label>
+                      <input type="text" onKeyup="inputYMDNumber(this);" maxlength="10" class="form-control" name="sdate" id="exampleInputBirth" placeholder="yyyy-mm-dd">
+                    </div>
+                    <button id="btn" type="submit" class="btn btn-primary mr-2">다음</button>
+                    <a class="btn btn-light" id="cancel" onclick="Back()">Cancel</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+  </div>
+</th:block>
+
+</html>
