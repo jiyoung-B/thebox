@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BookingController {
 
     @GetMapping("/payment")
-    public String MyMoti() {
+    public String Payment() {
         return "payment";
     }
 }
