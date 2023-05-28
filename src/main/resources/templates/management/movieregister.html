@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/template}">
+      layout:decorate="~{admin/layout/template}">
 
-<th:block layout:fragment="content">
+<th:block layout:fragment="admincontent">
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -82,6 +82,10 @@
                     <div class="form-group">
                       <label for="exampleInputCountry">국가</label>
                       <input type="text" class="form-control" name="country" id="exampleInputCountry" placeholder="Country">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputGrade">심의 등급</label>
+                      <input type="text" class="form-control" name="grade" id="exampleInputGrade" placeholder="Grade">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputRunningtime">러닝타임 (형식/___m)</label>

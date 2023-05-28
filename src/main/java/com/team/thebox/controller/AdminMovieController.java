@@ -4,17 +4,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/management/movies")
+@RequestMapping("/management/movie")
 @Controller
 public class AdminMovieController {
-    @GetMapping
-    public String movieInfo(){
-        return "management/movieRegister";
+    @GetMapping("/movielist")
+    public String movieList(){
+
+        return "management/movielist";
+    }
+    @GetMapping("/register")
+    public String movieRegister(){
+
+        return "management/movieregister";
+    }
+
+    @GetMapping("/schedule/resgister")
+    public String movieScheduleRegister(){
+        return "management/moviescheduleregister";
+
     }
 
     @GetMapping("/schedule")
-    public String moviesSchedule(){
-        return "management/movieSchedule";
+    public String movieScheduleList(){
+        return "management/movieschedulelist";
+
+    }
+    @GetMapping("/schedule/calendar")
+    public String movieScheduleListCalendar(){
+        return "management/movieschedulecalendar";
 
     }
 

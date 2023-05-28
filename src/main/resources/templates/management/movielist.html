@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/template}">
+
+<th:block layout:fragment="admincontent">
+
+
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>영화 관리</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">영화 정보</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                <div class="col-sm-6">
+                  <h3 class="card-title">영화 정보</h3>
+                </div>
+                <div class="col-sm-6 float-sm-right">
+                  <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                </div>
+                </div>
+              </div>
+
+
+                <div class="card-body">
+                <table id="example1" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>영화제목</th>
+                    <th>감독</th>
+                    <th>배우</th>
+                    <th>장르</th>
+                    <th>러닝타임</th>
+                    <th>개봉일</th>
+                    <th>등급</th>
+                    <th>상영</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>가디언즈 오브 갤럭시: Volume 3</td>
+                    <td>제임스 건</td>
+                    <td>크리스 프랫, 조 샐다나, 데이브 바티스타, 빈 디젤</td>
+                    <td>액션/어드벤처/SF</td>
+                    <td>150분</td>
+                    <td>2023.05.03</td>
+                    <td>12세이상관람가</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  </tbody>
+
+
+                  <tfoot>
+                  <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                  </tr>
+                  </tfoot>
+                </table>
+                 </div>
+              </div>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</th:block>
+
+</html>

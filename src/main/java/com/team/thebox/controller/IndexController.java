@@ -14,7 +14,7 @@ public class IndexController {
 
     @GetMapping("/intro")
     public String intro(){
-        return "intro";
+        return "payment";
 
     }
 
