@@ -1,9 +1,12 @@
-$primary-color: red;
+$primary-color: #d9edf7;
 
-h1 {
+/*h1 {
   color: $primary-color;
-}
+}*/
 
 .btn-success {
   background-color: $primary-color;
+  color: #31708f;
+  border-color: #bce8f1;
+  font-weight: bold;
 }
