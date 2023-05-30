@@ -9,15 +9,15 @@
                 <div class="col-2">
                     <ul class="list-group">
                         <li class="list-group-item active" aria-current="true">나의 MOTI</li>
-                        <li class="list-group-item"><a href="myticket" style="text-decoration: none">예매 내역</a></li>
-                        <li class="list-group-item"><a href="modify" style="text-decoration: none">회원 정보 수정</a></li>
+                        <li class="list-group-item"><a th:href="|myticket?userid=${session.UID}|" style="text-decoration: none">예매 내역</a></li>
+                        <li class="list-group-item"><a th:href="|modify?userid=${session.UID}|" style="text-decoration: none">회원 정보 수정</a></li>
                     </ul>
                 </div>   <!-- 메뉴 -->
                 <div class="col-1"></div>
                 <div class="col-9">
                     <div class="row">
-                        <table class="border border-2 border-primary border-opacity-50">
-                            <tr class="bg-primary bg-opacity-50">
+                        <table style="border: 2px solid #bce8f1 !important;">
+                            <tr style="background-color: #d9edf7 !important; border-color: #d9edf7 !important;">
                                 <td class="pt-3 pb-3" colspan="2">
                                     <div class="row ps-5">
                                         <div class="col-1 p-0 m-0">
@@ -25,25 +25,25 @@
                                         </div>
                                         <div class="col-11" style="font-weight: bold; font-size: 25px">
                                             <div>안녕하세요!</div>
-                                            <div>누구님 <a href="modify"><i class="fa-solid fa-pen-nib fa-2xs" style="color: #000000"></i></a></div>
+                                            <div>누구님 <a th:href="|modify?userid=${session.UID}|"><i class="fa-solid fa-pen-nib fa-2xs" style="color: #000000"></i></a></div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="border-top border-primary border-opacity-50">
+                            <tr style="border-top: 1px solid #bce8f1;">
                                 <td>
                                     <div class="ms-3 pt-2" style="font-weight: bold; font-size: 25px">예매내역</div>
                                 </td>
                                 <td>
                                     <div class="me-4 pt-2" style="text-align: right">
-                                        <a href="myticket" style="text-decoration: none; color: black !important;">
+                                        <a th:href="|myticket?userid=${session.UID}|" style="text-decoration: none; color: black !important;">
                                             더보기 <i class="fa-solid fa-chevron-right"></i>
                                         </a></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="row ms-3 mt-2 mb-3 me-3 border border-primary border-opacity-50 rounded">
+                                    <div class="row ms-3 mt-2 mb-3 me-3 border rounded" style="border-color: #bce8f1 !important;">
                                         <div class="col-3 pt-2 pb-2">
                                             <img src="/static/img/moviesample.jpg" width="100%">
                                         </div>
@@ -57,7 +57,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="row ms-3 mt-2 mb-3 me-3 border border-primary border-opacity-50 rounded">
+                                    <div class="row ms-3 mt-2 mb-3 me-3 border rounded" style="border-color: #bce8f1 !important;">
                                         <div class="col-3 pt-2 pb-2">
                                             <img src="/static/img/moviesample.jpg" width="100%">
                                         </div>

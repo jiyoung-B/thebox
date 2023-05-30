@@ -8,9 +8,9 @@
             <div class="row mt-5">
                 <div class="col-2">
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="mymoti" style="text-decoration: none">나의 MOTI</a></li>
+                        <li class="list-group-item"><a th:href="|mymoti?userid=${session.UID}|" style="text-decoration: none">나의 MOTI</a></li>
                         <li class="list-group-item active" aria-current="true">예매 내역</li>
-                        <li class="list-group-item"><a href="modify" style="text-decoration: none">회원 정보 수정</a></li>
+                        <li class="list-group-item"><a th:href="|modify?userid=${session.UID}|" style="text-decoration: none">회원 정보 수정</a></li>
                     </ul>
                 </div>   <!-- 메뉴 -->
                 <div class="col-10">
@@ -107,7 +107,6 @@
             </div>
         </div>
     </div>
-
 
 </th:block>
 
