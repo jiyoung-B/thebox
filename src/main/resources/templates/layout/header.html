@@ -23,7 +23,7 @@
             <li class="nav-item"><a href="/intro" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="/movie/now" class="nav-link">영화</a></li>
             <li class="nav-item"><a href="/ticket" class="nav-link">예매</a></li>
-            <li class="nav-item"><a href="/mypage/mymoti" class="nav-link">마이페이지</a></li>
+            <li class="nav-item"><a th:href="|/mypage/mymoti?userid=${session.UID}|" class="nav-link">마이페이지</a></li>
             <!--<li class="nav-item"><a href="/gallery/list?cpg=1" class="nav-link">갤러리</a></li>-->
             <li class="nav-item"><a href="/admin" class="nav-link">관리자</a></li>
         </ul>
