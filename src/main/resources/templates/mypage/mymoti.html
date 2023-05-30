@@ -8,35 +8,34 @@
             <div class="row mt-5">
                 <div class="col-2">
                     <ul class="list-group">
-                        <li class="list-group-item active" aria-current="true">나의 MOTI</li>
+                        <li class="list-group-item active fw-bold" aria-current="true">나의 MOTI</li>
                         <li class="list-group-item"><a th:href="|myticket?userid=${session.UID}|" style="text-decoration: none">예매 내역</a></li>
                         <li class="list-group-item"><a th:href="|modify?userid=${session.UID}|" style="text-decoration: none">회원 정보 수정</a></li>
                     </ul>
                 </div>   <!-- 메뉴 -->
-                <div class="col-1"></div>
-                <div class="col-9">
-                    <div class="row">
-                        <table style="border: 2px solid #bce8f1 !important;">
+                <div class="offset-1 col-9">
+<!--                    <div>-->
+                        <table class="col" style="border: 2px solid #bce8f1 !important;">
                             <tr style="background-color: #d9edf7 !important; border-color: #d9edf7 !important;">
                                 <td class="pt-3 pb-3" colspan="2">
                                     <div class="row ps-5">
                                         <div class="col-1 p-0 m-0">
                                             <img src="/static/img/profile.png" width="90%" class="rounded-circle">
                                         </div>
-                                        <div class="col-11" style="font-weight: bold; font-size: 25px">
+                                        <div class="col-11 fw-bold fs-4">
                                             <div>안녕하세요!</div>
-                                            <div>누구님 <a th:href="|modify?userid=${session.UID}|"><i class="fa-solid fa-pen-nib fa-2xs" style="color: #000000"></i></a></div>
+                                            <div>누구님 <a th:href="|modify?userid=${session.UID}|"><i class="fa-solid fa-pen-nib fa-2xs" style="color: black"></i></a></div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr style="border-top: 1px solid #bce8f1;">
                                 <td>
-                                    <div class="ms-3 pt-2" style="font-weight: bold; font-size: 25px">예매내역</div>
+                                    <div class="ms-3 pt-2 fw-bold fs-4">예매내역</div>
                                 </td>
                                 <td>
-                                    <div class="me-4 pt-2" style="text-align: right">
-                                        <a th:href="|myticket?userid=${session.UID}|" style="text-decoration: none; color: black !important;">
+                                    <div class="me-4 pt-2 text-end">
+                                        <a th:href="|myticket?userid=${session.UID}|" class="text-dark" style="text-decoration: none;">
                                             더보기 <i class="fa-solid fa-chevron-right"></i>
                                         </a></div>
                                 </td>
@@ -47,7 +46,7 @@
                                         <div class="col-3 pt-2 pb-2">
                                             <img src="/static/img/moviesample.jpg" width="100%">
                                         </div>
-                                        <div class="col-9 pt-2 pb-2">
+                                        <div class="col-9 pt-2 pb-2 text-primary">
                                             <div>결제일시 : 2023.05.20 (17:00)</div>
                                             <div>0000-000-0000</div>
                                             <div>가디언즈 오브 갤럭시</div>
@@ -61,7 +60,7 @@
                                         <div class="col-3 pt-2 pb-2">
                                             <img src="/static/img/moviesample.jpg" width="100%">
                                         </div>
-                                        <div class="col-9 pt-2 pb-2">
+                                        <div class="col-9 pt-2 pb-2 text-primary">
                                             <div>결제일시 : 2023.05.20 (17:00)</div>
                                             <div>0000-000-0000</div>
                                             <div>가디언즈 오브 갤럭시</div>
@@ -72,7 +71,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
         </div>

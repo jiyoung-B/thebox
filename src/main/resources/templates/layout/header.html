@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="header">
     <header class="row">
-        <div class="col"><h1 id="logo">The Box</h1></div>
+        <div class="col"><h1 id="logo" class="fw-bold text-primary">The Box</h1></div>
         <div class="col text-end" th:with="path=${#request.getRequestURI()}">
         <th:block th:if="${not #strings.startsWith(path, '/join')}">
             <th:block th:if="${#strings.isEmpty(session.UID)}">
@@ -11,21 +11,16 @@
             </th:block>
 
             <th:block th:if="${not #strings.isEmpty(session.UID)}">
-            <!--<th:block th:if="${session.UID ne null}">-->
                 <button type="button" class="btn btn-dark mt-2" id="lgoutbtn">로그아웃</button>
-                <button type="button" class="btn btn-success mt-2">회원정보</button>
+                <button type="button" class="btn btn-success mt-2"><a th:href="|/mypage/mymoti?userid=${session.UID}|" style="text-decoration: none; color: white;">회원정보</a></button>
             </th:block>
         </th:block>
         </div>
     </header>
     <nav class="navbar navbar-expand navbar-light bg-primary">
-        <ul class="navbar-nav nav-fill w-100">
-            <li class="nav-item"><a href="/intro" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/movie/now" class="nav-link">영화</a></li>
-            <li class="nav-item"><a href="/ticket" class="nav-link">예매</a></li>
-            <li class="nav-item"><a th:href="|/mypage/mymoti?userid=${session.UID}|" class="nav-link">마이페이지</a></li>
-            <!--<li class="nav-item"><a href="/gallery/list?cpg=1" class="nav-link">갤러리</a></li>-->
-            <li class="nav-item"><a href="/admin" class="nav-link">관리자</a></li>
+        <ul class="navbar-nav w-100">
+            <li class="nav-item offset-5 col-1"><a href="/movie/now" class="nav-link text-primary fw-bold fs-5">영화</a></li>
+            <li class="nav-item"><a href="/ticket" class="nav-link text-primary fw-bold fs-5">예매</a></li>
         </ul>
     </nav>
 </th:block>
