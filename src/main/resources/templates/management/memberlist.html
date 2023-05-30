@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/template}">
+
+<th:block layout:fragment="admincontent">
+
+  <!-- Content Wrapper. Contains page content // 본문-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) // 본문 헤더 -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>회원 관리</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">회원 관리</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content 본문 -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+<!--                본문 타이틀-->
+                <h3 class="card-title">회원목록</h3>
+              </div>
+
+
+                <div class="card-body">
+                <table class="table table-head-fixed table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>생년월일</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>가입일</th>
+                    <th>수정/삭제</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr>
+                    <td>Trident</td>
+                    <td>Internet
+                      Explorer 4.0
+                    </td>
+                    <td>Win 95+</td>
+                    <td>Win 95+</td>
+                    <td> 4</td>
+                    <td>X</td>
+                    <td>X</td>
+                    <td>X</td>
+                  </tr>
+                  </tbody>
+
+
+                  <tfoot>
+                  <tr>
+                    <th>Rendering engine</th>
+                    <th>Browser</th>
+                    <th>Platform(s)</th>
+                    <th>Engine version</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                    <th>CSS grade</th>
+                  </tr>
+                  </tfoot>
+                </table>
+                 </div>
+              </div>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</th:block>
+
+</html>
