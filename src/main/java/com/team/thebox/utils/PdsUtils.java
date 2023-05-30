@@ -1,5 +1,6 @@
 package com.team.thebox.utils;
 
+import com.team.thebox.model.MovieAttach;
 import com.team.thebox.model.PdsAttach;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.UrlResource;
@@ -29,28 +30,28 @@ public class PdsUtils {
         return uuid;
     }
 
-    public PdsAttach processUpload(
-            MultipartFile attach, Map<String, Object> pinfo) {
+    public MovieAttach processUpload(
+            MultipartFile attach, Map<String, Object> movinfo) {
 
         // 업로드할 파일 정보 취득
-        PdsAttach pa = new PdsAttach();
-        pa.setPno((Integer) pinfo.get("pno"));
-        pa.setFname( attach.getOriginalFilename() );
+        MovieAttach ma = new MovieAttach();
+        ma.setMovno((Integer) movinfo.get("movno"));
+        ma.setFname( attach.getOriginalFilename() );
 
         // 파일명1 : abc123.png -> 파일종류 : png
         // pa.setFtype( pa.getFname().split("[.]")[1] );
         // 파일명2 : abc123.987xyz.jpg -> 파일종류 : jpg
-        int pos = pa.getFname().lastIndexOf(".") + 1;
-        String ftpye = pa.getFname().substring(pos);
-        pa.setFtype(ftpye);
+        int pos = ma.getFname().lastIndexOf(".") + 1;
+        String ftpye = ma.getFname().substring(pos);
+        ma.setFtype(ftpye);
 
-        pa.setFsize(attach.getSize()/1024 + "");
+        ma.setFsize(attach.getSize()/1024 + "");
 
         // 첨부파일을 파일시스템에 저장
         // 시스템에 저장시 사용할 파일명 : 파일이름UUID.확장자
-        String fname = pa.getFname().substring(0, pos-1);
+        String fname = ma.getFname().substring(0, pos-1);
         String savefname = saveDir + fname +
-                pinfo.get("uuid") + "." + pa.getFtype();
+                movinfo.get("uuid") + "." + ma.getFtype();
 
         try {
             attach.transferTo(new File(savefname));
@@ -59,7 +60,7 @@ public class PdsUtils {
             ex.printStackTrace();
         }
 
-        return pa;
+        return ma;
     }
 
     public HttpHeaders getHeader(String fname, String uuid) {

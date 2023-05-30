@@ -40,11 +40,11 @@ public class PdsServiceImpl implements PdsService {
             MultipartFile attach, Map<String, Object> pinfo) {
 
         // 첨부파일 업로드 처리
-        PdsAttach pa = pdsUtils.processUpload(attach, pinfo);
-        // 첨부파일 정보 디비에 저장
-        int pano = pdsdao.insertPdsAttach(pa);
+////        PdsAttach pa = pdsUtils.processUpload(attach, pinfo);
+//        // 첨부파일 정보 디비에 저장
+//        int pano = pdsdao.insertPdsAttach(pa);
 
-        return (pano > 0) ? true : false;
+        return false;
     }
 
     @Override
