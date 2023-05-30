@@ -13,6 +13,7 @@ public class MypageDAOImpl implements MypageDAO{
 
     @Override
     public Member selectOneMember(String userid) {
+//        mypageRepository.updateByEmail(userid);
         return mypageRepository.findAllByUserid(userid);
     }
 }

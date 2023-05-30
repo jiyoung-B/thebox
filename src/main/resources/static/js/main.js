@@ -1,8 +1,8 @@
-/*// header 로고 클릭 이벤트
+// header 로고 클릭 이벤트
 let logo = document.querySelector('#logo');
 logo?.addEventListener('click',  () => {
     location.href = '/';
-});*/
+});
 
 
 // --------------------------------------------- login
@@ -22,7 +22,3 @@ loginbtn?.addEventListener('click', (e) => {
 lgoutbtn?.addEventListener('click', () => {
     location.href = '/logout';
 })
-
-
-
-
