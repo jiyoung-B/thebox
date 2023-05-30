@@ -1,7 +1,28 @@
-h1 {
-  color: red;
+.btn-primary {
+  background-color: #d9edf7;
+  color: #31708f;
+  border-color: #bce8f1;
+  font-weight: bold;
 }
 
-.btn-success {
-  background-color: red;
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+  background-color: #bce8f1 !important;
+  color: #31708f !important;
+  border-color: #bce8f1 !important;
+  font-weight: bold !important;
+}
+
+.text-primary {
+  color: #31708f !important;
+}
+
+.list-group-item a {
+  color: #31708f;
+  text-decoration: none;
+}
+
+.active {
+  background-color: #bce8f1 !important;
+  color: #31708f !important;
+  border-color: #bce8f1 !important;
 }

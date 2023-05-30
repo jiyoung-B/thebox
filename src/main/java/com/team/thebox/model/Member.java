@@ -31,12 +31,6 @@ public class Member {
     @NotBlank(message = "이름은 필수항목입니다.")
     private String name;
 
-    private String zipcode;
-
-    private String addr1;
-
-    private String addr2;
-
     private String email;
 
     @NotBlank(message = "전화번호는 필수항목입니다.")

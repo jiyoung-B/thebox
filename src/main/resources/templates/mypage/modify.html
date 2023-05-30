@@ -8,27 +8,24 @@
             <div class="row mt-5">
                 <div class="col-2">
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="mymoti" style="text-decoration: none; color: #31708f !important;">나의 MOTI</a>
+                        <li class="list-group-item"><a th:href="|mymoti?userid=${session.UID}|">나의 MOTI</a>
                         </li>
-                        <li class="list-group-item">
-                            <a href="myticket" style="text-decoration: none; color: #31708f !important;">예매 내역</a>
+                        <li class="list-group-item"><a th:href="|myticket?userid=${session.UID}|">예매 내역</a>
                         </li>
-                        <li class="list-group-item active" aria-current="true"
-                            style="background-color: #d9edf7; color: #31708f !important; border-color: #bce8f1;">회원 정보 수정</li>
+                        <li class="list-group-item active" aria-current="true">회원 정보 수정</li>
                     </ul>
                 </div>
-                <div class="col-10">
+                <div class="col-10 text-primary">
                     <div class="row">
-                        <h3 class="fw-bold" style="color: #31708f">회원 정보 수정</h3>
+                        <h3 class="fw-bold text-primary">회원 정보 수정</h3>
                     </div>
                     <div class="row ms-1" style="border-top: 1px solid #31708f">
-                        <table class="table" style="color: #31708f">
+                        <table class="table text-primary">
                             <thead>
                             <tr>
                                 <th class="col-3">
                                     <div class="row align-items-center">
-                                        <p style="color: #31708f">프로필 사진</p>
+                                        <p>프로필 사진</p>
                                     </div>
                                 </th>
                                 <td class="col-9">
@@ -37,11 +34,10 @@
                                             <img src="/assets/img/profile.png" class="img-fluid" style="width: 50%">
                                         </div>
                                         <div class="col-7">
-                                            <button class="btn fw-bold" style="background-color: #d9edf7 !important; border-color: #bce8f1 !important; color: teal"
-                                                    data-bs-target="#newimgmodal" data-bs-toggle="modal" id="newimgbtn">이미지 등록</button>
+                                            <button class="btn btn-primary" data-bs-target="#newimgmodal" data-bs-toggle="modal" id="newimgbtn">이미지 등록</button>
                                         </div>
                                         <div class="col-3" style="display: flex; justify-content: right;">
-                                            <button class="btn fw-bold" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important; color: teal">회원 탈퇴</button>
+                                            <button class="btn btn-primary">회원 탈퇴</button>
                                         </div>
                                     </div>
                                 </td>
@@ -54,7 +50,7 @@
                             </tr>
                             <tr>
                                 <th>이름</th>
-                                <td></td>
+                                <td th:text="${mp.name}"></td>
                             </tr>
                             <tr>
                                 <th class="col-3">
@@ -63,30 +59,16 @@
                                     </div>
                                 </th>
                                 <td class="col-9">
-                                    <button class="btn fw-bold" style="background-color: #d9edf7 !important; border-color: #bce8f1 !important; color: teal"
-                                            data-bs-target="#mdpswdmodal" data-bs-toggle="modal" id="mdpwbtn">비밀번호 변경</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="col-3">주소</th>
-                                <td class="col-9">
-                                    <div class="row">
-                                        <div class="col-9">XX시 XX구</div>
-                                        <div class="col-3" style="display: flex; justify-content: end">
-                                            <button class="btn fw-bold" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important; color: teal"
-                                                    data-bs-target="#mdzipmodal" data-bs-toggle="modal" id="mdzipbtn">주소 변경</button>
-                                        </div>
-                                    </div>
+                                    <button class="btn btn-primary" data-bs-target="#mdpswdmodal" data-bs-toggle="modal" id="mdpwbtn">비밀번호 변경</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="col-3">이메일 주소</th>
                                 <td class="col-9">
                                     <div class="row">
-                                        <div class="col-9">yogurrr@naver.com</div>
+                                        <div class="col-9" th:text="${mp.email}"></div>
                                         <div class="col-3" style="display: flex; justify-content: end">
-                                            <button class="btn fw-bold" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important; color: teal"
-                                                    data-bs-target="#mdemmodal" data-bs-toggle="modal" id="mdembtn">이메일 변경</button>
+                                            <button class="btn btn-primary" data-bs-target="#mdemmodal" data-bs-toggle="modal" id="mdembtn">이메일 변경</button>
                                         </div>
                                     </div>
                                 </td>
@@ -95,10 +77,9 @@
                                 <th class="col-3">휴대폰 번호</th>
                                 <td class="col-9">
                                     <div class="row">
-                                        <div class="col-9">010-0000-0000</div>
+                                        <div class="col-9" th:text="${mp.phone}"></div>
                                         <div class="col-3" style="display: flex; justify-content: end">
-                                            <button class="btn fw-bold" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important; color: teal"
-                                                    data-bs-target="#mdphmodal" data-bs-toggle="modal" id="mdphbtn">번호 변경</button>
+                                            <button class="btn btn-primary" data-bs-target="#mdphmodal" data-bs-toggle="modal" id="mdphbtn">번호 변경</button>
                                         </div>
                                     </div>
                                 </td>
