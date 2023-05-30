@@ -1,6 +1,6 @@
 package com.team.thebox.repository;
 
-import com.team.thebox.domain.Pds;
+import com.team.thebox.model.Pds;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

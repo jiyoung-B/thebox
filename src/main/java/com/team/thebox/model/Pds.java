@@ -1,4 +1,4 @@
-package com.team.thebox.domain;
+package com.team.thebox.model;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

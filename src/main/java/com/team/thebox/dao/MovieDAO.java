@@ -1,17 +1,11 @@
 package com.team.thebox.dao;
 
-import com.team.thebox.domain.Movie;
-import com.team.thebox.repository.MovieRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import com.team.thebox.model.Movie;
+import com.team.thebox.model.MovieAttach;
 
-@Repository
-public class MovieDAO {
-    @Autowired
-    private MovieRepository movieRepository;
+public interface MovieDAO {
 
 
-    public Movie insertMovie(Movie movie) {
-        return movieRepository.save(movie);
-    }
+    int insertMovie(Movie pds);
+    int insertMovieAttach(MovieAttach pa);
 }

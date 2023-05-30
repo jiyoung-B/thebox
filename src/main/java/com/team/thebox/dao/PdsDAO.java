@@ -1,7 +1,7 @@
 package com.team.thebox.dao;
 
-import com.team.thebox.domain.Pds;
-import com.team.thebox.domain.PdsAttach;
+import com.team.thebox.model.Pds;
+import com.team.thebox.model.PdsAttach;
 
 import java.util.List;
 import java.util.Map;

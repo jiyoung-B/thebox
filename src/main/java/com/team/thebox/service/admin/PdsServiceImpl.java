@@ -1,8 +1,8 @@
 package com.team.thebox.service.admin;
 
 import com.team.thebox.dao.PdsDAO;
-import com.team.thebox.domain.Pds;
-import com.team.thebox.domain.PdsAttach;
+import com.team.thebox.model.Pds;
+import com.team.thebox.model.PdsAttach;
 import com.team.thebox.utils.PdsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;

@@ -1,4 +1,4 @@
-package com.team.thebox.domain;
+package com.team.thebox.model;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
@@ -20,12 +20,7 @@ public class BaseEntity {
     @Column(updatable = false) @CreatedDate
     private LocalDateTime createdAt;
 
-    @Column(updatable = false) @CreatedBy
-    private Long createdBy;
-
     @Column(insertable = false) @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @Column(insertable = false) @LastModifiedBy
-    private Long updatedBy;
 }

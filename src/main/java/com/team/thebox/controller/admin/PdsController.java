@@ -1,6 +1,6 @@
 package com.team.thebox.controller.admin;
 
-import com.team.thebox.domain.Pds;
+import com.team.thebox.model.Pds;
 import com.team.thebox.service.admin.PdsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;

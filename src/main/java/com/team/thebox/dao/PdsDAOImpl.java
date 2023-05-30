@@ -1,7 +1,7 @@
 package com.team.thebox.dao;
 
-import com.team.thebox.domain.Pds;
-import com.team.thebox.domain.PdsAttach;
+import com.team.thebox.model.Pds;
+import com.team.thebox.model.PdsAttach;
 import com.team.thebox.repository.PdsRepository;
 import com.team.thebox.repository.PdsaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

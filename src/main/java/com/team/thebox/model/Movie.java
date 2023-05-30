@@ -1,4 +1,4 @@
-package com.team.thebox.domain;
+package com.team.thebox.model;
 
 
 import lombok.*;
@@ -38,15 +38,15 @@ public class Movie extends BaseEntity{
     @Column
     private String movgrade;		// 등급
     @Column
-    private int movruntime;			// 런타임(분)
+    private String movruntime;			// 런타임(분)
     @Lob
     @Column
     private String movdetail;		// 줄거리
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
-    private List<MoviePoster> movPosters = new ArrayList<>();    // 포스터 이미지 URL
-
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "movie_id")
+//    private List<MoviePoster> movPosters = new ArrayList<>();    // 포스터 이미지 URL
+//
 
     @Column
     private String movvideo;           // 예고편 동영상 URL

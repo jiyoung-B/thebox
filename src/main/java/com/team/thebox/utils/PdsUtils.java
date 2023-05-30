@@ -1,6 +1,6 @@
 package com.team.thebox.utils;
 
-import com.team.thebox.domain.PdsAttach;
+import com.team.thebox.model.PdsAttach;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;

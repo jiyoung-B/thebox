@@ -1,7 +1,7 @@
 package com.team.thebox.service.admin;
 
-import com.team.thebox.domain.Pds;
-import com.team.thebox.domain.PdsAttach;
+import com.team.thebox.model.Pds;
+import com.team.thebox.model.PdsAttach;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;

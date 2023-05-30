@@ -4,191 +4,155 @@
       layout:decorate="~{admin/layout/template}">
 
 <th:block layout:fragment="admincontent">
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">영화 등록</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+    <!-- 세션변수가 생성되지 않았다면 index로 이동 -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">영화 등록</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Starter Page</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+
+
+        <div class="content">
+
+            <div class="row mt-2 offset-1 col-10 mx-auto">
+                <form class="card card-body bg-light"
+                      name="movregifrm" id="movregifrm" th:object="${movie}">
+
+                    <div class="row">
+                        <label class="col-3 col-form-label text-end"
+                               for="movgenre">장르</label>
+                        <div class="col-6">
+                            <input type="text" name="movgenre" id="movgenre"
+                                   class="form-control ">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movtitle">제목</label>
+                        <div class="col-6">
+                            <input type="text" name="movtitle" id="movtitle"
+                                   class="form-control ">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movdirector">감독</label>
+                        <div class="col-6">
+                            <input type="text" name="movdirector" id="movdirector"
+                                   class="form-control ">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movactor">주연 배우</label>
+                        <div class="col-6">
+                            <input type="text" name="movactor" id="movactor"
+                                   class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movreleasedate">개봉연월일</label>
+                        <div class="col-6">
+                            <input type="text" name="movreleasedate" id="movreleasedate"
+                                   class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movcountry">국가</label>
+                        <div class="col-6">
+                            <input type="text" name="movcountry" id="movcountry"
+                                   class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movgrade">상영 등급</label>
+                        <div class="col-6">
+                            <input type="text" name="movgrade" id="movgrade"
+                                   class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movruntime">러닝타임</label>
+                        <div class="col-6">
+                            <input type="text" name="movruntime" id="movruntime"
+                                   class="form-control">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movdetail">줄거리</label>
+                        <div class="col-6">
+                            <textarea rows="6" class="form-control" id="movdetail" name="movdetail" placeholder="Plot Summary"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-2">
+                        <label class="col-3 col-form-label  text-end"
+                               for="attach">첨부파일</label>
+                        <div class="col-6">
+                            <input type="file" name="attach" id="attach"
+                                   class="form-control bg-light">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movPosters">무비포스터</label>
+                        <div class="col-6">
+                            <input type="file" name="movPosters" id="movPosters"
+                                   class="form-control file-upload-info bg-light">
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-4 justify-content-center">
+                        <hr class="w-75">
+                        <div class="text-center">
+                            <button type="button" id="movwritebtn"
+                                    class="btn btn-primary">
+                                <i class="fa fa-check"> </i>입력완료
+                            </button>
+                            <button type="button" id="cancelbtn"
+                                    class="btn btn-danger">
+                                <i class="fa fa-remove"> </i>입력취소
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-          <div class="row col-10 mx-auto offset-1 align-items-center">
-
-            <form  class="card card-body bg-light" name="movregifrm" id="movregifrm">
-                    <div class="form-group">
-                      <label for="movgenre">장르</label>
-                      <select id="movgenre" class="form-control select2" style="width: 100%;" name="movgenre">
-                        <option selected="selected">장르선택</option>
-                        <option>액션</option>
-                        <option>코믹</option>
-                        <option>로맨스</option>
-                        <option>공포</option>
-                        <option>스릴러</option>
-                        <option>애니메이션</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movtitle">제목</label>
-                      <input type="text" class="form-control" id="movtitle" name="movtitle" placeholder="Title">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movdirector">감독</label>
-                      <input type="text" class="form-control" id="movdirector" name="movdirector" placeholder="Director">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movactor">주연 배우</label>
-                      <input type="text" class="form-control" id="movactor" name="movactor" placeholder="Main Actor">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movreleasedate">개봉연월일</label>
-                      <input type="text" class="form-control" id="movreleasedate" name="movreleasedate" placeholder="yyyy-mm-dd">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movcountry">국가</label>
-                      <input type="text" class="form-control" id="movcountry" name="movcountry" placeholder="Country">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movgrade">상영 등급</label>
-                      <input type="text" class="form-control" id="movgrade" name="movgrade" placeholder="Grade">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movruntime">러닝타임 (형식/___m)</label>
-                      <input type="text" class="form-control" id="movruntime" name="movruntime" placeholder="___m">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movdetail">줄거리</label>
-                      <textarea rows="6" class="form-control" id="movdetail" name="movdetail" placeholder="Plot Summary"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="movPosters">포스터 1</label>
-                      <input type="file" name="movPosters" class="file-upload-default" id="movPosters">
-                      <div class="input-group col-xs-12">
-                        <input type="text" name="movPosters" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                        <span class="input-group-append">
-                <button class="file-upload-browse btn btn-primary" type="button">Upload</button></span>
-                      </div>
-                    </div>
-
-
-                    <button id="movwritebtn" type="submit" class="btn btn-primary mr-2">등록</button>
-                    <button class="btn btn-light">취소</button>
-                  </form>
-
-          </div>
-      </div>
-    </div>
-
-
-      <div>
-          <script src="https://www.google.com/recaptcha/api.js"></script>
-
-          <div class="mt-5">
-              <i class="fa-solid fa-download fa-2xl"> 자료실 </i>
-              <hr>
-          </div>
-
-          <div class="row mt-5">
-              <div class="row offset-2 col-4">
-                  <h4><i class="fa fa-plus-circle"> </i> 새글쓰기</h4>
-              </div>
-              <div class="col-4 text-end">
-                  <button type="button" class="btn btn-light">
-                      <i class="fa fa-list"> </i> 목록으로</button>
-              </div>
-          </div>
-
-          <div class="row mt-2 offset-2 col-8">
-              <form class="card card-body bg-light"
-                    name="pdsfrm" id="pdsfrm" th:object="${pds}">
-
-                  <div class="row">
-                      <label class="col-3 col-form-label text-danger text-end"
-                             for="title">제목</label>
-                      <div class="col-6">
-                          <input type="text" name="title" id="title"
-                                 class="form-control border-danger">
-
-                      </div>
-                  </div>
-
-                  <div class="row mt-2">
-                      <label class="col-3 col-form-label text-danger text-end"
-                             for="userid">작성자</label>
-                      <div class="col-6">
-                          <input type="text" name="userid" id="userid"
-                                 class="form-control border-danger bg-light"
-                                 readonly value="abc123">
-
-                      </div>
-                  </div>
-
-                  <div class="row mt-2">
-                      <label class="col-3 col-form-label text-danger text-end"
-                             for="content">본문</label>
-                      <div class="col-6">
-                        <textarea name="content" id="content"
-                                  class="form-control border-danger" rows="15"></textarea>
-
-                      </div>
-                  </div>
-
-                  <div class="row mt-2">
-                      <label class="col-3 col-form-label text-danger text-end"
-                             for="userid">첨부파일</label>
-                      <div class="col-6">
-                          <input type="file" name="attach" id="attach"
-                                 class="form-control border-danger bg-light">
-                      </div>
-                  </div>
-
-
-
-                  <div class="row mt-4 justify-content-center">
-                      <hr class="w-75">
-                      <div class="text-center">
-                          <button type="button" id="writebtn"
-                                  class="btn btn-primary">
-                              <i class="fa fa-check"> </i>입력완료
-                          </button>
-                          <button type="button" id="cancelbtn"
-                                  class="btn btn-danger">
-                              <i class="fa fa-remove"> </i>입력취소
-                          </button>
-                      </div>
-                  </div>
-
-              </form>
-          </div>
-
-      </div>
-
-
-
-  </div>
+    <script src="/static/js/movieregister.js"></script>
 </th:block>
-<script src="/static/js/movieregister.js"></script>
-<script src="/static/js/pds.js"></script>
 
 </html>
