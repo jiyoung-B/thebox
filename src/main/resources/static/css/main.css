@@ -26,3 +26,37 @@
   color: #31708f !important;
   border-color: #bce8f1 !important;
 }
+
+.bg-primary {
+  background-color: #d9edf7 !important;
+}
+
+.btn-success {
+  background-color: mediumseagreen;
+  border-color: seagreen;
+}
+
+.btn-success:hover, .btn-success:active, .btn-success:focus {
+  background-color: seagreen !important;
+  border-color: seagreen !important;
+}
+
+.btn-danger {
+  background-color: lightsalmon;
+  border-color: lightcoral;
+}
+
+.btn-danger:hover, .btn-danger:active, .btn-danger:focus {
+  background-color: lightcoral !important;
+  border-color: lightcoral !important;
+}
+
+.btn-dark {
+  background-color: dimgray;
+  border-color: darkslategray;
+}
+
+.btn-dark:hover, .btn-dark:active, .btn-dark:focus {
+  background-color: darkslategray !important;
+  border-color: darkslategray !important;
+}
