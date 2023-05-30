@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
@@ -20,7 +21,15 @@ public class BaseEntity {
     @Column(updatable = false) @CreatedDate
     private LocalDateTime createdAt;
 
+    @Column(updatable = false) @CreatedBy
+    private Long createdBy;
+
     @Column(insertable = false) @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @Column(insertable = false) @LastModifiedBy
+    private Long updatedBy;
+
+
 
 }

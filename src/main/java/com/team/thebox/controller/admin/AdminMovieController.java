@@ -6,14 +6,12 @@ import com.team.thebox.service.admin.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Map;
-
+@CrossOrigin(originPatterns = "*")
 @RequestMapping("/management/movie")
 @Controller
 public class AdminMovieController {
@@ -35,15 +33,24 @@ public class AdminMovieController {
         String viewPage = "error";
         Map<String, Object> mvinfo = admmvsrv.newMovies(movie);
 
-//        if (!attach.isEmpty()) {
-//            admmvsrv.newMovieAttach(attach, mvinfo);
-//        }
+        if (!attach.isEmpty()) {
+            admmvsrv.newMovieAttach(attach, mvinfo);
+        }
 
-        viewPage = "redirect:/management/movielist";
-
+        viewPage = "redirect:/management/movie/movielist";
 
         return viewPage;
     }
+
+
+    @GetMapping("/view")
+    public String view(@RequestParam int mvno, Model m){
+
+        m.addAttribute("movie", admmvsrv.readOneMovie(mvno));
+
+        return "management/movieview";
+    }
+
 
     @GetMapping("/schedule/resgister")
     public String movieScheduleRegister(){

@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +26,14 @@ public class Movie extends BaseEntity{
 
     @Column
     private String movgenre;		// 장르
-    @Column
+    @Column(nullable = false)
     private String movtitle;		// 제목
     @Column
     private String movdirector;		// 감독명
     @Column
     private String movactor;		// 배우명
     @Column
-    private LocalDate movreleasedate;	// 개봉일
+    private String movreleasedate;	// 개봉일
     @Column
     private String movcountry;		// 국가
     @Column
@@ -42,14 +43,14 @@ public class Movie extends BaseEntity{
     @Lob
     @Column
     private String movdetail;		// 줄거리
-
+    private String uuid;
+//
 //    @OneToMany(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "movie_id")
 //    private List<MoviePoster> movPosters = new ArrayList<>();    // 포스터 이미지 URL
 //
-
-    @Column
-    private String movvideo;           // 예고편 동영상 URL
-
+//
+//    private String movvideo;           // 예고편 동영상 URL
+//
 
 }
