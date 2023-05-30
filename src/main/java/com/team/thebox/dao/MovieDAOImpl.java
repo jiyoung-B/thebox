@@ -5,8 +5,13 @@ import com.team.thebox.model.MovieAttach;
 import com.team.thebox.repository.MovieAttachRepository;
 import com.team.thebox.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -31,6 +36,15 @@ public class MovieDAOImpl implements MovieDAO {
     public Movie selectOneMovie(int mvno) {
         System.out.println("겟" + movieRepository.findById((long)mvno).get());
         return movieRepository.findById((long)mvno).get();
+    }
+
+    @Override
+    public Map<String, Object> selectMovie(int cpg) {
+        Pageable paging = PageRequest.of(cpg, 25, Sort.Direction.DESC, "movno");
+        Map<String, Object> movs = new HashMap<>();
+        movs.put("movlist", movieRepository.findAll(paging).getContent());
+        movs.put("cntpg", movieRepository.findAll(paging).getTotalPages());
+        return movs;
     }
 //    @Override
 //    public Movie selectOneMovie(int mvno) {

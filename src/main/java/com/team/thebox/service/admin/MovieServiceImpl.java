@@ -59,5 +59,10 @@ public class MovieServiceImpl implements MovieService{
     public Movie readOneMovie(int mvno) {
         return movdao.selectOneMovie(mvno);
     }
+
+    @Override
+    public Map<String, Object> readMovie(Integer cpg) {
+        return movdao.selectMovie(cpg - 1);
+    }
 }
 

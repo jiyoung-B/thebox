@@ -54,26 +54,28 @@
                     <th>러닝타임</th>
                     <th>개봉일</th>
                     <th>등급</th>
-                    <th>상영</th>
+                    <th>???</th>
                     <th>수정</th>
                     <th>삭제</th>
                   </tr>
                   </thead>
 
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>가디언즈 오브 갤럭시: Volume 3</td>
-                    <td>제임스 건</td>
-                    <td>크리스 프랫, 조 샐다나, 데이브 바티스타, 빈 디젤</td>
-                    <td>액션/어드벤처/SF</td>
-                    <td>150분</td>
-                    <td>2023.05.03</td>
-                    <td>12세이상관람가</td>
+                  <tr th:each="mov : ${movlist}">
+                    <td th:text="${mov.movno}">1</td>
+                    <td th:text="${mov.movtitle}">가디언즈 오브 갤럭시: Volume 3</td>
+                    <td th:text="${mov.movdirector}">제임스 건</td>
+                    <td th:text="${mov.movactor}">크리스 프랫, 조 샐다나, 데이브 바티스타, 빈 디젤</td>
+                    <td th:text="${mov.movgenre}">액션/어드벤처/SF</td>
+                    <td th:text="${mov.movruntime}">150분</td>
+                    <td th:text="${mov.movreleasedate}">2023.05.03</td>
+                    <td th:text="${mov.movgrade}">12세이상관람가</td>
                     <td>0</td>
                     <td>-</td>
                     <td>-</td>
                   </tr>
+
+
                   </tbody>
 
 

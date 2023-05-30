@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 @CrossOrigin(originPatterns = "*")
 @RequestMapping("/management/movie")
@@ -22,6 +24,27 @@ public class AdminMovieController {
 
         return "management/movielist";
     }
+
+    @GetMapping("/list")
+    public ModelAndView list(Integer cpg){
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("management/movielist");
+        if (cpg == null || cpg == 0) cpg = 1;
+
+        // 자료실 게시글 읽어옴
+        Map<String, Object> movs = admmvsrv.readMovie(cpg);
+
+
+        mv.addObject("movlist", movs.get("movlist"));
+        mv.addObject("cpg", cpg);
+        mv.addObject("stpg", ((cpg - 1) / 10) * 10 + 1); // startPage = ((cpg - 1) / 10) * 10 + 1);
+        mv.addObject("cntpg", movs.get("cntpg"));
+
+        return mv;
+    }
+
+
     @GetMapping("/register")
     public String showMovieForm(Model m){
         m.addAttribute("movie", new Movie());
@@ -37,7 +60,7 @@ public class AdminMovieController {
             admmvsrv.newMovieAttach(attach, mvinfo);
         }
 
-        viewPage = "redirect:/management/movie/movielist";
+        viewPage = "redirect:/management/movie/list";
 
         return viewPage;
     }
