@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/mypage")
@@ -19,13 +20,30 @@ public class MyPageController {
     private MypageService mpsrv;
 
     @GetMapping("/mymoti")
-    public String MyMoti() {
-        return "mypage/mymoti";
+    public ModelAndView MyMoti(String userid) {
+
+        ModelAndView mv = new ModelAndView();
+        Map<String, Object> bds = mpsrv.readBookingDetails(userid);
+
+        mv.addObject("bdlist", bds.get("bdlist"));
+        mv.addObject("mp", mpsrv.readOneMember(userid));
+        mv.setViewName("mypage/mymoti");
+
+        return mv;
     }
 
     @GetMapping("/myticket")
-    public String MyTicket() {
-        return "mypage/myticket";
+    public ModelAndView MyTicket(String userid) {
+        ModelAndView mv = new ModelAndView();
+        Map<String, Object> bds = mpsrv.readBookingDetails(userid);
+        Map<String, Object> cds = mpsrv.readCancellationDetails(userid);
+
+        mv.addObject("bdlist", bds.get("bdlist"));
+        mv.addObject("cdlist", cds.get("cdlist"));
+        mv.setViewName("mypage/myticket");
+
+        return mv;
+
     }
 
     @GetMapping("/modify")
