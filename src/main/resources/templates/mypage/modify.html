@@ -3,6 +3,11 @@
       layout:decorate="~{layout/template}">
 
 <th:block layout:fragment="content">
+
+    <th:block th:if="${#strings.isEmpty(session.UID)}">
+        <script>location.href = "/";</script>
+    </th:block>
+
     <div id="main" class="row mt-2">
         <div class="col">
             <div class="row mt-5">
