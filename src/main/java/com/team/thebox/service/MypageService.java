@@ -10,4 +10,6 @@ public interface MypageService {
     Map<String, Object> readBookingDetails(String userid);
 
     Map<String, Object> readCancellationDetails(String userid);
+
+    Map<String, Object> readTop2(String userid);
 }

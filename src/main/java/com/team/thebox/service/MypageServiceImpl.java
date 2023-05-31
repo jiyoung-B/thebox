@@ -29,4 +29,9 @@ public class MypageServiceImpl implements MypageService{
     public Map<String, Object> readCancellationDetails(String userid) {
         return mpdao.selectCancellationDetails(userid);
     }
+
+    @Override
+    public Map<String, Object> readTop2(String userid) {
+        return mpdao.selectTop2(userid);
+    }
 }

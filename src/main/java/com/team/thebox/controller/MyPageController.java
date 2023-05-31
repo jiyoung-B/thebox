@@ -23,9 +23,11 @@ public class MyPageController {
     public ModelAndView MyMoti(String userid) {
 
         ModelAndView mv = new ModelAndView();
-        Map<String, Object> bds = mpsrv.readBookingDetails(userid);
+        Map<String, Object> t2s = mpsrv.readTop2(userid);
+//        Map<String, Object> bds = mpsrv.readBookingDetails(userid);
 
-        mv.addObject("bdlist", bds.get("bdlist"));
+        mv.addObject("t2list", t2s.get("t2list"));
+//        mv.addObject("bdlist", bds.get("bdlist"));
         mv.addObject("mp", mpsrv.readOneMember(userid));
         mv.setViewName("mypage/mymoti");
 

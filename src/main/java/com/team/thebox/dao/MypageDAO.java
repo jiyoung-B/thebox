@@ -10,4 +10,6 @@ public interface MypageDAO {
     Map<String, Object> selectBookingDetails(String userid);
 
     Map<String, Object> selectCancellationDetails(String userid);
+
+    Map<String, Object> selectTop2(String userid);
 }

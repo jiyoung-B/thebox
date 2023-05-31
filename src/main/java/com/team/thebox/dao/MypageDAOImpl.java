@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository("mpdao")
 public class MypageDAOImpl implements MypageDAO{
@@ -49,5 +50,15 @@ public class MypageDAOImpl implements MypageDAO{
         cds.put("cdlist", cdlist);
 
         return cds;
+    }
+
+    @Override
+    public Map<String, Object> selectTop2(String userid) {
+        List<BookingDetails> t2list = bookingdetailsRepository.findAllByUserid(userid).stream().limit(2).collect(Collectors.toList());
+
+        Map<String, Object> t2s = new HashMap<>();
+        t2s.put("t2list", t2list);
+
+        return t2s;
     }
 }
