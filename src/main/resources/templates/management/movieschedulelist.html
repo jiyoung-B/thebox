@@ -38,7 +38,6 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>No.</th>
                     <th>상영번호</th>
                     <th>상영관</th>
                     <th>영화명</th>
@@ -46,21 +45,22 @@
                     <th>시작시간</th>
                     <th>종료시간</th>
                     <th>가격</th>
+                    <th>좌석현황</th>
                     <th>수정</th>
                     <th>삭제</th>
                   </tr>
                   </thead>
 
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>T</td>
-                    <td>가디언즈 오브 갤럭시: Volume 3</td>
-                    <td>2023.05.03</td>
-                    <td>1000</td>
-                    <td>1300</td>
-                    <td>12000</td>
+                  <tr th:each="sch, stat : ${movschlist}">
+                    <td th:text="${sch.schno}">123</td>
+                    <td th:text="${sch.schno}">T</td>
+                    <td th:text="${movtitle[__${stat.index}__].movtitle}">가디언즈 오브 갤럭시: Volume 3</td>
+                    <td th:text="${sch.odate}">2023.05.03</td>
+                    <td th:text="${sch.stime}">1000</td>
+                    <td th:text="${sch.etime}">1300</td>
+                    <td th:text="${sch.price}">12000</td>
+                    <td th:text="${booked}">20/50</td>
                     <td>-</td>
                     <td>-</td>
                   </tr>
@@ -70,7 +70,6 @@
                   <tfoot>
                   <tr>
                     <th>Rendering engine</th>
-                    <th>Browser</th>
                     <th>Platform(s)</th>
                     <th>Engine version</th>
                     <th>CSS grade</th>

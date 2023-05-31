@@ -3,6 +3,7 @@ package com.team.thebox.dao;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
 import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.repository.BookedRepository;
 import com.team.thebox.repository.MovieAttachRepository;
 import com.team.thebox.repository.MovieRepository;
 import com.team.thebox.repository.MovieScheduleRepository;
@@ -26,6 +27,8 @@ public class MovieDAOImpl implements MovieDAO {
 
     @Autowired
     MovieScheduleRepository movieScheduleRepository;
+    @Autowired
+    BookedRepository bookedRepository;
 
     @Override
     public int insertMovie(Movie movie) {
@@ -54,13 +57,28 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> selectMovieTitle() {
-        return movieRepository.findAll();
+    public List<String> selectMovieTitle() {
+        return movieRepository.findMovTitleByMovno();
     }
 
     @Override
     public int insertMovieSchedule(MovieSchedule movsch) {
         return Math.toIntExact(movieScheduleRepository.save(movsch).getSchno());
+    }
+
+    @Override
+    public List<Movie> selectMovnoAndTitle() {
+        return movieRepository.findAll();
+    }
+
+    @Override
+    public List<MovieSchedule> selectMovieSchdule() {
+        return movieScheduleRepository.findAll();
+    }
+
+    @Override
+    public int selectBookedCnt() {
+        return bookedRepository.countTotalSeatIds();
     }
 
 }

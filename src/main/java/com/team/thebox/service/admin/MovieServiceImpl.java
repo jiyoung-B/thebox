@@ -68,8 +68,13 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<Movie> readMovieTitle() {
+    public List<String> readMovieTitle() {
         return movdao.selectMovieTitle();
+    }
+
+    @Override
+    public List<Movie> readMovnoAndTitle() {
+        return movdao.selectMovnoAndTitle();
     }
 
     @Override
@@ -77,6 +82,16 @@ public class MovieServiceImpl implements MovieService{
         boolean result = false;
         if(movdao.insertMovieSchedule(movsch) > 0) {result = true;}
         return result;
+    }
+
+    @Override
+    public List<MovieSchedule> readSchedule() {
+        return movdao.selectMovieSchdule();
+    }
+
+    @Override
+    public int readBookedCnt() {
+        return movdao.selectBookedCnt();
     }
 }
 

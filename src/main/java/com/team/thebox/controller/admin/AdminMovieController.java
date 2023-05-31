@@ -79,7 +79,7 @@ public class AdminMovieController {
     @GetMapping("/schedule/resgister")
     public String showScheduleForm(Model model){
 
-        List<Movie> movies = admmvsrv.readMovieTitle();
+        List<Movie> movies = admmvsrv.readMovnoAndTitle();
 
         model.addAttribute("movies", movies); // 모델에 영화 리스트 추가
 
@@ -101,8 +101,12 @@ public class AdminMovieController {
 
 
 
-    @GetMapping("/schedule")
-    public String movieScheduleList(){
+    @GetMapping("/schedule/list")
+    public String movieScheduleList(Model model){
+        model.addAttribute("movtitle", admmvsrv.readMovieTitle());
+        model.addAttribute("movschlist", admmvsrv.readSchedule());
+        model.addAttribute("booked", admmvsrv.readBookedCnt());
+
         return "management/movieschedulelist";
 
     }

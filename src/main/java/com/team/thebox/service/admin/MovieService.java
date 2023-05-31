@@ -15,7 +15,12 @@ public interface MovieService {
     Movie readOneMovie(int movno);
 
     Map<String, Object> readMovie(Integer cpg);
-    List<Movie> readMovieTitle();
+    List<String> readMovieTitle();
+    List<Movie> readMovnoAndTitle();
 
     boolean newMovieSchedule(MovieSchedule movsch);
+
+    List<MovieSchedule> readSchedule();
+
+    int readBookedCnt();
 }

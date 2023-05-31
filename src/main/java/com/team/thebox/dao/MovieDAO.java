@@ -17,7 +17,13 @@ public interface MovieDAO {
 
     Map<String, Object> selectMovie(int cpg);
 
-    List<Movie> selectMovieTitle();
+    List<String> selectMovieTitle();
 
     int insertMovieSchedule(MovieSchedule movsch);
+
+    List<Movie> selectMovnoAndTitle();
+
+    List<MovieSchedule> selectMovieSchdule();
+
+    int selectBookedCnt();
 }
