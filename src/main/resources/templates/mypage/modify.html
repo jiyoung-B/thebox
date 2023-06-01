@@ -40,7 +40,7 @@
                                                 <button class="btn btn-primary" data-bs-target="#newimgmodal" data-bs-toggle="modal" id="newimgbtn">이미지 등록</button>
                                             </div>
                                             <div class="col-3 text-end">
-                                                <button class="btn btn-primary">회원 탈퇴</button>
+                                                <button class="btn btn-primary" id="delmembtn">회원 탈퇴</button>
                                             </div>
                                         </div>
                                     </td>
@@ -118,23 +118,23 @@
                     <h3 class="fw-bold">비밀번호 변경</h3>
                 </div>
                 <div class="modal-body">
-                    <form name="mpfrm" id="mpfrm">
+                    <form name="mdpwfrm" id="mdpwfrm">
                         <div class="row mb-2">
                             <label class="col-4 form-label text-end mt-1 text-dark" for="passwd">비밀번호</label>
                             <div class="col-5">
-                                <input type="text" id="passwd" name="passwd" class="form-control" />
+                                <input type="password" id="passwd" name="passwd" class="form-control" />
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label class="col-4 form-label text-end mt-1 text-dark" for="repswd">비밀번호 확인</label>
+                            <label class="col-4 form-label text-end mt-1 text-dark" for="newPswd">비밀번호 확인</label>
                             <div class="col-5 mt-2">
-                                <input type="password" id="repswd" name="repswd" class="form-control" />
+                                <input type="password" id="newPswd" name="newPswd" class="form-control" />
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary" id="checkbtn">확인</button>
+                    <button type="button" class="btn btn-primary" id="udpswdbtn">확인</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelbtn">취소</button>
                 </div>
             </div>
@@ -150,17 +150,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form name="mefrm" id="mefrm">
+                    <form name="mdemfrm" id="mdemfrm">
                         <div class="row mb-2">
-                            <label class="col-4 form-label text-end mt-1 text-dark" for="passwd">변경할 이메일</label>
+                            <label class="col-4 form-label text-end mt-1 text-dark" for="newEmail">변경할 이메일</label>
                             <div class="col-5">
-                                <input type="text" id="mdemail" name="passwd" class="form-control" />
+                                <input type="text" id="newEmail" name="newEmail" class="form-control" />
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer" style="display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-primary">확인</button>
+                    <button type="button" class="btn btn-primary" id="udemailbtn">확인</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
@@ -176,22 +176,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form name="mphfrm" id="mphfrm">
+                    <form name="mdphfrm" id="mdphfrm">
                         <div class="row mb-2">
-                            <label class="col-5 form-label text-end mt-1 text-dark" for="passwd">변경할 휴대폰 번호</label>
+                            <label class="col-5 form-label text-end mt-1 text-dark" for="newPhnum">변경할 휴대폰 번호</label>
                             <div class="col-5">
-                                <input type="text" id="mdphone" name="passwd" class="form-control" />
+                                <input type="text" id="newPhnum" name="newPhnum" class="form-control" />
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer" style="display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-primary">확인</button>
+                    <button type="button" class="btn btn-primary" id="udphonebtn">확인</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="/static/js/mypage.js"></script>
 
 </th:block>
 

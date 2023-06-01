@@ -1,11 +1,12 @@
 package com.team.thebox.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.thebox.dao.MypageDAO;
 import com.team.thebox.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Service("mpsrv")
@@ -33,5 +34,36 @@ public class MypageServiceImpl implements MypageService{
     @Override
     public Map<String, Object> readTop2(String userid) {
         return mpdao.selectTop2(userid);
+    }
+
+    @Override
+    public byte[] readPoster(String title) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        byte[] json = "".getBytes();
+
+        try {
+            json = mapper.writeValueAsBytes(
+                    mpdao.selectPoster(title));
+        } catch (JsonProcessingException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
+    }
+
+    @Override
+    public void modifyEmail(String userid, String newEmail) {
+        mpdao.updateEmail(userid, newEmail);
+    }
+
+    @Override
+    public void modifyPhnum(String userid, String newPhnum) {
+        mpdao.updatePhnum(userid, newPhnum);
+    }
+
+    @Override
+    public void modifynewPswd(String userid, String newPswd) {
+        mpdao.updatePswd(userid, newPswd);
     }
 }

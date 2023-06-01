@@ -3,10 +3,7 @@ package com.team.thebox.model;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,7 +19,6 @@ public class BookingDetails {
     private String bookingnum;
 
     private String userid;
-    private String moviepic;
     private String title;
     private String cinematype;
     private String region;
@@ -31,6 +27,9 @@ public class BookingDetails {
     private LocalDateTime viewingday;
     private String moviegoers;
     private int totalprice;
+
+    @Lob
+    private byte[] poster;
 
     @CreatedDate
     @Column(insertable = false, updatable = false)

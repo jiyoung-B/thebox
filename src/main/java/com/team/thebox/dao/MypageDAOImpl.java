@@ -61,4 +61,39 @@ public class MypageDAOImpl implements MypageDAO{
 
         return t2s;
     }
+
+    @Override
+    public Map<String, Object> selectPoster(String title) {
+        return bookingdetailsRepository.findPoster(title);
+    }
+
+    /*@Override
+    public int updateEmail(String userid, String email) {
+        return mypageRepository.changeEmail(userid, email);
+    }*/
+
+    @Override
+    public void updateEmail(String userid, String newEmail) {
+        Member m = mypageRepository.findAllByUserid(userid);
+
+        m.setEmail(newEmail);
+        mypageRepository.save(m);
+    }
+
+    @Override
+    public void updatePhnum(String userid, String newPhnum) {
+        Member m = mypageRepository.findAllByUserid(userid);
+
+        m.setPhone(newPhnum);
+        mypageRepository.save(m);
+    }
+
+    @Override
+    public void updatePswd(String userid, String newPswd) {
+        Member m = mypageRepository.findAllByUserid(userid);
+
+        m.setPasswd(newPswd);
+        mypageRepository.save(m);
+    }
+
 }

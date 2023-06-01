@@ -12,4 +12,12 @@ public interface MypageService {
     Map<String, Object> readCancellationDetails(String userid);
 
     Map<String, Object> readTop2(String userid);
+
+    byte[] readPoster(String title);
+
+    void modifyEmail(String userid, String newEmail);
+
+    void modifyPhnum(String userid, String newPhnum);
+
+    void modifynewPswd(String userid, String newPswd);
 }

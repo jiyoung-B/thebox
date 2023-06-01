@@ -12,4 +12,12 @@ public interface MypageDAO {
     Map<String, Object> selectCancellationDetails(String userid);
 
     Map<String, Object> selectTop2(String userid);
+
+    Map<String, Object> selectPoster(String title);
+
+    void updateEmail(String userid, String newEmail);
+
+    void updatePhnum(String userid, String newPhnum);
+
+    void updatePswd(String userid, String newPswd);
 }

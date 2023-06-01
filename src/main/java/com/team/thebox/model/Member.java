@@ -42,11 +42,11 @@ public class Member {
 
     // -----------------------------
 
-    @Transient
+    /*@Transient
     @NotBlank(message = "전화번호는 필수항목입니다!!")
     private String tel2;
 
     @Transient
     @NotBlank(message = "전화번호는 필수항목입니다!!")
-    private String tel3;
+    private String tel3;*/
 }
