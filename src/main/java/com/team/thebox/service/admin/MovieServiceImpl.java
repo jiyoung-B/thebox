@@ -1,7 +1,7 @@
 package com.team.thebox.service.admin;
 
 import com.team.thebox.dao.MovieDAO;
-import com.team.thebox.dao.MovieDAOImpl;
+import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
 import com.team.thebox.model.MovieSchedule;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +69,9 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<String> readMovieTitle() {
-        return movdao.selectMovieTitle();
+    public List<String> readMovieTitle(long movno) {
+//        return movdao.selectMovieTitle(movno);
+        return null;
     }
 
     @Override
@@ -90,8 +92,26 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public int readBookedCnt() {
+    public List<Integer> readBookedCnt() {
         return movdao.selectBookedCnt();
     }
+
+    @Override
+    public Map<String, Object> readMovieSchedule(Long movno, Long schno) {
+
+        return movdao.selectScheduleList(movno, schno);
+    }
+
+//    @Override
+//    public MovieScheduleDTO readMovieSchedule() {
+//        MovieScheduleDTO movschdto = new MovieScheduleDTO();
+//        movschdto.setMovschlist(movdao.selectMovieSchdule());
+//        movschdto.setMovtitle(movdao.selectMovieTitle());
+//        movschdto.setBooked(movdao.selectBookedCnt()); // 예약된 좌석 현황 가져오기 등
+//
+//        return movschdto;
+//    }
+
+
 }
 

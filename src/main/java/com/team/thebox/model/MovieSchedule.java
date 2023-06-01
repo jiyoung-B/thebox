@@ -19,7 +19,7 @@ public class MovieSchedule extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long schno;
 
-    @Column
+    @Column(insertable = false, updatable = false)
     private Long movno;
 
     @Column
@@ -36,5 +36,6 @@ public class MovieSchedule extends BaseEntity{
     private String etime;
 
     private int price;
+
 
 }

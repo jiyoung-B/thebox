@@ -51,18 +51,27 @@
                   </tr>
                   </thead>
 
+                  <td></td>
+
                   <tbody>
-                  <tr th:each="sch, stat : ${movschlist}">
-                    <td th:text="${sch.schno}">123</td>
-                    <td th:text="${sch.schno}">T</td>
-                    <td th:text="${movtitle[__${stat.index}__].movtitle}">가디언즈 오브 갤럭시: Volume 3</td>
-                    <td th:text="${sch.odate}">2023.05.03</td>
-                    <td th:text="${sch.stime}">1000</td>
-                    <td th:text="${sch.etime}">1300</td>
-                    <td th:text="${sch.price}">12000</td>
-                    <td th:text="${booked}">20/50</td>
-                    <td>-</td>
-                    <td>-</td>
+                  <!-- 영화 스케줄 목록 반복 -->
+                  <tr th:each="movsch : ${movschlists}">
+                    <td th:text="${movsch.schno}">schno1</td>
+                    <td th:text="${movsch.ciplace}">상영관123</td>
+                    <td th:text="${movsch.movtitle}">영화명블랙팬서</td>
+                    <td th:text="${movsch.odate}">개봉일20230531</td>
+                    <td th:text="${movsch.stime}">시작시간1000</td>
+                    <td th:text="${movsch.etime}">종료시간1130</td>
+                    <td th:text="${movsch.price}">가격12000</td>
+                    <td th:text="${movsch.booked + '석 예약됨'}">좌석현황20/50</td>
+                    <td>
+                      <!-- 수정 버튼 -->
+                      <a th:href="@{'/schedule/edit/' + ${movsch.schno}}">수정</a>
+                    </td>
+                    <td>
+                      <!-- 삭제 버튼 -->
+                      <a th:href="@{'/schedule/delete/' + ${movsch.schno}}">삭제</a>
+                    </td>
                   </tr>
                   </tbody>
 

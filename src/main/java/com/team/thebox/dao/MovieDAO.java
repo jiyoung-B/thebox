@@ -4,6 +4,7 @@ import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
 import com.team.thebox.model.MovieSchedule;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +17,8 @@ public interface MovieDAO {
     Movie selectOneMovie(int movno);
 
     Map<String, Object> selectMovie(int cpg);
-
-    List<String> selectMovieTitle();
+//
+//    List<String> selectMovieTitle(long movno);
 
     int insertMovieSchedule(MovieSchedule movsch);
 
@@ -25,5 +26,7 @@ public interface MovieDAO {
 
     List<MovieSchedule> selectMovieSchdule();
 
-    int selectBookedCnt();
+    List<Integer> selectBookedCnt();
+
+    Map<String, Object> selectScheduleList(Long movno, Long schno);
 }

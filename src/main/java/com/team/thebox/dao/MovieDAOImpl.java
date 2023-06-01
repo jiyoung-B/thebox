@@ -13,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository("movdao")
 public class MovieDAOImpl implements MovieDAO {
@@ -56,10 +53,10 @@ public class MovieDAOImpl implements MovieDAO {
         return movs;
     }
 
-    @Override
-    public List<String> selectMovieTitle() {
-        return movieRepository.findMovTitleByMovno();
-    }
+//    @Override
+//    public List<String> selectMovieTitle(long movno) {
+//        return movieRepository.findMovTitleByMovno(movno);
+//    }
 
     @Override
     public int insertMovieSchedule(MovieSchedule movsch) {
@@ -77,8 +74,17 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public int selectBookedCnt() {
+    public List<Integer> selectBookedCnt() {
         return bookedRepository.countTotalSeatIds();
+    }
+
+    @Override
+    public Map<String, Object> selectScheduleList(Long movno, Long schno) {
+        Map<String, Object> movschlist = new HashMap<>();
+        movschlist.put("movschlist", movieScheduleRepository.findAll());
+        movschlist.put("movtitle", movieRepository.findMovTitleByMovno(movno));
+        movschlist.put("booked", bookedRepository.countTotalSeatIdsBySchno(schno));
+        return movschlist;
     }
 
 }
