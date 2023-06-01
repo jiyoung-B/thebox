@@ -1,15 +1,13 @@
 package com.team.thebox.service.admin;
 
-import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public interface MovieService {
+public interface AMovieService {
     Map<String, Object> newMovies(Movie movie);
     boolean newMovies2(Movie movie);
     boolean newMovieAttach(MultipartFile attach, Map<String, Object> mvinfo);

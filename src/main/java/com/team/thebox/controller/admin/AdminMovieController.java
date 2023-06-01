@@ -3,9 +3,8 @@ package com.team.thebox.controller.admin;
 import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
-import com.team.thebox.service.admin.MovieScheduleService;
-import com.team.thebox.service.admin.MovieService;
-import com.team.thebox.service.admin.MovieServiceImpl;
+import com.team.thebox.service.admin.AMovieScheduleService;
+import com.team.thebox.service.admin.AMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +21,9 @@ import java.util.Map;
 @Controller
 public class AdminMovieController {
     @Autowired
-    private MovieService admmvsrv;
+    private AMovieService admmvsrv;
     @Autowired
-    private MovieScheduleService movschsrv;
+    private AMovieScheduleService movschsrv;
 
     @GetMapping("/movielist")
     public String movieList(){
@@ -108,19 +107,11 @@ public class AdminMovieController {
 
     @GetMapping("/schedule/list")
     public ModelAndView  movieScheduleList() {
-        List<MovieScheduleDTO> scheduleList = new ArrayList<>();
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("management/movieschedulelist");
-
         List<MovieScheduleDTO> movschlists = movschsrv.readMovieSchedule();
-
-
+        mv.setViewName("management/movieschedulelist");
         mv.addObject("movschlists", movschlists);
         System.out.println("mov리스츠"+movschlists);
-//        System.out.println("mov리스트"+movschlists.get("movschlist"));
-//        System.out.println("mov타이틀"+movschlists.get("movtitle"));
-//        System.out.println("mov북트"+movschlists.get("booked"));
-
 
         return mv;
 

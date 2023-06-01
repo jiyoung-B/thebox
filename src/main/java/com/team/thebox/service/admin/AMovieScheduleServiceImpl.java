@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service("movschsrv")
 @Transactional
-public class MovieScheduleServiceImpl implements MovieScheduleService{
+public class AMovieScheduleServiceImpl implements AMovieScheduleService {
     @Autowired
     MovieScheduleRepository movieScheduleRepository;
     @Autowired
