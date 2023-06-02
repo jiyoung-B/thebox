@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/template}">
+
+<th:block layout:fragment="admincontent">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">스케줄 수정</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Starter Page</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+
+        <!-- Main content -->
+        <div class="content">
+
+            <div class="row mt-2 offset-1 col-10 mx-auto">
+                <form name="scheditfrm" id="scheditfrm" class="card card-body">
+                    <input type="hidden" name="schno" th:value="${movsch.schno}">
+
+                    <div class="row my-2">
+                        <label class="col-3 col-form-label text-end"
+                               for="movno">영화선택</label>
+                        <div class="col-6">
+                            <select name="movno" class="form-control" id="movno">
+                                <option th:each="mov : ${movies}" th:value="${mov.movno}" th:text="${mov.movtitle}" th:selected="${mov.movno == movsch.movno}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <label class="col-3 col-form-label text-end"
+                               for="ciplace">상영관 선택</label>
+                        <div class="col-6">
+                            <select name="ciplace" class="form-control" id="ciplace">
+                                <option th:value="${ciplace}" th:text="${ciplace}" th:selected="${movsch.ciplace == ciplace}"></option>
+
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <label class="col-3 col-form-label text-end"
+                               for="odate">상영날짜</label>
+                        <div class="col-6">
+                            <input type="text" name="odate" id="odate"
+                                   class="form-control" placeholder="yyyymmdd" maxlength="8" th:value="${movsch.odate}">
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <label class="col-3 col-form-label text-end"
+                               type="datetime-local" for="stime">시작시간</label>
+                        <div class="col-6">
+                            <input type="text" name="stime" id="stime"
+                                   class="form-control" th:value="${movsch.stime}">
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <label class="col-3 col-form-label text-end"
+                               type="datetime-local" for="etime">종료시간</label>
+                        <div class="col-6">
+                            <input type="text" name="etime" id="etime"
+                                   class="form-control" th:value="${movsch.etime}">
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <label class="col-3 col-form-label text-end"
+                               for="price">가격</label>
+                        <div class="col-6">
+                            <input type="text" name="price" id="price"
+                                   class="form-control" th:value="${movsch.price}">
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 justify-content-center">
+                        <hr class="w-75">
+                        <div class="text-center">
+                            <button type="button" id="schupdatebtn"
+                                    class="btn btn-primary">
+                                <i class="fa fa-check"> </i>수정완료
+                            </button>
+                            <button type="button" id="cancelbtn"
+                                    class="btn btn-danger">
+                                <i class="fa fa-remove"> </i>수정취소
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/static/js/movieschedit.js"></script>
+</th:block>
+
+</html>

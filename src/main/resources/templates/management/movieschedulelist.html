@@ -66,11 +66,11 @@
                     <td th:text="${movsch.booked + '석 예약됨'}">좌석현황20/50</td>
                     <td>
                       <!-- 수정 버튼 -->
-                      <a th:href="@{'/schedule/edit/' + ${movsch.schno}}">수정</a>
+                      <a th:href="@{'/management/movie/schedule/modify/' + ${movsch.schno}}">수정</a>
                     </td>
                     <td>
                       <!-- 삭제 버튼 -->
-                      <a th:href="@{'/schedule/delete/' + ${movsch.schno}}">삭제</a>
+                      <a th:href="@{'/management/movie/schedule/remove/' + ${movsch.schno}}">삭제</a>
                     </td>
                   </tr>
                   </tbody>
@@ -81,6 +81,7 @@
                     <th>Rendering engine</th>
                     <th>Platform(s)</th>
                     <th>Engine version</th>
+                    <th>CSS grade</th>
                     <th>CSS grade</th>
                     <th>CSS grade</th>
                     <th>CSS grade</th>

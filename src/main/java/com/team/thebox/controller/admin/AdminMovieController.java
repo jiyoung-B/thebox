@@ -85,6 +85,8 @@ public class AdminMovieController {
     public String showScheduleForm(Model model){
 
         List<Movie> movies = admmvsrv.readMovnoAndTitle();
+        System.out.println("영화등록"+movies);
+
 
         model.addAttribute("movies", movies); // 모델에 영화 리스트 추가
 
@@ -97,7 +99,7 @@ public class AdminMovieController {
     public String submitScheduleForm(MovieSchedule movsch){
         String viewPage = "error";
         if(admmvsrv.newMovieSchedule(movsch)){
-            viewPage = "redirect:/management/movie/schedule";
+            viewPage = "redirect:/management/movie/schedule/list";
         }
 
         return viewPage;
@@ -117,36 +119,69 @@ public class AdminMovieController {
 
     }
 
-
-//    @GetMapping("/schedule/list")
-//    public ModelAndView movieScheduleList(){
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("management/movieschedulelist");
-//
-//        // 영화스케줄 가져오기
-//        MovieScheduleDTO movschdto = admmvsrv.readMovieSchedule();
-//        // 영화스케줄의 movno 와 매칭된 영화 제목 읽어오기
-////        List<String> movtitle = admmvsrv.readMovieTitle();
-//        // 영화스케줄 schno와 매칭된 예약된 좌석현황 (seatid count) 가져오기
-//
-//        //이걸 한번에 돌려줘야하는데...
-//
-//        mv.addObject("movschdto", movschdto);
-//
-//        System.out.println("디티오"+movschdto);
-//        System.out.println("디티오Movschlist"+movschdto.getMovschlist());
-//        System.out.println("디티오Movtitle"+movschdto.getMovtitle());
-//        System.out.println("디티오Booked"+movschdto.getBooked());
-//
-//        return mv;
-//
-//    }
-
     @GetMapping("/schedule/calendar")
     public String movieScheduleListCalendar(){
         return "management/movieschedulecalendar";
 
     }
+
+    // 수정화면 get
+    @GetMapping("/schedule/modify/{schno}")
+    public ModelAndView modifyMovieScheduleForm(@PathVariable Long schno) {
+        // 스케줄 정보 조회 예시
+        MovieSchedule movsch = movschsrv.getOneMovieScheduleBySchno(schno);
+        List<Movie> movies = admmvsrv.readMovnoAndTitle(); // 영화 제목 목록 가져오기
+        System.out.println("스케줄정보조회"+movsch);
+        System.out.println("무비즈"+movies);
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("management/moviescheduleedit");
+        mv.addObject("movsch", movsch);
+        mv.addObject("movies", movies); // 모델에 영화 리스트 추가
+        return mv;
+    }
+
+    // 수정 post
+    @PostMapping("/schedule/modify/{schno}")
+    public String modifyMovieSchedule(@PathVariable Long schno, MovieSchedule updateschedule) {
+        String viewPage = "error";
+        // 스케줄 조회
+        System.out.println("스케줄포스트무슨값날라옴?"+updateschedule);
+        System.out.println("스케줄포스트movno?"+updateschedule.getMovno());
+//
+//        schedule.setSchno(schno);
+        MovieSchedule existingschedule = movschsrv.getOneMovieScheduleBySchno(schno);
+//        System.out.println("스케쥴"+schedule);
+
+        // 업데이트된 스케줄 정보 설정
+        existingschedule.setMovno(updateschedule.getMovno());
+        existingschedule.setCiplace(updateschedule.getCiplace());
+        existingschedule.setOdate(updateschedule.getOdate());
+        existingschedule.setStime(updateschedule.getStime());
+        existingschedule.setEtime(updateschedule.getEtime());
+        existingschedule.setPrice(updateschedule.getPrice());
+
+        if (movschsrv.modifyMovieScheduleBySchno(existingschedule)) {
+            viewPage = "redirect:/management/movie/schedule/list";
+        }
+        return viewPage;
+
+    }
+
+
+
+
+//    // 삭제
+//    @GetMapping("/schedule/remove/{schno}")
+//    public String removeMovieSchedule(@PathVariable Long schno) {
+//        movschsrv.removeMovieSchedule(schno);
+//
+//        // 클라이언트에게 /list를 서버에 요청하도록 지시
+//        return "redirect:/list";
+//
+//    }
+
+
 
 
 }

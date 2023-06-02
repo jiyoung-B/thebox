@@ -1,5 +1,6 @@
 package com.team.thebox.service.admin;
 
+import com.team.thebox.dao.admin.MovieScheduleDAO;
 import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
@@ -23,11 +24,14 @@ public class AMovieScheduleServiceImpl implements AMovieScheduleService {
     @Autowired
     BookedRepository bookedRepository;
 
+    @Autowired
+    MovieScheduleDAO movschdao;
+
 
 
     @Override
     public List<MovieScheduleDTO> readMovieSchedule() {
-        List<MovieSchedule> movieSchedules = movieScheduleRepository.findAll();
+        List<MovieSchedule> movieSchedules = movschdao.selectMovieSchedule();
         List<MovieScheduleDTO> scheduleDTOs = new ArrayList<>();
 
         for (MovieSchedule schedule : movieSchedules) {
@@ -41,19 +45,36 @@ public class AMovieScheduleServiceImpl implements AMovieScheduleService {
             scheduleDTO.setPrice(schedule.getPrice());
 
             Long movno = schedule.getMovno();
-            Movie movie = movieRepository.findMovTitleByMovno(movno);
+            Movie movie = movschdao.selectMovieTitleByMovno(movno);
             if (movie != null) {
                 scheduleDTO.setMovtitle(movie.getMovtitle());
             }
 
             Long schno = schedule.getSchno();
-            int booked = bookedRepository.countTotalSeatIdsBySchno(schno);
+            int booked = movschdao.getBookedCount(schno);
             scheduleDTO.setBooked(booked);
 
             scheduleDTOs.add(scheduleDTO);
         }
 
         return scheduleDTOs;
+    }
+
+    @Override
+    public MovieSchedule getOneMovieScheduleBySchno(Long schno) {
+        return movschdao.selectOneSchedule(schno);
+    }
+
+    @Override
+    public boolean modifyMovieScheduleBySchno(MovieSchedule schedule) {
+        boolean result = false;
+
+        System.out.println("변경내역"+schedule);
+
+            if(movschdao.updateMoviesSchedule(schedule) > 0 ){
+            result = true;
+        }
+        return result;
     }
 }
 
