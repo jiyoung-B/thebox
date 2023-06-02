@@ -5,7 +5,6 @@ import com.team.thebox.service.MypageService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,16 +79,30 @@ public class MyPageController {
     }
 
     @PostMapping("/modify")
-    public ModelAndView ModifyUpdate(String userid, String newEmail, String newPhnum, String newPswd) {
+    public ModelAndView ModifyUpdate(String userid, String fillEmail, String changePhnum, String newPswd2) {
         ModelAndView mv = new ModelAndView();
 
-        if (newEmail != null) mpsrv.modifyEmail(userid, newEmail);
-        if (newPhnum != null) mpsrv.modifyPhnum(userid, newPhnum);
-        if (newPswd != null) mpsrv.modifynewPswd(userid, newPswd);
+        if (fillEmail != null) mpsrv.modifyEmail(userid, fillEmail);
+        if (changePhnum != null) mpsrv.modifyPhnum(userid, changePhnum);
+        if (newPswd2 != null) mpsrv.modifynewPswd(userid, newPswd2);
 
         mv.addObject("mp", mpsrv.readOneMember(userid));
         mv.setViewName("mypage/modify");
 
         return mv;
+    }
+
+    @GetMapping("/goodbye")
+    public String goodbye() {
+
+        return "mypage/goodbye";
+    }
+
+    @PostMapping("/goodbye")
+    public String goodbyeok(String userid) {
+
+        mpsrv.removeMember(userid);
+
+        return "mypage/goodbye";
     }
 }

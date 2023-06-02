@@ -22,74 +22,76 @@
                     <div class="row mb-2">
                         <h3 class="fw-bold">예매 내역</h3>
                     </div>   <!-- 예내 -->
-                    <div class="row ps-2 mb-5" style="min-height: 320px !important;" th:each="bd : ${bdlist}">
-                        <div class="col-8 pt-2" style="border-right: 2px dashed black; border-top: 2px solid black;
-                        border-left: 2px solid black; border-bottom: 2px solid black;">
-                            <div class="row pt-3">
-                                <div class="col-4">
-<!--                                    <img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 85%">-->
-                                    <img th:src="|${bd.poster}|" class="img-fluid" style="width: 85%">
-                                </div>   <!-- 영화 이미지 -->
-                                <div class="col-7">
-                                    <div class="row text-danger fw-bold fs-5" th:text="${bd.title}"></div>
-                                    <div class="row" th:text="|${bd.cinematype} ${bd.region} / ${bd.screennum}|"></div>
-                                    <div class="row" th:text="${bd.bookingnum}"></div>
-                                    <div class="row border-top border-bottom border-2 border-dark mt-3 pt-3">
-                                        <div class="col-3">
-                                            <div class="row"><p class="text-center fw-bold">좌석</p></div>
-                                            <div class="row" th:each="bdst : ${#strings.arraySplit(bd.seats, ',')}">
-                                                <p class="text-center mb-1" th:text="${bdst}"></p>
+                    <div style="min-height: 150px;">
+                        <div class="row ps-2 mb-5" style="min-height: 320px !important;" th:each="bd : ${bdlist}">
+                            <div class="col-8 pt-2" style="border-right: 2px dashed black; border-top: 2px solid black;
+                            border-left: 2px solid black; border-bottom: 2px solid black;">
+                                <div class="row pt-3">
+                                    <div class="col-4">
+<!--                                        <img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 85%">-->
+                                        <img th:src="|${bd.poster}|" class="img-fluid" style="width: 85%">
+                                    </div>   <!-- 영화 이미지 -->
+                                    <div class="col-7">
+                                        <div class="row text-danger fw-bold fs-5" th:text="${bd.title}"></div>
+                                        <div class="row" th:text="|${bd.cinematype} ${bd.region} / ${bd.screennum}|"></div>
+                                        <div class="row" th:text="${bd.bookingnum}"></div>
+                                        <div class="row border-top border-bottom border-2 border-dark mt-3 pt-3">
+                                            <div class="col-3">
+                                                <div class="row"><p class="text-center fw-bold">좌석</p></div>
+                                                <div class="row" th:each="bdst : ${#strings.arraySplit(bd.seats, ',')}">
+                                                    <p class="text-center mb-1" th:text="${bdst}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row"><p class="text-center fw-bold">관람일시</p></div>
+                                                <div class="row"><p class="text-center" th:text="|${#strings.substring(bd.viewingday, 0, 10)} ${#strings.substring(bd.paymentdate, 11, 16)}|"></p></div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row"><p class="text-center fw-bold">관람인원</p></div>
+                                                <div class="row" th:each="bdmg : ${#strings.arraySplit(bd.moviegoers, ',')}">
+                                                    <p class="text-center mb-1" th:text="${bdmg}"></p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="row"><p class="text-center fw-bold">관람일시</p></div>
-                                            <div class="row"><p class="text-center" th:text="|${#strings.substring(bd.viewingday, 0, 10)} ${#strings.substring(bd.paymentdate, 11, 16)}|"></p></div>
+                                        <div class="row mt-3 mb-3">
+                                            <div class="col-6 fw-bold fs-5">ADMIT ONE</div>
+                                            <div class="col-6 text-danger fw-bold fs-5 text-end" th:text="|${#numbers.formatInteger(bd.totalprice, 3, 'COMMA')}원|"></div>
                                         </div>
-                                        <div class="col-3">
-                                            <div class="row"><p class="text-center fw-bold">관람인원</p></div>
-                                            <div class="row" th:each="bdmg : ${#strings.arraySplit(bd.moviegoers, ',')}">
-                                                <p class="text-center mb-1" th:text="${bdmg}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 mb-3">
-                                        <div class="col-6 fw-bold fs-5">ADMIT ONE</div>
-                                        <div class="col-6 text-danger fw-bold fs-5 text-end" th:text="|${#numbers.formatInteger(bd.totalprice, 3, 'COMMA')}원|"></div>
-                                    </div>
-                                </div>   <!-- 내용 -->
-                                <div class="col-1">
-                                    <button class="btn btn-light fw-bold" id="dltbkbtn">X</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 border border-dark border-2 border-start-0 bg-danger pt-4">
-                            <div class="text-center" style="transform: rotate(-90deg); padding-right: 20px;">
-                                <div class="row fw-bold fs-4 justify-content-center pb-2">ADMIT ONE</div>
-                                <div class="row fw-bold text-white justify-content-center pt-3" style="border-top: 1px dashed white; margin-left: -25px;" th:text="${bd.title}"></div>
-                                <div class="row justify-content-center text-white">
-                                    <div class="row border-top border-bottom border-2 border-white mt-3 pt-3">
-                                        <div class="col-3">
-                                            <div class="row"><p class="text-center fw-bold">좌석</p></div>
-                                            <div class="row" th:each="bdst : ${#strings.arraySplit(bd.seats, ',')}">
-                                                <p class="text-center mb-0" th:text="${bdst}"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="row"><p class="text-center fw-bold">관람일시</p></div>
-                                            <div class="row"><p class="text-center" th:text="${#strings.substring(bd.viewingday, 0, 10)}"></p></div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="row"><p class="text-center fw-bold">관람인원</p></div>
-                                            <div class="row" th:each="bdmg : ${#strings.arraySplit(bd.moviegoers, ',')}">
-                                                <p class="text-center mb-0" th:text="${bdmg}"></p>
-                                            </div>
-                                        </div>
+                                    </div>   <!-- 내용 -->
+                                    <div class="col-1">
+                                        <button class="btn btn-light fw-bold" id="dltbkbtn">X</button>
                                     </div>
                                 </div>
-                                <div class="row text-white justify-content-center mt-2" th:text="|Ticket NO.${bd.bookingnum}|"></div>
                             </div>
-                        </div>   <!-- 절취선 이후 -->
-                    </div>   <!-- 티켓 전체 -->
+                            <div class="col-4 border border-dark border-2 border-start-0 bg-danger pt-4">
+                                <div class="text-center" style="transform: rotate(-90deg); padding-right: 20px;">
+                                    <div class="row fw-bold fs-4 justify-content-center pb-2">ADMIT ONE</div>
+                                    <div class="row fw-bold text-white justify-content-center pt-3" style="border-top: 1px dashed white; margin-left: -25px;" th:text="${bd.title}"></div>
+                                    <div class="row justify-content-center text-white">
+                                        <div class="row border-top border-bottom border-2 border-white mt-3 pt-3">
+                                            <div class="col-3">
+                                                <div class="row"><p class="text-center fw-bold">좌석</p></div>
+                                                <div class="row" th:each="bdst : ${#strings.arraySplit(bd.seats, ',')}">
+                                                    <p class="text-center mb-0" th:text="${bdst}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="row"><p class="text-center fw-bold">관람일시</p></div>
+                                                <div class="row"><p class="text-center" th:text="${#strings.substring(bd.viewingday, 0, 10)}"></p></div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="row"><p class="text-center fw-bold">관람인원</p></div>
+                                                <div class="row" th:each="bdmg : ${#strings.arraySplit(bd.moviegoers, ',')}">
+                                                    <p class="text-center mb-0" th:text="${bdmg}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-white justify-content-center mt-2" th:text="|Ticket NO.${bd.bookingnum}|"></div>
+                                </div>
+                            </div>   <!-- 절취선 이후 -->
+                        </div>   <!-- 티켓 전체 -->
+                    </div>   <!-- 예내 없을 시 min-height -->
                     <div class="row mt-5">
                         <h3 class="fw-bold">예매 취소 내역</h3>
                     </div>   <!-- 예취 -->

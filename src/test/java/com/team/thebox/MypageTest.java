@@ -13,18 +13,12 @@ public class MypageTest {
     @Autowired
     MypageRepository mypageRepository;
 
-    /*@Test
-    @DisplayName("updateEmail")
-    public void updateEmail() {
-
+    @Test
+    @DisplayName("member delete")
+    public void deleteMember() {
         Member m = new Member();
-        m.setUserid("aaa111");
-        m.setPasswd(m.getUserid().getPasswd());
-        m.setName(m.getName());
-        m.setPhone(m.getPhone());
-        m.setEmail("bbb@gmail.com");
+        m.setUserid("444444");
 
-        mypageRepository.save(m);
-
-    }*/
+        mypageRepository.delete(m);
+    }
 }

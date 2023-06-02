@@ -53,17 +53,22 @@ public class MypageServiceImpl implements MypageService{
     }
 
     @Override
-    public void modifyEmail(String userid, String newEmail) {
-        mpdao.updateEmail(userid, newEmail);
+    public void modifyEmail(String userid, String fillEmail) {
+        mpdao.updateEmail(userid, fillEmail);
     }
 
     @Override
-    public void modifyPhnum(String userid, String newPhnum) {
-        mpdao.updatePhnum(userid, newPhnum);
+    public void modifyPhnum(String userid, String changePhnum) {
+        mpdao.updatePhnum(userid, changePhnum);
     }
 
     @Override
-    public void modifynewPswd(String userid, String newPswd) {
-        mpdao.updatePswd(userid, newPswd);
+    public void modifynewPswd(String userid, String newPswd2) {
+        mpdao.updatePswd(userid, newPswd2);
+    }
+
+    @Override
+    public void removeMember(String userid) {
+        mpdao.deleteMember(userid);
     }
 }

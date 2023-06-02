@@ -15,9 +15,11 @@ public interface MypageDAO {
 
     Map<String, Object> selectPoster(String title);
 
-    void updateEmail(String userid, String newEmail);
+    void updateEmail(String userid, String fillEmail);
 
-    void updatePhnum(String userid, String newPhnum);
+    void updatePhnum(String userid, String changePhnum);
 
-    void updatePswd(String userid, String newPswd);
+    void updatePswd(String userid, String newPswd2);
+
+    void deleteMember(String userid);
 }

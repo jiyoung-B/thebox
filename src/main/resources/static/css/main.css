@@ -60,3 +60,9 @@
   background-color: darkslategray !important;
   border-color: darkslategray !important;
 }
+
+
+.form-check-input:checked {
+  background-color: lightsalmon;
+  border-color: lightsalmon;
+}

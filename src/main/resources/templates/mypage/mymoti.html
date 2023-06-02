@@ -19,52 +19,54 @@
                     </ul>
                 </div>   <!-- 메뉴 -->
                 <div class="offset-1 col-9">
-                        <table class="row col ms-0 me-0" style="border: 2px solid #bce8f1 !important;">
-                            <tbody class="ps-0 pe-0">
-                                <tr class="row ms-0 me-0" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important;">
-                                    <td class="pt-3 pb-3" colspan="2">
-                                        <div class="row ps-4">
-                                            <div class="col-1 p-0 m-0">
-                                                <img src="/static/img/profile.png" width="90%" class="rounded-circle">
-                                            </div>
-                                            <div class="col-11 fw-bold fs-4">
-                                                <div>안녕하세요!</div>
-                                                <div class="row">
-                                                    <div class="col-auto pe-0" th:text="|${mp.name}님|"></div>
-                                                    <a class="col ps-1" style="margin-top: -13px;" th:href="|modify?userid=${session.UID}|"><i class="fa-solid fa-pen-nib fa-2xs" style="color: black"></i></a>
-                                                </div>
+                    <table class="row col ms-0 me-0" style="border: 2px solid #bce8f1 !important; min-height: 342px;">
+                        <tbody class="ps-0 pe-0">
+                            <tr class="row ms-0 me-0" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important;">
+                                <td class="pt-3 pb-3" colspan="2">
+                                    <div class="row ps-4">
+                                        <div class="col-1 p-0 m-0">
+                                            <img src="/static/img/profile.png" width="90%" class="rounded-circle">
+                                        </div>
+                                        <div class="col-11 fw-bold fs-4">
+                                            <div>안녕하세요!</div>
+                                            <div class="row">
+                                                <div class="col-auto pe-0" th:text="|${mp.name}님|"></div>
+                                                <a class="col-auto ps-1 pe-0" style="margin-top: -13px;" th:href="|modify?userid=${session.UID}|">
+                                                    <i class="fa-solid fa-pen-nib fa-2xs" style="color: black"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>   <!-- 인삿말 -->
-                                <tr class="row ms-0 me-0" style="border-top: 1px solid #bce8f1;">
-                                    <td colspan="2" class="row me-0 pe-0 mt-3">
-                                        <div class="col-6 fw-bold fs-4">예매내역</div>
-                                        <div class="col-6 row me-0 pe-0 text-end align-items-end">
-                                            <a th:href="|myticket?userid=${session.UID}|" class="text-dark pe-0" style="text-decoration: none;">
-                                                더보기 <i class="fa-solid fa-chevron-right"></i>
-                                            </a>
+                                    </div>
+                                </td>
+                            </tr>   <!-- 인삿말 -->
+                            <tr class="row ms-0 me-0" style="border-top: 1px solid #bce8f1;">
+                                <td colspan="2" class="row me-0 pe-0 mt-3">
+                                    <div class="col fw-bold fs-4">예매내역</div>
+                                    <div class="col row me-0 pe-0 text-end align-items-end justify-content-end">
+                                        <a th:href="|myticket?userid=${session.UID}|" class="text-dark pe-0" style="text-decoration: none;">
+                                            더보기 <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>   <!-- 예매내역 & 더보기 -->
+                            <tr class="row">
+                                <td class="col" th:each="bd : ${t2list}">
+                                    <div class="row ms-3 mt-2 mb-3 me-3 border rounded" style="border-color: #bce8f1 !important;">
+                                        <div class="col-3 pt-2 pb-2">
+                                            <img src="/static/img/moviesample.jpg" style="max-width: 100px; max-height: 135px;">
                                         </div>
-                                    </td>
-                                </tr>   <!-- 예매내역 & 더보기 -->
-                                <tr class="row">
-                                    <td class="col" th:each="bd : ${t2list}">
-                                        <div class="row ms-3 mt-2 mb-3 me-3 border rounded" style="border-color: #bce8f1 !important;">
-                                            <div class="col-3 pt-2 pb-2">
-                                                <img src="/static/img/moviesample.jpg" style="max-width: 100px; max-height: 135px;">
-                                            </div>
-                                            <div class="col-9 pt-2 pb-2 text-primary">
-                                                <div th:text="${bd.title}" class="fw-bold"></div>
-                                                <div th:text="${bd.bookingnum}"></div>
-                                                <div th:text="|결제일시 : ${#strings.substring(bd.paymentdate, 0, 10)} (${#strings.substring(bd.paymentdate, 11, 16)})|"></div>
-                                                <div th:text="|${bd.region}(${bd.screennum})|"></div>
-                                                <div th:text="|관람일 : ${#strings.substring(bd.viewingday, 0, 10)} ${#strings.substring(bd.paymentdate, 11, 16)}|"></div>
-                                            </div>
+                                        <div class="col-9 pt-2 pb-2 text-primary">
+                                            <div th:text="${bd.title}" class="fw-bold"></div>
+                                            <div th:text="${bd.bookingnum}"></div>
+                                            <div th:text="|결제일시 : ${#strings.substring(bd.paymentdate, 0, 10)} (${#strings.substring(bd.paymentdate, 11, 16)})|"></div>
+                                            <div th:text="|${bd.region}(${bd.screennum})|"></div>
+                                            <div th:text="|관람일 : ${#strings.substring(bd.viewingday, 0, 10)} ${#strings.substring(bd.paymentdate, 11, 16)}|"></div>
                                         </div>
-                                    </td>
-                                </tr>   <!-- 예매내역 테이블 -->
-                            </tbody>
-                        </table>
+                                    </div>
+                                </td>
+                            </tr>   <!-- 예매내역 테이블 -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -15,9 +15,11 @@ public interface MypageService {
 
     byte[] readPoster(String title);
 
-    void modifyEmail(String userid, String newEmail);
+    void modifyEmail(String userid, String fillEmail);
 
-    void modifyPhnum(String userid, String newPhnum);
+    void modifyPhnum(String userid, String changePhnum);
 
-    void modifynewPswd(String userid, String newPswd);
+    void modifynewPswd(String userid, String newPswd2);
+
+    void removeMember(String userid);
 }
