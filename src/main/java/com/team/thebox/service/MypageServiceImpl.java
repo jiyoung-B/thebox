@@ -37,22 +37,6 @@ public class MypageServiceImpl implements MypageService{
     }
 
     @Override
-    public byte[] readPoster(String title) {
-
-        ObjectMapper mapper = new ObjectMapper();
-        byte[] json = "".getBytes();
-
-        try {
-            json = mapper.writeValueAsBytes(
-                    mpdao.selectPoster(title));
-        } catch (JsonProcessingException ex) {
-            ex.printStackTrace();
-        }
-
-        return json;
-    }
-
-    @Override
     public void modifyEmail(String userid, String fillEmail) {
         mpdao.updateEmail(userid, fillEmail);
     }
@@ -70,5 +54,11 @@ public class MypageServiceImpl implements MypageService{
     @Override
     public void removeMember(String userid) {
         mpdao.deleteMember(userid);
+    }
+
+    @Override
+    public Map<String, Object> readPoster(String title) {
+
+        return mpdao.selectPoster(title);
     }
 }

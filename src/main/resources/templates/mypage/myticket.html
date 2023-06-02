@@ -28,8 +28,7 @@
                             border-left: 2px solid black; border-bottom: 2px solid black;">
                                 <div class="row pt-3">
                                     <div class="col-4">
-<!--                                        <img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 85%">-->
-                                        <img th:src="|${bd.poster}|" class="img-fluid" style="width: 85%">
+                                        <img id="image" th:src="${bd.poster}" class="img-fluid" style="width: 85%">
                                     </div>   <!-- 영화 이미지 -->
                                     <div class="col-7">
                                         <div class="row text-danger fw-bold fs-5" th:text="${bd.title}"></div>

@@ -63,11 +63,6 @@ public class MypageDAOImpl implements MypageDAO{
     }
 
     @Override
-    public Map<String, Object> selectPoster(String title) {
-        return bookingdetailsRepository.findPoster(title);
-    }
-
-    @Override
     public void updateEmail(String userid, String fillEmail) {
         Member m = mypageRepository.findAllByUserid(userid);
 
@@ -99,4 +94,8 @@ public class MypageDAOImpl implements MypageDAO{
         mypageRepository.delete(m);
     }
 
+    @Override
+    public Map<String, Object> selectPoster(String title) {
+        return bookingdetailsRepository.findPoster(title);
+    }
 }

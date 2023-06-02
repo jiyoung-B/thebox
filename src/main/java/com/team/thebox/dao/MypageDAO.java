@@ -13,8 +13,6 @@ public interface MypageDAO {
 
     Map<String, Object> selectTop2(String userid);
 
-    Map<String, Object> selectPoster(String title);
-
     void updateEmail(String userid, String fillEmail);
 
     void updatePhnum(String userid, String changePhnum);
@@ -22,4 +20,6 @@ public interface MypageDAO {
     void updatePswd(String userid, String newPswd2);
 
     void deleteMember(String userid);
+
+    Map<String, Object> selectPoster(String title);
 }

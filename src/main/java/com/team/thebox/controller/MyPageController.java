@@ -1,8 +1,6 @@
 package com.team.thebox.controller;
 
-import com.team.thebox.model.Member;
 import com.team.thebox.service.MypageService;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.Map;
+
 
 @Controller
 @RequestMapping("/mypage")
@@ -38,18 +33,17 @@ public class MyPageController {
     }
 
     @GetMapping("/myticket")
-    public ModelAndView MyTicket(String userid, String title, HttpServletResponse res) {
+    public ModelAndView MyTicket(String userid, String title) {
         ModelAndView mv = new ModelAndView();
-
-//        Map<String, Object> imgs = mpsrv.readPoster(title);
 
 
         Map<String, Object> bds = mpsrv.readBookingDetails(userid);
         Map<String, Object> cds = mpsrv.readCancellationDetails(userid);
+//        Map<String, Object> imgs = mpsrv.readPoster(title);
 
         mv.addObject("bdlist", bds.get("bdlist"));
         mv.addObject("cdlist", cds.get("cdlist"));
-//        mv.addObject("imgs", imgs.get("imgs"));
+//        mv.addObject("imgs", imgs);
 
         mv.setViewName("mypage/myticket");
 
@@ -57,16 +51,18 @@ public class MyPageController {
 
     }
 
-    @ResponseBody
-    @GetMapping("/image")
-    public void zipcode(String title, HttpServletResponse res) {
-        try {
-            res.setContentType("application/json; charset=UTF-8");
-            res.getWriter().print(mpsrv.readPoster(title));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    /*@GetMapping("/{bdlist.poster}")
+    public ModelAndView image(String userid) {
+        ModelAndView mv = new ModelAndView();
+
+        Map<String, Object> bds = mpsrv.readBookingDetails(userid);
+
+        mv.addObject("bdlist", bds.get("bdlist"));
+
+        mv.setViewName("mypage/myticket");
+
+        return mv;
+    }*/
 
     @GetMapping("/modify")
     public ModelAndView Modify(String userid) {

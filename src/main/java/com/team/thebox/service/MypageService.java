@@ -13,8 +13,6 @@ public interface MypageService {
 
     Map<String, Object> readTop2(String userid);
 
-    byte[] readPoster(String title);
-
     void modifyEmail(String userid, String fillEmail);
 
     void modifyPhnum(String userid, String changePhnum);
@@ -22,4 +20,6 @@ public interface MypageService {
     void modifynewPswd(String userid, String newPswd2);
 
     void removeMember(String userid);
+
+    Map<String, Object> readPoster(String title);
 }
