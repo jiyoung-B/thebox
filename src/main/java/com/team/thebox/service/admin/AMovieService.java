@@ -12,7 +12,7 @@ public interface AMovieService {
     boolean newMovies2(Movie movie);
     boolean newMovieAttach(MultipartFile attach, Map<String, Object> mvinfo);
 
-    Movie readOneMovie(int movno);
+    Movie readOneMovie(Long movno);
 
     Map<String, Object> readMovie(Integer cpg);
     List<String> readMovieTitle(long movno);
@@ -24,4 +24,10 @@ public interface AMovieService {
 
     List<Integer> readBookedCnt();
     Map<String, Object> readMovieSchedule(Long movno, Long schno);
+
+    Movie getOneMovieByMovno(Long movno);
+
+    boolean modifyMovieByMovno(Movie existingmovie);
+
+    boolean removeMovieByMovno(Long movno);
 }

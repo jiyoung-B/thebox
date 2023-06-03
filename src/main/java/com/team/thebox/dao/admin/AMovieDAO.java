@@ -14,7 +14,8 @@ public interface AMovieDAO {
     int insertMovie(Movie movie);
     int insertMovieAttach(MovieAttach pa);
 
-    Movie selectOneMovie(int movno);    // 영화 상세보기
+    Movie selectOneMovie(Long movno);    // 영화 상세보기
+    Long updateMovie(Movie updatemovie);
 
     Map<String, Object> selectMovie(int cpg);
 //
@@ -38,4 +39,6 @@ public interface AMovieDAO {
     List<Integer> selectBookedCnt();
 
     Map<String, Object> selectScheduleList(Long movno, Long schno);
+
+    void deleteMovieByMovno(Long movno);
 }

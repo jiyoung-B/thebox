@@ -19,4 +19,6 @@ public interface MovieScheduleDAO {
     MovieSchedule selectOneSchedule(Long schno);
 
     Long updateMoviesSchedule(MovieSchedule  schedule);
+
+    void deleteMovieScheduleBySchno(Long schno);
 }

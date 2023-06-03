@@ -12,4 +12,6 @@ public interface AMovieScheduleService {
     MovieSchedule getOneMovieScheduleBySchno(Long schno);
 
     boolean modifyMovieScheduleBySchno(MovieSchedule schedule);
+
+    boolean removeMovieScheduleBySchno(Long schno);
 }

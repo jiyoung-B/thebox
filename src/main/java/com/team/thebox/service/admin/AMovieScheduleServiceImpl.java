@@ -62,6 +62,7 @@ public class AMovieScheduleServiceImpl implements AMovieScheduleService {
 
     @Override
     public MovieSchedule getOneMovieScheduleBySchno(Long schno) {
+
         return movschdao.selectOneSchedule(schno);
     }
 
@@ -75,6 +76,21 @@ public class AMovieScheduleServiceImpl implements AMovieScheduleService {
             result = true;
         }
         return result;
+    }
+
+    @Override
+    public boolean removeMovieScheduleBySchno(Long schno) {
+        boolean result = false;
+
+        try{
+            movschdao.deleteMovieScheduleBySchno(schno);
+            result = true;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+
     }
 }
 

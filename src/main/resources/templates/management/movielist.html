@@ -71,8 +71,14 @@
                     <td th:text="${mov.movreleasedate}">2023.05.03</td>
                     <td th:text="${mov.movgrade}">12세이상관람가</td>
                     <td>0</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td>
+                      <!-- 수정 버튼 -->
+                      <a th:href="@{'/management/movie/modify/' + ${mov.movno}}">수정</a>
+                    </td>
+                    <td>
+                      <!-- 삭제 버튼 -->
+                      <a th:href="@{'/management/movie/remove/' + ${mov.movno}}">삭제</a>
+                    </td>
                   </tr>
 
 

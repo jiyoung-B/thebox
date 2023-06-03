@@ -73,12 +73,67 @@ public class AdminMovieController {
 
 
     @GetMapping("/view")
-    public String view(@RequestParam int movno, Model m){
+    public String view(@RequestParam Long movno, Model m){
 
         m.addAttribute("movie", admmvsrv.readOneMovie(movno));
 
         return "management/movieview";
     }
+
+    // movie 수정화면 get
+    @GetMapping("/modify/{movno}")
+    public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
+
+        Movie moviedetail = admmvsrv.getOneMovieByMovno(movno);
+
+        System.out.println("무비즈"+moviedetail);
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("management/movieedit");
+
+        mv.addObject("movies", moviedetail);
+        return mv;
+    }
+
+    // movie 수정 post
+    @PostMapping("/modify/{movno}")
+    public String submitModifyMovie(@PathVariable Long movno, Movie updatemovie) {
+        String viewPage = "error";
+
+        Movie existingmovie = admmvsrv.getOneMovieByMovno(movno);
+        System.out.println("업데이트무비"+updatemovie);
+
+
+        // 업데이트된 스케줄 정보 설정
+        existingmovie.setMovno(updatemovie.getMovno());
+        existingmovie.setMovtitle(updatemovie.getMovtitle());
+        existingmovie.setMovgenre(updatemovie.getMovgenre());
+        existingmovie.setMovdirector(updatemovie.getMovdirector());
+        existingmovie.setMovactor(updatemovie.getMovdetail());
+        existingmovie.setMovreleasedate(updatemovie.getMovreleasedate());
+        existingmovie.setMovgrade(updatemovie.getMovgrade());
+        existingmovie.setMovruntime(updatemovie.getMovruntime());
+        existingmovie.setMovdetail(updatemovie.getMovdetail());
+
+
+        if (admmvsrv.modifyMovieByMovno(existingmovie)) {
+            viewPage = "redirect:/management/movie/list";
+        }
+        return viewPage;
+
+    }
+
+    // 삭제
+    @GetMapping("/remove/{movno}")
+    public String removeMovie(@PathVariable Long movno) {
+        if (admmvsrv.removeMovieByMovno(movno)) {
+            return "redirect:/management/movie/list";
+        } else {
+            return "error";
+        }
+
+    }
+
 
 
     @GetMapping("/schedule/resgister")
@@ -171,15 +226,16 @@ public class AdminMovieController {
 
 
 
-//    // 삭제
-//    @GetMapping("/schedule/remove/{schno}")
-//    public String removeMovieSchedule(@PathVariable Long schno) {
-//        movschsrv.removeMovieSchedule(schno);
-//
-//        // 클라이언트에게 /list를 서버에 요청하도록 지시
-//        return "redirect:/list";
-//
-//    }
+    // 삭제
+    @GetMapping("/schedule/remove/{schno}")
+    public String removeMovieSchedule(@PathVariable Long schno) {
+        if (movschsrv.removeMovieScheduleBySchno(schno)) {
+            return "redirect:/management/movie/schedule/list";
+        } else {
+            return "error";
+        }
+
+    }
 
 
 

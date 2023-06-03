@@ -1,4 +1,4 @@
-// 새글쓰기
+//  상영스케줄 업데이트
 const schupdatebtn = document.querySelector("#schupdatebtn");
 schupdatebtn?.addEventListener('click', () => {
     const scheditfrm = document.forms.scheditfrm;

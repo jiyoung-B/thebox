@@ -72,22 +72,18 @@ public class AMovieDAOImpl implements AMovieDAO {
         return movieReplyRepository.findByMovnoOrderByRegdateAsc(movno);
     }
 
-    @Override //상세보기
-    public Movie selectOneMovie(int movno) {
-        return movieRepository.findById((long) movno).get();
+    @Override
+    public Movie selectOneMovie(Long movno) {
+        return movieRepository.findById(movno).orElse(null);
     }
-//    @Override
-//    public Movie selectOneMovie(int mvno) {
-//        Optional<Movie> optionalMovie = movieRepository.findById(mvno);
-//        if (optionalMovie.isPresent()) {
-//            System.out.println("겟" + optionalMovie.get());
-//            return optionalMovie.get();
-//        } else {
-//            // ID에 해당하는 영화가 존재하지 않을 경우 예외 처리 또는 기본 동작을 수행
-//            // 예를 들어, null을 반환하거나 예외를 던질 수 있습니다.
-//            return null; // 또는 원하는 처리 방식에 따라 적절히 수정
-//        }
-//    }
+
+    @Override
+    public Long updateMovie(Movie updatemovie) {
+        System.out.println("저장직전repository"+updatemovie);
+
+        return movieRepository.save(updatemovie).getMovno();
+
+    }
 
     @Override
     public List<String> selectMovieTitle() {
@@ -122,6 +118,11 @@ public class AMovieDAOImpl implements AMovieDAO {
         movschlist.put("movtitle", movieRepository.findMovTitleByMovno(movno));
         movschlist.put("booked", bookedRepository.countTotalSeatIdsBySchno(schno));
         return movschlist;
+    }
+
+    @Override
+    public void deleteMovieByMovno(Long movno) {
+        movieRepository.deleteById(movno);
     }
 
 }

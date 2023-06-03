@@ -58,7 +58,7 @@ public class AMovieServiceImpl implements AMovieService {
     }
 
     @Override
-    public Movie readOneMovie(int movno) {
+    public Movie readOneMovie(Long movno) {
         return amovdao.selectOneMovie(movno);
     }
 
@@ -101,15 +101,39 @@ public class AMovieServiceImpl implements AMovieService {
         return amovdao.selectScheduleList(movno, schno);
     }
 
-//    @Override
-//    public MovieScheduleDTO readMovieSchedule() {
-//        MovieScheduleDTO movschdto = new MovieScheduleDTO();
-//        movschdto.setMovschlist(movdao.selectMovieSchdule());
-//        movschdto.setMovtitle(movdao.selectMovieTitle());
-//        movschdto.setBooked(movdao.selectBookedCnt()); // 예약된 좌석 현황 가져오기 등
-//
-//        return movschdto;
-//    }
+    @Override
+    public Movie getOneMovieByMovno(Long movno) {
+        return amovdao.selectOneMovie(movno);
+    }
+
+    @Override
+    public boolean modifyMovieByMovno(Movie existingmovie) {
+        boolean result = false;
+
+        System.out.println("변경내역"+existingmovie);
+
+        if(amovdao.updateMovie(existingmovie) > 0 ){
+            result = true;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean removeMovieByMovno(Long movno) {
+        boolean result = false;
+
+        try{
+            amovdao.deleteMovieByMovno(movno);
+            result = true;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            result = false;
+        }
+        return result;
+
+
+
+    }
 
 
 }
