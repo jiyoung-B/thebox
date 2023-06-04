@@ -3,6 +3,8 @@ package com.team.thebox.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.thebox.dao.MypageDAO;
+import com.team.thebox.model.BookingDetails;
+import com.team.thebox.model.CancellationDetails;
 import com.team.thebox.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,8 +59,14 @@ public class MypageServiceImpl implements MypageService{
     }
 
     @Override
-    public Map<String, Object> readPoster(String title) {
+    public Map<String, Object> readPoster(String userid) {
 
-        return mpdao.selectPoster(title);
+        return mpdao.selectPoster(userid);
+    }
+
+    @Override
+    public void rmBkNnewCan(int bkno, CancellationDetails cds) {
+
+        mpdao.delBkNinsCan(bkno, cds);
     }
 }

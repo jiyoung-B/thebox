@@ -66,3 +66,62 @@
   background-color: lightsalmon;
   border-color: lightsalmon;
 }
+
+
+/* 인덱스 영화 영상 */
+.indexMovieTitle {
+  position: absolute;
+  top: 350px;
+  left: 78px;
+  font-weight: 700;
+  font-size: 40px;
+  color: #fff;
+  line-height: 1.450em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.72);
+  z-index: 2;
+  animation: tt1 1s 3s ease-in forwards;
+  pointer-events: none;
+}
+
+.indexMovieController {
+  display: inline-flex;
+  position: absolute;
+  top: 410px;
+  left: 80px;
+  z-index: 4;
+}
+
+.indexMovieDetailView {
+  display: block;
+  padding: 5px 18px 5px 18px;
+  font-size: 14px;
+  color: #343434;
+  line-height: 1.429em;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+.indexMovieDetailView:hover {
+  color: #343434;
+}
+
+.indexMoviePlayStop {
+  display: block;
+  margin-left: 10px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #979797;
+  border-radius: 50%;
+}
+
+.indexMovieSound {
+  display: block;
+  margin-left: 10px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #979797;
+  border-radius: 50%;
+}

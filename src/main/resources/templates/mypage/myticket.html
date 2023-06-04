@@ -28,7 +28,7 @@
                             border-left: 2px solid black; border-bottom: 2px solid black;">
                                 <div class="row pt-3">
                                     <div class="col-4">
-                                        <img id="image" th:src="${bd.poster}" class="img-fluid" style="width: 85%">
+                                        <img id="image" th:src="${pst.poster}" class="img-fluid" style="width: 95%">
                                     </div>   <!-- 영화 이미지 -->
                                     <div class="col-7">
                                         <div class="row text-danger fw-bold fs-5" th:text="${bd.title}"></div>
@@ -47,8 +47,8 @@
                                             </div>
                                             <div class="col-3">
                                                 <div class="row"><p class="text-center fw-bold">관람인원</p></div>
-                                                <div class="row" th:each="bdmg : ${#strings.arraySplit(bd.moviegoers, ',')}">
-                                                    <p class="text-center mb-1" th:text="${bdmg}"></p>
+                                                <div class="row">
+                                                    <p class="text-center mb-1" th:text="|성인 ${bd.adult}명|"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +58,9 @@
                                         </div>
                                     </div>   <!-- 내용 -->
                                     <div class="col-1">
-                                        <button class="btn btn-light fw-bold" id="dltbkbtn">X</button>
+                                        <button type="button" class="btn btn-light fw-bold"
+                                                data-bs-target="#chkdlbkmodal" data-bs-toggle="modal"
+                                                id="chkdlbkbtn" th:attr="onclick=|setBkno('${bd.bkno}')|">X</button>
                                     </div>
                                 </div>
                             </div>
@@ -80,8 +82,8 @@
                                             </div>
                                             <div class="col-4">
                                                 <div class="row"><p class="text-center fw-bold">관람인원</p></div>
-                                                <div class="row" th:each="bdmg : ${#strings.arraySplit(bd.moviegoers, ',')}">
-                                                    <p class="text-center mb-0" th:text="${bdmg}"></p>
+                                                <div class="row">
+                                                    <p class="text-center mb-0" th:text="|성인 ${bd.adult}명|"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,6 +122,33 @@
             </div>
         </div>
     </div>
+
+    <!-- 예매 취소 확인 모달 -->
+    <div class="modal fade" id="chkdlbkmodal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form name="delbkfrm" id="delbkfrm">
+                        <div class="row justify-content-center mt-3 mb-3">예매를 취소하시겠습니까?</div>
+                        <input type="hidden" name="bkno" id="bkno">
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-primary col-2 me-1" id="delbkbtn">확인</button>
+                            <button type="button" class="btn btn-secondary col-2 ms-1" data-bs-dismiss="modal">취소</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setBkno(bkno) {
+            document.querySelector('#bkno').value = bkno;
+        }
+    </script>
+
+
+    <script src="/static/js/mypage.js"></script>
 
 </th:block>
 

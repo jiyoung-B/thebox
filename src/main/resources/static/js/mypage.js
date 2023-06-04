@@ -92,7 +92,6 @@ const delmembtn = document.querySelector('#delmembtn');
 const chkdel = document.querySelector('#chkdel');
 const delokfrm = document.forms.delokfrm;
 
-
 delmembtn?.addEventListener('click', async () => {
     if (!chkdel.checked) alert("탈퇴하시기 전 유의사항을 확인해 주세요.");
     else {
@@ -103,3 +102,13 @@ delmembtn?.addEventListener('click', async () => {
         await (delokfrm.submit());
     }
 })
+
+
+// 예매 취소 & 취소 내역
+const delbkbtn = document.querySelector('#delbkbtn');
+const delbkfrm = document.forms.delbkfrm;
+delbkbtn?.addEventListener('click', () => {
+
+    delbkfrm.method = 'post';
+    delbkfrm.submit();
+});

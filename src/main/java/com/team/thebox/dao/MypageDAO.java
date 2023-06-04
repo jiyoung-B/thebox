@@ -1,5 +1,6 @@
 package com.team.thebox.dao;
 
+import com.team.thebox.model.CancellationDetails;
 import com.team.thebox.model.Member;
 
 import java.util.Map;
@@ -21,5 +22,7 @@ public interface MypageDAO {
 
     void deleteMember(String userid);
 
-    Map<String, Object> selectPoster(String title);
+    Map<String, Object> selectPoster(String userid);
+
+    void delBkNinsCan(int bkno, CancellationDetails cds);
 }

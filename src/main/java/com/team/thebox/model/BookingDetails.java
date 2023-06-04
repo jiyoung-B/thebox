@@ -16,8 +16,10 @@ import java.time.LocalDateTime;
 public class BookingDetails {
 
     @Id
-    private String bookingnum;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int bkno;
 
+    private String bookingnum;
     private String userid;
     private String title;
     private String cinematype;
@@ -25,13 +27,13 @@ public class BookingDetails {
     private String screennum;
     private String seats;
     private LocalDateTime viewingday;
-    private String moviegoers;
+    private int adult;
+    private int teen;
     private int totalprice;
-
-    @Lob
-    private byte[] poster;
 
     @CreatedDate
     @Column(insertable = false, updatable = false)
     private LocalDateTime paymentdate;
+
+    private String poster;
 }

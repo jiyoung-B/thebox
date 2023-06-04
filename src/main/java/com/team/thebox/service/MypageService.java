@@ -1,5 +1,6 @@
 package com.team.thebox.service;
 
+import com.team.thebox.model.CancellationDetails;
 import com.team.thebox.model.Member;
 
 import java.util.Map;
@@ -21,5 +22,7 @@ public interface MypageService {
 
     void removeMember(String userid);
 
-    Map<String, Object> readPoster(String title);
+    Map<String, Object> readPoster(String userid);
+
+    void rmBkNnewCan(int bkno, CancellationDetails cds);
 }

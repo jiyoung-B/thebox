@@ -11,6 +11,8 @@ import java.util.Map;
 public interface BookingdetailsRepository extends JpaRepository<BookingDetails, Long> {
     List<BookingDetails> findAllByUserid(String userid);
 
-    @Query("select poster from BookingDetails where title = :title")
-    Map<String, Object> findPoster(@Param("title") String title);
+    @Query("select poster from BookingDetails where userid = :userid order by bkno")
+    Map<String, Object> findPoster(@Param("userid") String userid);
+
+    BookingDetails findAllByBkno(int bkno);
 }

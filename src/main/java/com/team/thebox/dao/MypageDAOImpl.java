@@ -9,6 +9,7 @@ import com.team.thebox.repository.MypageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,7 +96,27 @@ public class MypageDAOImpl implements MypageDAO{
     }
 
     @Override
-    public Map<String, Object> selectPoster(String title) {
-        return bookingdetailsRepository.findPoster(title);
+    public Map<String, Object> selectPoster(String userid) {
+        return bookingdetailsRepository.findPoster(userid);
+    }
+
+    @Override
+    public void delBkNinsCan(int bkno, CancellationDetails cds) {
+        // 행 조회
+        BookingDetails bd = bookingdetailsRepository.findAllByBkno(bkno);
+
+        // CancellationDetails에 삽입
+        CancellationDetails cd = new CancellationDetails();
+        cd.setUserid(bd.getUserid());
+        cd.setCancellationdate(LocalDateTime.now());
+        cd.setTitle(bd.getTitle());
+        cd.setRegion(bd.getRegion());
+        cd.setViewingday(bd.getViewingday());
+        cd.setTotalprice(bd.getTotalprice());
+        cancellationdetailsRepository.save(cd);
+
+        // 행 삭제
+        bd.setBkno(bkno);
+        bookingdetailsRepository.delete(bd);
     }
 }

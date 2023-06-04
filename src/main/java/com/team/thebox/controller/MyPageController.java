@@ -1,14 +1,17 @@
 package com.team.thebox.controller;
 
+import com.team.thebox.model.CancellationDetails;
 import com.team.thebox.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 
@@ -33,36 +36,39 @@ public class MyPageController {
     }
 
     @GetMapping("/myticket")
-    public ModelAndView MyTicket(String userid, String title) {
+    public ModelAndView MyTicket(String userid, String title) throws MalformedURLException {
         ModelAndView mv = new ModelAndView();
-
 
         Map<String, Object> bds = mpsrv.readBookingDetails(userid);
         Map<String, Object> cds = mpsrv.readCancellationDetails(userid);
-//        Map<String, Object> imgs = mpsrv.readPoster(title);
+        Map<String, Object> pst = mpsrv.readPoster(userid);
+
+        List<UrlResource> poster = Collections.singletonList(new UrlResource("file:" + "C:/Java/Posters/" + pst));
 
         mv.addObject("bdlist", bds.get("bdlist"));
         mv.addObject("cdlist", cds.get("cdlist"));
-//        mv.addObject("imgs", imgs);
+        mv.addObject("pstUrl", poster);
 
         mv.setViewName("mypage/myticket");
 
         return mv;
-
     }
 
-    /*@GetMapping("/{bdlist.poster}")
-    public ModelAndView image(String userid) {
-        ModelAndView mv = new ModelAndView();
+    @GetMapping("/showimg")
+    @ResponseBody
+    public Resource showPoster(String title) throws MalformedURLException {
+        String poster = "C:/Java/Posters/" + title + ".jpg";
 
-        Map<String, Object> bds = mpsrv.readBookingDetails(userid);
+        return new UrlResource("file:" + poster);
+    }
 
-        mv.addObject("bdlist", bds.get("bdlist"));
+    @PostMapping("/myticket")
+    public String MyTicketDelNIns(int bkno, CancellationDetails cds) {
 
-        mv.setViewName("mypage/myticket");
+        mpsrv.rmBkNnewCan(bkno, cds);
 
-        return mv;
-    }*/
+        return "mypage/myticket";
+    }
 
     @GetMapping("/modify")
     public ModelAndView Modify(String userid) {
