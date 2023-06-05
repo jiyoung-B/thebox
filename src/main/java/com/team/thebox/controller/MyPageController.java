@@ -1,12 +1,14 @@
 package com.team.thebox.controller;
 
 import com.team.thebox.model.CancellationDetails;
+import com.team.thebox.model.Member;
 import com.team.thebox.service.MypageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.net.MalformedURLException;
@@ -41,33 +43,29 @@ public class MyPageController {
 
         Map<String, Object> bds = mpsrv.readBookingDetails(userid);
         Map<String, Object> cds = mpsrv.readCancellationDetails(userid);
-        Map<String, Object> pst = mpsrv.readPoster(userid);
-
-        List<UrlResource> poster = Collections.singletonList(new UrlResource("file:" + "C:/Java/Posters/" + pst));
 
         mv.addObject("bdlist", bds.get("bdlist"));
         mv.addObject("cdlist", cds.get("cdlist"));
-        mv.addObject("pstUrl", poster);
 
         mv.setViewName("mypage/myticket");
 
         return mv;
     }
 
-    @GetMapping("/showimg")
-    @ResponseBody
-    public Resource showPoster(String title) throws MalformedURLException {
-        String poster = "C:/Java/Posters/" + title + ".jpg";
-
-        return new UrlResource("file:" + poster);
-    }
-
     @PostMapping("/myticket")
-    public String MyTicketDelNIns(int bkno, CancellationDetails cds) {
+    public ModelAndView MyTicketDelNIns(int bkno, CancellationDetails cds, String userid) {
+        ModelAndView mv = new ModelAndView();
 
         mpsrv.rmBkNnewCan(bkno, cds);
+        Map<String, Object> bdlist = mpsrv.readBookingDetails(userid);
+        Map<String, Object> cdlist = mpsrv.readCancellationDetails(userid);
 
-        return "mypage/myticket";
+        mv.addObject("bdlist", bdlist.get("bdlist"));
+        mv.addObject("cdlist", cdlist.get("cdlist"));
+
+        mv.setViewName("mypage/myticket");
+
+        return mv;
     }
 
     @GetMapping("/modify")
@@ -81,12 +79,15 @@ public class MyPageController {
     }
 
     @PostMapping("/modify")
-    public ModelAndView ModifyUpdate(String userid, String fillEmail, String changePhnum, String newPswd2) {
+    public ModelAndView ModifyUpdate(String userid, String fillEmail, String changePhnum, String newPswd2, MultipartFile attach) {
         ModelAndView mv = new ModelAndView();
 
         if (fillEmail != null) mpsrv.modifyEmail(userid, fillEmail);
         if (changePhnum != null) mpsrv.modifyPhnum(userid, changePhnum);
         if (newPswd2 != null) mpsrv.modifynewPswd(userid, newPswd2);
+
+        // 첨부파일이 존재한다면
+        if (!attach.isEmpty()) mpsrv.modifyProfile(userid, attach);
 
         mv.addObject("mp", mpsrv.readOneMember(userid));
         mv.setViewName("mypage/modify");

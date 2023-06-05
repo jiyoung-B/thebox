@@ -25,7 +25,7 @@
                                 <td class="pt-3 pb-3" colspan="2">
                                     <div class="row ps-4">
                                         <div class="col-1 p-0 m-0">
-                                            <img src="/static/img/profile.png" width="90%" class="rounded-circle">
+                                            <img th:src="|${mp.profilepic}.${mp.pictype}|" width="90%" class="rounded-circle">
                                         </div>
                                         <div class="col-11 fw-bold fs-4">
                                             <div>안녕하세요!</div>
@@ -53,7 +53,7 @@
                                 <td class="col" th:each="bd : ${t2list}">
                                     <div class="row ms-3 mt-2 mb-3 me-3 border rounded" style="border-color: #bce8f1 !important;">
                                         <div class="col-3 pt-2 pb-2">
-                                            <img src="/static/img/moviesample.jpg" style="max-width: 100px; max-height: 135px;">
+                                            <img th:src="${bd.poster}" style="max-width: 100px; max-height: 135px;">
                                         </div>
                                         <div class="col-9 pt-2 pb-2 text-primary">
                                             <div th:text="${bd.title}" class="fw-bold"></div>

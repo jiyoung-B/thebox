@@ -108,7 +108,16 @@ delmembtn?.addEventListener('click', async () => {
 const delbkbtn = document.querySelector('#delbkbtn');
 const delbkfrm = document.forms.delbkfrm;
 delbkbtn?.addEventListener('click', () => {
-
     delbkfrm.method = 'post';
     delbkfrm.submit();
+});
+
+
+// 프로필 사진
+const profilefrm = document.forms.profilefrm;
+const udpfbtn = document.querySelector('#udpfbtn');
+udpfbtn?.addEventListener('click', () => {
+    profilefrm.method = 'post';
+    profilefrm.enctype = 'multipart/form-data';
+    profilefrm.submit();
 });

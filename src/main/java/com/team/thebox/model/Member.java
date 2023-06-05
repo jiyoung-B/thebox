@@ -40,6 +40,9 @@ public class Member {
     @Column(insertable = false, updatable = false)
     private LocalDateTime regdate;
 
+    private String profilepic;
+    private String pictype;
+
     // -----------------------------
 
     /*@Transient

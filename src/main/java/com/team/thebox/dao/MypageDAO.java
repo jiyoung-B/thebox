@@ -2,6 +2,7 @@ package com.team.thebox.dao;
 
 import com.team.thebox.model.CancellationDetails;
 import com.team.thebox.model.Member;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public interface MypageDAO {
 
     void deleteMember(String userid);
 
-    Map<String, Object> selectPoster(String userid);
-
     void delBkNinsCan(int bkno, CancellationDetails cds);
+
+    void updateProfile(String userid, MultipartFile attach);
 }

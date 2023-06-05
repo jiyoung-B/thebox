@@ -8,6 +8,7 @@ import com.team.thebox.repository.CancellationdetailsRepository;
 import com.team.thebox.repository.MypageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class MypageDAOImpl implements MypageDAO{
 
     @Override
     public Map<String, Object> selectCancellationDetails(String userid) {
-        List<CancellationDetails> cdlist = cancellationdetailsRepository.findAllByUserid(userid);
+        List<CancellationDetails> cdlist = cancellationdetailsRepository.findAllByUseridOrderByCancellationdate(userid);
 
         Map<String, Object> cds = new HashMap<>();
         cds.put("cdlist", cdlist);
@@ -96,11 +97,6 @@ public class MypageDAOImpl implements MypageDAO{
     }
 
     @Override
-    public Map<String, Object> selectPoster(String userid) {
-        return bookingdetailsRepository.findPoster(userid);
-    }
-
-    @Override
     public void delBkNinsCan(int bkno, CancellationDetails cds) {
         // 행 조회
         BookingDetails bd = bookingdetailsRepository.findAllByBkno(bkno);
@@ -118,5 +114,20 @@ public class MypageDAOImpl implements MypageDAO{
         // 행 삭제
         bd.setBkno(bkno);
         bookingdetailsRepository.delete(bd);
+    }
+
+    @Override
+    public void updateProfile(String userid, MultipartFile attach) {
+        Member m = mypageRepository.findAllByUserid(userid);
+
+        String savePName = "http://localhost/profilepic/" + m.getUserid();
+        m.setProfilepic(savePName);
+
+        String orgFname = attach.getOriginalFilename();
+        int pos = orgFname.lastIndexOf(".") + 1;
+        String savePType = orgFname.substring(pos);
+        m.setPictype(savePType);
+        
+        mypageRepository.save(m);
     }
 }

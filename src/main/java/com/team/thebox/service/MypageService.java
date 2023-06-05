@@ -2,6 +2,7 @@ package com.team.thebox.service;
 
 import com.team.thebox.model.CancellationDetails;
 import com.team.thebox.model.Member;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public interface MypageService {
 
     void removeMember(String userid);
 
-    Map<String, Object> readPoster(String userid);
-
     void rmBkNnewCan(int bkno, CancellationDetails cds);
+
+    void modifyProfile(String userid, MultipartFile attach);
 }

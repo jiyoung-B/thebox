@@ -71,8 +71,10 @@
 /* 인덱스 영화 영상 */
 .indexMovieTitle {
   position: absolute;
-  top: 350px;
-  left: 78px;
+  /*top: 350px;*/
+  top: 42%;
+  /*left: 78px;*/
+  left: 18%;
   font-weight: 700;
   font-size: 40px;
   color: #fff;
@@ -86,8 +88,10 @@
 .indexMovieController {
   display: inline-flex;
   position: absolute;
-  top: 410px;
-  left: 80px;
+  /*top: 410px;*/
+  top: 48%;
+  /*left: 80px;*/
+  left: 18%;
   z-index: 4;
 }
 
