@@ -7,7 +7,7 @@
         <th:block th:if="${not #strings.startsWith(path, '/join')}">
             <th:block th:if="${#strings.isEmpty(session.UID)}">
                  <button type="button" class="btn btn-danger mt-2" data-bs-target="#loginfrm" data-bs-toggle="modal">로그인</button>
-                 <button type="button" class="btn btn-primary mt-2">회원가입</button>
+                 <button type="button" class="btn btn-primary mt-2" id="signupbtn">회원가입</button>
             </th:block>
 
             <th:block th:if="${not #strings.isEmpty(session.UID)}">

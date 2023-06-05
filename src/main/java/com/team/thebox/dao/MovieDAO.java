@@ -36,6 +36,9 @@ public interface MovieDAO {
 
     List<MovieSchedule> selectMovieSchdule();
 
+    int updateReply(MovieReply reply);
+
+    void deleteReply(int rpno);
     List<Integer> selectBookedCnt();
 
     Map<String, Object> selectScheduleList(Long movno, Long schno);
