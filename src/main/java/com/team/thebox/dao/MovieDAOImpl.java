@@ -126,4 +126,17 @@ public class MovieDAOImpl implements MovieDAO {
         return movschlist;
     }
 
+    @Override
+    public int updateReply(MovieReply reply) {
+       // long rpno = movieReplyRepository.updateReply(reply.getReply(),reply.getStar(), reply.getRpno());
+//        long rpno = movieReplyRepository.save(reply);
+//        return (int) rpno;
+        return Math.toIntExact(movieReplyRepository.save(reply).getMovno());
+    }
+
+    @Override
+    public void deleteReply(int rpno) {
+        movieReplyRepository.deleteById((long) rpno);
+    }
+
 }

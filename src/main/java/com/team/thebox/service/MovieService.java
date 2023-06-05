@@ -15,4 +15,8 @@ public interface MovieService {
     boolean newReply(MovieReply reply);
 
     List<MovieReply> readOneMovieReply(int movno);
+
+    boolean modifyReply(MovieReply reply);
+
+    void deleteReply(int rpno);
 }

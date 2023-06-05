@@ -4,9 +4,8 @@ import com.team.thebox.model.MovieReply;
 import com.team.thebox.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -50,6 +49,25 @@ public class MovieController {
                 viewPage = "redirect:/movie/view?movno=" + reply.getMovno();
             return viewPage;
         }
+
+        @PostMapping("/modify") //댓글 수정
+        public String modify( MovieReply reply){
+            String viewPage = "error";
+            if (movsrv.modifyReply(reply))
+                viewPage = "redirect:/movie/view?movno=" + reply.getMovno();
+
+            return viewPage;
+        }
+
+
+    @GetMapping("/delete")
+    public String getDelete(Model m ,@RequestParam("rpno") int rpno, @RequestParam("movno") int movno) {
+
+            movsrv.deleteReply(rpno);
+            return "redirect:/movie/view?movno=" + movno;
+
+
+}
 
 
 }

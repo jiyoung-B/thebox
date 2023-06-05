@@ -36,4 +36,17 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieReply> readOneMovieReply(int movno) {
         return movdao.selectOneMovieReply(movno);
     }
+
+    @Override   //댓글 수정
+    public boolean modifyReply(MovieReply reply) {
+        boolean result = false;
+        if (movdao.updateReply(reply) > 0) result = true;
+
+        return result;
+    }
+
+    @Override
+    public void deleteReply(int rpno) {
+        movdao.deleteReply(rpno);
+    }
 }
