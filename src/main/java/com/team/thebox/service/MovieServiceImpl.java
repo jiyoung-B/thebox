@@ -49,4 +49,9 @@ public class MovieServiceImpl implements MovieService {
     public void deleteReply(int rpno) {
         movdao.deleteReply(rpno);
     }
+
+    @Override
+    public Map<String, Object> readStar() {
+        return movdao.selectStar();
+    }
 }

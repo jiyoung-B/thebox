@@ -50,10 +50,15 @@ modbtn?.addEventListener('click', () => {
     }
 });
 
+//댓글 삭제
 function deleteComment(rpno,movno){
     if (confirm('삭제할까??')== true)
         location.href="/movie/delete?rpno=" + rpno + "&movno=" + movno;
     else return;
-
-
 }
+
+
+const upup = document.querySelector("#upup");
+upup?.addEventListener('click', () => {
+    location.href="/movie/readStar?";
+});

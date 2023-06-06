@@ -19,4 +19,7 @@ public interface MovieService {
     boolean modifyReply(MovieReply reply);
 
     void deleteReply(int rpno);
+
+    //Map<String, Object> readStar();
+    Map<String, Object> readStar();
 }

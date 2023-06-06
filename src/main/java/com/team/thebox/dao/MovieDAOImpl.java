@@ -126,6 +126,13 @@ public class MovieDAOImpl implements MovieDAO {
         return movschlist;
     }
 
+    @Override   // 평점순
+    public Map<String, Object> selectStar() {
+        Map<String, Object> movs = new HashMap<>();
+        movs.put("mlist", movieRepository.findStar() );
+        return movs;
+    }
+
     @Override
     public int updateReply(MovieReply reply) {
        // long rpno = movieReplyRepository.updateReply(reply.getReply(),reply.getStar(), reply.getRpno());

@@ -42,4 +42,6 @@ public interface MovieDAO {
     List<Integer> selectBookedCnt();
 
     Map<String, Object> selectScheduleList(Long movno, Long schno);
+
+    Map<String, Object> selectStar(); //평점순
 }

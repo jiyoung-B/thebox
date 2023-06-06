@@ -14,4 +14,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     Movie findMovTitleByMovno(Long movno);
 
+    @Query("SELECT m.movno, m.movtitle, m.movactor, m.movgrade,m.movreleasedate, AVG(r.star) AS avg_star " +
+            "FROM Movie m JOIN MovieReply r ON m.movno = r.movno " +
+            "GROUP BY m.movno, m.movtitle, m.movactor, m.movgrade, m.movreleasedate " +
+            "ORDER BY avg_star DESC")
+    Object findStar();
 }
