@@ -22,3 +22,9 @@ loginbtn?.addEventListener('click', (e) => {
 lgoutbtn?.addEventListener('click', () => {
     location.href = '/logout';
 })
+
+
+let signupbtn = document.querySelector('#signupbtn');
+signupbtn?.addEventListener('click', () => {
+    location.href = "/join/signup";
+});

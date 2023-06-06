@@ -34,13 +34,41 @@
             text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
         }
 
+        .fieldset{
+            display: inline-block;
+            direction: rtl;
+            border:0;
+        }
+        .fieldset legend{
+            text-align: right;
+        }
+        .fieldset input[type=radio]{
+            display: none;
+        }
+        .fieldset label{
+            font-size: 3em;
+            color: transparent;
+            text-shadow: 0 0 0 #f0f0f0;
+        }
+        .fieldset label:hover{
+            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+        }
+        .fieldset label:hover ~ label{
+            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+        }
+        .fieldset input[type=radio]:checked ~ label{
+            text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+        }
+
     </style>
     <div id="main" class="row mt-2">
         <div class="col">
             <div class="row mt-2">
                 <div class="col-sm-3" >
                     <div class="thumbnail">
-                            <img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 100%">
+                            <!--<img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 100%">-->
+                            <!--<img src="http://localhost/cdn/moviesample.jpg" class="img-fluid" style="width: 100%">-->
+                            <img src="http://localhost/cdn/사다리.png" class="img-fluid" style="width: 100%">
                     </div>
                 </div>
                 <div class="col-auto">
@@ -61,6 +89,7 @@
            </div>
             <div class="mt-5">
                 <h4>줄거리</h4>
+
                 <div th:text="${mov.movdetail}">  이영화의 내용을 내영ㅇㅇ,ㅡㄹ </div>
             </div>
 
@@ -73,7 +102,7 @@
                 <div class="offset-2 col-8">
                     <form name="rpfrm" id="rpfrm" class="bg-light p-3">
 
-                        <fieldset>
+                        <fieldset class="fieldset2">
                             <span class="text-bold">별점을 선택해주세요</span>
                             <input type="radio" name="star" value="5" id="rate1"><label
                                 for="rate1">★</label>
@@ -106,7 +135,7 @@
                 <div class="offset-2 col-8">
                     <table class="table">
 
-                        <tr th:each="rp:${rplist}">
+                        <tr th:each="rp:${rplist}" id="relist">
                             <!--댓글 시작-->
                                 <td style="width: 10%"><i class="fa-sharp fa-solid fa-comment-dots fa-flip-horizontal fa-2xl"></i></td>
                                 <td>
@@ -117,7 +146,10 @@
                                         <span th:each="i : ${#numbers.sequence(rp.star + 1, 5)}" style="color: rgba(250, 208, 0, 0.99)">☆</span>
                                         </th:block>
                                         <th:block th:if="${not #strings.isEmpty(session.UID)}">
-                                            <span style="float:right; padding:2px;"> [수정] / [삭제]</span>
+                                            <span style="float:right; padding:2px;">
+                                                <a th:href="|javascript:showComment(${rp.rpno},'${rp.reply}',${rp.star})|">[수정]</a>
+                                                 / <a th:href="|javascript:deleteComment(${rp.rpno},${rp.movno})|" >[삭제]</a>
+                                            </span>
                                         </th:block>
 
                                     </div>
@@ -133,10 +165,44 @@
             </div><!--댓글 리스트-->
             </div>
 
-
-
         </div>
     </div>
+
+    <div class="modal hide" id="modModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa-solid fa-message"> </i>댓글 수정</h3>
+                </div>
+                <div class="modal-body">
+                    <form name="modfrm" id="modfrm" method="post">
+                        <fieldset class="fieldset">
+                            <span class="text-bold">별점을 선택해주세요</span>
+                            <input type="radio" name="star" value="5" id="rate11"><label
+                                for="rate11">★</label>
+                            <input type="radio" name="star" value="4" id="rate22"><label
+                                for="rate22">★</label>
+                            <input type="radio" name="star" value="3" id="rate33"><label
+                                for="rate33">★</label>
+                            <input type="radio" name="star" value="2" id="rate44"><label
+                                for="rate44">★</label>
+                            <input type="radio" name="star" value="1" id="rate55"><label
+                                for="rate55">★</label>
+                        </fieldset>
+                        <textarea name="reply" id="comment" rows="7" cols="60"></textarea>
+                        <input type="hidden" name="userid" th:value="${session.UID}">
+                        <input type="hidden" name="movno" th:value="${mov.movno}">
+                        <input type="hidden" name="rpno" id="rpno">
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" id="modbtn"
+                            class="btn btn-danger">수정하기</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- 댓글 수정 모달 -->
 
     <script src="/static/js/movie.js"></script>
 
