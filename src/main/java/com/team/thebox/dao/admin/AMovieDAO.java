@@ -41,4 +41,6 @@ public interface AMovieDAO {
     Map<String, Object> selectScheduleList(Long movno, Long schno);
 
     void deleteMovieByMovno(Long movno);
+
+    void insertMovieInfo(Movie movie);
 }

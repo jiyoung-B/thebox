@@ -2,26 +2,40 @@ package com.team.thebox.service.admin;
 
 import com.team.thebox.dao.MovieDAO;
 import com.team.thebox.dao.admin.AMovieDAO;
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieAttach;
-import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.dto.MovieDTO;
+import com.team.thebox.dto.MovieRequestDto;
+import com.team.thebox.model.*;
 import com.team.thebox.utils.PdsUtils;
+import com.team.thebox.utils.S3Uploader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
-@Service("aadmmvsrv")
+@Service("admmvsrv")
 @Transactional
 public class AMovieServiceImpl implements AMovieService {
     @Autowired
     AMovieDAO amovdao;
     @Autowired
     PdsUtils pdsUtils;
+    @Autowired
+    S3Uploader s3Uploader;
+    private final String POST_IMAGE_DIR = "static";
+
+    @Value("${image.directory}")
+    private String imageDirectory;
+
+    @Value("${video.directory}")
+    private String videoDirectory;
+
 
     @Override
     public Map<String, Object> newMovies(Movie movie) {
@@ -135,6 +149,122 @@ public class AMovieServiceImpl implements AMovieService {
 
     }
 
+    @Override
+    public void registerMovieInfo(MovieDTO movieDTO) {
+        // Movie 객체를 DTO로부터 생성하고 필요한 데이터 조작을 수행합니다.
+        Movie movie = new Movie();
+        movie.setMovgenre(movieDTO.getMovgenre());
+        movie.setMovtitle(movieDTO.getMovtitle());
+        movie.setMovdirector(movieDTO.getMovdirector());
+        movie.setMovactor(movieDTO.getMovactor());
+        movie.setMovreleasedate(movieDTO.getMovreleasedate());
+        movie.setMovcountry(movieDTO.getMovcountry());
+        movie.setMovgrade(movieDTO.getMovgrade());
+        movie.setMovruntime(movieDTO.getMovruntime());
+        movie.setMovdetail(movieDTO.getMovdetail());
+
+        // 이미지 파일 처리
+        MultipartFile movieMainPoster = movieDTO.getMovieMainPoster();
+        if (movieMainPoster != null && !movieMainPoster.isEmpty()) {
+            try {
+                byte[] movieMainPosterData = movieMainPoster.getBytes();
+                String imageUrl = saveFile(movieMainPosterData, "image");
+
+            } catch (IOException e) {
+                // 예외 처리
+            }
+        }
+
+        MultipartFile[] stillcuts = movieDTO.getStillcuts();
+        if (stillcuts != null && stillcuts.length > 0) {
+            List<MovieStillcut> stillcutList = new ArrayList<>();
+            for (MultipartFile stillcut : stillcuts) {
+                if (stillcut != null && !stillcut.isEmpty()) {
+                    try {
+                        byte[] stillcutData = stillcut.getBytes();
+                        String imageUrl = saveFile(stillcutData, "image");
+                        MovieStillcut movieStillcut = new MovieStillcut();
+                        movieStillcut.setStillcuturl(imageUrl);
+                        movieStillcut.setMovie(movie);
+                        stillcutList.add(movieStillcut);
+                    } catch (IOException e) {
+                        // 예외 처리
+                    }
+                }
+            }
+            movie.setStillcuts(stillcutList);
+        }
+
+//        MultipartFile[] videos = movieDTO.getVideos();
+//        if (videos != null && videos.length > 0) {
+//            List<MovieVideo> videoList = new ArrayList<>();
+//            for (MultipartFile video : videos) {
+//                if (video != null && !video.isEmpty()) {
+//                    try {
+//                        byte[] videoData = video.getBytes();
+//                        String videoUrl = saveFile(videoData, "video");
+//                        MovieVideo movieVideo = new MovieVideo();
+//                        movieVideo.setVideourl(videoUrl);
+//                        movieVideo.setMovie(movie);
+//                        videoList.add(movieVideo);
+//                    } catch (IOException e) {
+//                        // 예외 처리
+//                    }
+//                }
+//            }
+//            movie.setVideos(videoList);
+//        }
+
+        // 리포지토리를 사용하여 영화를 저장합니다.
+        amovdao.insertMovieInfo(movie);
+    }
+    @Override
+    public void createMovie(MovieRequestDto movieRequestDto) {
+        String movmainposterurl = s3Uploader.upload(movieRequestDto.getMovmainposter(), "mainposter");
+
+        List<MovieStillcut> stillcuts = new ArrayList<>();
+        List<MultipartFile> stillcutFiles = movieRequestDto.getStillcutslist();
+        if (stillcutFiles != null && !stillcutFiles.isEmpty()) {
+            for (MultipartFile stillcutFile : stillcutFiles) {
+                String stillcuturl = s3Uploader.upload(stillcutFile, "stillcuts");
+                MovieStillcut stillcut = new MovieStillcut(stillcuturl);
+                stillcuts.add(stillcut);
+            }
+        }
+
+        Movie movie = Movie.builder()
+                .movgenre(movieRequestDto.getMovgenre())
+                .movtitle(movieRequestDto.getMovtitle())
+                .movdirector(movieRequestDto.getMovdirector())
+                .movactor(movieRequestDto.getMovactor())
+                .movreleasedate(movieRequestDto.getMovreleasedate())
+                .movcountry(movieRequestDto.getMovcountry())
+                .movgrade(movieRequestDto.getMovgrade())
+                .movruntime(movieRequestDto.getMovruntime())
+                .movdetail(movieRequestDto.getMovdetail())
+                .movmainposter(movmainposterurl)
+                .stillcuts(stillcuts)
+                .videourl(movieRequestDto.getVideourl())
+                .build();
+
+        amovdao.insertMovie(movie);
+
+    }
+
+
+
+
+
+
+
+
+    private String saveFile(byte[] fileData, String fileType) throws IOException {
+        String directory = fileType.equals("image") ? imageDirectory : videoDirectory;
+        String fileName = UUID.randomUUID().toString();
+        String filePath = directory + fileName;
+        Files.write(Paths.get(filePath), fileData);
+        return filePath;
+    }
 
 }
 

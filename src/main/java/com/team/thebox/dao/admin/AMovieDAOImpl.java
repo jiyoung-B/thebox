@@ -125,4 +125,9 @@ public class AMovieDAOImpl implements AMovieDAO {
         movieRepository.deleteById(movno);
     }
 
+    @Override
+    public void insertMovieInfo(Movie movie) {
+        movieRepository.save(movie);
+    }
+
 }

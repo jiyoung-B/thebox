@@ -1,5 +1,7 @@
 package com.team.thebox.service.admin;
 
+import com.team.thebox.dto.MovieDTO;
+import com.team.thebox.dto.MovieRequestDto;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,4 +32,8 @@ public interface AMovieService {
     boolean modifyMovieByMovno(Movie existingmovie);
 
     boolean removeMovieByMovno(Long movno);
+
+    void registerMovieInfo(MovieDTO movieDTO);
+
+    void createMovie(MovieRequestDto movieRequestDto);
 }

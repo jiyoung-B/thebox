@@ -1,5 +1,6 @@
 package com.team.thebox.controller.admin;
 
+import com.team.thebox.dto.MovieDTO;
 import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
@@ -50,6 +51,12 @@ public class AdminMovieController {
         return mv;
     }
 
+    @GetMapping("/movieinforegister")
+    public String showMovieInfoForm(Model m){
+        m.addAttribute("movie", new Movie());
+
+        return "management/movieinforegister";
+    }
 
     @GetMapping("/register")
     public String showMovieForm(Model m){
@@ -235,6 +242,13 @@ public class AdminMovieController {
             return "error";
         }
 
+    }
+
+
+    @PostMapping("/movieinforegister")
+    public String registerMovieInfo(@ModelAttribute MovieDTO movieDTO) {
+        admmvsrv.registerMovieInfo(movieDTO);
+        return "redirect:/management/movie/list";
     }
 
 
