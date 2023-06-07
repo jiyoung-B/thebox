@@ -120,7 +120,7 @@ public class MypageDAOImpl implements MypageDAO{
     public void updateProfile(String userid, MultipartFile attach) {
         Member m = mypageRepository.findAllByUserid(userid);
 
-        String savePName = "http://localhost/profilepic/" + m.getUserid();
+        String savePName = "http://localhost/cdn/profilepic/" + m.getUserid();
         m.setProfilepic(savePName);
 
         String orgFname = attach.getOriginalFilename();

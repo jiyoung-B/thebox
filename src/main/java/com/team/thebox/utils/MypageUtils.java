@@ -25,8 +25,11 @@ public class MypageUtils {
         Member mb = mypageDAO.selectOneMember(userid);
 
         // 첨부파일을 파일시스템에 저장
-        // 시스템에 저장 시 사용할 파일명 : userid
-        String saveProfilepic = profileDir + mb.getUserid() + "." + mb.getPictype();
+        // 시스템에 저장 시 사용할 파일명 : userid.확장자
+        String orgFname = attach.getOriginalFilename();
+        int pos = orgFname.lastIndexOf(".") + 1;
+        String ext = orgFname.substring(pos);
+        String saveProfilepic = profileDir + mb.getUserid() + "." + ext;
 
         // db에 저장
         /*String savePName = "http://localhost/profilepic/" + mb.getUserid();

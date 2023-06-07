@@ -24,8 +24,13 @@
                             <tr class="row ms-0 me-0" style="background-color: #d9edf7 !important; border-color: #d9edf7 !important;">
                                 <td class="pt-3 pb-3" colspan="2">
                                     <div class="row ps-4">
-                                        <div class="col-1 p-0 m-0">
-                                            <img th:src="|${mp.profilepic}.${mp.pictype}|" width="90%" class="rounded-circle">
+                                        <div class="col-1 p-0 m-0 imgWrapper">
+                                            <th:block th:if="${mp.profilepic} ne null">
+                                                <img th:src="|${mp.profilepic}.${mp.pictype}|" width="90%" class="rounded-circle">
+                                            </th:block>
+                                            <th:block th:if="${mp.profilepic} eq null">
+                                                <img src="http://localhost/cdn/profilepic/profile.png" width="90%" class="rounded-circle">
+                                            </th:block>
                                         </div>
                                         <div class="col-11 fw-bold fs-4">
                                             <div>안녕하세요!</div>

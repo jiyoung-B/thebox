@@ -27,14 +27,21 @@
                             <thead>
                                 <tr>
                                     <th class="col-3">
-                                        <div class="row align-items-center">
+                                        <div class="row">
                                             <p>프로필 사진</p>
                                         </div>
                                     </th>
                                     <td class="col-9">
                                         <div class="row align-items-center">
-                                            <div class="col-2 pe-0" style="max-width: 60px; max-height: 60px;">
-                                                <img th:src="|${mp.profilepic}.${mp.pictype}|" class="img-fluid rounded-circle">
+                                            <div class="col-2 pe-0">
+                                                <div class="imgWrapper">
+                                                    <th:block th:if="${mp.profilepic} ne null">
+                                                        <img th:src="|${mp.profilepic}.${mp.pictype}|" class="img-fluid rounded-circle" style="max-width: 70px; max-height: 70px;">
+                                                    </th:block>
+                                                    <th:block th:if="${mp.profilepic} eq null">
+                                                        <img src="http://localhost/cdn/profilepic/profile.png" class="img-fluid rounded-circle" style="max-width: 70px; max-height: 70px;">
+                                                    </th:block>
+                                                </div>
                                             </div>
                                             <div class="col-7">
                                                 <button class="btn btn-primary" data-bs-target="#newimgmodal" data-bs-toggle="modal" id="newimgbtn">이미지 등록</button>
