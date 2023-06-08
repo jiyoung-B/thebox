@@ -37,4 +37,5 @@ public class MovieSchedule extends BaseEntity{
 
     private int price;
 
+
 }

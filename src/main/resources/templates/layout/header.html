@@ -7,7 +7,7 @@
         <th:block th:if="${not #strings.startsWith(path, '/join')}">
             <th:block th:if="${#strings.isEmpty(session.UID)}">
                  <button type="button" class="btn btn-danger mt-2" data-bs-target="#loginfrm" data-bs-toggle="modal">로그인</button>
-                 <button type="button" class="btn btn-primary mt-2">회원가입</button>
+                 <button type="button" class="btn btn-primary mt-2" id="signupbtn">회원가입</button>
             </th:block>
 
             <th:block th:if="${not #strings.isEmpty(session.UID)}">
@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand navbar-light bg-primary">
         <ul class="navbar-nav w-100">
             <li class="nav-item offset-5 col-1"><a href="/movie/now" class="nav-link text-primary fw-bold fs-5">영화</a></li>
-            <li class="nav-item"><a href="/ticket" class="nav-link text-primary fw-bold fs-5">예매</a></li>
+            <li class="nav-item"><a href="/ticket/ticketing" class="nav-link text-primary fw-bold fs-5">예매</a></li>
         </ul>
     </nav>
 </th:block>

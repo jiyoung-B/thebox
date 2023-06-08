@@ -38,7 +38,6 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>No.</th>
                     <th>상영번호</th>
                     <th>상영관</th>
                     <th>영화명</th>
@@ -46,33 +45,52 @@
                     <th>시작시간</th>
                     <th>종료시간</th>
                     <th>가격</th>
+                    <th>좌석현황</th>
                     <th>수정</th>
                     <th>삭제</th>
                   </tr>
                   </thead>
 
+                  <td></td>
+
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>T</td>
-                    <td>가디언즈 오브 갤럭시: Volume 3</td>
-                    <td>2023.05.03</td>
-                    <td>1000</td>
-                    <td>1300</td>
-                    <td>12000</td>
-                    <td>-</td>
-                    <td>-</td>
+                  <!-- 영화 스케줄 목록 반복 -->
+                  <tr th:each="movsch : ${movschlists}">
+                    <td th:text="${movsch.schno}">schno1</td>
+                    <td th:text="${movsch.ciplace}">상영관123</td>
+                    <td th:text="${movsch.movtitle}">영화명블랙팬서</td>
+                    <td th:text="${movsch.odate}">개봉일20230531</td>
+                    <td th:text="${movsch.stime}">시작시간1000</td>
+                    <td th:text="${movsch.etime}">종료시간1130</td>
+                    <td th:text="${movsch.price}">가격12000</td>
+                    <td th:text="${movsch.booked} + '석'">좌석현황20/50</td>
+                    <td>
+                      <!-- 수정 버튼 -->
+                      <a th:href="@{'/management/movie/schedule/modify/' + ${movsch.schno}}">
+                        <button th:if="${movsch.booked == 0}" type="button" class="btn btn-primary text-white">수정</button>
+                      </a>
+                      <span th:if="${movsch.booked > 0}" class="text-dark font-weight-bold">수정불가</span>
+                    </td>
+                    <td>
+                      <!-- 삭제 버튼 -->
+                      <button th:if="${movsch.booked == 0}" type="button" th:id="'deleteButton-' + ${movsch.schno}" class="btn btn-danger text-white">
+                        삭제
+                      </button>
+                      <span th:if="${movsch.booked > 0}" class="text-dark font-weight-bold">삭제불가</span>
+                    </td>
+
+
                   </tr>
+
                   </tbody>
 
 
                   <tfoot>
                   <tr>
                     <th>Rendering engine</th>
-                    <th>Browser</th>
                     <th>Platform(s)</th>
                     <th>Engine version</th>
+                    <th>CSS grade</th>
                     <th>CSS grade</th>
                     <th>CSS grade</th>
                     <th>CSS grade</th>
@@ -94,5 +112,20 @@
       </div>
     </div>
   </div>
+  <script>
+    const deleteButtons = document.querySelectorAll('[id^="deleteButton-"]');
+    deleteButtons.forEach(function(button) {
+      button.addEventListener("click", function(event) {
+        event.preventDefault();
+        var confirmed = confirm("정말 삭제하시겠습니까?");
+        if (confirmed) {
+          var schno = parseInt(button.id.split("-")[1]);
+          location.href = "/management/movie/schedule/remove/" + schno;
+        }
+      });
+    });
+  </script>
+
+
 </th:block>
 </html>
