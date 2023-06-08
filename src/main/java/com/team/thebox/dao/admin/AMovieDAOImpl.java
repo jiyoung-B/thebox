@@ -1,9 +1,6 @@
 package com.team.thebox.dao.admin;
 
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieAttach;
-import com.team.thebox.model.MovieReply;
-import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.*;
 import com.team.thebox.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -17,22 +14,26 @@ import java.util.Map;
 
 @Repository("amovdao")
 public class AMovieDAOImpl implements AMovieDAO {
-    @Autowired
-    MovieRepository movieRepository;
-    @Autowired
-    MovieAttachRepository movieAttachRepository;
+    private final MovieRepository movieRepository;
+    private final MovieStillcutRepository movieStillcutRepository;
+    private final MovieAttachRepository movieAttachRepository;
+    private final MovieReplyRepository movieReplyRepository;
+    private final MovieScheduleRepository movieScheduleRepository;
+    private final BookedRepository bookedRepository;
 
     @Autowired
-    MovieReplyRepository movieReplyRepository;
-
-    @Autowired
-    MovieScheduleRepository movieScheduleRepository;
-    @Autowired
-    BookedRepository bookedRepository;
+    public AMovieDAOImpl(MovieRepository movieRepository, MovieStillcutRepository movieStillcutRepository, MovieAttachRepository movieAttachRepository, MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository, BookedRepository bookedRepository) {
+        this.movieRepository = movieRepository;
+        this.movieStillcutRepository = movieStillcutRepository;
+        this.movieAttachRepository = movieAttachRepository;
+        this.movieReplyRepository = movieReplyRepository;
+        this.movieScheduleRepository = movieScheduleRepository;
+        this.bookedRepository = bookedRepository;
+    }
 
     @Override
-    public int insertMovie(Movie movie) {
-        return Math.toIntExact(movieRepository.save(movie).getMovno());
+    public Long insertMovie(Movie movie) {
+        return movieRepository.save(movie).getMovno();
     }
 
     @Override
@@ -73,8 +74,9 @@ public class AMovieDAOImpl implements AMovieDAO {
     }
 
     @Override
-    public Movie selectOneMovie(Long movno) {
-        return movieRepository.findById(movno).orElse(null);
+    public Object selectOneMovie(Long movno) {
+
+        return movieStillcutRepository.findAllByMovno(movno);
     }
 
     @Override
@@ -128,6 +130,16 @@ public class AMovieDAOImpl implements AMovieDAO {
     @Override
     public void insertMovieInfo(Movie movie) {
         movieRepository.save(movie);
+    }
+
+    @Override
+    public List<Movie> selectAllMovie() {
+        return movieRepository.findAll();
+    }
+
+    @Override
+    public Long insertMovieStillcut(MovieStillcut ms) {
+        return movieStillcutRepository.save(ms).getId();
     }
 
 }

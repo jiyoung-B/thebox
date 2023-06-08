@@ -1,6 +1,7 @@
 package com.team.thebox.repository;
 
 import com.team.thebox.model.Movie;
+import com.team.thebox.model.MovieView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,5 +14,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 //    List<String> findMovTitleByMovno(@Param("movno") long movno);
 
     Movie findMovTitleByMovno(Long movno);
+
 
 }

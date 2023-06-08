@@ -91,7 +91,7 @@ public class AdminMovieController {
     @GetMapping("/modify/{movno}")
     public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
 
-        Movie moviedetail = admmvsrv.getOneMovieByMovno(movno);
+        Object moviedetail = admmvsrv.readOneMovie(movno);
 
         System.out.println("무비즈"+moviedetail);
 
@@ -107,25 +107,25 @@ public class AdminMovieController {
     public String submitModifyMovie(@PathVariable Long movno, Movie updatemovie) {
         String viewPage = "error";
 
-        Movie existingmovie = admmvsrv.getOneMovieByMovno(movno);
+        Object existingmovie = admmvsrv.readOneMovie(movno);
         System.out.println("업데이트무비"+updatemovie);
 
 
         // 업데이트된 스케줄 정보 설정
-        existingmovie.setMovno(updatemovie.getMovno());
-        existingmovie.setMovtitle(updatemovie.getMovtitle());
-        existingmovie.setMovgenre(updatemovie.getMovgenre());
-        existingmovie.setMovdirector(updatemovie.getMovdirector());
-        existingmovie.setMovactor(updatemovie.getMovdetail());
-        existingmovie.setMovreleasedate(updatemovie.getMovreleasedate());
-        existingmovie.setMovgrade(updatemovie.getMovgrade());
-        existingmovie.setMovruntime(updatemovie.getMovruntime());
-        existingmovie.setMovdetail(updatemovie.getMovdetail());
+//        existingmovie.setMovno(updatemovie.getMovno());
+//        existingmovie.setMovtitle(updatemovie.getMovtitle());
+//        existingmovie.setMovgenre(updatemovie.getMovgenre());
+//        existingmovie.setMovdirector(updatemovie.getMovdirector());
+//        existingmovie.setMovactor(updatemovie.getMovdetail());
+//        existingmovie.setMovreleasedate(updatemovie.getMovreleasedate());
+//        existingmovie.setMovgrade(updatemovie.getMovgrade());
+//        existingmovie.setMovruntime(updatemovie.getMovruntime());
+//        existingmovie.setMovdetail(updatemovie.getMovdetail());
 
 
-        if (admmvsrv.modifyMovieByMovno(existingmovie)) {
+        //if (admmvsrv.modifyMovieByMovno(existingmovie)) {
             viewPage = "redirect:/management/movie/list";
-        }
+       // }
         return viewPage;
 
     }

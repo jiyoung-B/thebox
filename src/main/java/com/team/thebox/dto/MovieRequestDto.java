@@ -20,7 +20,7 @@ public class MovieRequestDto {
     private String movgrade;
     private String movruntime;
     private String movdetail;
-    private MultipartFile movmainposter;
+    private String movmainposter;
     private List<MultipartFile> stillcutslist;
     private String videourl;
 }
