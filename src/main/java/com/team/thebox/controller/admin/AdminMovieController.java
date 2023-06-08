@@ -1,6 +1,7 @@
 package com.team.thebox.controller.admin;
 
 import com.team.thebox.model.Movie;
+import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.service.admin.MovieService;
 import com.team.thebox.service.admin.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,19 +68,38 @@ public class AdminMovieController {
 
 
     @GetMapping("/view")
-    public String view(@RequestParam int mvno, Model m){
+    public String view(@RequestParam int movno, Model m){
 
-        m.addAttribute("movie", admmvsrv.readOneMovie(mvno));
+        m.addAttribute("movie", admmvsrv.readOneMovie(movno));
 
         return "management/movieview";
     }
 
 
     @GetMapping("/schedule/resgister")
-    public String movieScheduleRegister(){
+    public String showScheduleForm(Model model){
+
+        List<Movie> movies = admmvsrv.readMovieTitle();
+
+        model.addAttribute("movies", movies); // 모델에 영화 리스트 추가
+
+
         return "management/moviescheduleregister";
 
     }
+
+    @PostMapping("/schedule/resgister")
+    public String submitScheduleForm(MovieSchedule movsch){
+        String viewPage = "error";
+        if(admmvsrv.newMovieSchedule(movsch)){
+            viewPage = "redirect:/management/movie/schedule";
+        }
+
+        return viewPage;
+
+    }
+
+
 
     @GetMapping("/schedule")
     public String movieScheduleList(){

@@ -4,6 +4,7 @@ import com.team.thebox.dao.MovieDAO;
 import com.team.thebox.dao.MovieDAOImpl;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
+import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.utils.PdsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service("admmvsrv")
@@ -56,13 +58,25 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public Movie readOneMovie(int mvno) {
-        return movdao.selectOneMovie(mvno);
+    public Movie readOneMovie(int movno) {
+        return movdao.selectOneMovie(movno);
     }
 
     @Override
     public Map<String, Object> readMovie(Integer cpg) {
         return movdao.selectMovie(cpg - 1);
+    }
+
+    @Override
+    public List<Movie> readMovieTitle() {
+        return movdao.selectMovieTitle();
+    }
+
+    @Override
+    public boolean newMovieSchedule(MovieSchedule movsch) {
+        boolean result = false;
+        if(movdao.insertMovieSchedule(movsch) > 0) {result = true;}
+        return result;
     }
 }
 

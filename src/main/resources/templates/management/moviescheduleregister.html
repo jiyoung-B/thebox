@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
+            <h1 class="m-0">스케줄 등록</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -24,47 +24,96 @@
 
     <!-- Main content -->
     <div class="content">
-      <div class="container-fluid">
-          <div class="row">
 
-            <div style="margin:auto;"class="col-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">새로운 스케줄 등록</h4>
-                  <p class="card-description">
-                    1. 상영관과 상영 영화, 날짜를 선택해 주세요. (다음 버튼을 누르면 상세 스케줄 페이지로 이동합니다)
-                  </p>
-                  <form class="schedule" th:action="@{/schedule/addimpl}">
-                    <div class="form-group">
-                      <label for="exampleSelectGender">상영관 선택</label>
-                      <select name="tid" class="form-control" id="exampleSelectGender">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleSelectGender">상영영화 선택</label>
-                      <select name="mid" class="form-control form-control-item" >
-                        <option th:each="m:${mlist}" th:value="${m.id}" th:text="${m.title}"></option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputBirth">상영날짜   (숫자 8자리 입력)</label>
-                      <input type="text" onKeyup="inputYMDNumber(this);" maxlength="10" class="form-control" name="sdate" id="exampleInputBirth" placeholder="yyyy-mm-dd">
-                    </div>
-                    <button id="btn" type="submit" class="btn btn-primary mr-2">다음</button>
-                    <a class="btn btn-light" id="cancel" onclick="Back()">Cancel</a>
-                  </form>
-                </div>
-              </div>
-            </div>
+        <div class="row mt-2 offset-1 col-10 mx-auto">
+            <form name="schregifrm" id="schregifrm" class="card card-body">
 
-          </div>
-      </div>
+                  <div class="row my-2">
+                    <label class="col-3 col-form-label text-end"
+                           for="movno">영화선택</label>
+                    <div class="col-6">
+                      <select name="movno" class="form-control" id="movno">
+                        <option th:each="mov : ${movies}" th:value="${mov.movno}" th:text="${mov.movtitle}"></option>
+
+                      </select>
+
+                    </div>
+                  </div>
+
+                  <div class="row my-2">
+                    <label class="col-3 col-form-label text-end"
+                           for="ciplace">상영관 선택</label>
+                    <div class="col-6">
+                      <select name="ciplace" class="form-control" id="ciplace">
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                      </select>
+
+                    </div>
+                  </div>
+
+
+                  <div class="row my-2">
+                    <label class="col-3 col-form-label text-end"
+                           for="odate">상영날짜</label>
+                    <div class="col-6">
+                      <input type="text" name="odate" id="odate"
+                             class="form-control" placeholder="yyyymmdd" maxlength="8">
+                    </div>
+                  </div>
+
+                  <div class="row my-2">
+                    <label class="col-3 col-form-label text-end"
+                           type="datetime-local" for="stime">시작시간</label>
+                    <div class="col-6">
+                      <input type="text" name="stime" id="stime"
+                             class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="row my-2">
+                    <label class="col-3 col-form-label text-end"
+                           type="datetime-local" for="etime">종료시간</label>
+                    <div class="col-6">
+                      <input type="text" name="etime" id="etime"
+                             class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="row my-2">
+                    <label class="col-3 col-form-label text-end"
+                           for="price">가격</label>
+                    <div class="col-6">
+                      <input type="text" name="price" id="price"
+                             class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="row mt-4 justify-content-center">
+                    <hr class="w-75">
+                    <div class="text-center">
+                      <button type="button" id="schwritebtn"
+                              class="btn btn-primary">
+                        <i class="fa fa-check"> </i>입력완료
+                      </button>
+                      <button type="button" id="cancelbtn"
+                              class="btn btn-danger">
+                        <i class="fa fa-remove"> </i>입력취소
+                      </button>
+                    </div>
+                  </div>
+
+                </form>
+        </div>
+
     </div>
 
   </div>
+
+
+
+  <script src="/static/js/movieschregister.js"></script>
 </th:block>
 
 </html>
