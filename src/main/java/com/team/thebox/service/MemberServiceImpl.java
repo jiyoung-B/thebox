@@ -19,6 +19,7 @@ public class MemberServiceImpl implements MemberService {
         if (mdao.selectLogin(m) > 0) {
             // 로그인 가능하면 세션변수에 아이디를 저장
             sess.setAttribute("UID", m.getUserid());
+            sess.setAttribute("PMNO", m.getPmno());
             isLogin = true;
         }
 

@@ -59,7 +59,7 @@
 
 <script type="text/javascript" th:inline="javascript">
   /*<![CDATA[*/
-    let mvfrmdate = parent.document.querySelector("#mvfrmdate");
+    let movdate = parent.document.querySelector("#movdate");
     let dvPlayDate = parent.document.querySelector("#dvPlayDate");
     let nowMonth = new Date([[${today}]]);
     let today = new Date([[${today}]]);
@@ -108,7 +108,7 @@
         nowColumn.style.cursor = 'pointer'
         nowColumn.addEventListener("click", () => {
           let reservation = [[${today}]].substring(0,8);
-          mvfrmdate.innerText = reservation+nowColumn.innerText;
+          movdate.value = reservation+nowColumn.innerText;
           dvPlayDate.innerHTML = reservation+nowColumn.innerText;
           dvPlayDate.style.fontsize = 10+"px";
         })
@@ -119,7 +119,7 @@
           nowColumn.style.cursor = 'pointer'
           nowColumn.addEventListener("click", () => {
             let reservation = [[${today}]].substring(0,8);
-            mvfrmdate.innerText = reservation+nowColumn.innerText;
+            movdate.value = reservation+nowColumn.innerText;
             dvPlayDate.innerHTML = reservation+nowColumn.innerText;
             dvPlayDate.style.fontsize = 10+"px";
           })

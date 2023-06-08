@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="/static/css/ticketpopup.css">
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
   var IMP = window.IMP;
-  IMP.init("imp67011510");
+  IMP.init("imp10273548");
 
   var today = new Date();
   var hours = today.getHours(); // 시
@@ -16,24 +17,39 @@
   var milliseconds = today.getMilliseconds();
   var makeMerchantUid = hours +  minutes + seconds + milliseconds;
 
-  function requestPay(movieLocation, movieDate, movieSeat, seatCount) {
+  function requestPay(district, date, moviename, seat, pay) {
     IMP.request_pay({
       pg : 'kakaopay',
       pay_method : 'card',
       merchant_uid: "IMP"+makeMerchantUid,
-      name : "("+movieDate+") "+movieLocation+" "+movieSeat,
-      amount : seatCount,
+      name : "("+date+") "+district+" "+moviename+" "+seat,
+      amount : pay,
       buyer_email : 'TheBox@email.com',
       buyer_name : 'The Box',
       buyer_tel : '010-1234-5678',
       buyer_addr : '서울특별시 구로구 182-13 대룡포스트 2차 2층 더조은컴퓨터아트학원',
-      buyer_postcode : '111-456',
-    }, function (rsp) { // callback
-      if (rsp.success) {
-        console.log(rsp);
-      } else {
-        console.log(rsp);
-      }
+      // 매번 결제 할 떄마다 buyer_postcode를 바꿔야 작동함
+      buyer_postcode : '111-131',
+    }, function(rsp) {
+      console.log(rsp);
+      // 결제검증
+      $.ajax({
+        type : "POST",
+        url : "/ticket/verifyIamport/" + rsp.imp_uid
+      }).done(function(data) {
+
+        console.log(data);
+
+        // 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+        if(rsp.paid_amount == data.response.amount){
+          mvfrm.rsp.value = rsp.imp_uid;
+          mvfrm.method = "post";
+          mvfrm.action = "/ticket/ticketing";
+          mvfrm.submit();
+        } else {
+          alert("결제 실패");
+        }
+      });
     });
   }
 </script>
@@ -79,9 +95,8 @@
   let ticketCancel = document.querySelector("#ticketCancel");
   let ticketApproval = document.querySelector("#ticketApproval");
   let modalBackground = parent.document.querySelector("#modalBackground");
-  let mvfrmdistrict = parent.document.querySelector("#mvfrmdistrict");
-  let mvfrmdate = parent.document.querySelector("#mvfrmdate");
-  let mvfrmseat = parent.document.querySelector("#mvfrmseat");
+  let mvfrm = parent.document.querySelector("#mvfrm");
+  let seat = parent.document.querySelector("#seat");
   let dvSeat = parent.document.querySelector("#dvSeat");
   let seat_table = document.querySelector(".seat_table");
 
@@ -155,16 +170,16 @@
 
         let result = [...new Set(inputSeat)];
 
-        mvfrmseat.innerText = '';
+        seat.value = '';
         dvSeat.innerHTML = '';
         for(let i = 0; i<result.length;i++) {
           if (i === result.length - 1) {
 
-            mvfrmseat.innerText += result[i];
+            seat.value += result[i];
             dvSeat.innerHTML += result[i];
           } else {
 
-            mvfrmseat.innerText += result[i] + ', ';
+            seat.value += result[i] + ', ';
             dvSeat.innerHTML += result[i] + ', ';
           }
         }
@@ -188,16 +203,16 @@
 
         let result = [...new Set(inputSeat)];
 
-        mvfrmseat.innerText = '';
+        seat.value = '';
         dvSeat.innerHTML = '';
         for(let i = 0; i<result.length;i++) {
           if (i === result.length - 1) {
 
-            mvfrmseat.innerText += result[i];
+            seat.value += result[i];
             dvSeat.innerHTML += result[i];
           } else {
 
-            mvfrmseat.innerText += result[i] + ', ';
+            seat.value += result[i] + ', ';
             dvSeat.innerHTML += result[i] + ', ';
           }
         }
@@ -209,12 +224,13 @@
   }
 
   ticketApproval.addEventListener('click', () => {
-    let movieLocation = mvfrmdistrict.innerText;
-    let movieDate = mvfrmdate.innerText;
-    let movieSeat = mvfrmseat.innerText + "번 좌석";
-    let seatCount = mvfrmseat.innerText.length;
+    let seatCount = 15000;
 
-    requestPay(movieLocation, movieDate, movieSeat, seatCount);
+
+    mvfrm.movname.value = '범죄도시3';
+    mvfrm.movtime.value = '13:30';
+
+    requestPay(mvfrm.district.value, mvfrm.movdate.value, mvfrm.movname, mvfrm.seat.value, seatCount)
   })
 
   ticketCancel.addEventListener('click', () => {
