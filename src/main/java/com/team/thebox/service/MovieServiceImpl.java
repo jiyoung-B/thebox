@@ -54,4 +54,9 @@ public class MovieServiceImpl implements MovieService {
     public Map<String, Object> readStar() {
         return movdao.selectStar();
     }
+
+    @Override
+    public List<Movielocation> readMovieLocation() {
+        return movdao.selectMovieLocation();
+    }
 }

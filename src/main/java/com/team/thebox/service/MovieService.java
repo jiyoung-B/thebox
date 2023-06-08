@@ -22,4 +22,6 @@ public interface MovieService {
 
     //Map<String, Object> readStar();
     Map<String, Object> readStar();
+
+    List<Movielocation> readMovieLocation();
 }

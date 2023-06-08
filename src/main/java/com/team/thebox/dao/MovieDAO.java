@@ -43,5 +43,8 @@ public interface MovieDAO {
 
     Map<String, Object> selectScheduleList(Long movno, Long schno);
 
+    List<Movielocation> selectMovieLocation();
+
+
     Map<String, Object> selectStar(); //평점순
 }
