@@ -21,5 +21,8 @@ public interface MovieService {
 
     void deleteReply(int rpno);
 
+    //Map<String, Object> readStar();
+    Map<String, Object> readStar();
+
     List<Movielocation> readMovieLocation();
 }
