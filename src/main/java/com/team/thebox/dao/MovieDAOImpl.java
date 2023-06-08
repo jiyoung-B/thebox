@@ -19,18 +19,21 @@ public class MovieDAOImpl implements MovieDAO {
     private final MovieScheduleRepository movieScheduleRepository;
     private final BookedRepository bookedRepository;
     private final MovieLocationRepository movieLocationRepository;
+    private final TicketingRepository ticketingRepository;
 
 
     @Autowired
     public MovieDAOImpl(MovieRepository movieRepository, MovieAttachRepository movieAttachRepository,
                           MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository,
-                          BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository) {
+                          BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository,
+                          TicketingRepository ticketingRepository) {
         this.movieRepository = movieRepository;
         this.movieAttachRepository = movieAttachRepository;
         this.movieReplyRepository = movieReplyRepository;
         this.movieScheduleRepository = movieScheduleRepository;
         this.bookedRepository = bookedRepository;
         this.movieLocationRepository = movieLocationRepository;
+        this.ticketingRepository = ticketingRepository;
     }
 
     @Override
@@ -145,6 +148,14 @@ public class MovieDAOImpl implements MovieDAO {
         List<Movielocation> mvloc = movieLocationRepository.selectAll();
 
         return mvloc;
+    }
+
+    @Override
+    public int insertTicket(Ticketing ticketing) {
+        int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
+        System.out.println("DAO : "+result);
+
+        return result;
     }
 
 }

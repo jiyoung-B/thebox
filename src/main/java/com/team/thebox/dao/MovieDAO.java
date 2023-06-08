@@ -42,4 +42,5 @@ public interface MovieDAO {
 
     List<Movielocation> selectMovieLocation();
 
+    int insertTicket(Ticketing ticketing);
 }

@@ -3,6 +3,7 @@ package com.team.thebox.service;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieReply;
 import com.team.thebox.model.Movielocation;
+import com.team.thebox.model.Ticketing;
 
 import java.util.List;
 import java.util.Map;
@@ -22,4 +23,6 @@ public interface MovieService {
     void deleteReply(int rpno);
 
     List<Movielocation> readMovieLocation();
+
+    boolean newTicket(Ticketing ticketing);
 }
