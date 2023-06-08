@@ -14,12 +14,7 @@ import java.util.Map;
 @Service("movsrv")
 public class MovieServiceImpl implements MovieService {
 
-    private final MovieDAO movdao;
-
-    @Autowired
-    public MovieServiceImpl(MovieDAO movdao) {
-        this.movdao = movdao;
-    }
+    @Autowired private MovieDAO movdao;
 
     @Override//now
     public Map<String, Object> readMovie() {
@@ -55,6 +50,11 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void deleteReply(int rpno) {
         movdao.deleteReply(rpno);
+    }
+
+    @Override
+    public Map<String, Object> readStar() {
+        return movdao.selectStar();
     }
 
     @Override

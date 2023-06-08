@@ -1,5 +1,11 @@
 package com.team.thebox.dao;
 
+import com.team.thebox.dto.StarTDO;
+import com.team.thebox.model.Movie;
+import com.team.thebox.model.MovieAttach;
+import com.team.thebox.model.MovieReply;
+import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.repository.*;
 import com.team.thebox.model.*;
 import com.team.thebox.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +41,7 @@ public class MovieDAOImpl implements MovieDAO {
         this.movieLocationRepository = movieLocationRepository;
         this.ticketingRepository = ticketingRepository;
     }
+
 
     @Override
     public int insertMovie(Movie movie) {
@@ -128,6 +135,31 @@ public class MovieDAOImpl implements MovieDAO {
         movschlist.put("movtitle", movieRepository.findMovTitleByMovno(movno));
         movschlist.put("booked", bookedRepository.countTotalSeatIdsBySchno(schno));
         return movschlist;
+    }
+
+    @Override   // 평점순
+    public Map<String, Object> selectStar() {
+//        Map<String, Object> movs = new HashMap<>();
+//        movs.put("mlist", movieRepository.findStar() );
+//        return movs;
+        Map<String, Object> movs = new HashMap<>();
+        List<Object[]> movieData = movieRepository.findMoviesOrderByAvgStarDesc();
+        List<StarTDO> movieList = new ArrayList<>();
+
+        for (Object[] data : movieData) {
+            StarTDO starDto = new StarTDO();
+            starDto.setMovno((Long) data[0]);
+            starDto.setMovtitle((String) data[1]);
+            starDto.setMovactor((String) data[2]);
+            starDto.setMovgrade((String) data[3]);
+            starDto.setMovreleasedate((String) data[4]);
+            starDto.setMovmainposter((String) data[5]);
+            starDto.setAvgStar((Double) data[6]);
+            movieList.add(starDto);
+        }
+
+        movs.put("mlist", movieList);
+        return movs;
     }
 
     @Override

@@ -1,11 +1,12 @@
 package com.team.thebox.service.admin;
 
-import com.team.thebox.dao.MovieDAO;
 import com.team.thebox.dao.admin.AMovieDAO;
 import com.team.thebox.dto.MovieDTO;
 import com.team.thebox.dto.MovieRequestDto;
-import com.team.thebox.model.*;
-import com.team.thebox.utils.PdsUtils;
+import com.team.thebox.model.Movie;
+import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.MovieStillcut;
+import com.team.thebox.utils.MovieUtils;
 import com.team.thebox.utils.S3Uploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -25,7 +25,7 @@ public class AMovieServiceImpl implements AMovieService {
     @Autowired
     AMovieDAO amovdao;
     @Autowired
-    PdsUtils pdsUtils;
+    MovieUtils movutils;
     @Autowired
     S3Uploader s3Uploader;
     private final String POST_IMAGE_DIR = "static";
@@ -40,8 +40,8 @@ public class AMovieServiceImpl implements AMovieService {
     @Override
     public Map<String, Object> newMovies(Movie movie) {
 
-        movie.setUuid(pdsUtils.makeUUID());   // 식별코드 생성
-        int movno = amovdao.insertMovie(movie);    // 폼 데이터 디비에 저장
+        movie.setUuid(movutils.makeUUID());   // 식별코드 생성
+        Long movno = amovdao.insertMovie(movie);    // 폼 데이터 디비에 저장
 
         // 첨부파일을 시스템에 저장할때 사용할 정보를 Map에 저장
         Map<String, Object> movinfo = new HashMap<>();
@@ -64,15 +64,16 @@ public class AMovieServiceImpl implements AMovieService {
     @Override
     public boolean newMovieAttach(MultipartFile attach, Map<String, Object> movinfo) {
         // 첨부파일 업로드 처리
-        MovieAttach ma = pdsUtils.processUpload(attach, movinfo);
+        //MovieAttach ma = movutils.processUpload(attach, movinfo);
         // 첨부파일 정보 디비에 저장
-        int movano = amovdao.insertMovieAttach(ma);
+        //int movano = amovdao.insertMovieAttach(ma);
 
-        return (movano > 0) ? true : false;
+        //return (movano > 0) ? true : false;
+        return true;
     }
 
     @Override
-    public Movie readOneMovie(Long movno) {
+    public Object readOneMovie(Long movno) {
         return amovdao.selectOneMovie(movno);
     }
 
@@ -115,10 +116,7 @@ public class AMovieServiceImpl implements AMovieService {
         return amovdao.selectScheduleList(movno, schno);
     }
 
-    @Override
-    public Movie getOneMovieByMovno(Long movno) {
-        return amovdao.selectOneMovie(movno);
-    }
+
 
     @Override
     public boolean modifyMovieByMovno(Movie existingmovie) {
@@ -184,15 +182,14 @@ public class AMovieServiceImpl implements AMovieService {
                         byte[] stillcutData = stillcut.getBytes();
                         String imageUrl = saveFile(stillcutData, "image");
                         MovieStillcut movieStillcut = new MovieStillcut();
-                        movieStillcut.setStillcuturl(imageUrl);
-                        movieStillcut.setMovie(movie);
+                        //movieStillcut.setStillcuturl(imageUrl);
                         stillcutList.add(movieStillcut);
                     } catch (IOException e) {
                         // 예외 처리
                     }
                 }
             }
-            movie.setStillcuts(stillcutList);
+            //movie.se.setStillcuts(stillcutList);
         }
 
 //        MultipartFile[] videos = movieDTO.getVideos();
@@ -219,16 +216,17 @@ public class AMovieServiceImpl implements AMovieService {
         amovdao.insertMovieInfo(movie);
     }
     @Override
-    public void createMovie(MovieRequestDto movieRequestDto) {
-        String movmainposterurl = s3Uploader.upload(movieRequestDto.getMovmainposter(), "mainposter");
+    public Long createMovie(MovieRequestDto movieRequestDto) {
+        //String movmainposterurl = s3Uploader.upload(movieRequestDto.getMovmainposter(), "mainposter");
 
         List<MovieStillcut> stillcuts = new ArrayList<>();
         List<MultipartFile> stillcutFiles = movieRequestDto.getStillcutslist();
         if (stillcutFiles != null && !stillcutFiles.isEmpty()) {
             for (MultipartFile stillcutFile : stillcutFiles) {
                 String stillcuturl = s3Uploader.upload(stillcutFile, "stillcuts");
-                MovieStillcut stillcut = new MovieStillcut(stillcuturl);
-                stillcuts.add(stillcut);
+                //MovieStillcut stillcut = new MovieStillcut(stillcuturl);
+                //stillcut.setMovie(movie); // Movie 객체와 연관시키기 위해 설정
+                //stillcuts.add(stillcut);
             }
         }
 
@@ -242,20 +240,52 @@ public class AMovieServiceImpl implements AMovieService {
                 .movgrade(movieRequestDto.getMovgrade())
                 .movruntime(movieRequestDto.getMovruntime())
                 .movdetail(movieRequestDto.getMovdetail())
-                .movmainposter(movmainposterurl)
-                .stillcuts(stillcuts)
+                //.movmainposter(movmainposterurl)
+                //.stillcuts(stillcuts)
                 .videourl(movieRequestDto.getVideourl())
                 .build();
 
-        amovdao.insertMovie(movie);
+        Long movno = amovdao.insertMovie(movie); // 영화 저장 및 movno 반환
+
+        // Movie 객체의 movno를 사용하여 MovieStillcut의 movno 설정
+//        for (MovieStillcut stillcut : stillcuts) {
+//            stillcut.setMovie(movie);
+//        }
+
+        // MovieStillcut 엔티티 저장
+        //amovdao.insertMovieStillcuts(stillcuts);
+        return movno;
 
     }
 
+    @Override
+    public List<Movie> getAllMovies() {
+        return amovdao.selectAllMovie();
+    }
 
+    @Override
+    public Map<String, Object> newMovie(Movie movie) {
+        movie.setUuid( movutils.makeUUID() );
+        Long movno = amovdao.insertMovie(movie);
+        Map<String, Object> minfo = new HashMap<>();
+        minfo.put("movno", movno);
+        minfo.put("uuid", movie.getUuid());
 
+        return minfo;
+    }
 
+    @Override
+    public boolean newMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo) {
+        // 이미지 파일 저장
+        MovieStillcut ms = movutils.processUpload(stillcuts, minfo);
+        // 썸내일 이미지 생성
+        //movutils.makeThumbnail(ms, minfo.get("uuid"));
+        // 첨부정보 디비 저장
+        Long id = amovdao.insertMovieStillcut(ms);
 
+        return (id > 0) ? true : false;
 
+    }
 
 
     private String saveFile(byte[] fileData, String fileType) throws IOException {

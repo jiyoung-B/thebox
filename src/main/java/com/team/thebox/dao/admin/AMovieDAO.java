@@ -1,9 +1,6 @@
 package com.team.thebox.dao.admin;
 
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieAttach;
-import com.team.thebox.model.MovieReply;
-import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -11,10 +8,10 @@ import java.util.Map;
 public interface AMovieDAO {
 
 
-    int insertMovie(Movie movie);
+    Long insertMovie(Movie movie);
     int insertMovieAttach(MovieAttach pa);
 
-    Movie selectOneMovie(Long movno);    // 영화 상세보기
+    Object selectOneMovie(Long movno);    // 영화 상세보기
     Long updateMovie(Movie updatemovie);
 
     Map<String, Object> selectMovie(int cpg);
@@ -43,4 +40,10 @@ public interface AMovieDAO {
     void deleteMovieByMovno(Long movno);
 
     void insertMovieInfo(Movie movie);
+
+    List<Movie> selectAllMovie();
+
+    //void insertMovieStillcuts(List<MovieStillcut> stillcuts);
+
+    Long insertMovieStillcut(MovieStillcut ms);
 }

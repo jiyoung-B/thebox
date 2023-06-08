@@ -70,9 +70,14 @@
                     <td th:text="${mov.movruntime}">150분</td>
                     <td th:text="${mov.movreleasedate}">2023.05.03</td>
                     <td th:text="${mov.movgrade}">12세이상관람가</td>
+<!--                    <td>-->
+<!--                      <a th:href="|javascript:showDetail(${mov.movno})|">미리보기</a>-->
+<!--                    </td>-->
                     <td>
-                      <a th:href="|javascript:showDetail(${mov.movno})|">미리보기</a>
+                      <a th:href="|javascript:showDetail(${mov.movno})|">새창미리보기</a>
+<!--                      <a th:href="|/management/movieinfo/view?movno=${mov.movno}|">새창미리보기</a>-->
                     </td>
+
                     <td>
                       <!-- 수정 버튼 -->
                       <a th:href="@{'/management/movie/modify/' + ${mov.movno}}">수정</a>
@@ -112,6 +117,21 @@
       </div>
     </div>
   </div>
+  <!-- 모달 -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+<div>이제 내용이 보이겠죠 보여야죠!</div>
+<!--      <div th:text="${mov.movactor}">주연</div>-->
+      <div>반영</div>
+      <!-- 모달 내용을 동적으로 채워주기 위한 영역 -->
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+
+
+  <script src="/static/js/movielist.js"></script>
 
 </th:block>
 

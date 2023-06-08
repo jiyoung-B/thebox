@@ -68,7 +68,7 @@
                     <div class="thumbnail">
                             <!--<img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 100%">-->
                             <!--<img src="http://localhost/cdn/moviesample.jpg" class="img-fluid" style="width: 100%">-->
-                            <img src="http://localhost/cdn/사다리.png" class="img-fluid" style="width: 100%">
+                            <img th:src="${mov.movmainposter}" class="img-fluid" style="width: 100%">
                     </div>
                 </div>
                 <div class="col-auto">
@@ -93,7 +93,54 @@
                 <div th:text="${mov.movdetail}">  이영화의 내용을 내영ㅇㅇ,ㅡㄹ </div>
             </div>
 
+
             <div class="mt-5">
+                <i class="fa-solid fa-comments fa-2xl"> 영화 영상 </i>
+                <hr>
+            </div>
+            <div>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--스틸컷-->
+
+
+           <div class="mt-5">
                 <i class="fa-solid fa-comments fa-2xl"> 영화 리뷰 </i>
                 <hr>
             </div>
