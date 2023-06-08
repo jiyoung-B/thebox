@@ -3,6 +3,7 @@ package com.team.thebox.service;
 import com.team.thebox.dao.MovieDAO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieReply;
+import com.team.thebox.model.Movielocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,15 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void deleteReply(int rpno) {
         movdao.deleteReply(rpno);
+    }
+
+    @Override
+    public Map<String, Object> readStar() {
+        return movdao.selectStar();
+    }
+
+    @Override
+    public List<Movielocation> readMovieLocation() {
+        return movdao.selectMovieLocation();
     }
 }

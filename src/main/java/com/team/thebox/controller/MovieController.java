@@ -26,6 +26,28 @@ public class MovieController {
 
             return mv ;
         }
+    @GetMapping("/all")
+    public ModelAndView all(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("movie/all");
+        Map<String, Object> movs = movsrv.readMovie();
+
+        mv.addObject("mlist", movs.get("mlist") );
+
+        return mv ;
+    }
+
+    @GetMapping("/readStar")
+    public ModelAndView readStar(){
+        ModelAndView mv = new ModelAndView();
+
+        Map<String, Object> movs = movsrv.readStar();
+
+        mv.addObject("mlist", movs.get("mlist") );
+        mv.setViewName("movie/now");
+
+        return mv ;
+    }
 
         @GetMapping("/soon")
         public String soon() {

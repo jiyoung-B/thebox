@@ -27,20 +27,29 @@
                             <thead>
                                 <tr>
                                     <th class="col-3">
-                                        <div class="row align-items-center">
+                                        <div class="row">
                                             <p>프로필 사진</p>
                                         </div>
                                     </th>
                                     <td class="col-9">
                                         <div class="row align-items-center">
-                                            <div class="col-2">
-                                                <img src="/static/img/profile.png" class="img-fluid rounded-circle" style="width: 50%">
+                                            <div class="col-2 pe-0">
+                                                <div class="imgWrapper">
+                                                    <th:block th:if="${mp.profilepic} ne null">
+                                                        <img th:src="|${mp.profilepic}.${mp.pictype}|" class="img-fluid rounded-circle" style="max-width: 70px; max-height: 70px;">
+                                                    </th:block>
+                                                    <th:block th:if="${mp.profilepic} eq null">
+                                                        <img src="http://localhost/cdn/profilepic/profile.png" class="img-fluid rounded-circle" style="max-width: 70px; max-height: 70px;">
+                                                    </th:block>
+                                                </div>
                                             </div>
                                             <div class="col-7">
                                                 <button class="btn btn-primary" data-bs-target="#newimgmodal" data-bs-toggle="modal" id="newimgbtn">이미지 등록</button>
                                             </div>
                                             <div class="col-3 text-end">
-                                                <button class="btn btn-primary">회원 탈퇴</button>
+                                                <button class="btn btn-primary">
+                                                    <a th:href="|goodbye?userid=${session.UID}|" style="text-decoration: none; color: #31708f;">회원 탈퇴</a>
+                                                </button>
                                             </div>
                                         </div>
                                     </td>
@@ -66,9 +75,14 @@
                                     <td class="col-9">
                                         <div class="row" style="align-items: center !important;">
                                             <div class="col-9" th:text="${mp.email}"></div>
-                                            <div class="col-3 text-end">
-                                                <button class="btn btn-primary" data-bs-target="#mdemmodal" data-bs-toggle="modal" id="mdembtn">이메일 변경</button>
-                                            </div>
+                                            <th:block>
+                                                <div class="col-3 text-end">
+                                                    <button class="btn btn-primary" data-bs-target="#flemmodal" data-bs-toggle="modal" id="fillembtn">
+                                                        <th:block th:if="${mp.email eq null}">이메일 등록</th:block>
+                                                        <th:block th:if="${mp.email ne null}">이메일 변경</th:block>
+                                                    </button>
+                                                </div>
+                                            </th:block>
                                         </div>
                                     </td>
                                 </tr>
@@ -91,19 +105,25 @@
         </div>
     </div>
 
-    <!-- 이미지 등록 모달 -->
-    <div class="modal fade" id="newimgmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- 이미지 변경 모달 -->
+    <div class="modal fade" id="newimgmodal" tabindex="-1" aria-labelledby="newimgModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fw-bold fs-5" id="exampleModalLabel">이미지 등록</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header row m-0">
+                    <h5 class="modal-title fw-bold text-center" id="newimgModalLabel">이미지 변경</h5>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form name="profilefrm" id="profilefrm">
+                        <div class="row mt-2">
+                            <label class="col-3 col-form-label text-center" for="attach">첨부파일</label>
+                            <div class="col-8">
+                                <input type="file" name="attach" id="attach" class="form-control bg-light">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer" style="display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-primary">완료</button>
+                    <button type="button" class="btn btn-primary" id="udpfbtn">확인</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
@@ -112,86 +132,117 @@
 
     <!-- 비밀번호 변경 모달 -->
     <div class="modal fade" id="mdpswdmodal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="fw-bold">비밀번호 변경</h3>
+                <div class="modal-header row m-0">
+                    <h5 class="modal-title fw-bold text-center">비밀번호 변경</h5>
                 </div>
                 <div class="modal-body">
-                    <form name="mpfrm" id="mpfrm">
-                        <div class="row mb-2">
-                            <label class="col-4 form-label text-end mt-1 text-dark" for="passwd">비밀번호</label>
+                    <form name="mdpwfrm" id="mdpwfrm">
+                        <div class="row mb-2 align-items-center">
+                            <label class="col-5 form-label text-end text-dark mb-0" for="oldPswd">현재 비밀번호</label>
                             <div class="col-5">
-                                <input type="text" id="passwd" name="passwd" class="form-control" />
+                                <input type="text" id="oldPswd" name="oldPswd" class="form-control" />
                             </div>
                         </div>
-                        <div class="row mb-2">
-                            <label class="col-4 form-label text-end mt-1 text-dark" for="repswd">비밀번호 확인</label>
-                            <div class="col-5 mt-2">
-                                <input type="password" id="repswd" name="repswd" class="form-control" />
+                        <div class="row mb-2 align-items-center">
+                            <label class="col-5 form-label text-end text-dark mb-0" for="newPswd1">비밀번호</label>
+                            <div class="col-5">
+                                <input type="text" id="newPswd1" name="newPswd1" class="form-control" />
                             </div>
                         </div>
+                        <div class="row mb-2 align-items-center">
+                            <label class="col-5 form-label text-end text-dark mb-0" for="newPswd2">비밀번호 확인</label>
+                            <div class="col-5">
+                                <input type="text" id="newPswd2" name="newPswd2" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-auto text-center"><span class="form-text" id="repwdmsg"></span></div>
                     </form>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary" id="checkbtn">확인</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelbtn">취소</button>
+                    <button type="button" class="btn btn-primary" id="udpswdbtn">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="ccpswdbtn">취소</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 이메일 변경 모달 -->
-    <div class="modal fade" id="mdemmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- 이메일 등록 & 변경 모달 -->
+    <div class="modal fade" id="flemmodal" tabindex="-1" aria-labelledby="flemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fw-bold fs-5">이메일 변경</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header row m-0">
+                    <h5 class="modal-title fw-bold text-center">이메일 변경</h5>
                 </div>
                 <div class="modal-body">
-                    <form name="mefrm" id="mefrm">
+                    <form name="mdemfrm" id="mdemfrm">
                         <div class="row mb-2">
-                            <label class="col-4 form-label text-end mt-1 text-dark" for="passwd">변경할 이메일</label>
-                            <div class="col-5">
-                                <input type="text" id="mdemail" name="passwd" class="form-control" />
+                            <label class="form-label text-end mt-1 text-dark" for="email1"></label>
+                            <div class="col-8">
+                                <div class="input-group">
+                                    <input type="text" name="email1" id="email1" class="form-control">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" name="email2" id="email2" class="form-control bg-light" readonly>
+                                </div>
                             </div>
+                            <div class="col-4">
+                                <select class="form-select" id="email3">
+                                    <option>선택하세요</option>
+                                    <option>직접입력하기</option>
+                                    <option>naver.com</option>
+                                    <option>gmail.com</option>
+                                    <option>hotmail.com</option>
+                                    <option>nate.com</option>
+                                </select> </div>
+                            <span class="col text-warning"></span>
                         </div>
+
+                        <input type="hidden" name="fillEmail" id="fillEmail">
                     </form>
                 </div>
                 <div class="modal-footer" style="display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-primary">확인</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="flemailbtn">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="ccemailbtn">취소</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 휴대폰 번호 변경 모달 -->
-    <div class="modal fade" id="mdphmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="mdphmodal" tabindex="-1" aria-labelledby="mdphModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fw-bold fs-5">이메일 변경</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header row m-0">
+                    <h5 class="modal-title fw-bold text-center">휴대폰 번호 변경</h5>
                 </div>
                 <div class="modal-body">
-                    <form name="mphfrm" id="mphfrm">
+                    <form name="mdphfrm" id="mdphfrm">
                         <div class="row mb-2">
-                            <label class="col-5 form-label text-end mt-1 text-dark" for="passwd">변경할 휴대폰 번호</label>
-                            <div class="col-5">
-                                <input type="text" id="mdphone" name="passwd" class="form-control" />
+                            <label class="form-label text-end mt-1 text-dark" for="tel1"></label>
+                            <div class="col-3 offset-1">
+                                <select class="form-select" name="tel1" id="tel1">
+                                    <option>국번</option>
+                                    <option>010</option>
+                                    <option>011</option>
+                                </select>
                             </div>
+                            <div class="col-3"><input type="text" name="tel2" id="tel2" class="form-control" maxlength="4"></div>
+                            <div class="col-3"><input type="text" name="tel3" id="tel3" class="form-control" maxlength="4"></div>
                         </div>
+
+                        <input type="hidden" name="changePhnum" id="changePhnum">
                     </form>
                 </div>
                 <div class="modal-footer" style="display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-primary">확인</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="udphonebtn">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="ccphonebtn">취소</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="/static/js/mypage.js"></script>
 
 </th:block>
 

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/static/css/ticketpopup.css">
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
+  var IMP = window.IMP;
+  IMP.init("imp67011510");
+
+  var today = new Date();
+  var hours = today.getHours(); // 시
+  var minutes = today.getMinutes();  // 분
+  var seconds = today.getSeconds();  // 초
+  var milliseconds = today.getMilliseconds();
+  var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+
+  function requestPay(movieLocation, movieDate, movieSeat, seatCount) {
+    IMP.request_pay({
+      pg : 'kakaopay',
+      pay_method : 'card',
+      merchant_uid: "IMP"+makeMerchantUid,
+      name : "("+movieDate+") "+movieLocation+" "+movieSeat,
+      amount : seatCount,
+      buyer_email : 'TheBox@email.com',
+      buyer_name : 'The Box',
+      buyer_tel : '010-1234-5678',
+      buyer_addr : '서울특별시 구로구 182-13 대룡포스트 2차 2층 더조은컴퓨터아트학원',
+      buyer_postcode : '111-456',
+    }, function (rsp) { // callback
+      if (rsp.success) {
+        console.log(rsp);
+      } else {
+        console.log(rsp);
+      }
+    });
+  }
+</script>
+<body>
+<div class="layer_wrap" id="layerReserveStep01" tabindex="0">
+  <div class="layer_header">
+    <h4 class="hidden">좌석 선택 팝업</h4>
+    <div id="stepOnePopupHeaderScreen"><strong>19:50~22:20(5관)</strong></div>
+  </div>
+  <div class="layer_contents">
+    <div class="group_top" id="stepOnePopupContentsSeatCount">
+      <dl>
+        <dt>잔여좌석</dt>
+        <dd><strong>293</strong>/332</dd>
+      </dl>
+    </div>
+    <div class="smallScreen">
+              <span class="title_screen"
+                    style="">SCREEN</span>
+      <div class="minimap" id="stepOnePopupMiniMap"  style="text-align: center;">
+        <div class="floor_bx seatSet1">
+          <div class="seat_area" style="height: 100%; text-align: center;">
+            <table class="seat_table">
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="group_btm" id="stepOnePopupContentsMsg">
+      <div class="txt_notice gr_15"><p class="tit"><span class="ic_grade gr_15">만 15세 이상 관람가</span>본 영화는
+        <strong>만 15세 이상 관람가</strong> 영화입니다.</p>
+        <p class="txt">만 15세 미만의 고객님(영, 유아 포함)은 반드시 부모님 또는 성인 보호자의 동반하에<br>관람이 가능합니다. 연령 확인 불가 시 입장이 제한될 수
+          있습니다.</p></div>
+    </div>
+    <div class="btn_btm_wrap" id="stepOnePopupContentsButton">
+      <button type="button" id="ticketCancel" style="background-color: black; cursor: pointer;">취소</button>
+      <button type="button" id="ticketApproval" style="background-color: red; cursor: pointer;">인원/좌석 선택</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let ticketCancel = document.querySelector("#ticketCancel");
+  let ticketApproval = document.querySelector("#ticketApproval");
+  let modalBackground = parent.document.querySelector("#modalBackground");
+  let mvfrmdistrict = parent.document.querySelector("#mvfrmdistrict");
+  let mvfrmdate = parent.document.querySelector("#mvfrmdate");
+  let mvfrmseat = parent.document.querySelector("#mvfrmseat");
+  let dvSeat = parent.document.querySelector("#dvSeat");
+  let seat_table = document.querySelector(".seat_table");
+
+  let trnum = 0;
+  let valuenum = 0;
+  let inputSeat = [];
+
+  for(let i = 0; i <= 331; i++)
+  {
+    let seat_a = document.createElement('a');
+    let seat_span = document.createElement('span');
+
+    seat_span.innerHTML = String(i+1);
+    seat_span.style.cursor = 'pointer';
+
+    let checknum = 0;
+
+    if(i===0){
+      let seat_tr = document.createElement('tr');
+      seat_table.appendChild(seat_tr);
+    }
+
+    if(i !== 0 && i % 23 === 0){
+      let seat_tr = document.createElement('tr');
+      let seat_td = document.createElement('td');
+      seat_td.style.textAlign = 'center';
+      seat_td.style.border = '1px solid black'
+
+      seat_a.appendChild(seat_span);
+      seat_td.appendChild(seat_a);
+      seat_tr.appendChild(seat_td);
+      seat_table.appendChild(seat_tr);
+      trnum++;
+    }
+    else {
+      if(trnum===0){
+        if(i % 24===6 || i % 24===12 || i % 24===17){
+          let seat_td = document.createElement('td');
+          seat_table.lastChild.appendChild(seat_td);
+        }} else {
+
+        if(((i-(23*trnum)) % 24===6
+                || (i-(23*trnum)) % 24===12
+                || (i-(23*trnum)) % 24===17)&&i!==328){
+          let seat_td = document.createElement('td');
+          seat_table.lastChild.appendChild(seat_td);
+        }}
+
+      if(i === 327){
+        let i = 0;
+        while(i<=15) {
+          let seat_td = document.createElement('td');
+          seat_td.innerHTML = '';
+          seat_table.lastChild.appendChild(seat_td);
+          i++;
+        }
+      }
+      let seat_td = document.createElement('td');
+      seat_td.style.textAlign = 'center';
+      seat_td.style.border = '1px solid black'
+      seat_a.appendChild(seat_span);
+      seat_td.appendChild(seat_a);
+      seat_table.lastChild.appendChild(seat_td);
+    }
+
+
+    seat_span.addEventListener("click", () => {
+      if(checknum===0) {
+        inputSeat[valuenum] = seat_span.innerHTML;
+        valuenum=valuenum+1;
+
+        let result = [...new Set(inputSeat)];
+
+        mvfrmseat.innerText = '';
+        dvSeat.innerHTML = '';
+        for(let i = 0; i<result.length;i++) {
+          if (i === result.length - 1) {
+
+            mvfrmseat.innerText += result[i];
+            dvSeat.innerHTML += result[i];
+          } else {
+
+            mvfrmseat.innerText += result[i] + ', ';
+            dvSeat.innerHTML += result[i] + ', ';
+          }
+        }
+        dvSeat.innerHTML += '번 좌석';
+
+        seat_span.parentElement.parentElement.style.backgroundColor = 'black';
+        seat_span.parentElement.parentElement.style.color = 'white';
+        dvSeat.style.fontsize = 10 + "px";
+        checknum=1;
+      } else {
+        seat_span.parentElement.parentElement.style.backgroundColor = 'white';
+        seat_span.parentElement.parentElement.style.color = 'black';
+
+        for(let i = 0; i < valuenum; i++) {
+          if(inputSeat[i] === seat_span.innerHTML)  {
+            inputSeat.splice(i, 1);
+            i--;
+            valuenum--;
+          }
+        }
+
+        let result = [...new Set(inputSeat)];
+
+        mvfrmseat.innerText = '';
+        dvSeat.innerHTML = '';
+        for(let i = 0; i<result.length;i++) {
+          if (i === result.length - 1) {
+
+            mvfrmseat.innerText += result[i];
+            dvSeat.innerHTML += result[i];
+          } else {
+
+            mvfrmseat.innerText += result[i] + ', ';
+            dvSeat.innerHTML += result[i] + ', ';
+          }
+        }
+        dvSeat.innerHTML += '번 좌석';
+
+        checknum=0;
+      }
+    })
+  }
+
+  ticketApproval.addEventListener('click', () => {
+    let movieLocation = mvfrmdistrict.innerText;
+    let movieDate = mvfrmdate.innerText;
+    let movieSeat = mvfrmseat.innerText + "번 좌석";
+    let seatCount = mvfrmseat.innerText.length;
+
+    requestPay(movieLocation, movieDate, movieSeat, seatCount);
+  })
+
+  ticketCancel.addEventListener('click', () => {
+    modalBackground.style.display = 'none';
+  })
+</script>
+</body>
+
+</html>

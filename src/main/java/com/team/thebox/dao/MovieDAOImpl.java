@@ -1,14 +1,13 @@
 package com.team.thebox.dao;
 
+import com.team.thebox.dto.StarTDO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
 import com.team.thebox.model.MovieReply;
 import com.team.thebox.model.MovieSchedule;
-import com.team.thebox.repository.BookedRepository;
-import com.team.thebox.repository.MovieAttachRepository;
-import com.team.thebox.repository.MovieReplyRepository;
-import com.team.thebox.repository.MovieRepository;
-import com.team.thebox.repository.MovieScheduleRepository;
+import com.team.thebox.repository.*;
+import com.team.thebox.model.*;
+import com.team.thebox.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +30,8 @@ public class MovieDAOImpl implements MovieDAO {
     MovieScheduleRepository movieScheduleRepository;
     @Autowired
     BookedRepository bookedRepository;
+    @Autowired
+    MovieLocationRepository movieLocationRepository;
 
     @Override
     public int insertMovie(Movie movie) {
@@ -126,6 +127,31 @@ public class MovieDAOImpl implements MovieDAO {
         return movschlist;
     }
 
+    @Override   // 평점순
+    public Map<String, Object> selectStar() {
+//        Map<String, Object> movs = new HashMap<>();
+//        movs.put("mlist", movieRepository.findStar() );
+//        return movs;
+        Map<String, Object> movs = new HashMap<>();
+        List<Object[]> movieData = movieRepository.findMoviesOrderByAvgStarDesc();
+        List<StarTDO> movieList = new ArrayList<>();
+
+        for (Object[] data : movieData) {
+            StarTDO starDto = new StarTDO();
+            starDto.setMovno((Long) data[0]);
+            starDto.setMovtitle((String) data[1]);
+            starDto.setMovactor((String) data[2]);
+            starDto.setMovgrade((String) data[3]);
+            starDto.setMovreleasedate((String) data[4]);
+            starDto.setMovmainposter((String) data[5]);
+            starDto.setAvgStar((Double) data[6]);
+            movieList.add(starDto);
+        }
+
+        movs.put("mlist", movieList);
+        return movs;
+    }
+
     @Override
     public int updateReply(MovieReply reply) {
        // long rpno = movieReplyRepository.updateReply(reply.getReply(),reply.getStar(), reply.getRpno());
@@ -137,6 +163,13 @@ public class MovieDAOImpl implements MovieDAO {
     @Override
     public void deleteReply(int rpno) {
         movieReplyRepository.deleteById((long) rpno);
+    }
+
+    @Override
+    public List<Movielocation> selectMovieLocation(){
+        List<Movielocation> mvloc = movieLocationRepository.selectAll();
+
+        return mvloc;
     }
 
 }

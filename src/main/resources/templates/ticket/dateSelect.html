@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<table style="border-spacing: 1px; background-color: #F5F5F5; border:1px #CCCCCC solid;">
+  <tbody>
+  <tr>
+    <td>
+      <table style="border-collapse: initial; border-spacing: 0;">
+        <tbody>
+        <tr>
+          <td>
+            <table style="width: 140px; border-collapse: initial; border-spacing: 0; vertical-align: center; padding-left: 50px;">
+              <tbody>
+              <tr>
+                <td><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_arrow_01.gif" style="width: 11px; height: 11px; cursor:pointer;" onclick="prevCalendar()"></td>
+                <td style="text-align: center;"><b id="calMonth"></b><b> 월</b></td>
+                <td><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_arrow_02.gif" style="width: 11px; height: 11px; cursor:pointer;" onclick="nextCalendar()"></td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <table style="border-collapse: initial; border-spacing: 0; vertical-align: center;" th:onload="CalrendarV2(${today})">
+              <tbody>
+              <tr style="vertical-align: center;">
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_01.gif" style="height: 5px;"></td>
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_02.gif" style="height: 5px;"></td>
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_03.gif" style="height: 5px;"></td>
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_04.gif" style="height: 5px;"></td>
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_05.gif" style="height: 5px;"></td>
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_06.gif" style="height: 5px;"></td>
+                <td style="width: 25px; text-align: center;"><img src="//ticketimage.interpark.com/TicketImage/event/080519_m/date_t_07.gif" style="height: 5px;"></td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="height: 5px; background-color: #E7E7E7" colspan="7"></td>
+        </tr>
+
+        <tr>
+          <td>
+          <table id="calendar" name="calendar" style="font-size: 13px; padding-left: 4px;">
+            <tbody></tbody>
+          </table>
+          </td>
+        </tr>
+
+
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript" th:inline="javascript">
+  /*<![CDATA[*/
+    let mvfrmdate = parent.document.querySelector("#mvfrmdate");
+    let dvPlayDate = parent.document.querySelector("#dvPlayDate");
+    let nowMonth = new Date([[${today}]]);
+    let today = new Date([[${today}]]);
+    let today2 = new Date([[${today}]]);
+    today.setHours(0,0,0,0);
+
+  buildCalendar = () => {
+    let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);
+    let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);
+    let tenDatelater = new Date(today2.setDate(today.getDate() + 10))
+
+
+    let calendar = document.querySelector("#calendar > tbody");
+    document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1);
+
+    while (calendar.rows.length > 0) {
+      calendar.deleteRow(calendar.rows.length - 1);
+    }
+
+    let nowRow = calendar.insertRow();
+
+    for (let j = 0; j < firstDate.getDay(); j++) {
+      let nowColumn = nowRow.insertCell();
+    }
+
+    for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {
+
+      let nowColumn = nowRow.insertCell();
+      nowColumn.innerText = leftPad(nowDay.getDate());
+      nowColumn.style.paddingRight = "9.5px";
+
+      if (nowDay.getDay() == 0) {
+        nowColumn.style.color = "#DC143C";
+      }
+      if (nowDay.getDay() == 6) {
+        nowColumn.style.color = "#0000CD";
+        nowRow = calendar.insertRow();
+      }
+
+
+      if (nowDay < today) {
+        nowColumn.className = "pastDay";
+      } else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) {
+        nowColumn.className = "today";
+        nowColumn.style.backgroundColor = 'lightgray'
+        nowColumn.style.cursor = 'pointer'
+        nowColumn.addEventListener("click", () => {
+          let reservation = [[${today}]].substring(0,8);
+          mvfrmdate.innerText = reservation+nowColumn.innerText;
+          dvPlayDate.innerHTML = reservation+nowColumn.innerText;
+          dvPlayDate.style.fontsize = 10+"px";
+        })
+      } else {
+        nowColumn.className = "futureDay";
+        if(nowDay < tenDatelater) {
+          nowColumn.style.backgroundColor = 'lightgray'
+          nowColumn.style.cursor = 'pointer'
+          nowColumn.addEventListener("click", () => {
+            let reservation = [[${today}]].substring(0,8);
+            mvfrmdate.innerText = reservation+nowColumn.innerText;
+            dvPlayDate.innerHTML = reservation+nowColumn.innerText;
+            dvPlayDate.style.fontsize = 10+"px";
+          })
+        }
+      }
+    }
+  }
+
+  buildCalendar();
+
+  // 이전달 버튼 클릭
+  function prevCalendar() {
+    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());
+    buildCalendar();
+  }
+  // 다음달 버튼 클릭
+  function nextCalendar() {
+    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());
+    buildCalendar();
+  }
+
+  function leftPad(value) {
+    if (value < 10) {
+      value = "0" + value;
+      return value;
+    }
+    return value;
+  }
+
+  /*]]>*/
+</script>
+</html>
