@@ -5,8 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 @Builder
 @ToString
 @Getter
@@ -45,36 +44,10 @@ public class Movie extends BaseEntity{
     @Column
     private String movdetail;           // 줄거리
 
-    //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private String movmainposter;    // 영화 포스터
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MovieStillcut> stillcuts = new ArrayList<>(); // 스틸컷
+    private String videourl;    // 예고편
 
 
-//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private String videourl;/* = new ArrayList<>(); */// 예고편
-
-
-
-    public void setStillcuts(List<MovieStillcut> stillcuts) {
-        this.stillcuts.clear();
-        if (stillcuts != null) {
-            this.stillcuts.addAll(stillcuts);
-            for (MovieStillcut stillcut : stillcuts) {
-                stillcut.setMovie(this);
-            }
-        }
-    }
-
-//    public void setVideos(List<MovieVideo> videos) {
-//        this.videourl.clear();
-//        if (videos != null) {
-//            this.videourl.addAll(videos);
-//            for (MovieVideo video : videos) {
-//                video.setMovie(this);
-//            }
-//        }
-//    }
 
 }

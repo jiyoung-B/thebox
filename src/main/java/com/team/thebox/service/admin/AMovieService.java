@@ -14,7 +14,7 @@ public interface AMovieService {
     boolean newMovies2(Movie movie);
     boolean newMovieAttach(MultipartFile attach, Map<String, Object> mvinfo);
 
-    Movie readOneMovie(Long movno);
+    Object readOneMovie(Long movno);
 
     Map<String, Object> readMovie(Integer cpg);
     List<String> readMovieTitle(long movno);
@@ -27,7 +27,6 @@ public interface AMovieService {
     List<Integer> readBookedCnt();
     Map<String, Object> readMovieSchedule(Long movno, Long schno);
 
-    Movie getOneMovieByMovno(Long movno);
 
     boolean modifyMovieByMovno(Movie existingmovie);
 
@@ -35,5 +34,11 @@ public interface AMovieService {
 
     void registerMovieInfo(MovieDTO movieDTO);
 
-    void createMovie(MovieRequestDto movieRequestDto);
+    Long createMovie(MovieRequestDto movieRequestDto);
+
+    List<Movie> getAllMovies();
+
+    Map<String, Object> newMovie(Movie movie);
+
+    boolean newMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo);
 }

@@ -1,6 +1,7 @@
 package com.team.thebox.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -19,15 +20,10 @@ public class MovieStillcut{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="stillcuturl")
-    private String stillcuturl;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movno")
+    private String fname;
+    private String fsize;
+    private Long movno;
+    @OneToOne(optional = false)
+    @JoinColumn(name="movno", insertable = false, updatable = false)
     private Movie movie;
-
-    public MovieStillcut(String stillcuturl) {
-        this.stillcuturl = stillcuturl;
-    }
 }

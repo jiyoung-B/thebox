@@ -42,4 +42,6 @@ public interface MovieDAO {
 
     List<Movielocation> selectMovieLocation();
 
+
+    Map<String, Object> selectStar(); //평점순
 }
