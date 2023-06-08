@@ -5,22 +5,27 @@
 
 <th:block layout:fragment="content">
     <div id="main">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="display-1 text-center p-3">Coming Soon</h1>
-            </div>
-            <div class="col-6 offset-3">
-                <img src="/static/img/moviesample.jpg" class="img-fluid" alt="cat">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8 offset-2 text-center p-3">
-                <p>가디언즈 오브 갤럭시 </p>
-                <div><button class="btn btn-success">예매하기</button></div>
+
+        <div class="row justify-content-center" id="videoWrap">
+            <video autoplay="autoplay" id="indexMovie">
+                <source src="https://adimg.cgv.co.kr/images/202305/Transformers7/0601_TF7_1080x608.mp4" type="video/mp4">
+            </video>
+            <strong class="indexMovieTitle">트랜스포머: 비스트의 서막</strong>
+            <div class="indexMovieController">
+                <a href="#" class="indexMovieDetailView">
+                    상세보기 <i class="fa-solid fa-chevron-right" style="color: #343434;"></i>
+                </a>
+                <a href="#" class="indexMoviePlayStop" id="indexMoviePlayStop" onclick="showPlayNStop()">
+                    <i class="fa-solid fa-pause" style="color: #343434; margin-left: 9px;"></i>
+                </a>
+                <a href="#" class="indexMovieSound" id="indexMovieSound" onclick="showMovieSound()">
+                    <i class="fa-solid fa-volume-high" style="color: #343434; margin-left: 5px;"></i>
+                </a>
             </div>
         </div>
 
     </div>
+
 
 </th:block>
 
