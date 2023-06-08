@@ -1,9 +1,6 @@
 package com.team.thebox.dao;
 
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieAttach;
-import com.team.thebox.model.MovieReply;
-import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,4 +39,7 @@ public interface MovieDAO {
     List<Integer> selectBookedCnt();
 
     Map<String, Object> selectScheduleList(Long movno, Long schno);
+
+    List<Movielocation> selectMovieLocation();
+
 }

@@ -1,14 +1,7 @@
 package com.team.thebox.dao;
 
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieAttach;
-import com.team.thebox.model.MovieReply;
-import com.team.thebox.model.MovieSchedule;
-import com.team.thebox.repository.BookedRepository;
-import com.team.thebox.repository.MovieAttachRepository;
-import com.team.thebox.repository.MovieReplyRepository;
-import com.team.thebox.repository.MovieRepository;
-import com.team.thebox.repository.MovieScheduleRepository;
+import com.team.thebox.model.*;
+import com.team.thebox.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,18 +12,26 @@ import java.util.*;
 
 @Repository("movdao")
 public class MovieDAOImpl implements MovieDAO {
-    @Autowired
-    MovieRepository movieRepository;
-    @Autowired
-    MovieAttachRepository movieAttachRepository;
+
+    private final MovieRepository movieRepository;
+    private final MovieAttachRepository movieAttachRepository;
+    private final MovieReplyRepository movieReplyRepository;
+    private final MovieScheduleRepository movieScheduleRepository;
+    private final BookedRepository bookedRepository;
+    private final MovieLocationRepository movieLocationRepository;
+
 
     @Autowired
-    MovieReplyRepository movieReplyRepository;
-
-    @Autowired
-    MovieScheduleRepository movieScheduleRepository;
-    @Autowired
-    BookedRepository bookedRepository;
+    public MovieDAOImpl(MovieRepository movieRepository, MovieAttachRepository movieAttachRepository,
+                          MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository,
+                          BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository) {
+        this.movieRepository = movieRepository;
+        this.movieAttachRepository = movieAttachRepository;
+        this.movieReplyRepository = movieReplyRepository;
+        this.movieScheduleRepository = movieScheduleRepository;
+        this.bookedRepository = bookedRepository;
+        this.movieLocationRepository = movieLocationRepository;
+    }
 
     @Override
     public int insertMovie(Movie movie) {
@@ -137,6 +138,13 @@ public class MovieDAOImpl implements MovieDAO {
     @Override
     public void deleteReply(int rpno) {
         movieReplyRepository.deleteById((long) rpno);
+    }
+
+    @Override
+    public List<Movielocation> selectMovieLocation(){
+        List<Movielocation> mvloc = movieLocationRepository.selectAll();
+
+        return mvloc;
     }
 
 }
