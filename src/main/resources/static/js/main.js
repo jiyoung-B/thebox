@@ -24,6 +24,7 @@ lgoutbtn?.addEventListener('click', () => {
 })
 
 
+
 // 영상 재생
 const indexMoviePlayStop = document.querySelector('#indexMoviePlayStop');
 const indexMovie = document.querySelector('#indexMovie');
@@ -55,3 +56,9 @@ function showMovieSound() {
         indexMovieSound.innerHTML = '<i class="fa-solid fa-volume-high" style="color: #343434; margin-left: 5px;"></i>';
     }
 }
+=======
+let signupbtn = document.querySelector('#signupbtn');
+signupbtn?.addEventListener('click', () => {
+    location.href = "/join/signup";
+});
+

@@ -5,11 +5,9 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+@Builder
 @ToString
 @Getter
 @Setter
@@ -20,37 +18,63 @@ import java.util.List;
 @Table(name="movie")
 public class Movie extends BaseEntity{
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movno;
 
     @Column
-    private String movgenre;		// 장르
+    private String movgenre;            // 장르
     @Column(nullable = false)
-    private String movtitle;		// 제목
+    private String movtitle;            // 제목
     @Column
-    private String movdirector;		// 감독명
+    private String movdirector;         // 감독명
     @Column
-    private String movactor;		// 배우명
+    private String movactor;            // 배우명
     @Column
-    private String movreleasedate;	// 개봉일
+    private String movreleasedate;      // 개봉일
     @Column
-    private String movcountry;		// 국가
+    private String movcountry;          // 국가
     @Column
-    private String movgrade;		// 등급
+    private String movgrade;            // 등급
     @Column
-    private String movruntime;			// 런타임(분)
+    private String movruntime;          // 런타임(분)
+
+    private String uuid;
     @Lob
     @Column
-    private String movdetail;		// 줄거리
-    private String uuid;
-//
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "movie_id")
-//    private List<MoviePoster> movPosters = new ArrayList<>();    // 포스터 이미지 URL
-//
-//
-//    private String movvideo;           // 예고편 동영상 URL
-//
+    private String movdetail;           // 줄거리
+
+    //@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private String movmainposter;    // 영화 포스터
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MovieStillcut> stillcuts = new ArrayList<>(); // 스틸컷
+
+
+//    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private String videourl;/* = new ArrayList<>(); */// 예고편
+
+
+
+    public void setStillcuts(List<MovieStillcut> stillcuts) {
+        this.stillcuts.clear();
+        if (stillcuts != null) {
+            this.stillcuts.addAll(stillcuts);
+            for (MovieStillcut stillcut : stillcuts) {
+                stillcut.setMovie(this);
+            }
+        }
+    }
+
+//    public void setVideos(List<MovieVideo> videos) {
+//        this.videourl.clear();
+//        if (videos != null) {
+//            this.videourl.addAll(videos);
+//            for (MovieVideo video : videos) {
+//                video.setMovie(this);
+//            }
+//        }
+//    }
 
 }

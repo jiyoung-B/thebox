@@ -1,4 +1,4 @@
-// 새글쓰기
+// 상영 스케줄 업데이트
 const movwritebtn = document.querySelector("#movwritebtn");
 movwritebtn?.addEventListener('click', () => {
     const movregifrm = document.forms.movregifrm;
@@ -9,7 +9,7 @@ movwritebtn?.addEventListener('click', () => {
         // movregifrm.method = "post";
         // movregifrm.submit();
         movregifrm.method = 'post';
-         movregifrm.enctype = "multipart/form-data";
+        movregifrm.enctype = "multipart/form-data";
         movregifrm.submit();
     }
 });

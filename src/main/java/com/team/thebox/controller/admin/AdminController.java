@@ -14,6 +14,12 @@ public class AdminController {
         return "starter";
 
     }
+    @GetMapping("/adminindex/chart")
+    public String adminChart(){
+        //return "index.tiles";
+        return "uplot";
+
+    }
     @GetMapping("/adminindex")
     public String adminIndex(){
         //return "index.tiles";

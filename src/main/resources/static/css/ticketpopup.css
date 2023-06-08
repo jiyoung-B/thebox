@@ -1,0 +1,11 @@
+.layer_wrap {background-color: white; text-align: center; height: 850px; width: 800px;}
+.hidden {background-color: dimgray; height: 30px; padding-top: 6px;}
+.group_top dd {margin-left: 0;}
+.smallScreen {width: 100%;}
+.smallScreen .title_screen {position:relative; z-index:1; color:dimgray; letter-spacing:5px;
+    background-color: lightgray; display: block;
+    width: 70%; margin: 5% 15%;
+    border-radius: 10px; padding-top: 2px;}
+.seat_table {margin: 0 auto 5%;}
+.btn_btm_wrap button { width: 130px; height: 35px; font-size: 15px; font-weight: bold; color: white;
+    border: none; border-radius: 5px; margin: 2% 6%;}

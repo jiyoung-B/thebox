@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+    body{
+      scrollbar-3dlight-color:#FFFFFF;
+      scrollbar-arrow-color:#C3C3C3;
+      scrollbar-track-color:#FFFFFF;
+      scrollbar-darkshadow-color:#FFFFFF;
+      scrollbar-face-color:#FFFFFF;
+      scrollbar-highlight-color:#C3C3C3;
+      scrollbar-shadow-color:#C3C3C3;
+    }
+  </style>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+
+  let loclist = [[${loclist}]];
+  let mvfrmdistrict = parent.document.querySelector("#mvfrmdistrict");
+  let dvPlaceName = parent.document.querySelector("#dvPlaceName");
+
+  document.addEventListener('DOMContentLoaded', () => {
+    let createCell = (td, districtname, mvfrmdistrict, dvPlaceName) => {
+      td.className = "districtname";
+      td.innerHTML = districtname;
+      td.style.width = 155 + 'px';
+      td.style.fontSize = 11 + 'px';
+      td.style.backgroundColor = 'white';
+      td.style.borderBottom = 'rgba(188, 143, 143, .5) solid 1px';
+      td.style.opacity = 70 + '%';
+      td.style.paddingLeft = 2 + 'px';
+      td.style.display = 'block';
+      td.style.cursor = 'pointer'
+      td.addEventListener("click", ()=>{
+        mvfrmdistrict.innerText = td.innerText;
+        dvPlaceName.innerHTML = td.innerText;
+        dvPlaceName.style.fontsize = 10+"px";
+      })
+    }
+
+    for (let i = 0; i < loclist.length; i++) {
+      let loctd = document.createElement('td');
+      switch (loclist[i].placename.substring(0, 2)) {
+        case '서울' :
+          switch (loclist[i].placename) {
+            case '서울/강남구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul01Cell").appendChild(loctd);
+              break;
+
+            case '서울/강동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul02Cell").appendChild(loctd);
+              break;
+
+            case '서울/강북구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul03Cell").appendChild(loctd);
+              break;
+
+            case '서울/강서구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul04Cell").appendChild(loctd);
+              break;
+
+            case '서울/광진구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul05Cell").appendChild(loctd);
+              break;
+
+            case '서울/구로구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul06Cell").appendChild(loctd);
+              break;
+
+            case '서울/노원구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul07Cell").appendChild(loctd);
+              break;
+
+            case '서울/도봉구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul08Cell").appendChild(loctd);
+              break;
+
+            case '서울/동작구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul09Cell").appendChild(loctd);
+              break;
+
+            case '서울/마포구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul10Cell").appendChild(loctd);
+              break;
+
+            case '서울/서대문구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul11Cell").appendChild(loctd);
+              break;
+
+            case '서울/서초구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul12Cell").appendChild(loctd);
+              break;
+
+            case '서울/성동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul13Cell").appendChild(loctd);
+              break;
+
+            case '서울/성북구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul14Cell").appendChild(loctd);
+              break;
+
+            case '서울/송파구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul15Cell").appendChild(loctd);
+              break;
+
+            case '서울/양천구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul16Cell").appendChild(loctd);
+              break;
+
+            case '서울/영등포구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul17Cell").appendChild(loctd);
+              break;
+
+            case '서울/용산구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul18Cell").appendChild(loctd);
+              break;
+
+            case '서울/은평구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul19Cell").appendChild(loctd);
+              break;
+
+            case '서울/종로구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul20Cell").appendChild(loctd);
+              break;
+
+            case '서울/중구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul21Cell").appendChild(loctd);
+              break;
+
+            case '서울/중랑구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#seoul22Cell").appendChild(loctd);
+              break;
+          } break;
+        case '인천' :
+          switch (loclist[i].placename) {
+            case '인천/계양구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon01Cell").appendChild(loctd);
+              break;
+
+            case '인천/남동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon02Cell").appendChild(loctd);
+              break;
+
+            case '인천/미추홀구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon03Cell").appendChild(loctd);
+              break;
+
+            case '인천/부평구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon04Cell").appendChild(loctd);
+              break;
+
+            case '인천/서구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon05Cell").appendChild(loctd);
+              break;
+
+            case '인천/연수구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon06Cell").appendChild(loctd);
+              break;
+
+            case '인천/중구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#incheon07Cell").appendChild(loctd);
+              break;
+
+          } break;
+        case '경기' :
+          switch (loclist[i].placename) {
+            case '경기/고양시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi01Cell").appendChild(loctd);
+              break;
+
+            case '경기/광명시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi02Cell").appendChild(loctd);
+              break;
+
+            case '경기/광주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi03Cell").appendChild(loctd);
+              break;
+
+            case '경기/구리시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi04Cell").appendChild(loctd);
+              break;
+
+            case '경기/군포시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi05Cell").appendChild(loctd);
+              break;
+
+            case '경기/김포시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi06Cell").appendChild(loctd);
+              break;
+
+            case '경기/남양주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi07Cell").appendChild(loctd);
+              break;
+
+            case '경기/부천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi08Cell").appendChild(loctd);
+              break;
+
+            case '경기/성남시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi09Cell").appendChild(loctd);
+              break;
+
+            case '경기/수원시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi10Cell").appendChild(loctd);
+              break;
+
+            case '경기/시흥시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi11Cell").appendChild(loctd);
+              break;
+
+            case '경기/안산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi12Cell").appendChild(loctd);
+              break;
+
+            case '경기/안성시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi13Cell").appendChild(loctd);
+              break;
+
+            case '경기/안양시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi14Cell").appendChild(loctd);
+              break;
+
+            case '경기/양주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi15Cell").appendChild(loctd);
+              break;
+
+            case '경기/오산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi16Cell").appendChild(loctd);
+              break;
+
+            case '경기/용인시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi17Cell").appendChild(loctd);
+              break;
+
+            case '경기/의정부시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi18Cell").appendChild(loctd);
+              break;
+
+            case '경기/이천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi19Cell").appendChild(loctd);
+              break;
+
+            case '경기/파주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi20Cell").appendChild(loctd);
+              break;
+
+            case '경기/평택시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi21Cell").appendChild(loctd);
+              break;
+
+            case '경기/포천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi22Cell").appendChild(loctd);
+              break;
+
+            case '경기/하남시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi23Cell").appendChild(loctd);
+              break;
+
+            case '경기/화성시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeonggi24Cell").appendChild(loctd);
+              break;
+          } break;
+        case '부산' :
+          switch (loclist[i].placename) {
+            case '부산/강서구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan01Cell").appendChild(loctd);
+              break;
+            case '부산/금정구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan02Cell").appendChild(loctd);
+              break;
+            case '부산/기장군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan03Cell").appendChild(loctd);
+              break;
+            case '부산/남구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan04Cell").appendChild(loctd);
+              break;
+            case '부산/동래구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan05Cell").appendChild(loctd);
+              break;
+            case '부산/부산진구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan06Cell").appendChild(loctd);
+              break;
+            case '부산/북구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan07Cell").appendChild(loctd);
+              break;
+            case '부산/사상구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan08Cell").appendChild(loctd);
+              break;
+            case '부산/사하구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan09Cell").appendChild(loctd);
+              break;
+            case '부산/연제구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan10Cell").appendChild(loctd);
+              break;
+            case '부산/중구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan11Cell").appendChild(loctd);
+              break;
+            case '부산/해운대구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#busan12Cell").appendChild(loctd);
+              break;
+          } break;
+        case '대구' :
+          switch (loclist[i].placename) {
+            case '대구/달서구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daegu01Cell").appendChild(loctd);
+              break;
+            case '대구/동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daegu02Cell").appendChild(loctd);
+              break;
+            case '대구/북구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daegu03Cell").appendChild(loctd);
+              break;
+            case '대구/수성구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daegu04Cell").appendChild(loctd);
+              break;
+            case '대구/중구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daegu05Cell").appendChild(loctd);
+              break;
+          } break;
+        case '울산' :
+          switch (loclist[i].placename) {
+            case '울산/남구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#ulsan01Cell").appendChild(loctd);
+              break;
+            case '울산/동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#ulsan02Cell").appendChild(loctd);
+              break;
+            case '울산/북구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#ulsan03Cell").appendChild(loctd);
+              break;
+            case '울산/중구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#ulsan04Cell").appendChild(loctd);
+              break;
+          } break;
+        case '경남' :
+          switch (loclist[i].placename) {
+            case '경남/거제시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam01Cell").appendChild(loctd);
+              break;
+            case '경남/고성군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam02Cell").appendChild(loctd);
+              break;
+            case '경남/김해시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam03Cell").appendChild(loctd);
+              break;
+            case '경남/마산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam04Cell").appendChild(loctd);
+              break;
+            case '경남/양산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam05Cell").appendChild(loctd);
+              break;
+            case '경남/진주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam06Cell").appendChild(loctd);
+              break;
+            case '경남/창원시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongnam07Cell").appendChild(loctd);
+              break;
+          } break;
+        case '경북' :
+          switch (loclist[i].placename) {
+            case '경북/경산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk01Cell").appendChild(loctd);
+              break;
+            case '경북/경주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk02Cell").appendChild(loctd);
+              break;
+            case '경북/구미시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk03Cell").appendChild(loctd);
+              break;
+            case '경북/김천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk04Cell").appendChild(loctd);
+              break;
+            case '경북/문경시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk05Cell").appendChild(loctd);
+              break;
+            case '경북/안동시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk06Cell").appendChild(loctd);
+              break;
+            case '경북/예천군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk07Cell").appendChild(loctd);
+              break;
+            case '경북/포항시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gyeongbuk08Cell").appendChild(loctd);
+              break;
+          } break;
+        case '광주' :
+          switch (loclist[i].placename) {
+            case '광주/광산구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gwangju01Cell").appendChild(loctd);
+              break;
+            case '광주/동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gwangju02Cell").appendChild(loctd);
+              break;
+            case '광주/북구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gwangju03Cell").appendChild(loctd);
+              break;
+            case '광주/서구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gwangju04Cell").appendChild(loctd);
+              break;
+          } break;
+        case '전남' :
+          switch (loclist[i].placename) {
+            case '전남/광양시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonnam01Cell").appendChild(loctd);
+              break;
+            case '전남/나주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonnam02Cell").appendChild(loctd);
+              break;
+            case '전남/목포시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonnam03Cell").appendChild(loctd);
+              break;
+            case '전남/순천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonnam04Cell").appendChild(loctd);
+              break;
+            case '전남/여수시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonnam05Cell").appendChild(loctd);
+              break;
+          } break;
+        case '전북' :
+          switch (loclist[i].placename) {
+            case '전북/익산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonbuk01Cell").appendChild(loctd);
+              break;
+            case '전북/전주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonbuk02Cell").appendChild(loctd);
+              break;
+            case '전북/정읍시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#jeonbuk03Cell").appendChild(loctd);
+              break;
+          } break;
+        case '대전' :
+          switch (loclist[i].placename) {
+            case '대전/동구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daejeon01Cell").appendChild(loctd);
+              break;
+            case '대전/서구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daejeon02Cell").appendChild(loctd);
+              break;
+            case '대전/유성구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daejeon03Cell").appendChild(loctd);
+              break;
+            case '대전/중구' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#daejeon04Cell").appendChild(loctd);
+              break;
+          } break;
+        case '강원' :
+          switch (loclist[i].placename) {
+            case '강원/강릉시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gangwon01Cell").appendChild(loctd);
+              break;
+            case '강원/속초시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gangwon02Cell").appendChild(loctd);
+              break;
+            case '강원/원주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gangwon03Cell").appendChild(loctd);
+              break;
+            case '강원/인제군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gangwon04Cell").appendChild(loctd);
+              break;
+            case '강원/춘천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#gangwon05Cell").appendChild(loctd);
+              break;
+          } break;
+        case '충남' :
+          switch (loclist[i].placename) {
+            case '충남/공주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam01Cell").appendChild(loctd);
+              break;
+            case '충남/논산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam02Cell").appendChild(loctd);
+              break;
+            case '충남/당진군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam03Cell").appendChild(loctd);
+              break;
+            case '충남/서산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam04Cell").appendChild(loctd);
+              break;
+            case '충남/아산시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam05Cell").appendChild(loctd);
+              break;
+            case '충남/천안시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam06Cell").appendChild(loctd);
+              break;
+            case '충남/홍성군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungnam07Cell").appendChild(loctd);
+              break;
+          } break;
+        case '충북' :
+          switch (loclist[i].placename) {
+            case '충북/음성군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungbuk01Cell").appendChild(loctd);
+              break;
+            case '충북/제천시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungbuk02Cell").appendChild(loctd);
+              break;
+            case '충북/진천군' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungbuk03Cell").appendChild(loctd);
+              break;
+            case '충북/청주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungbuk04Cell").appendChild(loctd);
+              break;
+            case '충북/충주시' :
+              createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+              document.querySelector("#chungbuk05Cell").appendChild(loctd);
+              break;
+          } break;
+        case '세종' :
+          createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+          document.querySelector("#sejong01Cell").appendChild(loctd); break;
+        case '제주' :
+          createCell(loctd, loclist[i].districtname, mvfrmdistrict, dvPlaceName)
+          document.querySelector("#jeju01Cell").appendChild(loctd); break;
+      }
+    }
+  })
+  /*]]>*/
+</script>
+
+<body>
+<table style="border-collapse: initial; border-spacing: 0;">
+  <tbody>
+  <tr>
+    <td style="width: 290px; vertical-align: top;">
+      <table style="border-collapse: initial; border-spacing: 0;">
+        <tbody>
+        <tr>
+          <td style="height: 32px; background-color: #F5F5F5;"><img src="/static/img/ticket/location_title_01.gif" style="width: 24px; height: 24px; vertical-align: middle;"><img src="/static/img/ticket/location_title_02.gif" style="width: 50px; height: 17px; vertical-align: middle;"></td>
+        </tr>
+        <tr>
+          <td style="height: 345px; vertical-align: top; background-color: #F5F5F5;">
+            <table style="width: 185px; border-collapse: initial; border-spacing: 0; vertical-align: center;">
+              <tbody>
+              <tr style="height: 5px;"></tr>
+              <tr>
+                <td style="height: 16px;">
+                  <table>
+                    <tbody>
+                    <tr>
+                      <td>
+                        <input type="text" maxlength="20" style="width:134px; height:16px;">
+                      </td>
+                      <td>
+                        <img src="/static/img/ticket/location_search.gif" style="width: 47px; height: 16px; vertical-align: middle; cursor:pointer;">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr style="height: 5px;"></tr>
+              <tr>
+                <td>
+                  <table style="width: 185px; border-collapse: initial; border-spacing: 0; padding-left: 5px;">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table style="border: none; border-collapse: initial; border-spacing: 0; justify-content: center;">
+                          <tbody>
+                          <tr>
+                            <td>
+
+                              <table style="width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <img id="loc1st" name="loc1st" src="/static/img/ticket/dropdownDisabled1.gif" style="width: 177px; height: 20px; cursor: pointer; margin-bottom: -5px;">
+
+                                    <div id="loc1stdiv" name="loc1stdiv" style="height: 0px;">
+                                    <table style="width: 162px; background-color: white; display: none;" id="loc1sttable" name="loc1sttable">
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/강남구|></td></tr>
+                                      <tr id="seoul01Cell" name="seoul01Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/강동구|></td></tr>
+                                      <tr id="seoul02Cell" name="seoul02Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/강북구|></td></tr>
+                                      <tr id="seoul03Cell" name="seoul03Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/강서구|></td></tr>
+                                      <tr id="seoul04Cell" name="seoul04Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/광진구|></td></tr>
+                                      <tr id="seoul05Cell" name="seoul05Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/구로구|></td></tr>
+                                      <tr id="seoul06Cell" name="seoul06Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/노원구|></td></tr>
+                                      <tr id="seoul07Cell" name="seoul07Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/도봉구|></td></tr>
+                                      <tr id="seoul08Cell" name="seoul08Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/동작구|></td></tr>
+                                      <tr id="seoul09Cell" name="seoul09Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/마포구|></td></tr>
+                                      <tr id="seoul10Cell" name="seoul10Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/서대문구|></td></tr>
+                                      <tr id="seoul11Cell" name="seoul11Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/서초구|></td></tr>
+                                      <tr id="seoul12Cell" name="seoul12Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/성동구|></td></tr>
+                                      <tr id="seoul13Cell" name="seoul13Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/성북구|></td></tr>
+                                      <tr id="seoul14Cell" name="seoul14Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/송파구|></td></tr>
+                                      <tr id="seoul15Cell" name="seoul15Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/양천구|></td></tr>
+                                      <tr id="seoul16Cell" name="seoul16Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/영등포구|></td></tr>
+                                      <tr id="seoul17Cell" name="seoul17Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/용산구|></td></tr>
+                                      <tr id="seoul18Cell" name="seoul18Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/은평구|></td></tr>
+                                      <tr id="seoul19Cell" name="seoul19Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/종로구|></td></tr>
+                                      <tr id="seoul20Cell" name="seoul20Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/중구|></td></tr>
+                                      <tr id="seoul21Cell" name="seoul21Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/중랑구|></td></tr>
+                                      <tr id="seoul22Cell" name="seoul22Cell"></tr>
+
+                                    </table>
+                                    </div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+
+                              <table style="width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px; margin-top: 5px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <img id="loc2nd" name="loc2nd" src="/static/img/ticket/dropdownDisabled2.gif" style="width: 177px; height: 20px; cursor: pointer; margin-bottom: -5px;">
+
+                                    <div id="loc2nddiv" name="loc2nddiv" style="overflow: auto; !important; height: 00px;">
+                                      <table style="width: 162px; background-color: white; display: none;" id="loc2ndtable" name="loc2ndtable">
+                                        <tbody>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/계양구|></td></tr>
+                                        <tr id="incheon01Cell" name="incheon01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/남동구|></td></tr>
+                                        <tr id="incheon02Cell" name="incheon02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/미추홀구|></td></tr>
+                                        <tr id="incheon03Cell" name="incheon03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/부평구|></td></tr>
+                                        <tr id="incheon04Cell" name="incheon04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/서구|></td></tr>
+                                        <tr id="incheon05Cell" name="incheon05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/연수구|></td></tr>
+                                        <tr id="incheon06Cell" name="incheon06Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|인천/중구|></td></tr>
+                                        <tr id="incheon07Cell" name="incheon07Cell"></tr>
+
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/고양시|></td></tr>
+                                        <tr id="gyeonggi01Cell" name="gyeonggi01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/광명시|></td></tr>
+                                        <tr id="gyeonggi02Cell" name="gyeonggi02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/광주시|></td></tr>
+                                        <tr id="gyeonggi03Cell" name="gyeonggi03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/구리시|></td></tr>
+                                        <tr id="gyeonggi04Cell" name="gyeonggi04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/군포시|></td></tr>
+                                        <tr id="gyeonggi05Cell" name="gyeonggi05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/김포시|></td></tr>
+                                        <tr id="gyeonggi06Cell" name="gyeonggi06Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/남양주시|></td></tr>
+                                        <tr id="gyeonggi07Cell" name="gyeonggi07Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/부천시|></td></tr>
+                                        <tr id="gyeonggi08Cell" name="gyeonggi08Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/성남시|></td></tr>
+                                        <tr id="gyeonggi09Cell" name="gyeonggi09Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/수원시|></td></tr>
+                                        <tr id="gyeonggi10Cell" name="gyeonggi10Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/시흥시|></td></tr>
+                                        <tr id="gyeonggi11Cell" name="gyeonggi11Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/안산시|></td></tr>
+                                        <tr id="gyeonggi12Cell" name="gyeonggi12Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/안성시|></td></tr>
+                                        <tr id="gyeonggi13Cell" name="gyeonggi13Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/안양시|></td></tr>
+                                        <tr id="gyeonggi14Cell" name="gyeonggi14Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/양주시|></td></tr>
+                                        <tr id="gyeonggi15Cell" name="gyeonggi15Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/오산시|></td></tr>
+                                        <tr id="gyeonggi16Cell" name="gyeonggi16Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/용인시|></td></tr>
+                                        <tr id="gyeonggi17Cell" name="gyeonggi17Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/의정부시|></td></tr>
+                                        <tr id="gyeonggi18Cell" name="gyeonggi18Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/이천시|></td></tr>
+                                        <tr id="gyeonggi19Cell" name="gyeonggi19Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/파주시|></td></tr>
+                                        <tr id="gyeonggi20Cell" name="gyeonggi20Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/평택시|></td></tr>
+                                        <tr id="gyeonggi21Cell" name="gyeonggi21Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/포천시|></td></tr>
+                                        <tr id="gyeonggi22Cell" name="gyeonggi22Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/하남시|></td></tr>
+                                        <tr id="gyeonggi23Cell" name="gyeonggi23Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경기/화성시|></td></tr>
+                                        <tr id="gyeonggi24Cell" name="gyeonggi24Cell"></tr>
+
+
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="display:none; width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <div style="z-index: 1;  width: 100%; height: 149px;"></div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px; margin-top: 5px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <img id="loc3rd" name="loc3rd" src="/static/img/ticket/dropdownDisabled3.gif" style="width: 177px; height: 20px; cursor: pointer; margin-bottom: -5px;">
+
+                                    <div id="loc3rddiv" name="loc3rddiv" style="overflow: auto; !important; height: 00px;">
+                                      <table style="width: 162px; background-color: white; display: none;" id="loc3rdtable" name="loc3rdtable">
+                                        <tbody>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/강서구|></td></tr>
+                                        <tr id="busan01Cell" name="busan01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/금정구|></td></tr>
+                                        <tr id="busan02Cell" name="busan02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/기장군|></td></tr>
+                                        <tr id="busan03Cell" name="busan03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/남구|></td></tr>
+                                        <tr id="busan04Cell" name="busan04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/동래구|></td></tr>
+                                        <tr id="busan05Cell" name="busan05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/부산진구|></td></tr>
+                                        <tr id="busan06Cell" name="busan06Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/북구|></td></tr>
+                                        <tr id="busan07Cell" name="busan07Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/사상구|></td></tr>
+                                        <tr id="busan08Cell" name="busan08Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/사하구|></td></tr>
+                                        <tr id="busan09Cell" name="busan09Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/연제구|></td></tr>
+                                        <tr id="busan10Cell" name="busan10Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/중구|></td></tr>
+                                        <tr id="busan11Cell" name="busan11Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|부산/해운대구|></td></tr>
+                                        <tr id="busan12Cell" name="busan12Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/달서구|></td></tr>
+                                        <tr id="daegu01Cell" name="daegu01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/동구|></td></tr>
+                                        <tr id="daegu02Cell" name="daegu02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/북구|></td></tr>
+                                        <tr id="daegu03Cell" name="daegu03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/수성구|></td></tr>
+                                        <tr id="daegu04Cell" name="daegu04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/중구|></td></tr>
+                                        <tr id="daegu05Cell" name="daegu05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|울산/남구|></td></tr>
+                                        <tr id="ulsan01Cell" name="ulsan01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|울산/동구|></td></tr>
+                                        <tr id="ulsan02Cell" name="ulsan02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|울산/북구|></td></tr>
+                                        <tr id="ulsan03Cell" name="ulsan03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|울산/중구|></td></tr>
+                                        <tr id="ulsan04Cell" name="ulsan04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/거제시|></td></tr>
+                                        <tr id="gyeongnam01Cell" name="gyeongnam01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/고성군|></td></tr>
+                                        <tr id="gyeongnam02Cell" name="gyeongnam02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/김해시|></td></tr>
+                                        <tr id="gyeongnam03Cell" name="gyeongnam03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/마산시|></td></tr>
+                                        <tr id="gyeongnam04Cell" name="gyeongnam04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/양산시|></td></tr>
+                                        <tr id="gyeongnam05Cell" name="gyeongnam05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/진주시|></td></tr>
+                                        <tr id="gyeongnam06Cell" name="gyeongnam06Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경남/창원시|></td></tr>
+                                        <tr id="gyeongnam07Cell" name="gyeongnam07Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/경산시|></td></tr>
+                                        <tr id="gyeongbuk01Cell" name="gyeongbuk01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/경주시|></td></tr>
+                                        <tr id="gyeongbuk02Cell" name="gyeongbuk02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/구미시|></td></tr>
+                                        <tr id="gyeongbuk03Cell" name="gyeongbuk03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/김천시|></td></tr>
+                                        <tr id="gyeongbuk04Cell" name="gyeongbuk04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/문경시|></td></tr>
+                                        <tr id="gyeongbuk05Cell" name="gyeongbuk05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/안동시|></td></tr>
+                                        <tr id="gyeongbuk06Cell" name="gyeongbuk06Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/예천군|></td></tr>
+                                        <tr id="gyeongbuk07Cell" name="gyeongbuk07Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|경북/포항시|></td></tr>
+                                        <tr id="gyeongbuk08Cell" name="gyeongbuk08Cell"></tr>
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="display:none; width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <div style="z-index: 1;  width: 100%; height: 149px;"></div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px; margin-top: 5px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <img id="loc4th" name="loc4th" src="/static/img/ticket/dropdownDisabled4.gif" style="width: 177px; height: 20px; cursor: pointer; margin-bottom: -5px;">
+
+                                    <div id="loc4thdiv" name="loc4thdiv" style="overflow: auto; !important; height: 00px;">
+                                      <table style="width: 162px; background-color: white; display: none;" id="loc4thtable" name="loc4thtable">
+                                        <tbody>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|광주/광산구|></td></tr>
+                                        <tr id="gwangju01Cell" name="gwangju01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|광주/동구|></td></tr>
+                                        <tr id="gwangju02Cell" name="gwangju02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|광주/북구|></td></tr>
+                                        <tr id="gwangju03Cell" name="gwangju03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|광주/서구|></td></tr>
+                                        <tr id="gwangju04Cell" name="gwangju04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전남/광양시|></td></tr>
+                                        <tr id="jeonnam01Cell" name="jeonnam01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전남/나주시|></td></tr>
+                                        <tr id="jeonnam02Cell" name="jeonnam02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전남/목포시|></td></tr>
+                                        <tr id="jeonnam03Cell" name="jeonnam03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전남/순천시|></td></tr>
+                                        <tr id="jeonnam04Cell" name="jeonnam04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전남/여수시|></td></tr>
+                                        <tr id="jeonnam05Cell" name="jeonnam05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전북/익산시|></td></tr>
+                                        <tr id="jeonbuk01Cell" name="jeonbuk01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전북/전주시|></td></tr>
+                                        <tr id="jeonbuk02Cell" name="jeonbuk02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|전북/정읍시|></td></tr>
+                                        <tr id="jeonbuk03Cell" name="jeonbuk03Cell"></tr>
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="display:none; width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <div style="z-index: 1;  width: 100%; height: 149px;"></div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px; margin-top: 5px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <img id="loc5th" name="loc5th" src="/static/img/ticket/dropdownDisabled5.gif" style="width: 177px; height: 20px; cursor: pointer; margin-bottom: -5px;">
+
+                                    <div id="loc5thdiv" name="loc5thdiv" style="overflow: auto; !important; height: 00px;">
+                                      <table style="width: 162px; background-color: white; display: none;" id="loc5thtable" name="loc5thtable">
+                                        <tbody>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대전/동구|></td></tr>
+                                        <tr id="daejeon01Cell" name="daejeon01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대전/서구|></td></tr>
+                                        <tr id="daejeon02Cell" name="daejeon02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대전/유성구|></td></tr>
+                                        <tr id="daejeon03Cell" name="daejeon03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대전/중구|></td></tr>
+                                        <tr id="daejeon04Cell" name="daejeon04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|강원/강릉시|></td></tr>
+                                        <tr id="gangwon01Cell" name="gangwon01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|강원/속초시|></td></tr>
+                                        <tr id="gangwon02Cell" name="gangwon02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|강원/원주시|></td></tr>
+                                        <tr id="gangwon03Cell" name="gangwon03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|강원/인제군|></td></tr>
+                                        <tr id="gangwon04Cell" name="gangwon04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|강원/춘천시|></td></tr>
+                                        <tr id="gangwon05Cell" name="gangwon05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|세종|></td></tr>
+                                        <tr id="sejong01Cell" name="sejong01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/공주시|></td></tr>
+                                        <tr id="chungnam01Cell" name="chungnam01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/논산시|></td></tr>
+                                        <tr id="chungnam02Cell" name="chungnam02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/당진군|></td></tr>
+                                        <tr id="chungnam03Cell" name="chungnam03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/서산시|></td></tr>
+                                        <tr id="chungnam04Cell" name="chungnam04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/아산시|></td></tr>
+                                        <tr id="chungnam05Cell" name="chungnam05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/천안시|></td></tr>
+                                        <tr id="chungnam06Cell" name="chungnam06Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충남/홍성군|></td></tr>
+                                        <tr id="chungnam07Cell" name="chungnam07Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충북/음성군|></td></tr>
+                                        <tr id="chungbuk01Cell" name="chungbuk01Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충북/제천시|></td></tr>
+                                        <tr id="chungbuk02Cell" name="chungbuk02Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충북/진천군|></td></tr>
+                                        <tr id="chungbuk03Cell" name="chungbuk03Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충북/청주시|></td></tr>
+                                        <tr id="chungbuk04Cell" name="chungbuk04Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|충북/충주시|></td></tr>
+                                        <tr id="chungbuk05Cell" name="chungbuk05Cell"></tr>
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="display:none; width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <div style="z-index: 1;  width: 100%; height: 149px;"></div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px; margin-top: 5px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <img id="loc6th" name="loc6th" src="/static/img/ticket/dropdownDisabled6.gif" style="width: 177px; height: 20px; cursor: pointer; margin-bottom: -5px;">
+
+                                    <div id="loc6thdiv" name="loc6thdiv" style="height: 0px;">
+                                      <table style="width: 177px; background-color: white; display: none;" id="loc6thtable" name="loc6thtable">
+                                        <tbody>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|제주/제주시|></td></tr>
+                                        <tr id="jeju01Cell" name="jeju01Cell"></tr>
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                              <table style="display:none; width: 177px; border-collapse: initial; border-spacing: 0; vertical-align: center; margin-bottom: -3px;">
+                                <tbody>
+                                <tr>
+                                  <td>
+                                    <div style="z-index: 1;  width: 100%; height: 149px;"></div>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr style="height: 7px;"></tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+<script>
+  let loc1sttable = document.querySelector("#loc1sttable");
+  let loc1st = document.querySelector("#loc1st");
+  let loc1stdiv = document.querySelector("#loc1stdiv");
+
+  let loc2ndtable = document.querySelector("#loc2ndtable");
+  let loc2nd = document.querySelector("#loc2nd");
+  let loc2nddiv = document.querySelector("#loc2nddiv");
+
+  let loc3rdtable = document.querySelector("#loc3rdtable");
+  let loc3rd = document.querySelector("#loc3rd");
+  let loc3rddiv = document.querySelector("#loc3rddiv");
+
+  let loc4thtable = document.querySelector("#loc4thtable");
+  let loc4th = document.querySelector("#loc4th");
+  let loc4thdiv = document.querySelector("#loc4thdiv");
+
+  let loc5thtable = document.querySelector("#loc5thtable");
+  let loc5th = document.querySelector("#loc5th");
+  let loc5thdiv = document.querySelector("#loc5thdiv");
+
+  let loc6thtable = document.querySelector("#loc6thtable");
+  let loc6th = document.querySelector("#loc6th");
+  let loc6thdiv = document.querySelector("#loc6thdiv");
+
+  let check01 = 0;
+  let check02 = 0;
+  let check03 = 0;
+  let check04 = 0;
+  let check05 = 0;
+  let check06 = 0;
+
+  loc1st.addEventListener("click", () => {
+    if(check01===0){
+      loc1st.src = "/static/img/ticket/dropdownActive1.gif"
+      loc2nd.src = "/static/img/ticket/dropdownDisabled2.gif"
+      loc3rd.src = "/static/img/ticket/dropdownDisabled3.gif"
+      loc4th.src = "/static/img/ticket/dropdownDisabled4.gif"
+      loc5th.src = "/static/img/ticket/dropdownDisabled5.gif"
+      loc6th.src = "/static/img/ticket/dropdownDisabled6.gif"
+
+      check01 = 1;
+      check02 = 0;
+      check03 = 0;
+      check04 = 0;
+      check05 = 0;
+      check06 = 0;
+
+      loc1sttable.style.display = 'inline';
+      loc2ndtable.style.display = 'none';
+      loc3rdtable.style.display = 'none';
+      loc4thtable.style.display = 'none';
+      loc5thtable.style.display = 'none';
+      loc6thtable.style.display = 'none';
+
+      loc1stdiv.style = 'overflow: auto; !important;';
+      loc1stdiv.style.height = 150+'px';
+      loc2nddiv.style.height = 0+'px';
+      loc3rddiv.style.height = 0+'px';
+      loc4thdiv.style.height = 0+'px';
+      loc5thdiv.style.height = 0+'px';
+      loc6thdiv.style.height = 0+'px';
+
+
+    } else {
+      loc1st.src = "/static/img/ticket/dropdownDisabled1.gif";
+      check01 = 0;
+      loc1stdiv.style.height = 0+'px';
+    }
+  })
+
+  loc2nd.addEventListener("click", () => {
+    if(check02===0){
+      loc1st.src = "/static/img/ticket/dropdownDisabled1.gif"
+      loc2nd.src = "/static/img/ticket/dropdownActive2.gif"
+      loc3rd.src = "/static/img/ticket/dropdownDisabled3.gif"
+      loc4th.src = "/static/img/ticket/dropdownDisabled4.gif"
+      loc5th.src = "/static/img/ticket/dropdownDisabled5.gif"
+      loc6th.src = "/static/img/ticket/dropdownDisabled6.gif"
+
+      check01 = 0;
+      check02 = 1;
+      check03 = 0;
+      check04 = 0;
+      check05 = 0;
+      check06 = 0;
+
+      loc1sttable.style.display = 'none';
+      loc2ndtable.style.display = 'inline';
+      loc3rdtable.style.display = 'none';
+      loc4thtable.style.display = 'none';
+      loc5thtable.style.display = 'none';
+      loc6thtable.style.display = 'none';
+
+      loc1stdiv.style.height = 0+'px';
+      loc2nddiv.style = 'overflow: auto; !important;';
+      loc2nddiv.style.height = 150+'px';
+      loc3rddiv.style.height = 0+'px';
+      loc4thdiv.style.height = 0+'px';
+      loc5thdiv.style.height = 0+'px';
+      loc6thdiv.style.height = 0+'px';
+    } else {
+      loc2nd.src = "/static/img/ticket/dropdownDisabled2.gif";
+      check02 = 0;
+      loc2ndtable.style.display = 'none';
+      loc2nddiv.style.height = 0+'px';
+    }
+  })
+
+  loc3rd.addEventListener("click", () => {
+    if(check03===0){
+      loc1st.src = "/static/img/ticket/dropdownDisabled1.gif"
+      loc2nd.src = "/static/img/ticket/dropdownDisabled2.gif"
+      loc3rd.src = "/static/img/ticket/dropdownActive3.gif"
+      loc4th.src = "/static/img/ticket/dropdownDisabled4.gif"
+      loc5th.src = "/static/img/ticket/dropdownDisabled5.gif"
+      loc6th.src = "/static/img/ticket/dropdownDisabled6.gif"
+
+      check01 = 0;
+      check02 = 0;
+      check03 = 1;
+      check04 = 0;
+      check05 = 0;
+      check06 = 0;
+
+      loc1sttable.style.display = 'none';
+      loc2ndtable.style.display = 'none';
+      loc3rdtable.style.display = 'inline';
+      loc4thtable.style.display = 'none';
+      loc5thtable.style.display = 'none';
+      loc6thtable.style.display = 'none';
+
+      loc1stdiv.style.height = 0+'px';
+      loc2nddiv.style.height = 0+'px';
+      loc3rddiv.style = 'overflow: auto; !important;';
+      loc3rddiv.style.height = 150+'px';
+      loc4thdiv.style.height = 0+'px';
+      loc5thdiv.style.height = 0+'px';
+      loc6thdiv.style.height = 0+'px';
+    } else {
+      loc3rd.src = "/static/img/ticket/dropdownDisabled3.gif";
+      check03 = 0;
+      loc3rdtable.style.display = 'none';
+      loc3rddiv.style.height = 0+'px';
+    }
+  })
+
+  loc4th.addEventListener("click", () => {
+    if(check04===0){
+      loc1st.src = "/static/img/ticket/dropdownDisabled1.gif"
+      loc2nd.src = "/static/img/ticket/dropdownDisabled2.gif"
+      loc3rd.src = "/static/img/ticket/dropdownDisabled3.gif"
+      loc4th.src = "/static/img/ticket/dropdownActive4.gif"
+      loc5th.src = "/static/img/ticket/dropdownDisabled5.gif"
+      loc6th.src = "/static/img/ticket/dropdownDisabled6.gif"
+
+      check01 = 0;
+      check02 = 0;
+      check03 = 0;
+      check04 = 1;
+      check05 = 0;
+      check06 = 0;
+
+      loc1sttable.style.display = 'none';
+      loc2ndtable.style.display = 'none';
+      loc3rdtable.style.display = 'none';
+      loc4thtable.style.display = 'inline';
+      loc5thtable.style.display = 'none';
+      loc6thtable.style.display = 'none';
+
+
+      loc1stdiv.style = 0+'px';
+      loc2nddiv.style = 0+'px';
+      loc3rddiv.style = 0+'px';
+      loc4thdiv.style = 'overflow: auto; !important;';
+      loc4thdiv.style.height = 150+'px';
+      loc5thdiv.style = 0+'px';
+      loc6thdiv.style = 0+'px';
+    } else {
+      loc4th.src = "/static/img/ticket/dropdownDisabled4.gif";
+      check04 = 0;
+      loc4thtable.style.display = 'none';
+      loc4thdiv.style.height = 0+'px';
+    }
+  })
+
+  loc5th.addEventListener("click", () => {
+    if(check05===0){
+      loc1st.src = "/static/img/ticket/dropdownDisabled1.gif"
+      loc2nd.src = "/static/img/ticket/dropdownDisabled2.gif"
+      loc3rd.src = "/static/img/ticket/dropdownDisabled3.gif"
+      loc4th.src = "/static/img/ticket/dropdownDisabled4.gif"
+      loc5th.src = "/static/img/ticket/dropdownActive5.gif"
+      loc6th.src = "/static/img/ticket/dropdownDisabled6.gif"
+
+      check01 = 0;
+      check02 = 0;
+      check03 = 0;
+      check04 = 0;
+      check05 = 1;
+      check06 = 0;
+
+      loc1sttable.style.display = 'none';
+      loc2ndtable.style.display = 'none';
+      loc3rdtable.style.display = 'none';
+      loc4thtable.style.display = 'none';
+      loc5thtable.style.display = 'inline';
+      loc6thtable.style.display = 'none';
+
+      loc1stdiv.style = 0+'px';
+      loc2nddiv.style = 0+'px';
+      loc3rddiv.style = 0+'px';
+      loc4thdiv.style = 0+'px';
+      loc5thdiv.style = 'overflow: auto; !important;';
+      loc5thdiv.style.height = 150+'px';
+      loc6thdiv.style = 0+'px';
+    } else {
+      loc5th.src = "/static/img/ticket/dropdownDisabled5.gif";
+      check05 = 0;
+      loc5thtable.style.display = 'none';
+      loc5thdiv.style.height = 0+'px';
+    }
+  })
+
+  loc6th.addEventListener("click", () => {
+    if(check06===0){
+      loc1st.src = "/static/img/ticket/dropdownDisabled1.gif"
+      loc2nd.src = "/static/img/ticket/dropdownDisabled2.gif"
+      loc3rd.src = "/static/img/ticket/dropdownDisabled3.gif"
+      loc4th.src = "/static/img/ticket/dropdownDisabled4.gif"
+      loc5th.src = "/static/img/ticket/dropdownDisabled5.gif"
+      loc6th.src = "/static/img/ticket/dropdownActive6.gif"
+
+      check01 = 0;
+      check02 = 0;
+      check03 = 0;
+      check04 = 0;
+      check05 = 0;
+      check06 = 1;
+
+      loc1sttable.style.display = 'none';
+      loc2ndtable.style.display = 'none';
+      loc3rdtable.style.display = 'none';
+      loc4thtable.style.display = 'none';
+      loc5thtable.style.display = 'none';
+      loc6thtable.style.display = 'inline';
+
+      loc1stdiv.style = 0+'px';
+      loc2nddiv.style = 0+'px';
+      loc3rddiv.style = 0+'px';
+      loc4thdiv.style = 0+'px';
+      loc5thdiv.style = 0+'px';
+      loc6thdiv.style.height = 177+'px';
+
+    } else {
+      loc6th.src = "/static/img/ticket/dropdownDisabled6.gif";
+      check06 = 0;
+      loc6thtable.style.display = 'none';
+      loc6thdiv.style.height = 0+'px';
+    }
+  })
+</script>
+
+</html>
