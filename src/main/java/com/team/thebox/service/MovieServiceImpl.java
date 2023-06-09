@@ -70,4 +70,9 @@ public class MovieServiceImpl implements MovieService {
 
         return result;
     }
+
+    @Override
+    public List<Movie> readTsales() {
+        return movdao.selectTsales();
+    }
 }

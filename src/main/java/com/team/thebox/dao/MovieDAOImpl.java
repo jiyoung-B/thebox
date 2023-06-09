@@ -68,7 +68,7 @@ public class MovieDAOImpl implements MovieDAO {
 //    public List<String> selectMovieTitle(long movno) {
 //        return movieRepository.findMovTitleByMovno(movno);
 //    }
-    @Override //now
+    @Override //all now soon
     public Map<String, Object> selectMovie() {
         Map<String, Object> movs = new HashMap<>();
         movs.put("mlist", movieRepository.findAll() );
@@ -154,12 +154,18 @@ public class MovieDAOImpl implements MovieDAO {
             starDto.setMovgrade((String) data[3]);
             starDto.setMovreleasedate((String) data[4]);
             starDto.setMovmainposter((String) data[5]);
-            starDto.setAvgStar((Double) data[6]);
+            starDto.setTsales((Double) data[6]);
+            starDto.setAvgStar((Double) data[7]);
             movieList.add(starDto);
         }
 
         movs.put("mlist", movieList);
         return movs;
+    }
+
+    @Override
+    public List<Movie> selectTsales() {
+        return  movieRepository.findAllByOrderByTsalesDesc();
     }
 
     @Override
