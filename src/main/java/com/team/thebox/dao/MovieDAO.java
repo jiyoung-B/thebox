@@ -2,7 +2,6 @@ package com.team.thebox.dao;
 
 import com.team.thebox.model.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,4 +47,6 @@ public interface MovieDAO {
     List<Movie> selectTsales();
 
     int insertTicket(Ticketing ticketing);
+
+    List<TicketMovie> selectMovielist(Ticketing ticketing);
 }

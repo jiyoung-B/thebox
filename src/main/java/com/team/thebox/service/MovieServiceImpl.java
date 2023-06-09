@@ -1,10 +1,7 @@
 package com.team.thebox.service;
 
 import com.team.thebox.dao.MovieDAO;
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieReply;
-import com.team.thebox.model.Movielocation;
-import com.team.thebox.model.Ticketing;
+import com.team.thebox.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +66,11 @@ public class MovieServiceImpl implements MovieService {
         if(movdao.insertTicket(ticketing)>0) result = true;
 
         return result;
+    }
+
+    @Override
+    public List<TicketMovie> readMovielist(Ticketing ticketing) {
+        return movdao.selectMovielist(ticketing);
     }
 
     @Override
