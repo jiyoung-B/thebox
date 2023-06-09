@@ -25,10 +25,10 @@ public class BookingDetails {
     private String cinematype;
     private String region;
     private String screennum;
-    private String seats;
-    private LocalDateTime viewingday;
     private int adult;
     private int teen;
+    private String seats;
+    private LocalDateTime viewingday;
     private int totalprice;
 
     @CreatedDate

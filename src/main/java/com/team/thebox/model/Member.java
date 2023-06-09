@@ -44,6 +44,7 @@ public class Member {
     private String pictype;
 
 
+
     @Transient
     @NotBlank(message = "전화번호는 필수항목입니다!!")
     private String tel2;
