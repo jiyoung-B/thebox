@@ -12,7 +12,12 @@
 
             <th:block th:if="${not #strings.isEmpty(session.UID)}">
                 <button type="button" class="btn btn-dark mt-2" id="lgoutbtn">로그아웃</button>
-                <button type="button" class="btn btn-success mt-2"><a th:href="|/mypage/mymoti?userid=${session.UID}|" style="text-decoration: none; color: white;">회원정보</a></button>
+                <th:block th:if="${session.UID} eq 'admin'">
+                    <button type="button" class="btn btn-success mt-2"><a th:href="|/adminindex|" style="text-decoration: none; color: white;">관리자</a></button>
+                </th:block>
+                <th:block th:if="${session.UID} ne 'admin'">
+                    <button type="button" class="btn btn-success mt-2"><a th:href="|/mypage/mymoti?userid=${session.UID}|" style="text-decoration: none; color: white;">회원정보</a></button>
+                </th:block>
             </th:block>
         </th:block>
         </div>

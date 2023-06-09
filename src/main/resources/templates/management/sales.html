@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/template}">
+
+<th:block layout:fragment="admincontent">
+
+  <!-- Content Wrapper. Contains page content // 본문-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) // 본문 헤더 -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>매출 관리</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">매출 관리</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content 본문 -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="row">
+
+              <div class="col-xl-8 col-lg-7">
+
+                <!-- Area Chart -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">월별 매출</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <canvas id="myAreaChart"></canvas>
+                    </div>
+                    <hr>
+                    <!--Styling for the area chart can be found in the
+                    <code>/js/demo/chart-area-demo.js</code> file.-->
+                  </div>
+
+                </div>
+
+                <!-- Bar Chart -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">6월 상영 영화별 누적 매출액</h6>
+                  </div>
+                  <div class="card-body" style="height: 350px !important;">
+                    <div class="chart-bar">
+                      <canvas id="accumulatedSalesChart" style="height: 300px !important;"></canvas>
+                    </div>
+                    <hr>
+                    <!--Styling for the bar chart can be found in the
+                    <code>/js/demo/chart-bar-demo.js</code> file.-->
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- Donut Chart -->
+              <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">총매출 영화사 비율</h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-pie pt-4">
+                      <canvas id="myPieChart"></canvas>
+                    </div>
+                    <hr>
+                    <!--Styling for the donut chart can be found in the
+                    <code>/js/demo/chart-pie-demo.js</code> file.-->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/static/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/static/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/static/js/demo/chart-area-demo.js"></script>
+  <script src="/static/js/demo/chart-pie-demo.js"></script>
+  <script src="/static/js/demo/chart-bar-demo.js"></script>
+
+  <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+  <script src=https://code.jquery.com/jquery-3.6.0.js></script>
+
+</th:block>
+
+</html>
