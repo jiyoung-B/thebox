@@ -31,14 +31,14 @@ public class TicketController {
 
     @PostMapping("/ticketing")
     public String buyticket3(Ticketing ticketing, HttpSession sess) {
-        System.out.println("controller : 1");
-        if(sess.getAttribute("UID")==null) {
+        String viewName = "ticket/ticketing";
+        if(sess.getAttribute("UID")!=null) {
         } else {
             ticketing.setUserid(sess.getAttribute("UID").toString());
-            System.out.println("controller : "+ticketing);
-            System.out.println(movsrv.newTicket(ticketing));
+            if(movsrv.newTicket(ticketing))viewName = "/";
+
         }
-        return null;
+        return viewName;
     }
 
     @GetMapping("/locationSelect")
