@@ -42,25 +42,23 @@ public class Member {
 
     private String profilepic;
     private String pictype;
+
+
+    @Transient
+    @NotBlank(message = "전화번호는 필수항목입니다!!")
+    private String tel2;
+
+    @Transient
+    @NotBlank(message = "전화번호는 필수항목입니다!!")
+
+    private String tel3;
+
+    @Transient
+    @NotBlank(message = "이메일 입력하셔야 됩니다. ")
+    private String email1;
+
+    @Transient
+    @NotBlank(message = "이메일 입력하셔야 됩니다. ")
+    private String email2;
+
 }
-//
-//    // -----------------------------
-//
-//    /*@Transient
-//    @NotBlank(message = "전화번호는 필수항목입니다!!")
-//    private String tel2;
-//
-//    @Transient
-//    @NotBlank(message = "전화번호는 필수항목입니다!!")
-//
-//    private String tel3;
-//
-//    @Transient
-//    @NotBlank(message = "이메일 입력하셔야 됩니다. ")
-//    private String email1;
-//
-//    @Transient
-//    @NotBlank(message = "이메일 입력하셔야 됩니다. ")
-//    private String email2;
-//
-//}
