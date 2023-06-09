@@ -14,6 +14,7 @@ public class StarTDO {
         private String movgrade;
         private String movreleasedate;
         private String movmainposter;
+        private Double tsales;
         private Double avgStar;
 
         // getter 및 setter 메서드

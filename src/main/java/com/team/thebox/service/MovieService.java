@@ -27,5 +27,7 @@ public interface MovieService {
 
     List<Movielocation> readMovieLocation();
 
+    List<Movie> readTsales();
+
     boolean newTicket(Ticketing ticketing);
 }

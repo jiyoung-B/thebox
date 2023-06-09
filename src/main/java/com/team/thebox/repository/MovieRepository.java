@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
+    
+
+
 //
 //    @Query("SELECT m.movtitle FROM Movie m WHERE m.movno = :movno")
 //    List<String> findMovTitleByMovno(@Param("movno") long movno);
@@ -25,12 +28,13 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 //        "LEFT JOIN MoviePoster mp ON m.movno = mp.movie.movno " +
 //        "GROUP BY m.movno, m.movtitle, m.movactor, m.movgrade, m.movreleasedate, mp.url " +
 //        "ORDER BY avg_star DESC")
-    @Query("SELECT m.movno, m.movtitle, m.movactor, m.movgrade, m.movreleasedate,m.movmainposter, AVG(r.star) AS avg_star " +
+    @Query("SELECT m.movno, m.movtitle, m.movactor, m.movgrade, m.movreleasedate,m.movmainposter, m.tsales, AVG(r.star) AS avg_star " +
             "FROM Movie m JOIN MovieReply r ON m.movno = r.movno " +
-            "GROUP BY m.movno, m.movtitle, m.movactor, m.movgrade, m.movreleasedate, m.movmainposter " +
+            "GROUP BY m.movno, m.movtitle, m.movactor, m.movgrade, m.movreleasedate, m.movmainposter, m.tsales " +
             "ORDER BY avg_star DESC")
-//
     List<Object[]> findMoviesOrderByAvgStarDesc();
 
 
+    @Query("from Movie order by tsales desc")
+    List<Movie> findAllByOrderByTsalesDesc();
 }

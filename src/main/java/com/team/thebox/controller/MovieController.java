@@ -1,5 +1,6 @@
 package com.team.thebox.controller;
 
+import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieReply;
 import com.team.thebox.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -44,6 +46,18 @@ public class MovieController {
         Map<String, Object> movs = movsrv.readStar();
 
         mv.addObject("mlist", movs.get("mlist") );
+        mv.setViewName("movie/now");
+
+        return mv ;
+    }
+
+    @GetMapping("/readTsales")
+    public ModelAndView readTsales(){
+        ModelAndView mv = new ModelAndView();
+
+        List<Movie> movs = movsrv.readTsales();
+
+        mv.addObject("mlist", movs );
         mv.setViewName("movie/now");
 
         return mv ;
