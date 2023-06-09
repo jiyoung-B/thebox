@@ -46,4 +46,9 @@ public interface AMovieDAO {
     //void insertMovieStillcuts(List<MovieStillcut> stillcuts);
 
     Long insertMovieStillcut(MovieStillcut ms);
+
+    List<Movielocation> selectLocation();
+
+
+    Movielocation selectMovieLocation(Long ciplace);
 }

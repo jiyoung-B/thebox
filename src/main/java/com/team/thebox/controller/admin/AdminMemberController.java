@@ -22,6 +22,7 @@ public class AdminMemberController {
         List<Member> members = admmemsrv.getAllMembers();
         model.addAttribute("memlist", members);
         System.out.println("멤버리스트"+ members);
+
         return "management/memberlist";
 
     }

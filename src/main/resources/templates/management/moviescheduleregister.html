@@ -45,9 +45,7 @@
                            for="ciplace">상영관 선택</label>
                     <div class="col-6">
                       <select name="ciplace" class="form-control" id="ciplace">
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
+                          <option th:each="loc : ${location}" th:value="${loc.LOCATIONNUM}" th:text="${loc.DISTRICTNAME}"></option>
                       </select>
 
                     </div>

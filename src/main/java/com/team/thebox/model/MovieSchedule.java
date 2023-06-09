@@ -23,7 +23,7 @@ public class MovieSchedule extends BaseEntity{
     private Long movno;
 
     @Column
-    private String ciplace;
+    private Long ciplace;
 
     @Column
     private String odate;
