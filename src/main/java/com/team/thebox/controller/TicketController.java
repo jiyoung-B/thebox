@@ -4,7 +4,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
-import com.team.thebox.model.MovieSelect;
+import com.team.thebox.model.Movie;
 import com.team.thebox.model.Ticketing;
 import com.team.thebox.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +31,14 @@ public class TicketController {
 
     @PostMapping("/ticketing")
     public String buyticket3(Ticketing ticketing, HttpSession sess) {
-        System.out.println("controller : 1");
+        String viewName = "ticket/ticketing";
         if(sess.getAttribute("UID")==null) {
         } else {
             ticketing.setUserid(sess.getAttribute("UID").toString());
-            System.out.println("controller : "+ticketing);
-            System.out.println(movsrv.newTicket(ticketing));
+            if(movsrv.newTicket(ticketing))viewName = "redirect:mypage/myticket";
+
         }
-        return null;
+        return viewName;
     }
 
     @GetMapping("/locationSelect")
@@ -67,7 +67,7 @@ public class TicketController {
 
     @PostMapping("/movieSelect")
     public String ticketSub03(Model m) {
-        m.addAttribute("movieSelect", new MovieSelect());
+        m.addAttribute("movieSelect", new Movie());
         return "ticket/movieSelect";
     }
 
@@ -80,7 +80,6 @@ public class TicketController {
     public String buyticket2() {return "ticket/seatSelect";}
 
     public TicketController() {
-        // REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
         this.api = new IamportClient("5417181408372670","fR29EGuFbKeEn7WtDW47RDWjK29DOfL2TVBuZ2RdYoYyKv6xXn6zlIICycfNFwynfV7hz3G9qAB3Mfed");
     }
 

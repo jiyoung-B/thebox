@@ -191,7 +191,6 @@ public class MovieDAOImpl implements MovieDAO {
     @Override
     public int insertTicket(Ticketing ticketing) {
         int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
-        System.out.println("DAO : "+result);
 
         return result;
     }

@@ -26,6 +26,8 @@ public class Ticketing {
     @NotBlank(message = "영화관을 선택해주세요!")
     private String district;
 
+    private String cinematype;
+
     @NotBlank(message = "날짜를 선택해주세요!")
     private String movdate;
 
@@ -37,6 +39,12 @@ public class Ticketing {
 
     @NotBlank(message = "좌석을 선택해주세요!")
     private String seat;
+
+    private String movseatadult;
+
+    private String movseatteen;
+
+    private String movtotalprice;
 
     @NotBlank(message = "결제를 진행해주세요!")
     private String rsp;

@@ -17,6 +17,7 @@
   /*<![CDATA[*/
 
   let loclist = [[${loclist}]];
+  let cinematype = parent.document.querySelector("#cinematype");
   let district = parent.document.querySelector("#district");
   let dvPlaceName = parent.document.querySelector("#dvPlaceName");
 
@@ -33,7 +34,9 @@
       td.style.display = 'block';
       td.style.cursor = 'pointer'
       td.addEventListener("click", ()=>{
-        district.value = td.innerText;
+        let splitDistrict = td.innerText.split(" ");
+        cinematype.value = splitDistrict[0];
+        district.value = splitDistrict[1];
         dvPlaceName.innerHTML = td.innerText;
         dvPlaceName.style.fontsize = 10+"px";
       })

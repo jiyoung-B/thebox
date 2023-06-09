@@ -30,7 +30,7 @@ public class MovieSchedule extends BaseEntity{
 
 
     @Column
-    private String stime;
+    private String stime;   // 영화 시작시간
 
     @Column
     private String etime;

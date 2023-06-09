@@ -217,7 +217,7 @@
                           </tr>
                           <tr>
                             <td style="background-image: url(http://ticketimage.interpark.com/TicketImage/event/080519_m/pay_bg_03.gif); height:56px; text-align:center;">
-                              <span style="color: #FFFFFF; font-size: 12px;"><b>총 결제 금액 </b></span>
+                              <span id="totalpay" name="totalpay" style="color: #FFFFFF; font-size: 12px;"><b>총 결제 금액 </b></span>
                               <span style="color: #FFFFFF; font-size: 12px;"><span id="spnTotalAmt" class="month_b"></span><b>원</b></span>
                             </td>
                           </tr>
@@ -237,12 +237,16 @@
     </div>
   </div>
   <form type="hidden" id="mvfrm" name="mvfrm">
+    <input type="hidden" id="cinematype" name="cinematype">
     <input type="hidden" id="district" name="district">
     <input type="hidden" id="movdate" name="movdate">
     <input type="hidden" id="movname" name="movname">
     <input type="hidden" id="movtime" name="movtime">
     <input type="hidden" id="seat" name="seat">
     <input type="hidden" id="rsp" name="rsp">
+    <input type="hidden" id="movseatadult" name="movseatadult">
+    <input type="hidden" id="movseatteen" name="movseatteen">
+    <input type="hidden" id="movtotalprice" name="movtotalprice">
   </form>
 </th:block>
 </html>
