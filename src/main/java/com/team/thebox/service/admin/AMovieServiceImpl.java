@@ -6,6 +6,7 @@ import com.team.thebox.dto.MovieRequestDto;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.model.MovieStillcut;
+import com.team.thebox.model.Movielocation;
 import com.team.thebox.utils.MovieUtils;
 import com.team.thebox.utils.S3Uploader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -285,6 +286,11 @@ public class AMovieServiceImpl implements AMovieService {
 
         return (id > 0) ? true : false;
 
+    }
+
+    @Override
+    public List<Movielocation> readLocation() {
+        return amovdao.selectLocation();
     }
 
 

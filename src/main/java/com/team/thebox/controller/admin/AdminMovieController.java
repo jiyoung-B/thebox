@@ -4,6 +4,7 @@ import com.team.thebox.dto.MovieDTO;
 import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.Movielocation;
 import com.team.thebox.service.admin.AMovieScheduleService;
 import com.team.thebox.service.admin.AMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,9 +149,11 @@ public class AdminMovieController {
 
         List<Movie> movies = admmvsrv.readMovnoAndTitle();
         System.out.println("영화등록"+movies);
+        List<Movielocation> location = admmvsrv.readLocation();
 
 
         model.addAttribute("movies", movies); // 모델에 영화 리스트 추가
+        model.addAttribute("location", location); // 모델에 영화 리스트 추가
 
 
         return "management/moviescheduleregister";

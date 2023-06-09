@@ -17,7 +17,7 @@
             </div>
             <div class="col text-dark ">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                     <button type="button" class="btn btn-secondary  btn-sm">예매순</button>
+                     <button type="button" class="btn btn-secondary  btn-sm" id="tsales">예매순</button>
                      <button type="button" class="btn btn-secondary btn-sm" id="upup">평점순</button>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                             <div class="caption mt-1" >
                                 <ul  class="list-unstyled block text-center">
                                     <li><h4><img th:src="|/static/img/${mo.movgrade}.png|" class="mb-2"><b th:text="${mo.movtitle}">가디어오브 갤러시</b></h4></li>
-                                    <li><b th:text="|예매율 00.0 / 개봉일 ${mo.movreleasedate}|">예매율 00.0% | 개봉일 2023.05.15</b></li>
+                                    <li><b th:text="|예매율 ${mo.tsales}% / 개봉일 ${mo.movreleasedate}|">예매율 00.0% | 개봉일 2023.05.15</b></li>
                                     <li th:text="${#calendars.format(#calendars.createNow(), 'yyyyMMdd')}">오늘날짜</li>
                                 </ul>
                             </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <table style="border-spacing: 1px; background-color: #F5F5F5; border:1px #CCCCCC solid;">
   <tbody>
   <tr>
@@ -59,11 +59,12 @@
 
 <script type="text/javascript" th:inline="javascript">
   /*<![CDATA[*/
-    let mvfrmdate = parent.document.querySelector("#mvfrmdate");
+    let movdate = parent.document.querySelector("#movdate");
     let dvPlayDate = parent.document.querySelector("#dvPlayDate");
     let nowMonth = new Date([[${today}]]);
     let today = new Date([[${today}]]);
     let today2 = new Date([[${today}]]);
+    let mvfrm = parent.document.querySelector("#mvfrm");
     today.setHours(0,0,0,0);
 
   buildCalendar = () => {
@@ -108,9 +109,10 @@
         nowColumn.style.cursor = 'pointer'
         nowColumn.addEventListener("click", () => {
           let reservation = [[${today}]].substring(0,8);
-          mvfrmdate.innerText = reservation+nowColumn.innerText;
+          movdate.value = reservation+nowColumn.innerText;
           dvPlayDate.innerHTML = reservation+nowColumn.innerText;
           dvPlayDate.style.fontsize = 10+"px";
+          callMovie();
         })
       } else {
         nowColumn.className = "futureDay";
@@ -119,9 +121,10 @@
           nowColumn.style.cursor = 'pointer'
           nowColumn.addEventListener("click", () => {
             let reservation = [[${today}]].substring(0,8);
-            mvfrmdate.innerText = reservation+nowColumn.innerText;
+            movdate.value = reservation+nowColumn.innerText;
             dvPlayDate.innerHTML = reservation+nowColumn.innerText;
             dvPlayDate.style.fontsize = 10+"px";
+            callMovie();
           })
         }
       }
@@ -131,22 +134,45 @@
   buildCalendar();
 
   // 이전달 버튼 클릭
-  function prevCalendar() {
+  function prevCalendar () {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());
     buildCalendar();
   }
   // 다음달 버튼 클릭
-  function nextCalendar() {
+  function nextCalendar () {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());
     buildCalendar();
   }
 
-  function leftPad(value) {
+  function leftPad (value) {
     if (value < 10) {
       value = "0" + value;
       return value;
     }
     return value;
+  }
+
+  function callMovie () {
+
+    let obj = {
+      district : mvfrm.district.value,
+      movdate : mvfrm.movdate.value
+    }
+
+    $.ajax({
+      type : "POST",
+      url : "/ticket/loadMovielist",
+      dataType: 'json',
+      contentType:"application/json;charset=UTF-8",
+      data : JSON.stringify(obj),
+    }).done(function(data) {
+      console.log(data);
+      if (!data) {
+        alert("실패!");
+      } else {
+        alert("실패!");
+      }
+    })
   }
 
   /*]]>*/

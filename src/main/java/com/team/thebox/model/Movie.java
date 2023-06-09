@@ -39,6 +39,9 @@ public class Movie extends BaseEntity{
     @Column
     private String movruntime;          // 런타임(분)
 
+    @Column
+    private  Double tsales;              //에매율
+
     private String uuid;
     @Lob
     @Column

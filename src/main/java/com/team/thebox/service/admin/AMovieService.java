@@ -4,6 +4,7 @@ import com.team.thebox.dto.MovieDTO;
 import com.team.thebox.dto.MovieRequestDto;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.Movielocation;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -41,4 +42,6 @@ public interface AMovieService {
     Map<String, Object> newMovie(Movie movie);
 
     boolean newMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo);
+
+    List<Movielocation> readLocation();
 }

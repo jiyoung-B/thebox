@@ -20,15 +20,18 @@ public class AMovieDAOImpl implements AMovieDAO {
     private final MovieReplyRepository movieReplyRepository;
     private final MovieScheduleRepository movieScheduleRepository;
     private final BookedRepository bookedRepository;
+    private final MovieLocationRepository movieLocationRepository;
 
     @Autowired
-    public AMovieDAOImpl(MovieRepository movieRepository, MovieStillcutRepository movieStillcutRepository, MovieAttachRepository movieAttachRepository, MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository, BookedRepository bookedRepository) {
+    public AMovieDAOImpl(MovieRepository movieRepository, MovieStillcutRepository movieStillcutRepository, MovieAttachRepository movieAttachRepository, MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository, BookedRepository bookedRepository,
+                         MovieLocationRepository movieLocationRepository) {
         this.movieRepository = movieRepository;
         this.movieStillcutRepository = movieStillcutRepository;
         this.movieAttachRepository = movieAttachRepository;
         this.movieReplyRepository = movieReplyRepository;
         this.movieScheduleRepository = movieScheduleRepository;
         this.bookedRepository = bookedRepository;
+        this.movieLocationRepository = movieLocationRepository;
     }
 
     @Override
@@ -141,5 +144,19 @@ public class AMovieDAOImpl implements AMovieDAO {
     public Long insertMovieStillcut(MovieStillcut ms) {
         return movieStillcutRepository.save(ms).getId();
     }
+//    @Override
+//    public List<Movie> selectMovnoAndTitle() {
+//        return movieRepository.findAll();
+//    }
+    @Override
+    public List<Movielocation> selectLocation() {
+        return movieLocationRepository.findAll();
+    }
+
+    @Override
+    public Movielocation selectMovieLocation(Long ciplace) {
+        return movieLocationRepository.findDistrictNameByLocationNum(ciplace);
+    }
+
 
 }

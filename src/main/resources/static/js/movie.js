@@ -63,25 +63,9 @@ upup?.addEventListener('click', () => {
     location.href="/movie/readStar?";
 });
 
-function showCurrentMovies() {
-    // 모든 영화 요소를 가져옵니다.
-    var movies = document.getElementsByClassName('col-sm-3');
+const tsales = document.querySelector("#tsales");
+tsales?.addEventListener('click', () => {
+    location.href="/movie/readTsales";
+});
 
-    // 오늘 날짜를 가져옵니다.
-    var today = new Date();
 
-    // 각 영화 요소에 대하여 반복합니다.
-    for (var i = 0; i < movies.length; i++) {
-        var movie = movies[i];
-
-        // 영화의 개봉일을 가져옵니다.
-        var releaseDate = new Date(movie.getAttribute('data-release-date'));
-
-        // 개봉일이 오늘보다 이전인 경우에만 보여줍니다.
-        if (releaseDate < today) {
-            movie.style.display = 'block';
-        } else {
-            movie.style.display = 'none';
-        }
-    }
-}
