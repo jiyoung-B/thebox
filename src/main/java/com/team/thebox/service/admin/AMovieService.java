@@ -44,4 +44,6 @@ public interface AMovieService {
     boolean newMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo);
 
     List<Movielocation> readLocation();
+
+    Movie getMovieByMovno(Long movno);
 }

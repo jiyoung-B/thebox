@@ -84,25 +84,25 @@ public class AdminMovieController {
     @GetMapping("/view")
     public ModelAndView view(@RequestParam Long movno){
         ModelAndView mv = new ModelAndView();
-        mv.addObject("movie", admmvsrv.readOneMovie(movno));
+        mv.addObject("mov", admmvsrv.readOneMovie(movno));
         mv.setViewName("management/movieview");
         return mv;
     }
 
     // movie 수정화면 get
     // movie 수정화면 get
-//    @GetMapping("/modify/{movno}")
-//    public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
-//        Movie movie = amovdao.selectOneMovie(movno); // 영화 정보 불러오기
-//        MovieStillcut stillcut = movie.getMovieStillcut(); // 스틸컷 정보 가져오기
-//
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("management/movieedit");
-//
-//        mv.addObject("movie", movie);
-//        mv.addObject("stillcut", stillcut); // 스틸컷 정보 추가
-//        return mv;
-//    }
+    @GetMapping("/modify/{movno}")
+    public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
+        Object movie = admmvsrv.readOneMovie(movno); // 영화 정보 불러오기
+       // MovieStillcut stillcut = movie.getMovieStillcut(); // 스틸컷 정보 가져오기
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("management/movieedit");
+
+        mv.addObject("movie", movie);
+        //mv.addObject("stillcut", stillcut); // 스틸컷 정보 추가
+        return mv;
+    }
 
 
     // movie 수정 post
@@ -150,7 +150,7 @@ public class AdminMovieController {
     public String showScheduleForm(Model model){
 
         List<Movie> movies = admmvsrv.readMovnoAndTitle();
-        System.out.println("스케줄등록"+movies);
+        System.out.println("영화등록"+movies);
         List<Movielocation> location = admmvsrv.readLocation();
 
 

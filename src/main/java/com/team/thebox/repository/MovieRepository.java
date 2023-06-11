@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     
@@ -37,4 +38,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("from Movie order by tsales desc")
     List<Movie> findAllByOrderByTsalesDesc();
+
+    Optional<Movie> findByMovno(Long movno);
+
+    Movie getMovieByMovno(Long movno);
 }

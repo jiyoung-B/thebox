@@ -294,6 +294,11 @@ public class AMovieServiceImpl implements AMovieService {
         return amovdao.selectLocation();
     }
 
+    @Override
+    public Movie getMovieByMovno(Long movno) {
+        return amovdao.getMovieByMovno(movno);
+    }
+
 
     private String saveFile(byte[] fileData, String fileType) throws IOException {
         String directory = fileType.equals("image") ? imageDirectory : videoDirectory;

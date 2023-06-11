@@ -51,4 +51,6 @@ public interface AMovieDAO {
 
 
     Movielocation selectMovieLocation(Long ciplace);
+
+    Movie getMovieByMovno(Long movno);
 }

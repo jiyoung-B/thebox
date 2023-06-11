@@ -47,17 +47,6 @@ public class AdminMovieInfoController {
 
     }
 
-//    @GetMapping("/details/{movno}")
-//    public String view(@PathVariable Long movno, Model model){
-//        Movie movie = admmvsrv.readOneMovie(movno);
-//        //List<MovieStillcut> stillcuts = ["1", "2"]; /*movie.ge.getStillcuts()*/
-//        model.addAttribute("mov", movie);
-//        System.out.println("무비"+ movie);
-//        //model.addAttribute("stillcuts", stillcuts);
-//        //System.out.println("스틸컷"+ stillcuts);
-//       // return "management/movieview";
-//        return "management/movieview";
-//    }
     @GetMapping("/list")
     public String showAllMovie(Model model) {
         List<Movie> movies = admmvsrv.getAllMovies();
@@ -73,6 +62,54 @@ public class AdminMovieInfoController {
         mv.setViewName("management/movieview");
 
         return mv;
+    }
+
+    @GetMapping("/modify/{movno}")
+    public String showMovieForm(@PathVariable Long movno, Model model) {
+        Object movie = admmvsrv.readOneMovie(movno);
+        model.addAttribute("movie", movie);
+        return "management/movieview";
+    }
+
+//    @GetMapping("/modify/{movno}")
+//    public String showModifyMovieForm(@PathVariable Long movno, Model model) {
+//
+//        Movie movie = admmvsrv.getMovieByMovno(movno);
+//        model.addAttribute("무비뷰즈", movie);
+//        System.out.println(movno);
+//        //Object moviedetail = admmvsrv.readOneMovie(movno);
+//
+//
+////        ModelAndView mv = new ModelAndView();
+////        mv.setViewName("management/movieedit");
+//
+//
+//        return "management/movieedit";
+//    }
+
+
+
+//    @PostMapping("/modify")
+//    public String modifyMovieOK(Movie movie, List<MultipartFile> stillcuts) {
+//        String viewPage = "error";
+//
+//        if (!stillcuts.isEmpty()) {
+//            viewPage = admmvsrv.createMovieWithStillcuts(movie, stillcuts);
+//        } else {
+//            viewPage = admmvsrv.updateMovie(movie);
+//        }
+//
+//        return viewPage;
+//    }
+
+    @GetMapping("/remove/{movno}")
+    public String removeMovie(@PathVariable Long movno) {
+        if (admmvsrv.removeMovieByMovno(movno)) {
+            return "redirect:/management/movieinfo/list";
+        } else {
+            return "error";
+        }
+
     }
 
 

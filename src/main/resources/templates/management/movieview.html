@@ -70,7 +70,6 @@
                 <div class="col-sm-3" >
                     <div class="thumbnail">
                         <img th:src="@{${mov.movie.movmainposter}}" class="img-fluid" alt="movieposter">
-
                     </div>
                 </div>
                 <div class="col-auto">
@@ -99,7 +98,7 @@
                 <h4>스틸컷</h4>
                 <hr/>
                 <div class="d-flex justify-content-center overflow-auto" style="max-width: 100%;">
-                    <th:block th:each="still : ${#strings.arraySplit(mov.movie.fname, ';')}">
+                    <th:block th:each="still : ${#strings.arraySplit(mov.fname, ';')}">
                         <img th:src="|http://localhost/cdn/${still}|" alt="Stillcut Image" class="img-fluid"
                              style="width: 80%; max-width: 500px; max-height: 500px; margin: 5px;">
                     </th:block>

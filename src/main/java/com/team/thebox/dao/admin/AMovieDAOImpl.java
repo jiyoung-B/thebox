@@ -158,5 +158,10 @@ public class AMovieDAOImpl implements AMovieDAO {
         return movieLocationRepository.findDistrictNameByLocationNum(ciplace);
     }
 
+    @Override
+    public Movie getMovieByMovno(Long movno) {
+        return movieRepository.getMovieByMovno(movno);
+    }
+
 
 }
