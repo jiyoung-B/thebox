@@ -25,5 +25,6 @@ public class MovieStillcut{
     private Long movno;
     @OneToOne(optional = false)
     @JoinColumn(name="movno", insertable = false, updatable = false)
+    @JsonIgnore
     private Movie movie;
 }

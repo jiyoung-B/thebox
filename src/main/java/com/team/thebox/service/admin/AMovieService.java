@@ -35,7 +35,7 @@ public interface AMovieService {
 
     void registerMovieInfo(MovieDTO movieDTO);
 
-    Long createMovie(MovieRequestDto movieRequestDto);
+   // Long createMovie(MovieRequestDto movieRequestDto);
 
     List<Movie> getAllMovies();
 

@@ -1,13 +1,14 @@
 package com.team.thebox.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Builder
-@ToString
+@ToString(exclude = "movieStillcut")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,7 +17,6 @@ import javax.persistence.*;
 @Entity
 @Table(name="movie")
 public class Movie extends BaseEntity{
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +50,10 @@ public class Movie extends BaseEntity{
     private String movmainposter;    // 영화 포스터
 
     private String videourl;    // 예고편
+
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private MovieStillcut movieStillcut;
 
 
 
