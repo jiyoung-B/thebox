@@ -7,7 +7,6 @@ import com.team.thebox.model.MovieReply;
 import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.repository.*;
 import com.team.thebox.model.*;
-import com.team.thebox.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -193,6 +192,22 @@ public class MovieDAOImpl implements MovieDAO {
         int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
 
         return result;
+    }
+
+    @Override
+    public List<TicketMovie> selectMovielist(Ticketing ticketing) {
+        /*String district = ticketing.getDistrict();
+        String movdate = ticketing.getMovdate();
+        TicketMovie ticketMovie = new TicketMovie();
+        ticketMovie.setDistrict(district);
+        ticketMovie.setMovdate(movdate);
+
+        Map<String, Object> movies = new HashMap<>();
+        movies.put("movielist", TicketMovieRepository.findAllBy(district, movdate).getContent());
+        System.out.println(movies.get("movielist"));*/
+
+
+        return null;
     }
 
 }

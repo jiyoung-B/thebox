@@ -1,10 +1,10 @@
 package com.team.thebox.controller;
 
+import com.google.gson.Gson;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
-import com.team.thebox.model.Movie;
 import com.team.thebox.model.Ticketing;
 import com.team.thebox.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,12 +65,6 @@ public class TicketController {
         return "ticket/movieSelect";
     }
 
-    @PostMapping("/movieSelect")
-    public String ticketSub03(Model m) {
-        m.addAttribute("movieSelect", new Movie());
-        return "ticket/movieSelect";
-    }
-
     @GetMapping("/priceSelect")
     public String ticketSub04() {
         return "ticket/priceSelect";
@@ -92,5 +86,15 @@ public class TicketController {
             , @PathVariable(value= "imp_uid") String imp_uid) throws IamportResponseException, IOException
     {
         return api.paymentByImpUid(imp_uid);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value="/loadMovielist")
+    public String loadMovielist(@RequestBody String test01) {
+        System.out.println(test01);
+        Ticketing ticketing = new Gson().fromJson(test01, Ticketing.class);
+        movsrv.readMovielist(ticketing);
+        return test01;
     }
 }
