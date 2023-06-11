@@ -66,28 +66,7 @@ public class AdminMovieController {
 
         return "management/movieregister";
     }
-    @PostMapping("/register")
-    public String submitMovieForm(Movie movie, MultipartFile attach) throws IOException {
-        String viewPage = "error";
-        Map<String, Object> mvinfo = admmvsrv.newMovies(movie);
 
-        if (!attach.isEmpty()) {
-            admmvsrv.newMovieAttach(attach, mvinfo);
-        }
-
-        viewPage = "redirect:/management/movie/list";
-
-        return viewPage;
-    }
-
-
-    @GetMapping("/view")
-    public ModelAndView view(@RequestParam Long movno){
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("mov", admmvsrv.readOneMovie(movno));
-        mv.setViewName("management/movieview");
-        return mv;
-    }
 
     // movie 수정화면 get
     // movie 수정화면 get

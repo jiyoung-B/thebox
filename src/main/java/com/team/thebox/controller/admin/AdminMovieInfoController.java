@@ -64,11 +64,18 @@ public class AdminMovieInfoController {
         return mv;
     }
 
+//    @GetMapping("/modify/{movno}")
+//    public String showMovieForm(@PathVariable Long movno, Model model) {
+//        Object movie = admmvsrv.readOneMovie(movno);
+//        model.addAttribute("movie", movie);
+//        return "management/movieview";
+//    }
     @GetMapping("/modify/{movno}")
-    public String showMovieForm(@PathVariable Long movno, Model model) {
-        Object movie = admmvsrv.readOneMovie(movno);
-        model.addAttribute("movie", movie);
-        return "management/movieview";
+    public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("mov", admmvsrv.readOneMovie(movno));
+        mv.setViewName("management/movieedit");
+        return mv;
     }
 
 //    @GetMapping("/modify/{movno}")

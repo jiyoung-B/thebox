@@ -3,10 +3,7 @@ package com.team.thebox.service.admin;
 import com.team.thebox.dao.admin.AMovieDAO;
 import com.team.thebox.dto.MovieDTO;
 import com.team.thebox.dto.MovieRequestDto;
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieSchedule;
-import com.team.thebox.model.MovieStillcut;
-import com.team.thebox.model.Movielocation;
+import com.team.thebox.model.*;
 import com.team.thebox.utils.MovieUtils;
 //import com.team.thebox.utils.S3Uploader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +61,12 @@ public class AMovieServiceImpl implements AMovieService {
 
     @Override
     public boolean newMovieAttach(MultipartFile attach, Map<String, Object> movinfo) {
-        // 첨부파일 업로드 처리
-        //MovieAttach ma = movutils.processUpload(attach, movinfo);
-        // 첨부파일 정보 디비에 저장
-        //int movano = amovdao.insertMovieAttach(ma);
-
-        //return (movano > 0) ? true : false;
+//         // 이미지 파일 저장
+//        MovieStillcut ma = movutils.processUpload(attach, movinfo);
+//         //첨부파일 정보 디비에 저장
+//        int movano = amovdao.insertMovieAttach(ma);
+//
+//        return (movano > 0) ? true : false;
         return true;
     }
 
@@ -285,7 +282,7 @@ public class AMovieServiceImpl implements AMovieService {
         // 첨부정보 디비 저장
         Long id = amovdao.insertMovieStillcut(ms);
 
-        return (id > 0) ? true : false;
+        return id > 0;
 
     }
 
