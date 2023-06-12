@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/ticket")
@@ -92,9 +94,11 @@ public class TicketController {
     @ResponseBody
     @RequestMapping(value="/loadMovielist")
     public String loadMovielist(@RequestBody String test01) {
-        System.out.println(test01);
-        Ticketing ticketing = new Gson().fromJson(test01, Ticketing.class);
-        movsrv.readMovielist(ticketing);
-        return test01;
+        Gson gson = new Gson();
+        Ticketing ticketing = gson.fromJson(test01, Ticketing.class);
+        System.out.println("ticketing : "+ticketing);
+        String test = movsrv.readMovielist(ticketing);
+
+        return test;
     }
 }

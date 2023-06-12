@@ -65,6 +65,9 @@
     let today = new Date([[${today}]]);
     let today2 = new Date([[${today}]]);
     let mvfrm = parent.document.querySelector("#mvfrm");
+    let mvlistfrm = parent.document.querySelector("#mvlistfrm");
+    let imgPoster = parent.document.querySelector("#imgPoster");
+    let dvGoodsName = parent.document.querySelector("#dvGoodsName");
     today.setHours(0,0,0,0);
 
   buildCalendar = () => {
@@ -155,7 +158,7 @@
   function callMovie () {
 
     let obj = {
-      district : mvfrm.district.value,
+      district : mvfrm.cinematype.value + " " + mvfrm.district.value,
       movdate : mvfrm.movdate.value
     }
 
@@ -166,11 +169,29 @@
       contentType:"application/json;charset=UTF-8",
       data : JSON.stringify(obj),
     }).done(function(data) {
-      console.log(data);
       if (!data) {
-        alert("실패!");
+        alert("전송 실패!");
       } else {
-        alert("실패!");
+        for(let i = 0 ; i < data.length; i++) {
+          data[i] = data[i].substring(1, data[i].length-1);
+          let movies = data[i].split(", ");
+
+          mvlistfrm.schno.innerHTML = movies[0];
+          mvlistfrm.stime.innerHTML = movies[1];
+          mvlistfrm.movtitle.innerHTML = movies[2];
+          dvGoodsName.innerHTML = movies[2];
+          dvGoodsName.style.fontWeight = 'bold';
+          mvlistfrm.movgrade.innerHTML = movies[3];
+          mvlistfrm.movmainposter.innerHTML = movies[4];
+          imgPoster.src = movies[4];
+          for(let j = 5 ; j < movies.innerHTML ; j++) {
+            if(j===5){
+              mvlistfrm.movdetail.innerHTML = movies[j];
+            } else {
+              mvlistfrm.movdetail.innerHTML += " "+movies[j];
+            }
+          }
+        }
       }
     })
   }

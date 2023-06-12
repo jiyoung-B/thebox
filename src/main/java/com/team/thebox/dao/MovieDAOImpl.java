@@ -1,5 +1,7 @@
 package com.team.thebox.dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.thebox.dto.StarTDO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
@@ -7,7 +9,9 @@ import com.team.thebox.model.MovieReply;
 import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.repository.*;
 import com.team.thebox.model.*;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,13 +29,14 @@ public class MovieDAOImpl implements MovieDAO {
     private final BookedRepository bookedRepository;
     private final MovieLocationRepository movieLocationRepository;
     private final TicketingRepository ticketingRepository;
+    private final TicketMovieRepository ticketMovieRepository;
 
 
     @Autowired
     public MovieDAOImpl(MovieRepository movieRepository, MovieAttachRepository movieAttachRepository,
                           MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository,
                           BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository,
-                          TicketingRepository ticketingRepository) {
+                          TicketingRepository ticketingRepository, TicketMovieRepository ticketMovieRepository) {
         this.movieRepository = movieRepository;
         this.movieAttachRepository = movieAttachRepository;
         this.movieReplyRepository = movieReplyRepository;
@@ -39,6 +44,7 @@ public class MovieDAOImpl implements MovieDAO {
         this.bookedRepository = bookedRepository;
         this.movieLocationRepository = movieLocationRepository;
         this.ticketingRepository = ticketingRepository;
+        this.ticketMovieRepository = ticketMovieRepository;
     }
 
 
@@ -195,19 +201,29 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public List<TicketMovie> selectMovielist(Ticketing ticketing) {
-        /*String district = ticketing.getDistrict();
+    public String selectMovielist(Ticketing ticketing) {
+        String district = Long.toString(movieLocationRepository.findDistrictNameByLocationName(ticketing.getDistrict()));
         String movdate = ticketing.getMovdate();
-        TicketMovie ticketMovie = new TicketMovie();
-        ticketMovie.setDistrict(district);
-        ticketMovie.setMovdate(movdate);
+        ObjectMapper mapper = new ObjectMapper();
 
-        Map<String, Object> movies = new HashMap<>();
-        movies.put("movielist", TicketMovieRepository.findAllBy(district, movdate).getContent());
-        System.out.println(movies.get("movielist"));*/
+        System.out.println(district);
+        System.out.println(movdate);
 
+        List<Object[]> movies = ticketMovieRepository.getMovieInfoByDistrictAndMovdate(district, movdate);
+        List<String> convertedResults = new ArrayList<>();
+        String json = "";
 
-        return null;
+        for (Object[] row : movies) {
+            convertedResults.add(Arrays.toString(row));
+        }
+
+        try {
+            json = mapper.writeValueAsString(
+                    convertedResults);
+        } catch (JsonProcessingException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
     }
-
 }

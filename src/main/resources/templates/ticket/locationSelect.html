@@ -34,9 +34,14 @@
       td.style.display = 'block';
       td.style.cursor = 'pointer'
       td.addEventListener("click", ()=>{
-        let splitDistrict = td.innerText.split(" ");
-        cinematype.value = splitDistrict[0];
-        district.value = splitDistrict[1];
+        let name = td.innerHTML;
+        let index = name.indexOf(" ");
+        let type = name.substring(0, index);
+        let districtName = name.substring((name.indexOf(' ')+1));
+
+        cinematype.value = type;
+        district.value = districtName;
+
         dvPlaceName.innerHTML = td.innerText;
         dvPlaceName.style.fontsize = 10+"px";
       })
@@ -67,94 +72,104 @@
               document.querySelector("#seoul04Cell").appendChild(loctd);
               break;
 
-            case '서울/광진구' :
+            case '서울/관악구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul05Cell").appendChild(loctd);
               break;
 
-            case '서울/구로구' :
+            case '서울/광진구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul06Cell").appendChild(loctd);
               break;
 
-            case '서울/노원구' :
+            case '서울/구로구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul07Cell").appendChild(loctd);
               break;
 
-            case '서울/도봉구' :
+            case '서울/금천구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul08Cell").appendChild(loctd);
               break;
 
-            case '서울/동작구' :
+            case '서울/노원구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul09Cell").appendChild(loctd);
               break;
 
-            case '서울/마포구' :
+            case '서울/도봉구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul10Cell").appendChild(loctd);
               break;
 
-            case '서울/서대문구' :
+            case '서울/동작구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul11Cell").appendChild(loctd);
               break;
 
-            case '서울/서초구' :
+            case '서울/마포구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul12Cell").appendChild(loctd);
               break;
 
-            case '서울/성동구' :
+            case '서울/서대문구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul13Cell").appendChild(loctd);
               break;
 
-            case '서울/성북구' :
+            case '서울/서초구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul14Cell").appendChild(loctd);
               break;
 
-            case '서울/송파구' :
+            case '서울/성동구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul15Cell").appendChild(loctd);
               break;
 
-            case '서울/양천구' :
+            case '서울/성북구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul16Cell").appendChild(loctd);
               break;
 
-            case '서울/영등포구' :
+            case '서울/송파구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul17Cell").appendChild(loctd);
               break;
 
-            case '서울/용산구' :
+            case '서울/양천구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul18Cell").appendChild(loctd);
               break;
 
-            case '서울/은평구' :
+            case '서울/영등포구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul19Cell").appendChild(loctd);
               break;
 
-            case '서울/종로구' :
+            case '서울/용산구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul20Cell").appendChild(loctd);
               break;
 
-            case '서울/중구' :
+            case '서울/은평구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul21Cell").appendChild(loctd);
               break;
 
-            case '서울/중랑구' :
+            case '서울/종로구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#seoul22Cell").appendChild(loctd);
+              break;
+
+            case '서울/중구' :
+              createCell(loctd, loclist[i].districtname, district, dvPlaceName)
+              document.querySelector("#seoul23Cell").appendChild(loctd);
+              break;
+
+            case '서울/중랑구' :
+              createCell(loctd, loclist[i].districtname, district, dvPlaceName)
+              document.querySelector("#seoul24Cell").appendChild(loctd);
               break;
           } break;
         case '인천' :
@@ -374,21 +389,25 @@
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#daegu01Cell").appendChild(loctd);
               break;
-            case '대구/동구' :
+            case '대구/달성군' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#daegu02Cell").appendChild(loctd);
               break;
-            case '대구/북구' :
+            case '대구/동구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#daegu03Cell").appendChild(loctd);
               break;
-            case '대구/수성구' :
+            case '대구/북구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#daegu04Cell").appendChild(loctd);
               break;
-            case '대구/중구' :
+            case '대구/수성구' :
               createCell(loctd, loclist[i].districtname, district, dvPlaceName)
               document.querySelector("#daegu05Cell").appendChild(loctd);
+              break;
+            case '대구/중구' :
+              createCell(loctd, loclist[i].districtname, district, dvPlaceName)
+              document.querySelector("#daegu06Cell").appendChild(loctd);
               break;
           } break;
         case '울산' :
@@ -705,59 +724,65 @@
                                       <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/강서구|></td></tr>
                                       <tr id="seoul04Cell" name="seoul04Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/광진구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/관악구|></td></tr>
                                       <tr id="seoul05Cell" name="seoul05Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/구로구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/광진구|></td></tr>
                                       <tr id="seoul06Cell" name="seoul06Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/노원구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/구로구|></td></tr>
                                       <tr id="seoul07Cell" name="seoul07Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/도봉구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/금천구|></td></tr>
                                       <tr id="seoul08Cell" name="seoul08Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/동작구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/노원구|></td></tr>
                                       <tr id="seoul09Cell" name="seoul09Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/마포구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/도봉구|></td></tr>
                                       <tr id="seoul10Cell" name="seoul10Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/서대문구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/동작구|></td></tr>
                                       <tr id="seoul11Cell" name="seoul11Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/서초구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/마포구|></td></tr>
                                       <tr id="seoul12Cell" name="seoul12Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/성동구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/서대문구|></td></tr>
                                       <tr id="seoul13Cell" name="seoul13Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/성북구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/서초구|></td></tr>
                                       <tr id="seoul14Cell" name="seoul14Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/송파구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/성동구|></td></tr>
                                       <tr id="seoul15Cell" name="seoul15Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/양천구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/성북구|></td></tr>
                                       <tr id="seoul16Cell" name="seoul16Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/영등포구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/송파구|></td></tr>
                                       <tr id="seoul17Cell" name="seoul17Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/용산구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/양천구|></td></tr>
                                       <tr id="seoul18Cell" name="seoul18Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/은평구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/영등포구|></td></tr>
                                       <tr id="seoul19Cell" name="seoul19Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/종로구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/용산구|></td></tr>
                                       <tr id="seoul20Cell" name="seoul20Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/중구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/은평구|></td></tr>
                                       <tr id="seoul21Cell" name="seoul21Cell"></tr>
 
-                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/중랑구|></td></tr>
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/종로구|></td></tr>
                                       <tr id="seoul22Cell" name="seoul22Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/중구|></td></tr>
+                                      <tr id="seoul23Cell" name="seoul23Cell"></tr>
+
+                                      <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|서울/중랑구|></td></tr>
+                                      <tr id="seoul24Cell" name="seoul24Cell"></tr>
 
                                     </table>
                                     </div>
@@ -937,17 +962,20 @@
                                         <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/달서구|></td></tr>
                                         <tr id="daegu01Cell" name="daegu01Cell"></tr>
 
-                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/동구|></td></tr>
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/달성군|></td></tr>
                                         <tr id="daegu02Cell" name="daegu02Cell"></tr>
 
-                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/북구|></td></tr>
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/동구|></td></tr>
                                         <tr id="daegu03Cell" name="daegu03Cell"></tr>
 
-                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/수성구|></td></tr>
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/북구|></td></tr>
                                         <tr id="daegu04Cell" name="daegu04Cell"></tr>
 
-                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/중구|></td></tr>
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/수성구|></td></tr>
                                         <tr id="daegu05Cell" name="daegu05Cell"></tr>
+
+                                        <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|대구/중구|></td></tr>
+                                        <tr id="daegu06Cell" name="daegu06Cell"></tr>
 
                                         <tr><td style="width: 162px; background-color: white;border-bottom: rgba(188, 143, 143, .5) solid 1px; font-weight: bold; font-size: 13px; color: coral" th:text=|울산/남구|></td></tr>
                                         <tr id="ulsan01Cell" name="ulsan01Cell"></tr>

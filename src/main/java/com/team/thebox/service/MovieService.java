@@ -28,5 +28,5 @@ public interface MovieService {
 
     boolean newTicket(Ticketing ticketing);
 
-    List<TicketMovie> readMovielist(Ticketing ticketing);
+    String readMovielist(Ticketing ticketing);
 }
