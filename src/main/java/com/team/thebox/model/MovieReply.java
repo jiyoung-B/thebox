@@ -21,7 +21,7 @@ public class MovieReply {
     private String reply;
     @NotBlank(message = "작성자는 필수항목입니다.")
     private String userid;
-    private int movno;
+    private Long movno;
     private int star;
     @CreatedDate
     @Column(insertable = false, updatable = false)

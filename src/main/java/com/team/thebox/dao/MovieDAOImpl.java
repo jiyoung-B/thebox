@@ -70,7 +70,7 @@ public class MovieDAOImpl implements MovieDAO {
     @Override //all now soon
     public Map<String, Object> selectMovie() {
         Map<String, Object> movs = new HashMap<>();
-        movs.put("mlist", movieRepository.findAll() );
+        movs.put("mlist", movieRepository.findAllOrderBYMovreleasedateDesc() );
         return movs;
     }
 
@@ -80,7 +80,7 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public List<MovieReply> selectOneMovieReply(int movno) {
+    public List<MovieReply> selectOneMovieReply(Long movno) {
         return movieReplyRepository.findByMovnoOrderByRegdateAsc(movno);
     }
 

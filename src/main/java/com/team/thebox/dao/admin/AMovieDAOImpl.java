@@ -74,7 +74,7 @@ public class AMovieDAOImpl implements AMovieDAO {
     }
 
     @Override
-    public List<MovieReply> selectOneMovieReply(int movno) {
+    public List<MovieReply> selectOneMovieReply(Long movno) {
         return movieReplyRepository.findByMovnoOrderByRegdateAsc(movno);
     }
 

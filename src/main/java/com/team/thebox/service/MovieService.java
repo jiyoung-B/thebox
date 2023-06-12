@@ -13,7 +13,7 @@ public interface MovieService {
 
     boolean newReply(MovieReply reply);
 
-    List<MovieReply> readOneMovieReply(int movno);
+    List<MovieReply> readOneMovieReply(Long movno);
 
     boolean modifyReply(MovieReply reply);
 

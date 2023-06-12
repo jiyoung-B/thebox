@@ -24,7 +24,7 @@ public interface AMovieDAO {
 
     int insertMovieReply(MovieReply reply);
 
-    List<MovieReply> selectOneMovieReply(int movno);
+    List<MovieReply> selectOneMovieReply(Long movno);
 
     List<String> selectMovieTitle();
 
