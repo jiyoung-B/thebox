@@ -39,6 +39,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("from Movie order by tsales desc")
     List<Movie> findAllByOrderByTsalesDesc();
 
+    @Query("from Movie order by movreleasedate desc")
+    List<Movie> findAllOrderBYMovreleasedateDesc();
+
     Optional<Movie> findByMovno(Long movno);
 
     Movie getMovieByMovno(Long movno);

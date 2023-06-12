@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MovieReplyRepository extends JpaRepository<MovieReply, Long> {
 
-    List<MovieReply> findByMovnoOrderByRegdateAsc(int movno);
+    List<MovieReply> findByMovnoOrderByRegdateAsc(Long movno);
 
 //    @Modifying
 //    @Transactional

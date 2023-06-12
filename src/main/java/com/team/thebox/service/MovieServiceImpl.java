@@ -32,7 +32,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<MovieReply> readOneMovieReply(int movno) {
+    public List<MovieReply> readOneMovieReply(Long movno) {
         return movdao.selectOneMovieReply(movno);
     }
 
