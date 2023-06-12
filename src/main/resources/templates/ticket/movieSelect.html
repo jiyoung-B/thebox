@@ -33,23 +33,13 @@
                     <table style="border-collapse: initial; border-spacing: 0;">
                       <tbody>
                       <tr>
-                        <td id="ageGroup" name="ageGroup" style="width: 97px; background:url() 0 center no-repeat;
-                        padding:0 7px 0 20px;">
+                        <td id="ageGroup" name="ageGroup" style="width: 97px;
+                        /*background:url(/static/img/18.png) 0 center no-repeat;*/
+                        padding:0 7px 0 20px;"> 트랜스포머</td>
                         <td style="width: 80px; vertical-align: center">
                         </td>
                         <td>
-                          <table style="width:256px; border-spacing: 2px;">
-
-                            <tbody>
-                            <tr>
-                              <td>
-                                <a style="background-color: black;">
-                                  &nbsp;
-                                </a>
-                              </td>
-                            </tr>
-                            </tbody>
-                          </table>
+                          13:30
                         </td>
                       </tr>
                       </tbody>
@@ -99,24 +89,19 @@
 
 
 <script>
-  let movgrade = parent.document.querySelector("#movgrade");
+  function test02(){
+    alert("movieSelect!");
+    let movgrade = parent.document.querySelector("#movgrade");
 
+    let ageGroup = document.querySelector("#ageGroup");
 
-  let ageGroup = document.querySelector("#ageGroup");
-
-  if(movgrade.value !== '') {
-    console.log("check 2");
-    ageGroup.backgroundImage = "/static/img/ticket/" + mvlistfrm.movgrade.innerHTML + ".png";
+    console.log(movgrade.value);
+    ageGroup.backgroundImage = `/static/img/${movgrade.value}.png`;
+    console.log(ageGroup.src);
   }
 
-  window.onload = function () {
-    // iframe A에서 iframe B로 함수 호출 메시지 보내기
-    let targetWindow = document.getElementById('frmDateSelect').contentWindow;
-    let functionName = 'test';
-    let arguments = [];  // 함수에 전달할 인자들
 
-    targetWindow.postMessage({functionName: functionName, arguments: arguments}, '*');
-  }
+
 </script>
 
 
