@@ -60,6 +60,6 @@ public class Member {
 
     @Transient
     @NotBlank(message = "이메일 입력하셔야 됩니다. ")
-    private String email2;
+    private String email2;*/
 
 }

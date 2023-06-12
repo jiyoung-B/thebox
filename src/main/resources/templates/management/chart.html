@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout/template}">
+
+<th:block layout:fragment="admincontent">
+
+  <!-- Content Wrapper. Contains page content // 본문-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) // 본문 헤더 -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>통계</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">통계</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content 본문 -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="row">
+
+              <div class="col-xl-11 col-lg-7">
+
+                <!-- 월별 관객수 -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">월별 관객수!</h6>
+                  </div>
+                  <div class="card-body" style="height: 400px !important;">
+                    <div class="chart-bar">
+                      <canvas id="myBarChart" style="height: 350px !important;"></canvas>
+                    </div>
+                    <hr>
+                  </div>
+                </div>
+
+                <!-- 6월 상영 영화별 누적 관객수 -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">올해 누적 관객수 TOP5 영화</h6>
+                  </div>
+                  <div class="card-body" style="height: 400px !important;">
+                    <div class="chart-bar">
+                      <canvas id="accumulatedAudienceChart" style="height: 350px !important;"></canvas>
+                    </div>
+                    <hr>
+                  </div>
+                </div>
+
+                <!-- 6월 상영 영화별 누적 매출액 -->
+                <!--<div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">6월 상영 영화별 누적 매출액</h6>
+                  </div>
+                  <div class="card-body" style="height: 400px !important;">
+                    <div class="chart-bar">
+                      <canvas id="accumulatedSalesChart" style="height: 350px !important;"></canvas>
+                    </div>
+                    <hr>
+                  </div>
+                </div>-->
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/static/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/static/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/static/js/demo/chart-area-demo.js"></script>
+  <script src="/static/js/demo/chart-pie-demo.js"></script>
+  <script src="/static/js/demo/chart-bar-demo.js"></script>
+
+  <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+  <script src=https://code.jquery.com/jquery-3.6.0.js></script>
+
+</th:block>
+
+</html>

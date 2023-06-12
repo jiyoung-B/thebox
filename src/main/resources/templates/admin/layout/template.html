@@ -54,6 +54,11 @@ xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout">
 
 </head>
 <body class="hold-transition sidebar-mini">
+
+<th:block th:if="${!#strings.equals(session.UID, 'admin')}">
+    <script>location.href = "/";</script>
+</th:block>
+
 <div class="wrapper">
     <div th:replace="admin/layout/header :: header"></div>
     <div th:replace="admin/layout/leftaside :: leftaside"></div>
