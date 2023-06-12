@@ -176,24 +176,53 @@
           data[i] = data[i].substring(1, data[i].length-1);
           let movies = data[i].split(", ");
 
-          mvlistfrm.schno.innerHTML = movies[0];
-          mvlistfrm.stime.innerHTML = movies[1];
-          mvlistfrm.movtitle.innerHTML = movies[2];
+          mvlistfrm.schno.value = movies[0];
+          mvlistfrm.stime.value = movies[1];
+          mvlistfrm.movtitle.value = movies[2];
           dvGoodsName.innerHTML = movies[2];
           dvGoodsName.style.fontWeight = 'bold';
-          mvlistfrm.movgrade.innerHTML = movies[3];
-          mvlistfrm.movmainposter.innerHTML = movies[4];
+          mvlistfrm.movgrade.value = movies[3];
+          mvlistfrm.movmainposter.value = movies[4];
           imgPoster.src = movies[4];
-          for(let j = 5 ; j < movies.innerHTML ; j++) {
+          for(let j = 5 ; j < movies.value ; j++) {
             if(j===5){
-              mvlistfrm.movdetail.innerHTML = movies[j];
+              mvlistfrm.movdetail.value = movies[j];
             } else {
-              mvlistfrm.movdetail.innerHTML += " "+movies[j];
+              mvlistfrm.movdetail.value += " "+movies[j];
             }
           }
+          //const iframeEl = document.querySelector('iframe[id="frmMovieSelect"]');
+          const selectMovie = document.querySelector("iframe").contentWindow.document.querySelector("iframe")
+                  .contentWindow.document.querySelector("#frmMovieSelect");
+
+          let tr = document.createElement("tr");
+          let td = document.createElement("td");
+
+          td.style.width = "97px";
+          td.style.backgroundImage = `./static/img/${movies[3]}.png`;
+          tr.appendChild(td);
+          selectMovie.appendChild(tr);
         }
       }
     })
+  }
+
+  // iframe B에서 메시지 수신 및 함수 호출 처리
+  window.addEventListener('message', function(event) {
+    if (event.source !== window.parent) return;  // 다른 소스에서의 메시지는 무시
+
+    let data = event.data;
+    if (typeof data === 'object' && data.functionName && typeof window[data.functionName] === 'function') {
+      let functionName = data.functionName;
+      let arguments = data.arguments || [];
+
+      window[functionName].apply(null, arguments);
+    }
+  });
+
+
+  function test () {
+    alert("test!");
   }
 
   /*]]>*/

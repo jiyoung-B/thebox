@@ -13,10 +13,6 @@
   </style>
 
 <body marginwidth="0" marginheight="0">
-
-
-
-
 <table style="width: 100%; border-collapse: initial; border-spacing: 0;">
   <tbody>
   <tr>
@@ -27,21 +23,20 @@
       <table style="width: 100%; border-collapse: initial; border-spacing: 0;">
         <tbody>
         <tr style="margin-top: 7px;">
-          <td style="border:5px #E2E6E8 solid; vertical-align: top; background: url('http://ticketimage.interpark.com/TicketImage/event/080519_m/sch_bg_03.gif');">
+          <td style="border:5px #E2E6E8 solid; vertical-align: top;">
             <div style="z-index: 1; width: 100%; height: 345px;">
 
-              <!--<table style="width: 101%; border-collapse: initial; border-spacing: 0; text-align: right;">
+              <table style="width: 101%; border-collapse: initial; border-spacing: 0; text-align: right;">
                 <tbody>
                 <tr style="margin-top: 5px;">
                   <td style="vertical-align: top">
                     <table style="border-collapse: initial; border-spacing: 0;">
                       <tbody>
                       <tr>
-                        <td style="width: 97px; /*background:url('/static/img/all.png') 0 center no-repeat;*/ padding:0 7px 0 20px;">
-                          &lt;!&ndash;<td th:background="|/static/img/all.png|"></td>&ndash;&gt;
-&lt;!&ndash;                        </td>
+                        <td id="ageGroup" name="ageGroup" style="width: 97px; background:url() 0 center no-repeat;
+                        padding:0 7px 0 20px;">
                         <td style="width: 80px; vertical-align: center">
-                        </td>&ndash;&gt;
+                        </td>
                         <td>
                           <table style="width:256px; border-spacing: 2px;">
 
@@ -71,45 +66,8 @@
                 <tr>
                   <td style="vertical-align: top">
                     <table style="border-collapse: initial; border-spacing: 0;">
-                      <tbody>
-                      <tr>
-                        <td style="width:97px; background:url('http://ticketimage.interpark.com/TicketImage/movie/image/rating_19.gif') 0 center no-repeat; padding:0 7px 0 20px;">
-                        </td>
-                        <td style="width: 80px; vertical-align: center">
-                        </td>
-                        <td>
-                          <table  style="width:256px; border-spacing: 2px;">
-                            <colgroup>
-                              <col style="width:34px;">
-                              <col style="width:34px;">
-                              <col style="width:34px;">
-                              <col style="width:34px;">
-                              <col style="width:34px;">
-                              <col style="width:34px;">
-                              <col style="width:34px;">
-                            </colgroup>
-                            <tbody>
-                            <tr style="vertical-align: center">
-                              <td>&nbsp;</td>
+                      <tbody id="selectMovie">
 
-                              <td>&nbsp;</td>
-
-                              <td>&nbsp;</td>
-
-                              <td>&nbsp;</td>
-
-                              <td>&nbsp;</td>
-
-                              <td>
-                              </td>
-
-                              <td>&nbsp;</td>
-
-                            </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
                       </tbody>
                     </table>
                   </td>
@@ -122,7 +80,7 @@
 
 
                 </tbody>
-              </table>-->
+              </table>
             </div>
 
           </td>
@@ -140,7 +98,27 @@
 
 
 
+<script>
+  let movgrade = parent.document.querySelector("#movgrade");
 
 
+  let ageGroup = document.querySelector("#ageGroup");
 
-</body></html>
+  if(movgrade.value !== '') {
+    console.log("check 2");
+    ageGroup.backgroundImage = "/static/img/ticket/" + mvlistfrm.movgrade.innerHTML + ".png";
+  }
+
+  window.onload = function () {
+    // iframe A에서 iframe B로 함수 호출 메시지 보내기
+    let targetWindow = document.getElementById('frmDateSelect').contentWindow;
+    let functionName = 'test';
+    let arguments = [];  // 함수에 전달할 인자들
+
+    targetWindow.postMessage({functionName: functionName, arguments: arguments}, '*');
+  }
+</script>
+
+
+</body>
+</html>
