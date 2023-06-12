@@ -4,6 +4,8 @@ import com.team.thebox.dto.MovieDTO;
 import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.MovieStillcut;
+import com.team.thebox.model.Movielocation;
 import com.team.thebox.service.admin.AMovieScheduleService;
 import com.team.thebox.service.admin.AMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,43 +66,23 @@ public class AdminMovieController {
 
         return "management/movieregister";
     }
-    @PostMapping("/register")
-    public String submitMovieForm(Movie movie, MultipartFile attach) throws IOException {
-        String viewPage = "error";
-        Map<String, Object> mvinfo = admmvsrv.newMovies(movie);
-
-        if (!attach.isEmpty()) {
-            admmvsrv.newMovieAttach(attach, mvinfo);
-        }
-
-        viewPage = "redirect:/management/movie/list";
-
-        return viewPage;
-    }
 
 
-    @GetMapping("/view")
-    public String view(@RequestParam Long movno, Model m){
-
-        m.addAttribute("movie", admmvsrv.readOneMovie(movno));
-
-        return "management/movieview";
-    }
-
+    // movie 수정화면 get
     // movie 수정화면 get
     @GetMapping("/modify/{movno}")
     public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
-
-        Object moviedetail = admmvsrv.readOneMovie(movno);
-
-        System.out.println("무비즈"+moviedetail);
+        Object movie = admmvsrv.readOneMovie(movno); // 영화 정보 불러오기
+       // MovieStillcut stillcut = movie.getMovieStillcut(); // 스틸컷 정보 가져오기
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("management/movieedit");
 
-        mv.addObject("movies", moviedetail);
+        mv.addObject("movie", movie);
+        //mv.addObject("stillcut", stillcut); // 스틸컷 정보 추가
         return mv;
     }
+
 
     // movie 수정 post
     @PostMapping("/modify/{movno}")
@@ -148,9 +130,11 @@ public class AdminMovieController {
 
         List<Movie> movies = admmvsrv.readMovnoAndTitle();
         System.out.println("영화등록"+movies);
+        List<Movielocation> location = admmvsrv.readLocation();
 
 
         model.addAttribute("movies", movies); // 모델에 영화 리스트 추가
+        model.addAttribute("location", location); // 모델에 영화 리스트 추가
 
 
         return "management/moviescheduleregister";
@@ -192,13 +176,13 @@ public class AdminMovieController {
     public ModelAndView modifyMovieScheduleForm(@PathVariable Long schno) {
         // 스케줄 정보 조회 예시
         MovieSchedule movsch = movschsrv.getOneMovieScheduleBySchno(schno);
+        List<Movielocation> location = admmvsrv.readLocation();
         List<Movie> movies = admmvsrv.readMovnoAndTitle(); // 영화 제목 목록 가져오기
-        System.out.println("스케줄정보조회"+movsch);
-        System.out.println("무비즈"+movies);
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("management/moviescheduleedit");
         mv.addObject("movsch", movsch);
+        mv.addObject("location", location); // 모델에 영화 리스트 추가
         mv.addObject("movies", movies); // 모델에 영화 리스트 추가
         return mv;
     }
@@ -207,13 +191,7 @@ public class AdminMovieController {
     @PostMapping("/schedule/modify/{schno}")
     public String modifyMovieSchedule(@PathVariable Long schno, MovieSchedule updateschedule) {
         String viewPage = "error";
-        // 스케줄 조회
-        System.out.println("스케줄포스트무슨값날라옴?"+updateschedule);
-        System.out.println("스케줄포스트movno?"+updateschedule.getMovno());
-//
-//        schedule.setSchno(schno);
         MovieSchedule existingschedule = movschsrv.getOneMovieScheduleBySchno(schno);
-//        System.out.println("스케쥴"+schedule);
 
         // 업데이트된 스케줄 정보 설정
         existingschedule.setMovno(updateschedule.getMovno());

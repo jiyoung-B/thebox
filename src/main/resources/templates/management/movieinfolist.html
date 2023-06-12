@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">영화 정보</li>
+              <li class="breadcrumb-item">영화 정보</li>
             </ol>
           </div>
         </div>
@@ -32,11 +32,14 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                <div class="col-sm-6">
-                  <h3 class="card-title">영화 정보</h3>
-                </div>
-                <div class="col-sm-6 float-sm-right">
-                  <button type="button" class="btn btn-block btn-primary">등록하기</button>
+                  <div class="col-sm-6">
+                   <h3 class="card-title my-auto">영화 정보</h3>
+                  </div>
+
+                  <div class="col-sm-6 float-sm-right">
+                  <button type="button" class="col-sm-6 float-sm-right btn btn-block btn-primary">
+                    <a href="/management/movieinfo/register" class="nav-link"> 영화 등록하기</a>
+                  </button>
                 </div>
                 </div>
               </div>
@@ -70,21 +73,15 @@
                     <td th:text="${mov.movruntime}">150분</td>
                     <td th:text="${mov.movreleasedate}">2023.05.03</td>
                     <td th:text="${mov.movgrade}">12세이상관람가</td>
-<!--                    <td>-->
-<!--                      <a th:href="|javascript:showDetail(${mov.movno})|">미리보기</a>-->
-<!--                    </td>-->
                     <td>
-                      <a th:href="|javascript:showDetail(${mov.movno})|">새창미리보기</a>
+                      <a th:href="|javascript:showDetail(${mov.movno})|">미리보기</a>
 <!--                      <a th:href="|/management/movieinfo/view?movno=${mov.movno}|">새창미리보기</a>-->
                     </td>
-
                     <td>
-                      <!-- 수정 버튼 -->
-                      <a th:href="@{'/management/movie/modify/' + ${mov.movno}}">수정</a>
+                      <a th:href="@{'/management/movieinfo/modify/' + ${mov.movno}}">수정</a>
                     </td>
                     <td>
-                      <!-- 삭제 버튼 -->
-                      <a th:href="@{'/management/movie/remove/' + ${mov.movno}}">삭제</a>
+                      <a th:href="@{'/management/movieinfo/remove/' + ${mov.movno}}">삭제</a>
                     </td>
                   </tr>
 
@@ -117,16 +114,7 @@
       </div>
     </div>
   </div>
-  <!-- 모달 -->
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-<div>이제 내용이 보이겠죠 보여야죠!</div>
-<!--      <div th:text="${mov.movactor}">주연</div>-->
-      <div>반영</div>
-      <!-- 모달 내용을 동적으로 채워주기 위한 영역 -->
-      <div id="modalContent"></div>
-    </div>
+
   </div>
 
 
@@ -134,5 +122,6 @@
   <script src="/static/js/movielist.js"></script>
 
 </th:block>
+
 
 </html>

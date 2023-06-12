@@ -23,7 +23,8 @@
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" oninput="filterItems(this.value)">
+
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -39,7 +40,7 @@
                              with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-users fa-search"></i>
                                 <p>
                                     회원
                                     <i class="right fas fa-angle-left"></i>
@@ -48,8 +49,8 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
 
-                                    <a href="/management/member/memberlist" class="nav-link">
-                                        <i class="far  nav-icon"></i>
+                                    <a href="/management/member/memberlist" class="nav-link" >
+                                        <i class="far nav-icon"></i>
                                         <p>회원 정보</p>
                                     </a>
                                 </li>
@@ -72,16 +73,9 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/management/movie/list" class="nav-link">
+                                    <a href="/management/movieinfo/list" class="nav-link">
                                         <i class="far  nav-icon"></i>
-                                        <p>영화 목록</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="/management/movie/register" class="nav-link">
-                                        <i class="far  nav-icon"></i>
-                                        <p>영화 등록</p>
+                                        <p>영화 관리</p>
                                     </a>
                                 </li>
 
@@ -89,20 +83,6 @@
                                     <a href="/management/movie/schedule/list" class="nav-link">
                                         <i class="far  nav-icon"></i>
                                         <p>상영 스케줄</p>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="/management/movie/schedule/resgister" class="nav-link">
-                                        <i class="far  nav-icon"></i>
-                                        <p>스케줄 등록</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far  nav-icon"></i>
-                                        <p>기타</p>
                                     </a>
                                 </li>
                             </ul>
@@ -151,5 +131,20 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+        <script>
+            function filterItems(searchTerm) {
+                const menu = document.getElementById("sidebar-menu");
+                const items = menu.getElementsByClassName("nav-link");
+
+                Array.from(items).forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    if (itemText.includes(searchTerm.toLowerCase())) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            }
+        </script>
     </th:block>
 </html>

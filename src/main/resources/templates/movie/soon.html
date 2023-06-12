@@ -10,9 +10,9 @@
     <div id="main" class="row mt-2">
         <div class="col">
             <div class="row mt-2">
-                <a href="/movie/now" class="col-2 text-dark pt-2" onclick="showCurrentMovies()">
+                <a href="/movie/now" class="col-2 text-dark pt-2">
                     <h5 class="fw-bold" style="text-underline: red">현재상영작</h5></a>
-                <a href="#" class="col-2 text-dark pt-2">
+                <a href="/movie/soon" class="col-2 text-dark pt-2">
                     <h5 style="font-weight: bold">상영예정작</h5></a>
             </div>
             <div class="col text-dark ">
@@ -22,17 +22,21 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-sm-3 col-xs-6 mb-5" th:each="mo:${mlist}" >
-                    <!--th:if="${#calendars.format(#calendars.createNow(), 'yyyyMMdd') &gt; mo.movreleasedate}"-->
+                <div class="col-sm-3 col-xs-6 mb-5" th:each="mo:${mlist}" th:if="${#calendars.format(#calendars.createNow(), 'yyyyMMdd') &lt; #strings.replace(mo.movreleasedate, '-', '')}" >
+<!--                <div class="col-sm-3 col-xs-6 mb-5" th:each="mo:${mlist}" th:if="${#calendars.format(#calendars.createNow(), 'yyyyMMdd') &gt; mo.movreleasedate}" >-->
+
                     <div class="thumbnail">
                         <a th:href="|/movie/view?movno=${mo.movno}|">
-                              <!--<img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 100%">-->
-                            <img th:src="${mo.movmainposter}" class="img-fluid" style="width: 100%">
+                              <img th:src="${mo.movmainposter}" class="img-fluid" style="width: 100%">
+                            <!--<img th:src="${mo.url}" class="img-fluid" style="width: 100%">-->
                         </a>
                             <div class="caption mt-1" >
                                 <ul  class="list-unstyled block text-center">
                                     <li><h4><img th:src="|/static/img/${mo.movgrade}.png|" class="mb-2"><b th:text="${mo.movtitle}">가디어오브 갤러시</b></h4></li>
-                                    <li><b th:text="|예매율 ${mo.tsales}% / 개봉일 ${mo.movreleasedate}|">예매율 00.0% | 개봉일 2023.05.15</b></li>
+                                    <li><b th:text="|예매율 ${mo.tsales} % / 개봉일 ${mo.movreleasedate}|">예매율 00.0% | 개봉일 2023.05.15</b></li>
+                                    <!--<block th:if="${mo.avgStar}">
+                                        <li th:text="${mo.avgStar}">별점</li>
+                                    </block>-->
                                 </ul>
                             </div>
                         <div class="d-grid gap-2">

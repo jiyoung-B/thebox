@@ -68,19 +68,20 @@
                     <div class="thumbnail">
                             <!--<img src="/static/img/moviesample.jpg" class="img-fluid" style="width: 100%">-->
                             <!--<img src="http://localhost/cdn/moviesample.jpg" class="img-fluid" style="width: 100%">-->
-                            <img th:src="${mov.movmainposter}" class="img-fluid" style="width: 100%">
+                           <!-- <img th:src="${mov.movie.movmainposter}" class="img-fluid" style="width: 100%">-->
+                        <img th:src="@{${mov.movie.movmainposter}}" class="img-fluid" alt="movieposter" style="width: 100%" >
                     </div>
                 </div>
                 <div class="col-auto">
-                    <h1 th:text="${mov.movtitle}">가디언즈 갤럭시</h1>
+                    <h1 th:text="${mov.movie.movtitle}">가디언즈 갤럭시</h1>
                     <ul>
-                        <li th:text="|장르 : ${mov.movgenre}|">장르 : </li>
-                        <li th:text="|개봉일 : ${mov.movreleasedate}|">개봉일 :</li>
-                        <li th:text="|감독 : ${mov.movdirector}|">감독 :</li>
-                        <li th:text="|배우 : ${mov.movactor}|">배우 :</li>
-                        <li th:text="|등급 : ${mov.movgrade}|">등급 :</li>
-                        <li th:text="|상영 시간 : ${mov.movruntime}|">상영 시간 :</li>
-                        <li th:text="|국가 : ${mov.movcountry}|">국가 :</li>
+                        <li th:text="|장르 : ${mov.movie.movgenre}|">장르 : </li>
+                        <li th:text="|개봉일 : ${mov.movie.movreleasedate}|">개봉일 :</li>
+                        <li th:text="|감독 : ${mov.movie.movdirector}|">감독 :</li>
+                        <li th:text="|배우 : ${mov.movie.movactor}|">배우 :</li>
+                        <li>등급 : <img th:src="|/static/img/${mov.movie.movgrade}.png|"></li>
+                        <li th:text="|상영 시간 : ${mov.movie.movruntime} 분|">상영 시간 :</li>
+                        <li th:text="|국가 : ${mov.movie.movcountry}|">국가 :</li>
                     </ul>
                     <div class="d-grid gap-2 mt-2">
                         <button class="btn btn-primary" type="button">예매하기</button>
@@ -90,54 +91,33 @@
             <div class="mt-5">
                 <h4>줄거리</h4>
 
-                <div th:text="${mov.movdetail}">  이영화의 내용을 내영ㅇㅇ,ㅡㄹ </div>
+                <div th:text="${mov.movie.movdetail}">  이영화의 내용을 내영ㅇㅇ,ㅡㄹ </div>
             </div>
 
 
             <div class="mt-5">
-                <i class="fa-solid fa-comments fa-2xl"> 영화 영상 </i>
-                <hr>
-            </div>
-            <div>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
+                <h4>스틸컷</h4>
+                <hr/>
+                <div class="d-flex justify-content-center overflow-auto" style="max-width: 100%;">
+                    <th:block th:each="still : ${#strings.arraySplit(mov.fname, ';')}">
+                        <img th:src="|http://localhost/cdn/${still}|" alt="Stillcut Image" class="img-fluid"
+                             style="width: 80%; max-width: 500px; max-height: 500px; margin: 5px;">
+                    </th:block>
                 </div>
             </div><!--스틸컷-->
+
+            <div class="mt-5">
+                <h4>예고편</h4>
+                <hr/>
+                <div class="embed-responsive embed-responsive-16by9" style="width: 60vw; height: 70vh;">
+                    <iframe width="100%" height="100%"
+                            class="embed-responsive-item"
+                            th:src="@{'https://www.youtube.com/embed/' + ${mov.movie.videourl.substring(mov.movie.videourl.lastIndexOf('/') + 1)}}"
+                            allowfullscreen></iframe>
+                </div>
+                <!--                <iframe width="1688" height="569" src="https://www.youtube.com/embed/1TkdeD8wfQM" title="&quot;Mr. Sunshine&quot; (2018) - Official Trailer - Korean Drama" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+            </div>
+
 
 
            <div class="mt-5">
@@ -172,7 +152,7 @@
                                     <i class="fa fa-commenting"> </i> 댓글쓰기</button>
                             </div>
                             <input type="hidden" name="userid" id="userid" th:value="${session.UID}" >
-                            <input type="hidden" name="movno" id="movno" th:value="${mov.movno}">
+                            <input type="hidden" name="movno" id="movno" th:value="${mov.movie.movno}">
                         </div>
                     </form>
                 </div>
@@ -239,7 +219,7 @@
                         </fieldset>
                         <textarea name="reply" id="comment" rows="7" cols="60"></textarea>
                         <input type="hidden" name="userid" th:value="${session.UID}">
-                        <input type="hidden" name="movno" th:value="${mov.movno}">
+                        <input type="hidden" name="movno" th:value="${mov.movie.movno}">
                         <input type="hidden" name="rpno" id="rpno">
                     </form>
                 </div>

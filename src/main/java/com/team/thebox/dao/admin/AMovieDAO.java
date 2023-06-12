@@ -4,6 +4,7 @@ import com.team.thebox.model.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface AMovieDAO {
 
@@ -23,7 +24,7 @@ public interface AMovieDAO {
 
     int insertMovieReply(MovieReply reply);
 
-    List<MovieReply> selectOneMovieReply(int movno);
+    List<MovieReply> selectOneMovieReply(Long movno);
 
     List<String> selectMovieTitle();
 
@@ -46,4 +47,24 @@ public interface AMovieDAO {
     //void insertMovieStillcuts(List<MovieStillcut> stillcuts);
 
     Long insertMovieStillcut(MovieStillcut ms);
+
+    List<Movielocation> selectLocation();
+
+
+    Movielocation selectMovieLocation(Long ciplace);
+
+    Movie getMovieByMovno(Long movno);
+
+    void deleteMovieStillcutsByMovno(Long movno);
+
+
+    Optional<MovieStillcut> findMovieStillcutById(Long movno);
+
+    void deleteByMovno(Long movno);
+
+    void deleteMovieStillcut(MovieStillcut movieStillcut);
+
+    MovieStillcut saveMovieStillcut(MovieStillcut newMovieStillcut);
+
+    Long updateMovieStillcut(MovieStillcut ms);
 }

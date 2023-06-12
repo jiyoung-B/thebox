@@ -54,6 +54,7 @@ public class MovieScheduleDAOImpl implements MovieScheduleDAO {
 
     @Override
     public void deleteMovieScheduleBySchno(Long schno) {
+
         movieScheduleRepository.deleteById(schno);
     }
 

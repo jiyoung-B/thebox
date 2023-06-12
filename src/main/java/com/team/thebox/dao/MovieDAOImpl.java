@@ -7,7 +7,6 @@ import com.team.thebox.model.MovieReply;
 import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.repository.*;
 import com.team.thebox.model.*;
-import com.team.thebox.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,20 +17,30 @@ import java.util.*;
 
 @Repository("movdao")
 public class MovieDAOImpl implements MovieDAO {
-    @Autowired
-    MovieRepository movieRepository;
-    @Autowired
-    MovieAttachRepository movieAttachRepository;
+
+    private final MovieRepository movieRepository;
+    private final MovieAttachRepository movieAttachRepository;
+    private final MovieReplyRepository movieReplyRepository;
+    private final MovieScheduleRepository movieScheduleRepository;
+    private final BookedRepository bookedRepository;
+    private final MovieLocationRepository movieLocationRepository;
+    private final TicketingRepository ticketingRepository;
+
 
     @Autowired
-    MovieReplyRepository movieReplyRepository;
+    public MovieDAOImpl(MovieRepository movieRepository, MovieAttachRepository movieAttachRepository,
+                          MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository,
+                          BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository,
+                          TicketingRepository ticketingRepository) {
+        this.movieRepository = movieRepository;
+        this.movieAttachRepository = movieAttachRepository;
+        this.movieReplyRepository = movieReplyRepository;
+        this.movieScheduleRepository = movieScheduleRepository;
+        this.bookedRepository = bookedRepository;
+        this.movieLocationRepository = movieLocationRepository;
+        this.ticketingRepository = ticketingRepository;
+    }
 
-    @Autowired
-    MovieScheduleRepository movieScheduleRepository;
-    @Autowired
-    BookedRepository bookedRepository;
-    @Autowired
-    MovieLocationRepository movieLocationRepository;
 
     @Override
     public int insertMovie(Movie movie) {
@@ -58,10 +67,10 @@ public class MovieDAOImpl implements MovieDAO {
 //    public List<String> selectMovieTitle(long movno) {
 //        return movieRepository.findMovTitleByMovno(movno);
 //    }
-    @Override //now
+    @Override //all now soon
     public Map<String, Object> selectMovie() {
         Map<String, Object> movs = new HashMap<>();
-        movs.put("mlist", movieRepository.findAll() );
+        movs.put("mlist", movieRepository.findAllOrderBYMovreleasedateDesc() );
         return movs;
     }
 
@@ -71,7 +80,7 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public List<MovieReply> selectOneMovieReply(int movno) {
+    public List<MovieReply> selectOneMovieReply(Long movno) {
         return movieReplyRepository.findByMovnoOrderByRegdateAsc(movno);
     }
 
@@ -144,12 +153,18 @@ public class MovieDAOImpl implements MovieDAO {
             starDto.setMovgrade((String) data[3]);
             starDto.setMovreleasedate((String) data[4]);
             starDto.setMovmainposter((String) data[5]);
-            starDto.setAvgStar((Double) data[6]);
+            starDto.setTsales((Double) data[6]);
+            starDto.setAvgStar((Double) data[7]);
             movieList.add(starDto);
         }
 
         movs.put("mlist", movieList);
         return movs;
+    }
+
+    @Override
+    public List<Movie> selectTsales() {
+        return  movieRepository.findAllByOrderByTsalesDesc();
     }
 
     @Override
@@ -170,6 +185,29 @@ public class MovieDAOImpl implements MovieDAO {
         List<Movielocation> mvloc = movieLocationRepository.selectAll();
 
         return mvloc;
+    }
+
+    @Override
+    public int insertTicket(Ticketing ticketing) {
+        int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
+
+        return result;
+    }
+
+    @Override
+    public List<TicketMovie> selectMovielist(Ticketing ticketing) {
+        /*String district = ticketing.getDistrict();
+        String movdate = ticketing.getMovdate();
+        TicketMovie ticketMovie = new TicketMovie();
+        ticketMovie.setDistrict(district);
+        ticketMovie.setMovdate(movdate);
+
+        Map<String, Object> movies = new HashMap<>();
+        movies.put("movielist", TicketMovieRepository.findAllBy(district, movdate).getContent());
+        System.out.println(movies.get("movielist"));*/
+
+
+        return null;
     }
 
 }

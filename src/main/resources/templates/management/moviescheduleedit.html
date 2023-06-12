@@ -44,12 +44,7 @@
                                for="ciplace">상영관 선택</label>
                         <div class="col-6">
                             <select name="ciplace" class="form-control" id="ciplace">
-                                <option th:value="${ciplace}" th:text="${ciplace}" th:selected="${movsch.ciplace == ciplace}"></option>
-
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
-
+                                <option th:each="loc : ${location}" th:value="${loc.LOCATIONNUM}" th:text="${loc.DISTRICTNAME}"></option>
                             </select>
                         </div>
                     </div>
@@ -59,7 +54,7 @@
                                for="odate">상영날짜</label>
                         <div class="col-6">
                             <input type="text" name="odate" id="odate"
-                                   class="form-control" placeholder="yyyymmdd" maxlength="8" th:value="${movsch.odate}">
+                                   class="form-control" placeholder="yyyymmdd" maxlength="10" th:value="${movsch.odate}">
                         </div>
                     </div>
 
