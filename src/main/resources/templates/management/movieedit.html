@@ -27,15 +27,15 @@
 
             <div class="row mt-2 offset-1 col-10 mx-auto">
                 <form class="card card-body bg-light"
-                      name="moveditfrm" id="moveditfrm" th:object="${movies}">
-                    <input type="hidden" name="movno" th:value="${movies.movno}">
+                      name="moveditfrm" id="moveditfrm">
+                    <input type="hidden" name="movno" th:value="${mov.movie.movno}">
 
                     <div class="row">
                         <label class="col-3 col-form-label text-end"
                                for="movgenre">장르</label>
                         <div class="col-6">
                             <input type="text" name="movgenre" id="movgenre"
-                                   class="form-control" th:value="${movies.movgenre}">
+                                   class="form-control" th:value="${mov.movie.movgenre}">
 
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                for="movtitle">제목</label>
                         <div class="col-6">
                             <input type="text" name="movtitle" id="movtitle"
-                                   class="form-control" th:value="${movies.movtitle}">
+                                   class="form-control" th:value="${mov.movie.movtitle}">
 
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                for="movdirector">감독</label>
                         <div class="col-6">
                             <input type="text" name="movdirector" id="movdirector"
-                                   class="form-control" th:value="${movies.movdirector}">
+                                   class="form-control" th:value="${mov.movie.movdirector}">
 
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                for="movactor">주연 배우</label>
                         <div class="col-6">
                             <input type="text" name="movactor" id="movactor"
-                                   class="form-control" th:value="${movies.movactor}">
+                                   class="form-control" th:value="${mov.movie.movactor}">
 
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                for="movreleasedate">개봉연월일</label>
                         <div class="col-6">
                             <input type="text" name="movreleasedate" id="movreleasedate"
-                                   class="form-control" th:value="${movies.movreleasedate}">
+                                   class="form-control" th:value="${mov.movie.movreleasedate}">
 
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                for="movcountry">국가</label>
                         <div class="col-6">
                             <input type="text" name="movcountry" id="movcountry"
-                                   class="form-control" th:value="${movies.movcountry}">
+                                   class="form-control" th:value="${mov.movie.movcountry}">
 
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                for="movgrade">상영 등급</label>
                         <div class="col-6">
                             <input type="text" name="movgrade" id="movgrade"
-                                   class="form-control" th:value="${movies.movgrade}">
+                                   class="form-control" th:value="${mov.movie.movgrade}">
 
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                                for="movruntime">러닝타임</label>
                         <div class="col-6">
                             <input type="text" name="movruntime" id="movruntime"
-                                   class="form-control" th:value="${movies.movruntime}">
+                                   class="form-control" th:value="${mov.movie.movruntime}">
 
                         </div>
                     </div>
@@ -109,25 +109,33 @@
                                for="movdetail">줄거리</label>
                         <div class="col-6">
                             <textarea rows="6" class="form-control" id="movdetail"
-                                      name="movdetail" th:value="${movies.movdetail}"></textarea>
+                                      name="movdetail" th:value="${mov.movie.movdetail}"></textarea>
                         </div>
                     </div>
 
+                    <div class="row mt-2">
+                        <label class="col-3 col-form-label  text-end"
+                               for="movmainposter">영화포스터</label>
+                        <div class="col-6">
+                            <input type="text" name="movmainposter" id="movmainposter"
+                                   class="form-control file-upload-info bg-light" th:value="${mov.movie.movmainposter}">
+                        </div>
+                    </div>
 
                     <div class="row mt-2">
                         <label class="col-3 col-form-label  text-end"
-                               for="attach">첨부파일</label>
+                               for="stillcuts">스틸컷</label>
                         <div class="col-6">
-                            <input type="file" name="attach" id="attach"
-                                   class="form-control bg-light" ><!--th:value="${movies.attach}"-->
+                            <input type="file" name="stillcuts" id="stillcuts" multiple="multiple"
+                                   class="form-control bg-light" th:value="${mov.fname}">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <label class="col-3 col-form-label  text-end"
-                               for="movPosters">무비포스터</label>
+                               for="videourl">예고편 url</label>
                         <div class="col-6">
-                            <input type="file" name="movPosters" id="movPosters"
-                                   class="form-control file-upload-info bg-light">
+                            <input type="text" name="videourl" id="videourl"
+                                   class="form-control file-upload-info bg-light" th:value="${mov.movie.videourl}">
                         </div>
                     </div>
 

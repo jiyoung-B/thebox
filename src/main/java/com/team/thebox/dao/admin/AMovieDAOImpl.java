@@ -7,10 +7,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository("amovdao")
 public class AMovieDAOImpl implements AMovieDAO {
@@ -20,15 +22,18 @@ public class AMovieDAOImpl implements AMovieDAO {
     private final MovieReplyRepository movieReplyRepository;
     private final MovieScheduleRepository movieScheduleRepository;
     private final BookedRepository bookedRepository;
+    private final MovieLocationRepository movieLocationRepository;
 
     @Autowired
-    public AMovieDAOImpl(MovieRepository movieRepository, MovieStillcutRepository movieStillcutRepository, MovieAttachRepository movieAttachRepository, MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository, BookedRepository bookedRepository) {
+    public AMovieDAOImpl(MovieRepository movieRepository, MovieStillcutRepository movieStillcutRepository, MovieAttachRepository movieAttachRepository, MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository, BookedRepository bookedRepository,
+                         MovieLocationRepository movieLocationRepository) {
         this.movieRepository = movieRepository;
         this.movieStillcutRepository = movieStillcutRepository;
         this.movieAttachRepository = movieAttachRepository;
         this.movieReplyRepository = movieReplyRepository;
         this.movieScheduleRepository = movieScheduleRepository;
         this.bookedRepository = bookedRepository;
+        this.movieLocationRepository = movieLocationRepository;
     }
 
     @Override
@@ -69,7 +74,7 @@ public class AMovieDAOImpl implements AMovieDAO {
     }
 
     @Override
-    public List<MovieReply> selectOneMovieReply(int movno) {
+    public List<MovieReply> selectOneMovieReply(Long movno) {
         return movieReplyRepository.findByMovnoOrderByRegdateAsc(movno);
     }
 
@@ -80,11 +85,9 @@ public class AMovieDAOImpl implements AMovieDAO {
     }
 
     @Override
-    public Long updateMovie(Movie updatemovie) {
-        System.out.println("저장직전repository"+updatemovie);
-
-        return movieRepository.save(updatemovie).getMovno();
-
+    @Transactional
+    public Long updateMovie(Movie movie) {
+        return movieRepository.save(movie).getMovno();
     }
 
     @Override
@@ -141,5 +144,66 @@ public class AMovieDAOImpl implements AMovieDAO {
     public Long insertMovieStillcut(MovieStillcut ms) {
         return movieStillcutRepository.save(ms).getId();
     }
+//    @Override
+//    public List<Movie> selectMovnoAndTitle() {
+//        return movieRepository.findAll();
+//    }
+    @Override
+    public List<Movielocation> selectLocation() {
+        return movieLocationRepository.findAll();
+    }
+
+    @Override
+    public Movielocation selectMovieLocation(Long ciplace) {
+        return movieLocationRepository.findDistrictNameByLocationNum(ciplace);
+    }
+
+    @Override
+    public Movie getMovieByMovno(Long movno) {
+        return movieRepository.getMovieByMovno(movno);
+    }
+
+    @Override
+    public void deleteMovieStillcutsByMovno(Long movno) {
+        movieStillcutRepository.deleteById(movno);
+    }
+
+    @Override
+    public Optional<MovieStillcut> findMovieStillcutById(Long movno) {
+        return movieStillcutRepository.findById(movno);
+//                Optional.empty();
+        //movieStillcutRepository.findById(movno);
+    }
+
+    @Override
+    public void deleteByMovno(Long movno) {
+        movieStillcutRepository.deleteByMovno(movno);
+
+    }
+
+    @Override
+    public void deleteMovieStillcut(MovieStillcut movieStillcut) {
+        movieStillcutRepository.delete(movieStillcut);
+    }
+
+    @Override
+    public MovieStillcut saveMovieStillcut(MovieStillcut newMovieStillcut) {
+        return movieStillcutRepository.save(newMovieStillcut);
+    }
+
+    @Override
+    @Transactional
+    public Long updateMovieStillcut(MovieStillcut ms) {
+        MovieStillcut existingStillcut = movieStillcutRepository.findById(ms.getId()).orElse(null);
+        if (existingStillcut != null) {
+            existingStillcut.setFname(ms.getFname());
+            existingStillcut.setFsize(ms.getFsize());
+            // MovieStillcut 엔티티의 다른 필드도 필요에 따라 업데이트합니다.
+            return existingStillcut.getId();
+        }
+        return null;
+    }
+
+
 
 }

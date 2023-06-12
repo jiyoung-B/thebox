@@ -1,8 +1,6 @@
 package com.team.thebox.service;
 
-import com.team.thebox.model.Movie;
-import com.team.thebox.model.MovieReply;
-import com.team.thebox.model.Movielocation;
+import com.team.thebox.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +13,7 @@ public interface MovieService {
 
     boolean newReply(MovieReply reply);
 
-    List<MovieReply> readOneMovieReply(int movno);
+    List<MovieReply> readOneMovieReply(Long movno);
 
     boolean modifyReply(MovieReply reply);
 
@@ -25,4 +23,10 @@ public interface MovieService {
     Map<String, Object> readStar();
 
     List<Movielocation> readMovieLocation();
+
+    List<Movie> readTsales();
+
+    boolean newTicket(Ticketing ticketing);
+
+    List<TicketMovie> readMovielist(Ticketing ticketing);
 }

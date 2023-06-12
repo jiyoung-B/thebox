@@ -5,6 +5,7 @@
 
 <th:block layout:fragment="content">
     <div id="main">
+        <script src="https://www.google.com/recaptcha/api.js"></script>
         <div class="mt-5">
             <i class="fa-solid fa-users fa-2xl"> sign up </i>
             <hr>
@@ -54,6 +55,10 @@
                         <div class="col-3">
                             <input type="password" name="repasswd" id="repasswd"
                                    class="form-control border-dark"></div>
+                        <div class="col-auto">
+                             <span id="" class="form-text text-warning"
+                                   th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></span>
+                        </div>
                     </div>
 
 
@@ -98,7 +103,7 @@
                         <div class="col-2">
                             <input type="text" name="tel3" id="tel3"
                                    class="form-control border-dark" th:value="${member.tel3}"> </div>
-                        <span class="row text-warning"
+                        <span class="row offset-2 text-warning"
                               th:if="${#fields.hasErrors('tel2') or #fields.hasErrors('tel3')}"
                               th:errors="*{tel2}" ></span>
                     </div>

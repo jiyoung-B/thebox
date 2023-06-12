@@ -23,14 +23,14 @@ public class MovieSchedule extends BaseEntity{
     private Long movno;
 
     @Column
-    private String ciplace;
+    private Long ciplace;
 
     @Column
     private String odate;
 
 
     @Column
-    private String stime;
+    private String stime;   // 영화 시작시간
 
     @Column
     private String etime;

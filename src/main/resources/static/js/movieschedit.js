@@ -7,7 +7,6 @@ schupdatebtn?.addEventListener('click', () => {
     else if (scheditfrm.odate.value === '') alert('상영날짜를 입력하세요!');
     else {
         console.log(scheditfrm.movno.value); // movno 값을 콘솔에 출력
-        console.log(scheditfrm.ciplace.value); // movno 값을 콘솔에 출력
         scheditfrm.method = 'post';
         scheditfrm.submit();
     }

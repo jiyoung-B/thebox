@@ -69,8 +69,7 @@
             <div class="row mt-2">
                 <div class="col-sm-3" >
                     <div class="thumbnail">
-                            <img th:src="@{${mov.movie.movmainposter}}" class="img-fluid" alt="movieposter">
-
+                        <img th:src="@{${mov.movie.movmainposter}}" class="img-fluid" alt="movieposter">
                     </div>
                 </div>
                 <div class="col-auto">
@@ -88,7 +87,7 @@
                         <button class="btn btn-primary" type="button">예매하기</button>
                     </div>
                 </div>
-           </div>
+            </div>
             <div class="mt-5">
                 <h4>줄거리</h4>
                 <hr/>
@@ -115,7 +114,7 @@
                             th:src="@{'https://www.youtube.com/embed/' + ${mov.movie.videourl.substring(mov.movie.videourl.lastIndexOf('/') + 1)}}"
                             allowfullscreen></iframe>
                 </div>
-                //<iframe width="1688" height="569" src="https://www.youtube.com/embed/1TkdeD8wfQM" title="&quot;Mr. Sunshine&quot; (2018) - Official Trailer - Korean Drama" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!--                <iframe width="1688" height="569" src="https://www.youtube.com/embed/1TkdeD8wfQM" title="&quot;Mr. Sunshine&quot; (2018) - Official Trailer - Korean Drama" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
             </div>
 
 

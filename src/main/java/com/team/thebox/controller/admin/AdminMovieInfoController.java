@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @CrossOrigin(originPatterns = "*")
@@ -47,17 +48,6 @@ public class AdminMovieInfoController {
 
     }
 
-//    @GetMapping("/details/{movno}")
-//    public String view(@PathVariable Long movno, Model model){
-//        Movie movie = admmvsrv.readOneMovie(movno);
-//        //List<MovieStillcut> stillcuts = ["1", "2"]; /*movie.ge.getStillcuts()*/
-//        model.addAttribute("mov", movie);
-//        System.out.println("무비"+ movie);
-//        //model.addAttribute("stillcuts", stillcuts);
-//        //System.out.println("스틸컷"+ stillcuts);
-//       // return "management/movieview";
-//        return "management/movieview";
-//    }
     @GetMapping("/list")
     public String showAllMovie(Model model) {
         List<Movie> movies = admmvsrv.getAllMovies();
@@ -73,6 +63,37 @@ public class AdminMovieInfoController {
         mv.setViewName("management/movieview");
 
         return mv;
+    }
+
+    @GetMapping("/modify/{movno}")
+    public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("mov", admmvsrv.readOneMovie(movno));
+        mv.setViewName("management/movieedit");
+        return mv;
+    }
+
+    @PostMapping("/modify/{movno}")
+    public String modifyMovieOK(@PathVariable Long movno, Movie movie, List<MultipartFile> stillcuts){
+        String viewPage = "error";
+
+        if (!stillcuts.isEmpty()) {// 첨부파일이 존재한다면
+            Map<String, Object> minfo = admmvsrv.updateMovie(movie);
+            admmvsrv.updateMovieStillcut(stillcuts, minfo);
+            viewPage = "redirect:/management/movieinfo/list";
+        }
+        return viewPage;
+    }
+
+
+    @GetMapping("/remove/{movno}")
+    public String removeMovie(@PathVariable Long movno) {
+        if (admmvsrv.removeMovieByMovno(movno)) {
+            return "redirect:/management/movieinfo/list";
+        } else {
+            return "error";
+        }
+
     }
 
 

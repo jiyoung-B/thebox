@@ -19,7 +19,32 @@
             <table style="border-collapse: initial; border-spacing: 0;">
               <tbody>
               <tr>
-                <td style="height: 30px;"><div id="dvSeatGrade"></div></td>
+                <td>
+                  <div>
+                  <span>
+                    <img src="http://ticketimage.interpark.com/TicketImage/event/080519_m/arrow_04.gif" style="width: 3px; height: 5px; vertical-align: center;">
+                    일반 (15000원)
+                    <select id="seatAdult" onchange="insertseatAdult()" style="width:50px; height:23px;">
+                      <option value="0" selected="">0 매</option>
+                      <option value="1">1 매</option>
+                      <option value="2">2 매</option>
+                      <option value="3">3 매</option>
+                      <option value="4">4 매</option>
+                    </select>
+                  </span>
+                  <span>
+                    <img src="http://ticketimage.interpark.com/TicketImage/event/080519_m/arrow_04.gif" style="width: 3px; height: 5px; vertical-align: center;">
+                    청소년 (12000원)
+                    <select id="seatTeen" onchange="insertseatTeen()" style="width:50px; height:23px;">
+                      <option value="0" selected="">0 매</option>
+                      <option value="1">1 매</option>
+                      <option value="2">2 매</option>
+                      <option value="3">3 매</option>
+                      <option value="4">4 매</option>
+                    </select>
+                  </span>
+                </div>
+                </td>
               </tr>
               <tr>
                 <td style="height: 30px;"><div id="dvPriceGrade"></div></td>
@@ -28,9 +53,9 @@
             </table>
           </td>
         </tr>
-        <tr>
+<!--        <tr>
           <td style="height: 7px;"></td>
-        </tr>
+        </tr>-->
         </tbody>
       </table>
     </td>
@@ -48,6 +73,34 @@
 
   let modalBackground = parent.document.querySelector("#modalBackground");
   let seatModal = parent.document.querySelector("#seatModal");
+
+  let seatAdult = document.querySelector("#seatAdult");
+  let seatTeen = document.querySelector("#seatTeen");
+
+  let movseatadult =  parent.document.querySelector("#movseatadult");
+  let movseatteen =  parent.document.querySelector("#movseatteen");
+  let movtotalprice =  parent.document.querySelector("#movtotalprice");
+  let totalpay =  parent.document.querySelector("#totalpay");
+
+  insertseatAdult = () => {
+    movseatadult.value = seatAdult.value;
+    if(isNaN(parseInt(movseatteen.value))){
+      movtotalprice.value = parseInt(movseatadult.value) * 15000;
+    } else {
+    movtotalprice.value = parseInt(movseatadult.value) * 15000 + parseInt(movseatteen.value) * 15000;
+    }
+    totalpay.innerHTML = "총 결제 금액 " + movtotalprice.value;
+  }
+
+  insertseatTeen = () => {
+    movseatteen.value = seatTeen.value;
+    if(isNaN(parseInt(movseatadult.value))){
+      movtotalprice.value = parseInt(movseatteen.value) * 12000;
+    } else {
+      movtotalprice.value = parseInt(movseatadult.value) * 12000 + parseInt(movseatteen.value) * 12000;
+    }
+    totalpay.innerHTML = "총 결제 금액 " + movtotalprice.value;
+  }
 
   callModal.addEventListener('click', () => {
     modalBackground.style.zIndex = '999';

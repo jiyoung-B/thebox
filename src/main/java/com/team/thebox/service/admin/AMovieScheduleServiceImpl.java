@@ -1,9 +1,11 @@
 package com.team.thebox.service.admin;
 
+import com.team.thebox.dao.admin.AMovieDAO;
 import com.team.thebox.dao.admin.MovieScheduleDAO;
 import com.team.thebox.dto.MovieScheduleDTO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieSchedule;
+import com.team.thebox.model.Movielocation;
 import com.team.thebox.repository.BookedRepository;
 import com.team.thebox.repository.MovieRepository;
 import com.team.thebox.repository.MovieScheduleRepository;
@@ -26,6 +28,8 @@ public class AMovieScheduleServiceImpl implements AMovieScheduleService {
 
     @Autowired
     MovieScheduleDAO movschdao;
+    @Autowired
+    AMovieDAO amovdao;
 
 
 
@@ -38,16 +42,22 @@ public class AMovieScheduleServiceImpl implements AMovieScheduleService {
             MovieScheduleDTO scheduleDTO = new MovieScheduleDTO();
             scheduleDTO.setId(schedule.getSchno());
             scheduleDTO.setSchno(schedule.getSchno());
-            scheduleDTO.setCiplace(schedule.getCiplace());
+            //scheduleDTO.setCiplace(schedule.getCiplace());
             scheduleDTO.setOdate(schedule.getOdate());
             scheduleDTO.setStime(schedule.getStime());
             scheduleDTO.setEtime(schedule.getEtime());
             scheduleDTO.setPrice(schedule.getPrice());
 
             Long movno = schedule.getMovno();
+            Long ciplace = schedule.getCiplace();
+
             Movie movie = movschdao.selectMovieTitleByMovno(movno);
+            Movielocation movielocation = amovdao.selectMovieLocation(ciplace);
             if (movie != null) {
                 scheduleDTO.setMovtitle(movie.getMovtitle());
+            }
+            if (movielocation != null) {
+                scheduleDTO.setCiplace(movielocation.getDISTRICTNAME());
             }
 
             Long schno = schedule.getSchno();
