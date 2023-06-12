@@ -34,36 +34,16 @@
 
               <div class="col-xl-8 col-lg-7">
 
-                <!-- Area Chart -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">월별 매출</h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="chart-area">
-                      <canvas id="myAreaChart"></canvas>
-                    </div>
-                    <hr>
-                    <!--Styling for the area chart can be found in the
-                    <code>/js/demo/chart-area-demo.js</code> file.-->
-                  </div>
-
-                </div>
-
                 <!-- Bar Chart -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">6월 상영 영화별 누적 매출액</h6>
                   </div>
-                  <div class="card-body" style="height: 350px !important;">
+                  <div class="card-body" style="height: 450px;">
                     <div class="chart-bar">
-                      <canvas id="accumulatedSalesChart" style="height: 300px !important;"></canvas>
+                      <canvas id="salesBarChart" style="height: 400px;"></canvas>
                     </div>
-                    <hr>
-                    <!--Styling for the bar chart can be found in the
-                    <code>/js/demo/chart-bar-demo.js</code> file.-->
                   </div>
-
                 </div>
 
               </div>
@@ -73,16 +53,13 @@
                 <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">총매출 영화사 비율</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">현재 사영작 중 매출액 점유율 TOP5 영화</h6>
                   </div>
                   <!-- Card Body -->
                   <div class="card-body">
                     <div class="chart-pie pt-4">
                       <canvas id="myPieChart"></canvas>
                     </div>
-                    <hr>
-                    <!--Styling for the donut chart can be found in the
-                    <code>/js/demo/chart-pie-demo.js</code> file.-->
                   </div>
                 </div>
               </div>
