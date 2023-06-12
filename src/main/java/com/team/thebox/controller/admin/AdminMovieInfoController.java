@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @CrossOrigin(originPatterns = "*")
@@ -64,12 +65,6 @@ public class AdminMovieInfoController {
         return mv;
     }
 
-//    @GetMapping("/modify/{movno}")
-//    public String showMovieForm(@PathVariable Long movno, Model model) {
-//        Object movie = admmvsrv.readOneMovie(movno);
-//        model.addAttribute("movie", movie);
-//        return "management/movieview";
-//    }
     @GetMapping("/modify/{movno}")
     public ModelAndView showModifyMovieForm(@PathVariable Long movno) {
         ModelAndView mv = new ModelAndView();
@@ -78,36 +73,18 @@ public class AdminMovieInfoController {
         return mv;
     }
 
-//    @GetMapping("/modify/{movno}")
-//    public String showModifyMovieForm(@PathVariable Long movno, Model model) {
-//
-//        Movie movie = admmvsrv.getMovieByMovno(movno);
-//        model.addAttribute("무비뷰즈", movie);
-//        System.out.println(movno);
-//        //Object moviedetail = admmvsrv.readOneMovie(movno);
-//
-//
-////        ModelAndView mv = new ModelAndView();
-////        mv.setViewName("management/movieedit");
-//
-//
-//        return "management/movieedit";
-//    }
+    @PostMapping("/modify/{movno}")
+    public String modifyMovieOK(@PathVariable Long movno, Movie movie, List<MultipartFile> stillcuts){
+        String viewPage = "error";
 
+        if (!stillcuts.isEmpty()) {// 첨부파일이 존재한다면
+            Map<String, Object> minfo = admmvsrv.updateMovie(movie);
+            admmvsrv.updateMovieStillcut(stillcuts, minfo);
+            viewPage = "redirect:/management/movieinfo/list";
+        }
+        return viewPage;
+    }
 
-
-//    @PostMapping("/modify")
-//    public String modifyMovieOK(Movie movie, List<MultipartFile> stillcuts) {
-//        String viewPage = "error";
-//
-//        if (!stillcuts.isEmpty()) {
-//            viewPage = admmvsrv.createMovieWithStillcuts(movie, stillcuts);
-//        } else {
-//            viewPage = admmvsrv.updateMovie(movie);
-//        }
-//
-//        return viewPage;
-//    }
 
     @GetMapping("/remove/{movno}")
     public String removeMovie(@PathVariable Long movno) {

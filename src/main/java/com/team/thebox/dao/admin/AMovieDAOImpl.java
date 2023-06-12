@@ -7,10 +7,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository("amovdao")
 public class AMovieDAOImpl implements AMovieDAO {
@@ -83,11 +85,9 @@ public class AMovieDAOImpl implements AMovieDAO {
     }
 
     @Override
-    public Long updateMovie(Movie updatemovie) {
-        System.out.println("저장직전repository"+updatemovie);
-
-        return movieRepository.save(updatemovie).getMovno();
-
+    @Transactional
+    public Long updateMovie(Movie movie) {
+        return movieRepository.save(movie).getMovno();
     }
 
     @Override
@@ -162,6 +162,48 @@ public class AMovieDAOImpl implements AMovieDAO {
     public Movie getMovieByMovno(Long movno) {
         return movieRepository.getMovieByMovno(movno);
     }
+
+    @Override
+    public void deleteMovieStillcutsByMovno(Long movno) {
+        movieStillcutRepository.deleteById(movno);
+    }
+
+    @Override
+    public Optional<MovieStillcut> findMovieStillcutById(Long movno) {
+        return movieStillcutRepository.findById(movno);
+//                Optional.empty();
+        //movieStillcutRepository.findById(movno);
+    }
+
+    @Override
+    public void deleteByMovno(Long movno) {
+        movieStillcutRepository.deleteByMovno(movno);
+
+    }
+
+    @Override
+    public void deleteMovieStillcut(MovieStillcut movieStillcut) {
+        movieStillcutRepository.delete(movieStillcut);
+    }
+
+    @Override
+    public MovieStillcut saveMovieStillcut(MovieStillcut newMovieStillcut) {
+        return movieStillcutRepository.save(newMovieStillcut);
+    }
+
+    @Override
+    @Transactional
+    public Long updateMovieStillcut(MovieStillcut ms) {
+        MovieStillcut existingStillcut = movieStillcutRepository.findById(ms.getId()).orElse(null);
+        if (existingStillcut != null) {
+            existingStillcut.setFname(ms.getFname());
+            existingStillcut.setFsize(ms.getFsize());
+            // MovieStillcut 엔티티의 다른 필드도 필요에 따라 업데이트합니다.
+            return existingStillcut.getId();
+        }
+        return null;
+    }
+
 
 
 }

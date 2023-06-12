@@ -1,9 +1,11 @@
 package com.team.thebox.repository;
 
 import com.team.thebox.model.Movie;
+import com.team.thebox.model.MovieStillcut;
 import com.team.thebox.model.MovieView;
 import com.team.thebox.model.Movielocation;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -42,4 +44,25 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     Optional<Movie> findByMovno(Long movno);
 
     Movie getMovieByMovno(Long movno);
+
+    MovieStillcut getMovieStillcutByMovno(Long movno);
+    @Modifying
+    @Query("UPDATE Movie m SET m.movgenre = :movgenre, m.movtitle = :movtitle, m.movdirector = :movdirector, m.movactor = :movactor, m.movreleasedate = :movreleasedate, m.movcountry = :movcountry, m.movgrade = :movgrade, m.movruntime = :movruntime, m.movdetail = :movdetail, m.movmainposter = :movmainposter, m.videourl = :videourl WHERE m.movno = :movno")
+    void updateMovie(
+            @Param("movgenre") String movgenre,
+            @Param("movtitle") String movtitle,
+            @Param("movdirector") String movdirector,
+            @Param("movactor") String movactor,
+            @Param("movreleasedate") String movreleasedate,
+            @Param("movcountry") String movcountry,
+            @Param("movgrade") String movgrade,
+            @Param("movruntime") String movruntime,
+            @Param("movdetail") String movdetail,
+            @Param("movmainposter") String movmainposter,
+            @Param("videourl") String videourl,
+            @Param("movno") Long movno
+    );
+
+
+
 }

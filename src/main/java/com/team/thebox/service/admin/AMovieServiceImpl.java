@@ -2,8 +2,8 @@ package com.team.thebox.service.admin;
 
 import com.team.thebox.dao.admin.AMovieDAO;
 import com.team.thebox.dto.MovieDTO;
-import com.team.thebox.dto.MovieRequestDto;
 import com.team.thebox.model.*;
+import com.team.thebox.repository.MovieRepository;
 import com.team.thebox.utils.MovieUtils;
 //import com.team.thebox.utils.S3Uploader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +33,8 @@ public class AMovieServiceImpl implements AMovieService {
 
     @Value("${video.directory}")
     private String videoDirectory;
+    @Autowired
+    private MovieRepository movieRepository;
 
 
     @Override
@@ -275,11 +277,11 @@ public class AMovieServiceImpl implements AMovieService {
 
     @Override
     public boolean newMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo) {
-        // 이미지 파일 저장
+// 이미지 파일 저장
         MovieStillcut ms = movutils.processUpload(stillcuts, minfo);
-        // 썸내일 이미지 생성
-        //movutils.makeThumbnail(ms, minfo.get("uuid"));
-        // 첨부정보 디비 저장
+// 썸내일 이미지 생성
+//movutils.makeThumbnail(ms, minfo.get("uuid"));
+// 첨부정보 디비 저장
         Long id = amovdao.insertMovieStillcut(ms);
 
         return id > 0;
@@ -295,6 +297,109 @@ public class AMovieServiceImpl implements AMovieService {
     public Movie getMovieByMovno(Long movno) {
         return amovdao.getMovieByMovno(movno);
     }
+
+    @Override
+    public Map<String, Object> updateMovie(Movie movie) {
+        movie.setUuid(movutils.makeUUID());
+        Long movno = amovdao.updateMovie(movie);
+        Map<String, Object> minfo = new HashMap<>();
+        minfo.put("movno", movno);
+        minfo.put("uuid", movie.getUuid());
+        return minfo;
+    }
+
+
+
+
+
+
+
+    @Override
+    public Map<String, Object> updateMovie(Movie movie, List<MultipartFile> stillcuts) {
+        amovdao.updateMovie(movie);
+
+        Map<String, Object> minfo = new HashMap<>();
+        minfo.put("movno", movie.getMovno());
+        minfo.put("uuid", movie.getUuid());
+
+        return minfo;
+    }
+
+    @Override
+    public boolean updateMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo) {
+        MovieStillcut ms = movutils.processUpdate(stillcuts, minfo);
+        if (ms != null) {
+            // 필요한 로직을 추가하세요
+            Long id = amovdao.updateMovieStillcut(ms);
+            return id > 0;
+        }
+        return false;
+    }
+
+
+
+    @Override
+    public boolean deleteMovieStillcutsByMovno(Long movno) {
+        Optional<MovieStillcut> optionalMovieStillcut = amovdao.findMovieStillcutById(movno);
+
+        if (optionalMovieStillcut.isPresent()) {
+            amovdao.deleteMovieStillcutsByMovno(movno);
+//            movieStillcutRepository.deleteById(movno);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//    @Override
+//    public Map<String, Object> updateMovie(Movie movie) {
+//        amovdao.updateMovie(movie);
+//
+//        Map<String, Object> minfo = new HashMap<>();
+//        minfo.put("movno", movie.getMovno());
+//        minfo.put("uuid", movie.getUuid());
+//
+//        return minfo;
+//    }
+@Override
+public void modifyMovie(Movie movie) {
+    movie.setUuid(movutils.makeUUID());
+    amovdao.updateMovie(movie);
+}
+
+    @Override
+    public Map<String, Object> updateMovieInfo(Movie movie, List<MultipartFile> stillcuts) {
+        Map<String, Object> updatedInfo = new HashMap<>();
+        updatedInfo.put("movno", movie.getMovno());
+        updatedInfo.put("uuid", movie.getUuid());
+
+        return updatedInfo;
+    }
+
+    @Override
+    public void deleteMovieStillcut(MovieStillcut movieStillcut) {
+        amovdao.deleteMovieStillcut(movieStillcut);
+    }
+
+//    @Override
+//    public MovieStillcut createMovieStillcut(List<MultipartFile> stillcuts, Movie movie) {
+//
+//        // 새로운 MovieStillcut 생성 및 저장
+//        MovieStillcut newMovieStillcut = new MovieStillcut();
+//        newMovieStillcut.setMovie(movie);
+//        // 이미지 파일 저장 및 나머지 필드 설정
+//        movutils.processUpdate(stillcuts, newMovieStillcut, movie.getUuid());
+//
+//        return amovdao.saveMovieStillcut(newMovieStillcut);
+//    }
+
+
+
+//    @Override
+//    public boolean deleteMovieStillcutsByMovno(Long movno) {
+//        amovdao.deleteMovieStillcutsByMovno(movno);
+//        return true;
+//    }
 
 
     private String saveFile(byte[] fileData, String fileType) throws IOException {
