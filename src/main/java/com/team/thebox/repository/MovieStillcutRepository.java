@@ -17,6 +17,10 @@ public interface MovieStillcutRepository extends JpaRepository<MovieStillcut, Lo
 
     void deleteByMovno(Long movno);
 
+
+
+
+
     @Modifying
     @Query("UPDATE MovieStillcut ms SET ms.fname = :fname, ms.fsize = :fsize WHERE ms.movno = :movno")
     void updateMovieStillcut(

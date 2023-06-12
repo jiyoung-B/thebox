@@ -23,5 +23,8 @@ public class MovieStillcut{
     private String fname;
     private String fsize;
     private Long movno;
-
+    @OneToOne(optional = false)
+    @JoinColumn(name="movno", insertable = false, updatable = false)
+    @JsonIgnore
+    private Movie movie;
 }
