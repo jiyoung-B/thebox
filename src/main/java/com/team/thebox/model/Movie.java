@@ -51,10 +51,12 @@ public class Movie extends BaseEntity{
 
     private String videourl;    // 예고편
 
-    @OneToOne(mappedBy = "movie", cascade = CascadeType.REMOVE)
+    private Integer moviestillcut_id;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name="moviestillcut_id", insertable = false, updatable = false)
     @JsonIgnore
     private MovieStillcut movieStillcut;
-
 
 
 }
