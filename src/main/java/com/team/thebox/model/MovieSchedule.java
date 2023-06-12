@@ -17,10 +17,10 @@ import javax.persistence.*;
 public class MovieSchedule extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long schno;
+    private Long movno;
 
     @Column
-    private Long movno;
+    private Long schno;
 
     @Column
     private Long ciplace;

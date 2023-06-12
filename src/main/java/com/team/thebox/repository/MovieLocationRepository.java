@@ -14,4 +14,7 @@ public interface MovieLocationRepository extends JpaRepository<Movielocation, Lo
     @Query(value = "SELECT LOCATIONNUM, DISTRICTNAME, PLACENAME FROM movielocation WHERE LOCATIONNUM = :ciplace", nativeQuery = true)
     Movielocation findDistrictNameByLocationNum(@Param("ciplace") Long ciplace);
 
+    @Query(value = "SELECT distinct LOCATIONNUM FROM movielocation WHERE DISTRICTNAME = :district", nativeQuery = true)
+    Long findDistrictNameByLocationName(@Param("district") String district);
+
 }

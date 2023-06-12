@@ -69,7 +69,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<TicketMovie> readMovielist(Ticketing ticketing) {
+    public String readMovielist(Ticketing ticketing) {
         return movdao.selectMovielist(ticketing);
     }
 
