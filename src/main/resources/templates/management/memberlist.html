@@ -39,28 +39,28 @@
                 <div class="card-body">
                 <table id="example2" class="table table-head-fixed table-bordered table-hover">
                   <thead>
-                  <tr>
-                    <th>번2호</th>
+                  <tr class="text-center">
+                    <th>No.</th>
                     <th>아이디</th>
                     <th>이름</th>
-                    <th>생년월일</th>
+<!--                    <th>생년월일</th>-->
                     <th>전화번호</th>
                     <th>이메일</th>
-                    <th>가입일</th>
+<!--                    <th>가입일</th>-->
 <!--                    <th>수정/삭제</th>-->
 <!--                    <th>수정/삭제</th>-->
                   </tr>
                   </thead>
 
                   <tbody>
-                  <tr th:each="mem : ${memlist}">
+                  <tr class="text-center" th:each="mem : ${memlist}">
                     <td th:text="${mem.pmno}">1</td>
                     <td th:text="${mem.userid}">1</td>
                     <td th:text="${mem.name}">가디언즈 오브 갤럭시: Volume 3</td>
-                    <td>생년월일</td> <!-- th:text="${mem.movdirector}"-->
+<!--                    <td>&nbsp;</td> &lt;!&ndash; th:text="${mem.movdirector}"&ndash;&gt;-->
                     <td th:text="${mem.phone}">크리스 프랫, 조 샐다나, 데이브 바티스타, 빈 디젤</td>
                     <td th:text="${mem.email}">액션/어드벤처/SF</td>
-                    <td th:text="${mem.regdate}">150분</td>
+<!--                    <td th:text="${mem.regdate}">150분</td>-->
 <!--                    <td>-->
 <!--                      <a th:href="@{'/management/movie/modify/' + ${mov.movno}}">수정</a>-->
 <!--                    </td>-->

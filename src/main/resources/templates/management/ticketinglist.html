@@ -39,7 +39,7 @@
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>번호</th>
+                    <th>No.</th>
                     <th>예매번호</th>
                     <th>예매자</th>
                     <th>예매영화</th>
@@ -49,59 +49,57 @@
                     <th>예매좌석</th>
                     <th>결제가격</th>
                     <th>결제일</th>
-                    <th>취소</th>
+<!--                    <th>취소</th>-->
                   </tr>
                   </thead>
 
                   <tbody>
-                  <tr th:each="bk : ${bklist}">
-                    <td th:text="${bk.bkono}">1</td>
-                    <td th:text="${bk.bookingnum}">1</td>
-                    <td th:text="${bk.name}">1</td>
-                    <td th:text="${bk.title}">예매영화</td>
-                    <td>상영관</td> <!-- th:text="${mem.movdirector}"-->
-                    <td th:text="${bk.viewingday}">예매날짜</td>
-                    <td th:text="${bk.viewingday}">예매시간</td>
-                    <td th:text="${bk.seats}">예매좌석</td>
-                    <td th:text="${bk.totalprice}">결제가격</td>
-                    <td th:text="${bk.regdate}">결제일</td>
 
-                  </tr>
+                  <td>No.</td>
+                  <td>20230613T</td>
+                  <td>그루트</td>
+                  <td>가디언즈오브갤럭시</td>
+                  <td>구로 메가박스</td>
+                  <td>2023-06-13</td>
+                  <td>13:00</td>
+                  <td>134, 137</td>
+                  <td>30,000원</td>
+                  <td>2023-06-12</td>
+                  <!--                    <th>취소</th>-->
+<!--                  <tr th:each="bk : ${bklist}">-->
+<!--                    <td th:text="${bk.bkono}">1</td>-->
+<!--                    <td th:text="${bk.bookingnum}">1</td>-->
+<!--                    <td th:text="${bk.name}">1</td>-->
+<!--                    <td th:text="${bk.title}">예매영화</td>-->
+<!--                    <td>상영관</td> &lt;!&ndash; th:text="${mem.movdirector}"&ndash;&gt;-->
+<!--                    <td th:text="${bk.viewingday}">예매날짜</td>-->
+<!--                    <td th:text="${bk.viewingday}">예매시간</td>-->
+<!--                    <td th:text="${bk.seats}">예매좌석</td>-->
+<!--                    <td th:text="${bk.totalprice}">결제가격</td>-->
+<!--                    <td th:text="${bk.regdate}">결제일</td>-->
+
+<!--                  </tr>-->
 
 
 
-                  <tr>
-                    <td>Trident</td>
-                    <td>Trident</td>
-                    <td>Trident</td>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                  </tr>
+
                   </tbody>
 
 
                   <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                  </tr>
+<!--                  <tr>-->
+<!--                    <th>Rendering engine</th>-->
+<!--                    <th>Browser</th>-->
+<!--                    <th>Platform(s)</th>-->
+<!--                    <th>Engine version</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                   -->
+<!--                  </tr>-->
                   </tfoot>
                 </table>
                  </div>
