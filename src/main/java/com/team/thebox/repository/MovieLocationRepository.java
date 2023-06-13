@@ -18,3 +18,4 @@ public interface MovieLocationRepository extends JpaRepository<Movielocation, Lo
     Long findDistrictNameByLocationName(@Param("district") String district);
 
 }
+

@@ -31,6 +31,4 @@ public interface MovieService {
     String readMovielist(Ticketing ticketing);
 
 
-    void newBooking(BookingDetails bds);
-
 }

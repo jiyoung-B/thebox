@@ -210,14 +210,14 @@ public class MovieDAOImpl implements MovieDAO {
         bookingDetails.setPoster(movieRepository.findMovmainposterByMovtitle(ticketing.getMovname()));
         bookingDetails.setCinematype(ticketing.getCinematype());
         bookingDetails.setTitle(ticketing.getMovname());
-        bookingDetails.setRegion(ticketing.getDistrict());
-        String districtName = ticketing.getCinematype()+" "+ticketing.getMovdate();
+//        bookingDetails.setRegion(ticketing.getDistrict());
+        String districtName = ticketing.getCinematype()+" "+ticketing.getDistrict();
         bookingDetails.setRegion(String.valueOf(movieLocationRepository.findDistrictNameByLocationName(districtName)));
-        bookingDetails.setRegion(ticketing.getRsp());
         bookingDetails.setSeats(ticketing.getSeat());
-        bookingDetails.setViewingday(ticketing.getMovdate());
-        bookingDetails.setPaymentdate(ticketing.getRegdate());
+        bookingDetails.setViewingday((ticketing.getMovdate()));
+        bookingDetails.setPaymentdate((ticketing.getRegdate()));
         bookingDetails.setAdult(Integer.parseInt(ticketing.getAdult()));
+        bookingDetails.setTeen(Integer.parseInt(ticketing.getTeen()));
         bookingDetails.setTotalprice(Integer.parseInt(ticketing.getMovtotalprice()));
         bookingDetails.setUserid(ticketing.getUserid());
 
@@ -256,7 +256,7 @@ public class MovieDAOImpl implements MovieDAO {
         return json;
     }
 
-    @Override
+    /*@Override
     public void insertBooking(BookingDetails bds) {
 
         BookingDetails bd = new BookingDetails();
@@ -264,21 +264,21 @@ public class MovieDAOImpl implements MovieDAO {
         bd.setAdult(1);
         bd.setTitle("d");
         bd.setRegion("d");
-        bd.setViewingday(LocalDateTime.now());
+        bd.setViewingday("2023-06-13");
         bd.setTotalprice(15000);
         bd.setCinematype("메가박스");
 
         bookingdetailsRepository.save(bd);
 
 
-        try {
+        *//*try {
             json = mapper.writeValueAsString(
                     convertedResults);
         } catch (JsonProcessingException ex) {
             ex.printStackTrace();
         }
 
-        return json;
+        return json;*//*
 
-    }
+    }*/
 }
