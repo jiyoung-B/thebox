@@ -37,7 +37,8 @@ public class TicketController {
         if(sess.getAttribute("UID")==null) {
         } else {
             ticketing.setUserid(sess.getAttribute("UID").toString());
-            if(movsrv.newTicket(ticketing))viewName = "redirect:mypage/myticket";
+            System.out.println(ticketing);
+            if(movsrv.newTicket(ticketing))viewName = "redirect:/mypage/myticket";
 
         }
         return viewName;
@@ -96,7 +97,6 @@ public class TicketController {
     public String loadMovielist(@RequestBody String test01) {
         Gson gson = new Gson();
         Ticketing ticketing = gson.fromJson(test01, Ticketing.class);
-        System.out.println("ticketing : "+ticketing);
         String test = movsrv.readMovielist(ticketing);
 
         return test;

@@ -37,8 +37,18 @@ public class Ticketing {
     @NotBlank(message = "시간을 선택해주세요!")
     private String movtime;
 
+    @NotBlank(message = "결제를 진행해주세요!")
+    private String rsp;
+
     @NotBlank(message = "좌석을 선택해주세요!")
     private String seat;
+
+    @NotBlank(message = "로그인이 필요합니다!")
+    private String userid;
+
+    private String adult;
+
+    private String teen;
 
     private String movseatadult;
 
@@ -46,15 +56,9 @@ public class Ticketing {
 
     private String movtotalprice;
 
-    @NotBlank(message = "결제를 진행해주세요!")
-    private String rsp;
-
-    @NotBlank(message = "로그인이 필요합니다!")
-    private String userid;
+    private Integer movnum;
 
     @CreatedDate
     @Column(insertable = false, updatable = false)
     private LocalDateTime regdate;
-
-    private Integer movnum;
 }

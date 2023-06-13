@@ -32,24 +32,14 @@
                   <td style="vertical-align: top">
                     <table style="border-collapse: initial; border-spacing: 0;">
                       <tbody>
-                      <tr>
-                        <td id="ageGroup" name="ageGroup" style="width: 97px;
-                        /*background:url(/static/img/18.png) 0 center no-repeat;*/
-                        padding:0 7px 0 20px;"> 트랜스포머</td>
-                        <td style="width: 80px; vertical-align: center">
-                        </td>
-                        <td>
-                          13:30
-                        </td>
-                      </tr>
                       </tbody>
                     </table>
                   </td>
                 </tr>
 
-                <tr>
+                <!--<tr>
                   <td style="margin: 1px 0; height: 1px; background-color: #E2E6E8;"></td>
-                </tr>
+                </tr>-->
 
 
 
@@ -57,7 +47,6 @@
                   <td style="vertical-align: top">
                     <table style="border-collapse: initial; border-spacing: 0;">
                       <tbody id="selectMovie">
-
                       </tbody>
                     </table>
                   </td>
@@ -67,42 +56,17 @@
                   <td style="margin: 1px 0; height: 1px; width:256px; background-color: #E2E6E8;"></td>
                 </tr>
 
-
-
                 </tbody>
               </table>
             </div>
-
           </td>
         </tr>
-
-        </tbody></table>
-
+        </tbody>
+      </table>
     </td>
   </tr>
-  </tbody></table>
-
-
-
-
-
-
-
-<script>
-  function test02(){
-    alert("movieSelect!");
-    let movgrade = parent.document.querySelector("#movgrade");
-
-    let ageGroup = document.querySelector("#ageGroup");
-
-    console.log(movgrade.value);
-    ageGroup.backgroundImage = `/static/img/${movgrade.value}.png`;
-    console.log(ageGroup.src);
-  }
-
-
-
-</script>
+  </tbody>
+</table>
 
 
 </body>

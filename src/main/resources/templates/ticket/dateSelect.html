@@ -176,6 +176,10 @@
           data[i] = data[i].substring(1, data[i].length-1);
           let movies = data[i].split(", ");
 
+          let movieName = movies[2];
+          let moviegrade = movies[3];
+          let movietime = movies[1];
+
           mvlistfrm.schno.value = movies[0];
           mvlistfrm.stime.value = movies[1];
           mvlistfrm.movtitle.value = movies[2];
@@ -192,24 +196,50 @@
             }
           }
 
-          testFunction();
+          callMovie02(movieName, moviegrade, movietime);
 
-          /*const selectMovie =  $('#frmMovieSelect').contents().find('#selectMovie');
-
-          let tr = document.createElement("tr");
-          let td = document.createElement("td");
-
-          td.style.width = "97px";
-          td.style.backgroundImage = `./static/img/${movies[3]}.png`;
-          tr.appendChild(td);
-          selectMovie.appendChild(tr);*/
         }
       }
     })
   }
 
-  function testFunction(){
-    window.parent.test();
+  function callMovie02 (movieName, movieGrade, movieTime) {
+
+    // iframe이라는 이름의 태그들을 조사
+    var ticketing = window.parent.document.getElementsByTagName('iframe');
+
+    // 그중 3번째 iframe 태그에서 selectMovie을 가져와서
+    var selectMovie = ticketing[2].contentDocument.querySelector("#selectMovie");
+
+    let tr = document.createElement("tr");
+    let td1 = document.createElement("td");
+    let td2 = document.createElement("td");
+    let td3 = document.createElement("td");
+    let img = document.createElement("img");
+
+    tr.style.height='27px';
+    tr.style.borderTop='none';
+
+    td1.style.height = "27px";
+    img.src = `/static/img/${movieGrade}.png`;
+    td2.innerHTML = movieName;
+    td2.style.width = '120px';
+    td3.innerHTML = movieTime;
+    td3.style.paddingLeft = '40px';
+    td3.style.cursor = 'pointer';
+
+    td1.appendChild(img);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+
+    selectMovie.appendChild(tr);
+
+    td3.addEventListener("click", () => {
+        mvfrm.movtime.value = movieTime;
+        mvfrm.movname.value = movieName;
+    })
+
   }
 
   /*]]>*/

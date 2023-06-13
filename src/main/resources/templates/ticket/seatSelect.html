@@ -247,14 +247,13 @@
   }
 
   ticketApproval.addEventListener('click', () => {
-    mvfrm.movname.value = "범죄도시3";
-    mvfrm.movtime.value = "13:30";
+    let movname = mvfrm.movname.value;
     let location = mvfrm.cinematype.value + " " + mvfrm.district.value;
     let movtime = mvfrm.movdate.value + " " + mvfrm.movtime.value;
     let movseat = mvfrm.seat.value;
     let movpay = mvfrm.movtotalprice.value+" 원";
 
-    requestPay(mvfrm.movname.value, location, movtime, movseat, movpay)
+    requestPay(movname, location, movtime, movseat, movpay)
   })
 
   ticketCancel.addEventListener('click', () => {

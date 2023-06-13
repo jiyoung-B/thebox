@@ -21,9 +21,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketMovie {
-/*    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer movlistno;*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,15 +30,5 @@ public class TicketMovie {
     private String movgrade;
     private String movmainposter;
     private String movdetail;
-
-    /*@OneToOne(optional = false)
-    @JoinColumn(name = "movno", insertable = false, updatable = false)
-    private Movie movie;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "movno", insertable = false, updatable = false)
-    private MovieSchedule movieSchedule;*/
-
-
 
 }

@@ -195,6 +195,7 @@ public class MovieDAOImpl implements MovieDAO {
 
     @Override
     public int insertTicket(Ticketing ticketing) {
+        ticketing.setMovnum(Math.toIntExact(movieRepository.findMovnoByMovno(ticketing.getMovname())));
         int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
 
         return result;
