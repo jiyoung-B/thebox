@@ -5,6 +5,50 @@
 
 <th:block layout:fragment="admincontent">
 
+  <script th:inline="javascript">
+    let t5salist = [[${t5salist}]];
+    let t5shlist = [[${t5shlist}]];
+
+    let t5salabels = [];
+    let t5sadatas = [];
+    for(let obj of t5salist) {
+      t5salabels.push(obj['title']);
+      t5sadatas.push(obj['sales']);
+    }
+
+    let t5shlabels = [];
+    let t5shdatas = [];
+    for(let obj of t5shlist) {
+      t5shlabels.push(obj['title']);
+      t5shdatas.push((obj['salesshare'] * 100).toFixed(1));
+    }
+
+    console.log("t5shlabels: " + t5shlabels);
+    console.log("t5shdatas: " + t5shdatas);
+
+    let restPieData = (100 - (Number(t5shdatas[0]) + Number(t5shdatas[1]) + Number(t5shdatas[2]) + Number(t5shdatas[3]) + Number(t5shdatas[4]))).toFixed(1);
+    let sbcData = {
+      labels: t5salabels,
+      datasets: [{
+        label: "관객수",
+        backgroundColor: ["#6E6ED7", "#FFD0CD", "#FFAA28", "#D68642", "#5AD18F"],
+        hoverBackgroundColor: ["#0000CD", "#FF9E9B", "#FF8200", "#AE5E1A", "#3CB371"],
+        borderColor: "#4e73df",
+        data: t5sadatas,
+      }],
+    }
+
+    var pieData = {
+      labels: [t5shlabels[0], t5shlabels[1], t5shlabels[2], t5shlabels[3], t5shlabels[4], '기타'],
+      datasets: [{
+        data: [t5shdatas[0], t5shdatas[1], t5shdatas[2], t5shdatas[3], t5shdatas[4], restPieData],
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', 'grey', 'lightsalmon', "#a828a8"],
+        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', 'black', 'indianred', "purple"],
+        hoverBorderColor: "rgba(234, 236, 244, 1)",
+      }],
+    }
+  </script>
+
   <!-- Content Wrapper. Contains page content // 본문-->
   <div class="content-wrapper">
     <!-- Content Header (Page header) // 본문 헤더 -->
@@ -53,7 +97,7 @@
                 <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">현재 사영작 중 매출액 점유율 TOP5 영화</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">현재 상영작 중 매출액 점유율 TOP5 영화</h6>
                   </div>
                   <!-- Card Body -->
                   <div class="card-body">
@@ -88,7 +132,8 @@
   <!-- Page level custom scripts -->
   <script src="/static/js/demo/chart-area-demo.js"></script>
   <script src="/static/js/demo/chart-pie-demo.js"></script>
-  <script src="/static/js/demo/chart-bar-demo.js"></script>
+<!--  <script src="/static/js/demo/chart-bar-demo.js"></script>-->
+  <script src="/static/js/demo/sales-bar-chart.js"></script>
 
   <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
   <script src=https://code.jquery.com/jquery-3.6.0.js></script>

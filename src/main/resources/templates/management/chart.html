@@ -5,6 +5,51 @@
 
 <th:block layout:fragment="admincontent">
 
+  <script th:inline="javascript">
+    let t5dlist = [[${t5dlist}]];
+    let t5clist = [[${t5clist}]];
+
+    let t5dlabels = [];
+    let t5ddatas = [];
+    for(let obj of t5dlist) {
+      t5dlabels.push(obj['title']);
+      t5ddatas.push(obj['boxoffice']);
+    }
+
+    let t5clabels = [];
+    let t5cdatas = [];
+    for(let obj of t5clist) {
+      t5clabels.push(obj['title']);
+      t5cdatas.push(obj['cumulativeboxoffice']);
+    }
+
+    // console.log(t5dlabels);
+    // console.log(t5ddatas);
+
+    let barData = {
+      labels: t5dlabels,
+      datasets: [{
+      label: "관객수",
+      backgroundColor: ["#6E6ED7", "#FFD0CD", "#FFAA28", "#D68642", "#5AD18F"],
+      hoverBackgroundColor: ["#0000CD", "#FF9E9B", "#FF8200", "#AE5E1A", "#3CB371"],
+      borderColor: "#4e73df",
+      data: t5ddatas,
+    }],
+    }
+
+    let bc2Data = {
+      labels: t5clabels,
+        datasets: [{
+        label: "관객수",
+        backgroundColor: ["#6E6ED7", "#FFD0CD", "#FFAA28", "#D68642", "#5AD18F"],
+        hoverBackgroundColor: ["#0000CD", "#FF9E9B", "#FF8200", "#AE5E1A", "#3CB371"],
+        borderColor: "#4e73df",
+        data: t5cdatas,
+      }],
+    }
+  </script>
+
+
   <!-- Content Wrapper. Contains page content // 본문-->
   <div class="content-wrapper">
     <!-- Content Header (Page header) // 본문 헤더 -->

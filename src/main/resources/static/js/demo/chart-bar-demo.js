@@ -25,23 +25,11 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 
-// var movieTitleList = [[${t5dlist.title}]];
-// var movieDataList = [[${t5dlist.boxoffice}]];
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
-  data: {
-    labels: ["범죄도시", "트랜스포머: 비스트의 서막", "포켓 몬스터 DP: 아르세우스 초극의 시공으로", "가디언즈 오브 갤럭시: Volume 3", "인어공주"],
-    datasets: [{
-      label: "관객수",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      // data: movieDataList,
-      data: [481454, 111126, 25389, 15823, 10999],
-    }],
-  },
+  data: barData,
   options: {
     maintainAspectRatio: false,
     layout: {
@@ -69,7 +57,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 750000,
+          max: 600000,
           maxTicksLimit: 5,
           padding: 10,
           callback: function(value, index, values) {
@@ -114,16 +102,7 @@ var myBarChart = new Chart(ctx, {
 var bct = document.getElementById("barChart2");
 var barChart2 = new Chart(bct, {
   type: 'bar',
-  data: {
-    labels: ["범죄도시3", "스즈메의 문단속", "더 퍼스트 슬램덩크", "가디언즈 오브 갤럭시: Volume 3", "슈퍼 마리오 브라더스"],
-    datasets: [{
-      label: "관객수",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [7782864, 5530291, 4683719, 4155204, 2387770],
-    }],
-  },
+  data: bc2Data,
   options: {
     maintainAspectRatio: false,
     layout: {
@@ -196,16 +175,7 @@ var barChart2 = new Chart(bct, {
 var sbc = document.getElementById("salesBarChart");
 var salesBarChart = new Chart(sbc, {
   type: 'bar',
-  data: {
-    labels: ["범죄도시3", "스즈메의 문단속", "더 퍼스트 슬램덩크", "가디언즈 오브 갤럭시: Volume 3", "슈퍼 마리오 브라더스"],
-    datasets: [{
-      label: "관객수",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [7782864, 5530291, 4683719, 4155204, 2387770],
-    }],
-  },
+  data: sbcData,
   options: {
     maintainAspectRatio: false,
     layout: {
@@ -233,11 +203,11 @@ var salesBarChart = new Chart(sbc, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 13000000,
+          max: 7500000000,
           maxTicksLimit: 5,
           padding: 10,
           callback: function(value, index, values) {
-            return number_format(value) + '명';
+            return number_format(value) + '원';
           }
         },
         gridLines: {
@@ -267,7 +237,7 @@ var salesBarChart = new Chart(sbc, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '명';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '원';
         }
       }
     },

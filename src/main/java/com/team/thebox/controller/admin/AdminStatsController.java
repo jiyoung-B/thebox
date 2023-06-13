@@ -34,10 +34,10 @@ public class AdminStatsController {
     public ModelAndView chart() {
         ModelAndView mv = new ModelAndView();
         Map<String, Object> t5d = assrv.readTop5Date();
-        Map<String, Object> t5a = assrv.readTop5Cmbo();
+        Map<String, Object> t5c = assrv.readTop5Cmbo();
 
         mv.addObject("t5dlist", t5d.get("t5dlist"));
-        mv.addObject("t5alist", t5a.get("t5alist"));
+        mv.addObject("t5clist", t5c.get("t5clist"));
 
         mv.setViewName("management/chart");
 
