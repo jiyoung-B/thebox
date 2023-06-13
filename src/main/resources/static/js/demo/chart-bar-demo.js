@@ -172,6 +172,7 @@ var barChart2 = new Chart(bct, {
 });
 
 
+/*
 var sbc = document.getElementById("salesBarChart");
 var salesBarChart = new Chart(sbc, {
   type: 'bar',
@@ -242,4 +243,4 @@ var salesBarChart = new Chart(sbc, {
       }
     },
   }
-});
+});*/

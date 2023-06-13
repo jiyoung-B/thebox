@@ -62,9 +62,9 @@
                                         </div>
                                         <div class="col-9 pt-2 pb-2 text-primary">
                                             <div th:text="${bd.title}" class="fw-bold"></div>
-                                            <div th:text="${bd.bookingnum}"></div>
+<!--                                            <div th:text="${bd.bookingnum}"></div>-->
                                             <div th:text="|결제일시 : ${#strings.substring(bd.paymentdate, 0, 10)} (${#strings.substring(bd.paymentdate, 11, 16)})|"></div>
-                                            <div th:text="|${bd.region}(${bd.screennum})|"></div>
+<!--                                            <div th:text="|${bd.region}(${bd.screennum})|"></div>-->
                                             <div th:text="|관람일 : ${#strings.substring(bd.viewingday, 0, 10)} ${#strings.substring(bd.paymentdate, 11, 16)}|"></div>
                                         </div>
                                     </div>

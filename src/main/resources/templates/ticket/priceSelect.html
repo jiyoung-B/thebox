@@ -89,6 +89,8 @@
     if(isNaN(parseInt(movseatteen.value))){
       movtotalprice.value = parseInt(adult.value) * 15000;
       movseatadult.value = parseInt(adult.value) * 15000;
+      teen.value = 0;
+      movseatteen.value = 0;
     } else {
     movtotalprice.value = parseInt(adult.value) * 15000 + parseInt(movseatteen.value) * 15000;
     movseatadult.value = parseInt(adult.value) * 15000;
@@ -105,6 +107,8 @@
     if(isNaN(parseInt(movseatadult.value))){
       movtotalprice.value = parseInt(teen.value) * 12000;
       movseatteen.value = parseInt(teen.value) * 12000;
+      adult = 0;
+      admovseatadultult = 0;
     } else {
       movtotalprice.value = parseInt(adult.value) * 12000 + parseInt(teen.value) * 12000;
       movseatteen.value = parseInt(teen.value) * 12000;

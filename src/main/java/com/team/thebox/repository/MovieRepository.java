@@ -71,4 +71,5 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query(value = "select movmainposter from Movie where movtitle = :movname")
     String findMovmainposterByMovtitle(@Param("movname") String movname);
+
 }

@@ -33,7 +33,7 @@ public class TicketController {
     }
 
     @PostMapping("/ticketing")
-    public String buyticket3(Ticketing ticketing, HttpSession sess, BookingDetails bds) {
+    public String buyticket3(Ticketing ticketing, HttpSession sess) {
         String viewName = "ticket/ticketing";
 
         if(sess.getAttribute("UID")==null) {
@@ -43,9 +43,6 @@ public class TicketController {
             if(movsrv.newTicket(ticketing))viewName = "redirect:/mypage/myticket";
 
         }
-
-        movsrv.newBooking(bds);
-
         return viewName;
     }
 
