@@ -18,7 +18,7 @@ public class CancellationDetails {
     private LocalDateTime cancellationdate;
     private String title;
     private String region;
-    private LocalDateTime viewingday;
+    private String viewingday;
     private int totalprice;
 
     @Id

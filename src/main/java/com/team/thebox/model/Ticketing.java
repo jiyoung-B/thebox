@@ -58,7 +58,5 @@ public class Ticketing {
 
     private Integer movnum;
 
-    @CreatedDate
-    @Column(insertable = false, updatable = false)
-    private LocalDateTime regdate;
+    private String regdate;
 }

@@ -27,6 +27,7 @@ public class MovieDAOImpl implements MovieDAO {
     private final MovieReplyRepository movieReplyRepository;
     private final MovieScheduleRepository movieScheduleRepository;
     private final BookedRepository bookedRepository;
+    private final BookingdetailsRepository bookingdetailsRepository;
     private final MovieLocationRepository movieLocationRepository;
     private final TicketingRepository ticketingRepository;
     private final TicketMovieRepository ticketMovieRepository;
@@ -35,13 +36,15 @@ public class MovieDAOImpl implements MovieDAO {
     @Autowired
     public MovieDAOImpl(MovieRepository movieRepository, MovieAttachRepository movieAttachRepository,
                           MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository,
-                          BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository,
+                          BookedRepository bookedRepository, BookingdetailsRepository bookingdetailsRepository,
+                          MovieLocationRepository movieLocationRepository,
                           TicketingRepository ticketingRepository, TicketMovieRepository ticketMovieRepository) {
         this.movieRepository = movieRepository;
         this.movieAttachRepository = movieAttachRepository;
         this.movieReplyRepository = movieReplyRepository;
         this.movieScheduleRepository = movieScheduleRepository;
         this.bookedRepository = bookedRepository;
+        this.bookingdetailsRepository = bookingdetailsRepository;
         this.movieLocationRepository = movieLocationRepository;
         this.ticketingRepository = ticketingRepository;
         this.ticketMovieRepository = ticketMovieRepository;
@@ -196,6 +199,24 @@ public class MovieDAOImpl implements MovieDAO {
     @Override
     public int insertTicket(Ticketing ticketing) {
         ticketing.setMovnum(Math.toIntExact(movieRepository.findMovnoByMovno(ticketing.getMovname())));
+
+        BookingDetails bookingDetails = new BookingDetails();
+        bookingDetails.setPoster(movieRepository.findMovmainposterByMovtitle(ticketing.getMovname()));
+        bookingDetails.setCinematype(ticketing.getCinematype());
+        bookingDetails.setTitle(ticketing.getMovname());
+        bookingDetails.setRegion(ticketing.getDistrict());
+        String districtName = ticketing.getCinematype()+" "+ticketing.getMovdate();
+        bookingDetails.setRegion(String.valueOf(movieLocationRepository.findDistrictNameByLocationName(districtName)));
+        bookingDetails.setRegion(ticketing.getRsp());
+        bookingDetails.setSeats(ticketing.getSeat());
+        bookingDetails.setViewingday(ticketing.getMovdate());
+        bookingDetails.setPaymentdate(ticketing.getRegdate());
+        bookingDetails.setAdult(Integer.parseInt(ticketing.getAdult()));
+        bookingDetails.setTotalprice(Integer.parseInt(ticketing.getMovtotalprice()));
+        bookingDetails.setUserid(ticketing.getUserid());
+
+        bookingdetailsRepository.save(bookingDetails);
+
         int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
 
         return result;
