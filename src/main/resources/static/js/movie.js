@@ -3,7 +3,7 @@ const rpnewbtn = document.querySelector("#rpnewbtn");
 rpnewbtn?.addEventListener('click', () => {
     const rpfrm = document.forms.rpfrm;
     if (rpfrm.reply.value === '') alert('댓글을 작성하세요!');
-    else if (rpfrm.userid.value === '') alert('작성자 없어요!');
+    else if (rpfrm.userid.value === '') alert('로그인 해주세요!');
     else if (rpfrm.movno.value === '') alert('본문글번호 없어요!');
     else if (rpfrm.star.value === '') alert('별점을 선택해주세요!');
     else {
@@ -68,4 +68,7 @@ tsales?.addEventListener('click', () => {
     location.href="/movie/readTsales";
 });
 
-
+const ticketing = document.querySelector("#ticketing");
+ticketing?.addEventListener('click', () => {
+    location.href="/ticket/ticketing";
+});
