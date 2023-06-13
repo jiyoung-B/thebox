@@ -327,14 +327,19 @@ public class AMovieServiceImpl implements AMovieService {
 
     @Override
     public boolean updateMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo) {
-        MovieStillcut ms = movutils.processUpdate(stillcuts, minfo);
-        if (ms != null) {
-            // 필요한 로직을 추가하세요
-            Long id = amovdao.updateMovieStillcut(ms);
-            return id > 0;
-        }
         return false;
     }
+
+//    @Override
+//    public boolean updateMovieStillcut(List<MultipartFile> stillcuts, Map<String, Object> minfo) {
+//        MovieStillcut ms = movutils.processUpdate(stillcuts, minfo);
+//        if (ms != null) {
+//            // 필요한 로직을 추가하세요
+//            Long id = amovdao.updateMovieStillcut(ms);
+//            return id > 0;
+//        }
+//        return false;
+//    }
 
 
 

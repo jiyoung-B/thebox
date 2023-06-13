@@ -101,7 +101,7 @@
                                         <td style="width: 85px; height: 111px; vertical-align: top;">
                                           <table style="width: 78px; border-collapse: initial; border-spacing: 0;">
                                             <tr>
-                                              <td style="background-color: #FFFFFF; font-size: 12px; height:111px; vertical-align: center;"><img id="imgPoster" src="//ticketimage.interpark.com/Movie/still_image/V23/V2300190p_s01.jpg" onerror="javascript: this.src = '//ticketimage.interpark.com/Movie/still_image/V23/V2300190p_s01.jpg'" style="width: 74px; height: 107px;"></td>
+                                              <td style="background-color: #FFFFFF; font-size: 12px; height:111px; vertical-align: center;"><img id="imgPoster" src="" onerror="this.src='/static/img/ticket/no_img.png';" style="width: 74px; height: 107px;"></td>
                                             </tr>
                                           </table>
                                         </td>
@@ -114,7 +114,7 @@
                                             </tr>
                                             <!-- 영화 정보 팝업 -->
                                             <tr style="vertical-align: bottom; ">
-                                              <td><img style="margin-left: 55px; cursor:pointer; width: 60px; height: 14px;" src="//ticketimage.interpark.com/TicketImage/event/080519_m/movie_btn_01_1010.gif"></td>
+                                              <td><img style="margin-left: 55px; cursor:pointer; width: 60px; height: 14px;" src=""></td>
                                             </tr>
                                           </table>
                                         </td>
@@ -231,12 +231,19 @@
           </table>
         </td>
       </tr>
+      <script>
+        test = () => {
+          alert("ticketing!");
+          document.getElementById('frmMovieSelect').contentWindow.test02();
+        }
+
+      </script>
     </table>
     <div id="modalBackground" name="modalBackground" style="display: none; z-index: 999">
       <iframe id="seatModal" name="seatModal" style="z-index: 999;" src="/ticket/seatSelect"></iframe>
     </div>
   </div>
-  <form type="hidden" id="mvfrm" name="mvfrm">
+  <form id="mvfrm" name="mvfrm">
     <input type="hidden" id="cinematype" name="cinematype">
     <input type="hidden" id="district" name="district">
     <input type="hidden" id="movdate" name="movdate">
@@ -244,9 +251,20 @@
     <input type="hidden" id="movtime" name="movtime">
     <input type="hidden" id="seat" name="seat">
     <input type="hidden" id="rsp" name="rsp">
+    <input type="hidden" id="adult" name="adult">
+    <input type="hidden" id="teen" name="teen">
     <input type="hidden" id="movseatadult" name="movseatadult">
     <input type="hidden" id="movseatteen" name="movseatteen">
     <input type="hidden" id="movtotalprice" name="movtotalprice">
+  </form>
+
+  <form id="mvlistfrm" name="mvlistfrm">
+    <input type="hidden" id="schno" name="schno">
+    <input type="hidden" id="stime" name="stime">
+    <input type="hidden" id="movtitle" name="movtitle">
+    <input type="hidden" id="movgrade" name="movgrade">
+    <input type="hidden" id="movmainposter" name="movmainposter">
+    <input type="hidden" id="movdetail" name="movdetail">
   </form>
 </th:block>
 </html>

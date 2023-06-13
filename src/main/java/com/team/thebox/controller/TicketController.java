@@ -17,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/ticket")
@@ -37,7 +39,8 @@ public class TicketController {
         if(sess.getAttribute("UID")==null) {
         } else {
             ticketing.setUserid(sess.getAttribute("UID").toString());
-            if(movsrv.newTicket(ticketing))viewName = "redirect:mypage/myticket";
+            System.out.println(ticketing);
+            if(movsrv.newTicket(ticketing))viewName = "redirect:/mypage/myticket";
 
         }
 
@@ -97,9 +100,10 @@ public class TicketController {
     @ResponseBody
     @RequestMapping(value="/loadMovielist")
     public String loadMovielist(@RequestBody String test01) {
-        System.out.println(test01);
-        Ticketing ticketing = new Gson().fromJson(test01, Ticketing.class);
-        movsrv.readMovielist(ticketing);
-        return test01;
+        Gson gson = new Gson();
+        Ticketing ticketing = gson.fromJson(test01, Ticketing.class);
+        String test = movsrv.readMovielist(ticketing);
+
+        return test;
     }
 }

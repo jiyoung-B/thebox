@@ -26,12 +26,10 @@ public class BookingDetails {
     private int adult;
     private int teen;
     private String seats;
-    private LocalDateTime viewingday;
+    private String viewingday;
     private int totalprice;
 
-    @CreatedDate
-    @Column(insertable = false, updatable = false)
-    private LocalDateTime paymentdate;
+    private String paymentdate;
 
     private String poster;
 }

@@ -44,26 +44,26 @@
 
 
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
+                <table id="example1" class="dataTables_wrapper table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>상영번호</th>
-                    <th>상영관</th>
-                    <th>영화명</th>
-                    <th>상영날짜</th>
-                    <th>시작시간</th>
-                    <th>종료시간</th>
-                    <th>가격</th>
-                    <th>좌석현황</th>
-                    <th>수정</th>
-                    <th>삭제</th>
+<!--                    <th class="sorting sorting_asc">No.</th>-->
+                    <th class="sorting sorting_asc">상영관</th>
+                    <th class="sorting sorting_asc">영화명</th>
+                    <th class="sorting sorting_asc">상영날짜</th>
+                    <th class="sorting sorting_asc">시작시간</th>
+                    <th class="sorting sorting_asc">종료시간</th>
+                    <th class="sorting sorting_asc">가격</th>
+                    <th class="sorting sorting_asc">좌석현황</th>
+                    <th class="sorting sorting_asc">수정</th>
+                    <th class="sorting sorting_asc">삭제</th>
                   </tr>
                   </thead>
 
                   <tbody>
                   <!-- 영화 스케줄 목록 반복 -->
                   <tr th:each="movsch : ${movschlists}">
-                    <td th:text="${movsch.schno}">schno1</td>
+<!--                    <td th:text="${movsch.schno}">schno1</td>-->
                     <td th:text="${movsch.ciplace}">상영관123</td>
                     <td th:text="${movsch.movtitle}">영화명블랙팬서</td>
                     <td th:text="${movsch.odate}">개봉일20230531</td>
@@ -93,22 +93,23 @@
 
 
                   <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                    <th>CSS grade</th>
-                  </tr>
+<!--                  <tr>-->
+<!--                    <th>Rendering engine</th>-->
+<!--                    <th>Platform(s)</th>-->
+<!--                    <th>Engine version</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                    <th>CSS grade</th>-->
+<!--                  </tr>-->
                   </tfoot>
                 </table>
               </div>
             </div>
+
 
 
           </div>

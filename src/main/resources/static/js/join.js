@@ -13,6 +13,7 @@ let modal = null;
 
 joinbtn?.addEventListener('click', () => {
     if(joinfrm.userid.value == '') alert('아이디를 입력하세요!!');
+    else if(joinfrm.name.value == '') alert('이름을 입력하세요!!');
     else if(joinfrm.passwd.value == '') alert('비밀번호를 입력하세요!!');
     else if(joinfrm.repasswd.value == '') alert('비밀번호를 확인을 입력하세요!!');
     else if(joinfrm.repasswd.value != joinfrm.passwd.value) alert('비밀번호가 서로 일치하지 않아요!!');

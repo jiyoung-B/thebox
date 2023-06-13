@@ -84,7 +84,7 @@
                         <li th:text="|국가 : ${mov.movie.movcountry}|">국가 :</li>
                     </ul>
                     <div class="d-grid gap-2 mt-2">
-                        <button class="btn btn-primary" type="button">예매하기</button>
+                        <button class="btn btn-primary" type="button" id="ticketing">예매하기</button>
                     </div>
                 </div>
            </div>
@@ -100,7 +100,7 @@
                 <hr/>
                 <div class="d-flex justify-content-center overflow-auto" style="max-width: 100%;">
                     <th:block th:each="still : ${#strings.arraySplit(mov.fname, ';')}">
-                        <img th:src="|http://localhost/cdn/${still}|" alt="Stillcut Image" class="img-fluid"
+                        <img th:src="|http://3.39.177.18/cdn/${still}|" alt="Stillcut Image" class="img-fluid"
                              style="width: 80%; max-width: 500px; max-height: 500px; margin: 5px;">
                     </th:block>
                 </div>

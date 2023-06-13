@@ -37,7 +37,7 @@
                                         <div class="row border-top border-bottom border-2 border-dark mt-3 pt-3">
                                             <div class="col-3">
                                                 <div class="row"><p class="text-center fw-bold">좌석</p></div>
-                                                <div class="row" th:each="bdst : ${#strings.arraySplit(bd.seats, ',')}">
+                                                <div class="row" th:each="bdst : ${#strings.arraySplit(bd.seats, ', ')}">
                                                     <p class="text-center mb-1" th:text="${bdst}"></p>
                                                 </div>
                                             </div>

@@ -32,7 +32,8 @@
                         </a>
                             <div class="caption mt-1" >
                                 <ul  class="list-unstyled block text-center">
-                                    <li><h4><img th:src="|/static/img/${mo.movgrade}.png|" class="mb-2"><b th:text="${mo.movtitle}">가디어오브 갤러시</b></h4></li>
+                                    <li><h4><img th:src="|/static/img/${mo.movgrade}.png|" class="mb-2">
+                                        <b th:text="${#strings.length(mo.movtitle) &gt; 11 ? #strings.substring(mo.movtitle, 0, 10) + '...' : mo.movtitle}">가디어오브 갤러시</b></h4></li>
                                     <li><b th:text="|예매율 ${mo.tsales} % / 개봉일 ${mo.movreleasedate}|">예매율 00.0% | 개봉일 2023.05.15</b></li>
                                     <!--<block th:if="${mo.avgStar}">
                                         <li th:text="${mo.avgStar}">별점</li>
@@ -40,7 +41,7 @@
                                 </ul>
                             </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button">예매하기</button>
+                            <button class="btn btn-primary" type="button" id="ticketing">예매하기</button>
                         </div>
                     </div>
                 </div>

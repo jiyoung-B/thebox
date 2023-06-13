@@ -22,6 +22,10 @@
                         <div class="col-3">
                             <input type="text" name="name" id="name"
                                    class="form-control border-dark " th:value="${member.name}"> </div>
+                        <div class="col-auto">
+                             <span id="namsg" class="form-text text-warning"
+                                   th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
                     </div>
 
 
@@ -113,7 +117,7 @@
                                for="g-recaptcha">자동가입방지</label>
                         <div class="col-3">
                             <div class="g-recaptcha"
-                                 data-sitekey="6LdmIwgbAAAAAPO06Cyw44ZE0pkeDeMHEwVbgiM-"></div>
+                                 data-sitekey="6Lc_4OskAAAAAB0qqZMfQQMY6JZLNjePv1nSMSGy"></div>
                             <input type="hidden" name="grecaptcha" id="g-recaptcha">
                         </div>
                     </div>

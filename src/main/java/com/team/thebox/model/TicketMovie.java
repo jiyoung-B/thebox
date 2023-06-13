@@ -21,38 +21,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketMovie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long movlistno;
-
-    @Column
-    private String movdate;
-
-    @Column
-    private String district;
-
-    @Column
-    private String movtitle;
-
-    @Column
-    private String movgrade;
-
-    @Column
+    private String schno;
     private String stime;
-
-    @Column
+    private String movtitle;
+    private String movgrade;
     private String movmainposter;
-
-    private Integer movno;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "movno", insertable = false, updatable = false)
-    private Movie movie;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "movno", insertable = false, updatable = false)
-    private MovieSchedule movieSchedule;
-
-
+    private String movdetail;
 
 }

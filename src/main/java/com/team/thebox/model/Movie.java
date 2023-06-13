@@ -43,7 +43,7 @@ public class Movie extends BaseEntity{
     private  Double tsales;              //에매율
 
     private String uuid;
-    @Lob
+
     @Column
     private String movdetail;           // 줄거리
 

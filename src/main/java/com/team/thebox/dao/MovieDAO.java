@@ -50,5 +50,8 @@ public interface MovieDAO {
 
     String selectMovielist(Ticketing ticketing);
 
+
     void insertBooking(BookingDetails bds);
+
+
 }

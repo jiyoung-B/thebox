@@ -79,27 +79,41 @@
 
   let movseatadult =  parent.document.querySelector("#movseatadult");
   let movseatteen =  parent.document.querySelector("#movseatteen");
+  let adult =  parent.document.querySelector("#adult");
+  let teen =  parent.document.querySelector("#teen");
   let movtotalprice =  parent.document.querySelector("#movtotalprice");
   let totalpay =  parent.document.querySelector("#totalpay");
 
   insertseatAdult = () => {
-    movseatadult.value = seatAdult.value;
+    adult.value = seatAdult.value;
     if(isNaN(parseInt(movseatteen.value))){
-      movtotalprice.value = parseInt(movseatadult.value) * 15000;
+      movtotalprice.value = parseInt(adult.value) * 15000;
+      movseatadult.value = parseInt(adult.value) * 15000;
     } else {
-    movtotalprice.value = parseInt(movseatadult.value) * 15000 + parseInt(movseatteen.value) * 15000;
+    movtotalprice.value = parseInt(adult.value) * 15000 + parseInt(movseatteen.value) * 15000;
+    movseatadult.value = parseInt(adult.value) * 15000;
     }
     totalpay.innerHTML = "총 결제 금액 " + movtotalprice.value;
+
+    console.log("adult : "+adult.value);
+    console.log("movseatadult : "+movseatadult.value);
+    console.log("movtotalprice : "+movtotalprice.value);
   }
 
   insertseatTeen = () => {
-    movseatteen.value = seatTeen.value;
+    teen.value = seatTeen.value;
     if(isNaN(parseInt(movseatadult.value))){
-      movtotalprice.value = parseInt(movseatteen.value) * 12000;
+      movtotalprice.value = parseInt(teen.value) * 12000;
+      movseatteen.value = parseInt(teen.value) * 12000;
     } else {
-      movtotalprice.value = parseInt(movseatadult.value) * 12000 + parseInt(movseatteen.value) * 12000;
+      movtotalprice.value = parseInt(adult.value) * 12000 + parseInt(teen.value) * 12000;
+      movseatteen.value = parseInt(teen.value) * 12000;
     }
     totalpay.innerHTML = "총 결제 금액 " + movtotalprice.value;
+
+    console.log("teen : "+teen.value);
+    console.log("movseatteen : "+movseatteen.value);
+    console.log("movtotalprice : "+movtotalprice.value);
   }
 
   callModal.addEventListener('click', () => {

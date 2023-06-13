@@ -33,8 +33,10 @@ public class MovieDAOImpl implements MovieDAO {
     private final TicketingRepository ticketingRepository;
     private final TicketMovieRepository ticketMovieRepository;
 
+
     /*@Autowired
     BookingdetailsRepository bookingdetailsRepository;*/
+
 
 
     @Autowired
@@ -243,6 +245,7 @@ public class MovieDAOImpl implements MovieDAO {
             convertedResults.add(Arrays.toString(row));
         }
 
+
         try {
             json = mapper.writeValueAsString(
                     convertedResults);
@@ -266,5 +269,16 @@ public class MovieDAOImpl implements MovieDAO {
         bd.setCinematype("메가박스");
 
         bookingdetailsRepository.save(bd);
+
+
+        try {
+            json = mapper.writeValueAsString(
+                    convertedResults);
+        } catch (JsonProcessingException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
+
     }
 }
