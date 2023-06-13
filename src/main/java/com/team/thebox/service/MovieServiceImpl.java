@@ -74,6 +74,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public void newBooking(BookingDetails bds) {
+        movdao.insertBooking(bds);
+    }
+
+    @Override
     public List<Movie> readTsales() {
         return movdao.selectTsales();
     }

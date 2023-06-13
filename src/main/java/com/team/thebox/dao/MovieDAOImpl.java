@@ -1,5 +1,7 @@
 package com.team.thebox.dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.thebox.dto.StarTDO;
 import com.team.thebox.model.Movie;
 import com.team.thebox.model.MovieAttach;
@@ -7,12 +9,15 @@ import com.team.thebox.model.MovieReply;
 import com.team.thebox.model.MovieSchedule;
 import com.team.thebox.repository.*;
 import com.team.thebox.model.*;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository("movdao")
@@ -23,22 +28,30 @@ public class MovieDAOImpl implements MovieDAO {
     private final MovieReplyRepository movieReplyRepository;
     private final MovieScheduleRepository movieScheduleRepository;
     private final BookedRepository bookedRepository;
+    private final BookingdetailsRepository bookingdetailsRepository;
     private final MovieLocationRepository movieLocationRepository;
     private final TicketingRepository ticketingRepository;
+    private final TicketMovieRepository ticketMovieRepository;
+
+    /*@Autowired
+    BookingdetailsRepository bookingdetailsRepository;*/
 
 
     @Autowired
     public MovieDAOImpl(MovieRepository movieRepository, MovieAttachRepository movieAttachRepository,
                           MovieReplyRepository movieReplyRepository, MovieScheduleRepository movieScheduleRepository,
-                          BookedRepository bookedRepository, MovieLocationRepository movieLocationRepository,
-                          TicketingRepository ticketingRepository) {
+                          BookedRepository bookedRepository, BookingdetailsRepository bookingdetailsRepository,
+                          MovieLocationRepository movieLocationRepository,
+                          TicketingRepository ticketingRepository, TicketMovieRepository ticketMovieRepository) {
         this.movieRepository = movieRepository;
         this.movieAttachRepository = movieAttachRepository;
         this.movieReplyRepository = movieReplyRepository;
         this.movieScheduleRepository = movieScheduleRepository;
         this.bookedRepository = bookedRepository;
+        this.bookingdetailsRepository = bookingdetailsRepository;
         this.movieLocationRepository = movieLocationRepository;
         this.ticketingRepository = ticketingRepository;
+        this.ticketMovieRepository = ticketMovieRepository;
     }
 
 
@@ -189,25 +202,69 @@ public class MovieDAOImpl implements MovieDAO {
 
     @Override
     public int insertTicket(Ticketing ticketing) {
+        ticketing.setMovnum(Math.toIntExact(movieRepository.findMovnoByMovno(ticketing.getMovname())));
+
+        BookingDetails bookingDetails = new BookingDetails();
+        bookingDetails.setPoster(movieRepository.findMovmainposterByMovtitle(ticketing.getMovname()));
+        bookingDetails.setCinematype(ticketing.getCinematype());
+        bookingDetails.setTitle(ticketing.getMovname());
+        bookingDetails.setRegion(ticketing.getDistrict());
+        String districtName = ticketing.getCinematype()+" "+ticketing.getMovdate();
+        bookingDetails.setRegion(String.valueOf(movieLocationRepository.findDistrictNameByLocationName(districtName)));
+        bookingDetails.setRegion(ticketing.getRsp());
+        bookingDetails.setSeats(ticketing.getSeat());
+        bookingDetails.setViewingday(ticketing.getMovdate());
+        bookingDetails.setPaymentdate(ticketing.getRegdate());
+        bookingDetails.setAdult(Integer.parseInt(ticketing.getAdult()));
+        bookingDetails.setTotalprice(Integer.parseInt(ticketing.getMovtotalprice()));
+        bookingDetails.setUserid(ticketing.getUserid());
+
+        bookingdetailsRepository.save(bookingDetails);
+
         int result = Math.toIntExact((ticketingRepository.save(ticketing).getPmnumber()));
 
         return result;
     }
 
     @Override
-    public List<TicketMovie> selectMovielist(Ticketing ticketing) {
-        /*String district = ticketing.getDistrict();
+    public String selectMovielist(Ticketing ticketing) {
+        String district = Long.toString(movieLocationRepository.findDistrictNameByLocationName(ticketing.getDistrict()));
         String movdate = ticketing.getMovdate();
-        TicketMovie ticketMovie = new TicketMovie();
-        ticketMovie.setDistrict(district);
-        ticketMovie.setMovdate(movdate);
+        ObjectMapper mapper = new ObjectMapper();
 
-        Map<String, Object> movies = new HashMap<>();
-        movies.put("movielist", TicketMovieRepository.findAllBy(district, movdate).getContent());
-        System.out.println(movies.get("movielist"));*/
+        System.out.println(district);
+        System.out.println(movdate);
 
+        List<Object[]> movies = ticketMovieRepository.getMovieInfoByDistrictAndMovdate(district, movdate);
+        List<String> convertedResults = new ArrayList<>();
+        String json = "";
 
-        return null;
+        for (Object[] row : movies) {
+            convertedResults.add(Arrays.toString(row));
+        }
+
+        try {
+            json = mapper.writeValueAsString(
+                    convertedResults);
+        } catch (JsonProcessingException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
     }
 
+    @Override
+    public void insertBooking(BookingDetails bds) {
+
+        BookingDetails bd = new BookingDetails();
+        bd.setUserid("aaa111");
+        bd.setAdult(1);
+        bd.setTitle("d");
+        bd.setRegion("d");
+        bd.setViewingday(LocalDateTime.now());
+        bd.setTotalprice(15000);
+        bd.setCinematype("메가박스");
+
+        bookingdetailsRepository.save(bd);
+    }
 }

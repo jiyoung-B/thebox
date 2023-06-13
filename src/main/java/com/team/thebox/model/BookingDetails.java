@@ -19,12 +19,10 @@ public class BookingDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bkno;
 
-    private String bookingnum;
     private String userid;
     private String title;
     private String cinematype;
     private String region;
-    private String screennum;
     private int adult;
     private int teen;
     private String seats;

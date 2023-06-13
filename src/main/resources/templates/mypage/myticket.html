@@ -32,8 +32,8 @@
                                     </div>   <!-- 영화 이미지 -->
                                     <div class="col-7">
                                         <div class="row text-danger fw-bold fs-5" th:text="${bd.title}"></div>
-                                        <div class="row" th:text="|${bd.cinematype} ${bd.region} / ${bd.screennum}|"></div>
-                                        <div class="row" th:text="${bd.bookingnum}"></div>
+                                        <div class="row" th:text="|${bd.cinematype} ${bd.region}|"></div>
+<!--                                        <div class="row" th:text="${bd.bookingnum}"></div>-->
                                         <div class="row border-top border-bottom border-2 border-dark mt-3 pt-3">
                                             <div class="col-3">
                                                 <div class="row"><p class="text-center fw-bold">좌석</p></div>
@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row text-white justify-content-center mt-2" th:text="|Ticket NO.${bd.bookingnum}|"></div>
+<!--                                    <div class="row text-white justify-content-center mt-2" th:text="|Ticket NO.${bd.bookingnum}|"></div>-->
                                 </div>
                             </div>   <!-- 절취선 이후 -->
                         </div>   <!-- 티켓 전체 -->
