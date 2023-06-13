@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository("movdao")
@@ -31,6 +32,11 @@ public class MovieDAOImpl implements MovieDAO {
     private final MovieLocationRepository movieLocationRepository;
     private final TicketingRepository ticketingRepository;
     private final TicketMovieRepository ticketMovieRepository;
+
+
+    /*@Autowired
+    BookingdetailsRepository bookingdetailsRepository;*/
+
 
 
     @Autowired
@@ -239,6 +245,7 @@ public class MovieDAOImpl implements MovieDAO {
             convertedResults.add(Arrays.toString(row));
         }
 
+
         try {
             json = mapper.writeValueAsString(
                     convertedResults);
@@ -247,5 +254,31 @@ public class MovieDAOImpl implements MovieDAO {
         }
 
         return json;
+    }
+
+    @Override
+    public void insertBooking(BookingDetails bds) {
+
+        BookingDetails bd = new BookingDetails();
+        bd.setUserid("aaa111");
+        bd.setAdult(1);
+        bd.setTitle("d");
+        bd.setRegion("d");
+        bd.setViewingday(LocalDateTime.now());
+        bd.setTotalprice(15000);
+        bd.setCinematype("메가박스");
+
+        bookingdetailsRepository.save(bd);
+
+
+        try {
+            json = mapper.writeValueAsString(
+                    convertedResults);
+        } catch (JsonProcessingException ex) {
+            ex.printStackTrace();
+        }
+
+        return json;
+
     }
 }

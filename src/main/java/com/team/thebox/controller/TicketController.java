@@ -5,6 +5,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.team.thebox.model.BookingDetails;
 import com.team.thebox.model.Ticketing;
 import com.team.thebox.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,9 @@ public class TicketController {
     }
 
     @PostMapping("/ticketing")
-    public String buyticket3(Ticketing ticketing, HttpSession sess) {
+    public String buyticket3(Ticketing ticketing, HttpSession sess, BookingDetails bds) {
         String viewName = "ticket/ticketing";
+
         if(sess.getAttribute("UID")==null) {
         } else {
             ticketing.setUserid(sess.getAttribute("UID").toString());
@@ -41,6 +43,9 @@ public class TicketController {
             if(movsrv.newTicket(ticketing))viewName = "redirect:/mypage/myticket";
 
         }
+
+        movsrv.newBooking(bds);
+
         return viewName;
     }
 

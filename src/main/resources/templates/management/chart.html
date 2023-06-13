@@ -5,6 +5,51 @@
 
 <th:block layout:fragment="admincontent">
 
+  <script th:inline="javascript">
+    let t5dlist = [[${t5dlist}]];
+    let t5clist = [[${t5clist}]];
+
+    let t5dlabels = [];
+    let t5ddatas = [];
+    for(let obj of t5dlist) {
+      t5dlabels.push(obj['title']);
+      t5ddatas.push(obj['boxoffice']);
+    }
+
+    let t5clabels = [];
+    let t5cdatas = [];
+    for(let obj of t5clist) {
+      t5clabels.push(obj['title']);
+      t5cdatas.push(obj['cumulativeboxoffice']);
+    }
+
+    // console.log(t5dlabels);
+    // console.log(t5ddatas);
+
+    let barData = {
+      labels: t5dlabels,
+      datasets: [{
+      label: "관객수",
+      backgroundColor: ["#6E6ED7", "#FFD0CD", "#FFAA28", "#D68642", "#5AD18F"],
+      hoverBackgroundColor: ["#0000CD", "#FF9E9B", "#FF8200", "#AE5E1A", "#3CB371"],
+      borderColor: "#4e73df",
+      data: t5ddatas,
+    }],
+    }
+
+    let bc2Data = {
+      labels: t5clabels,
+        datasets: [{
+        label: "관객수",
+        backgroundColor: ["#6E6ED7", "#FFD0CD", "#FFAA28", "#D68642", "#5AD18F"],
+        hoverBackgroundColor: ["#0000CD", "#FF9E9B", "#FF8200", "#AE5E1A", "#3CB371"],
+        borderColor: "#4e73df",
+        data: t5cdatas,
+      }],
+    }
+  </script>
+
+
   <!-- Content Wrapper. Contains page content // 본문-->
   <div class="content-wrapper">
     <!-- Content Header (Page header) // 본문 헤더 -->
@@ -34,44 +79,30 @@
 
               <div class="col-xl-11 col-lg-7">
 
-                <!-- 월별 관객수 -->
+                <!-- 현재 상영작 중 일일 관객수 TOP5 영화 (2023.06.12 기준) -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">월별 관객수!</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">현재 상영작 중 일일 관객수 TOP5 영화 (2023.06.12 기준)</h6>
                   </div>
                   <div class="card-body" style="height: 400px !important;">
                     <div class="chart-bar">
                       <canvas id="myBarChart" style="height: 350px !important;"></canvas>
                     </div>
-                    <hr>
                   </div>
                 </div>
 
-                <!-- 6월 상영 영화별 누적 관객수 -->
+                <!-- 현재 상영작 중 누적 관객수 TOP5 영화 (2023.06.12 기준) -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">올해 누적 관객수 TOP5 영화</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">현재 상영작 중 누적 관객수 TOP5 영화 (2023.06.12 기준)</h6>
                   </div>
                   <div class="card-body" style="height: 400px !important;">
                     <div class="chart-bar">
-                      <canvas id="accumulatedAudienceChart" style="height: 350px !important;"></canvas>
+                      <canvas id="barChart2" style="height: 350px !important;"></canvas>
                     </div>
                     <hr>
                   </div>
                 </div>
-
-                <!-- 6월 상영 영화별 누적 매출액 -->
-                <!--<div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">6월 상영 영화별 누적 매출액</h6>
-                  </div>
-                  <div class="card-body" style="height: 400px !important;">
-                    <div class="chart-bar">
-                      <canvas id="accumulatedSalesChart" style="height: 350px !important;"></canvas>
-                    </div>
-                    <hr>
-                  </div>
-                </div>-->
 
               </div>
 

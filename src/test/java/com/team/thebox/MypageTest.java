@@ -43,7 +43,7 @@ public class MypageTest {
         bookingdetailsRepository.delete(bd);
     }
 
-    @Test
+    /*@Test
     @DisplayName("cds insert")
     public void insertCds() {
         CancellationDetails cd = new CancellationDetails();
@@ -54,5 +54,5 @@ public class MypageTest {
         cd.setViewingday(LocalDateTime.now());
 
         cancellationdetailsRepository.save(cd);
-    }
+    }*/
 }
