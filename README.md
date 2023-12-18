@@ -46,5 +46,5 @@
 + 병합중
 + 완료
 
-### 프로젝트 보러가기
+### The Box 보러가기
 <a href="https://vo.la/TbxOV">![image](https://github.com/jiyoung-B/thebox/assets/121989964/b587b5da-2e1b-4fd0-8b3a-788cec3354bb)</a>
